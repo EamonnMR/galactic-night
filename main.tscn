@@ -8,8 +8,6 @@ size = Vector3( 1, 1, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
-shader_param/mesh_position = null
-shader_param/camera_position = Vector3( -1, -1, -1 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -26,16 +24,19 @@ material/0 = SubResource( 3 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30178, 0, -3.88149 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30178, 0, -1.71519 )
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 3 )
+script = ExtResource( 2 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.418039, 0, 0.289719 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, -1.71519 )
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 3 )
+script = ExtResource( 2 )
 
 [node name="MeshInstance4" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68822, 0, 3.86252 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, 3.72169 )
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = SubResource( 3 )
+script = ExtResource( 2 )
