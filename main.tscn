@@ -9,6 +9,8 @@ size = Vector3( 1, 1, 1 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
 shader_param/camera_position = null
+shader_param/camera_transform = null
+shader_param/xform = null
 
 [node name="Spatial" type="Spatial"]
 
