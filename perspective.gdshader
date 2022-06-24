@@ -1,6 +1,6 @@
 shader_type spatial;
 //render_mode unshaded;
-const float S = .5;
+const float S = 5.0;
 uniform vec3 camera_position;
 uniform mat4 camera_transform;
 uniform mat4 xform;
@@ -12,16 +12,16 @@ void vertex() {
 	mat4 my_special_projection = mat4(
 		vec4(1,0,0,0),
 		vec4(0,1,0,0),
-		vec4(0,0,1,0),
+		vec4(0,0,-1,-1),
 		vec4(0,0,0,1)
 	);
+	vec4 tmpvertex = vec4(VERTEX, 1);
 	
-	vec4 tmpvertex = (inv_xform * vec4(VERTEX, 1));
-	//tmpvertex = my_special_projection * tmpvertex;
-	//tmpvertex.x /= tmpvertex.z * S;
-	//tmpvertex.y /= tmpvertex.z * S;
-	// TODO: modify z too
+	tmpvertex = inv_xform * tmpvertex;
+
 	tmpvertex = my_special_projection * tmpvertex;
-	tmpvertex = xform * tmpvertex;
+
+	//tmpvertex = xform * tmpvertex;
+	
 	VERTEX = tmpvertex.xyz / tmpvertex.w;
 }
