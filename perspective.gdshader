@@ -17,20 +17,19 @@ void vertex() {
 		vec4(0,0,0,1)
 	);
 	vec4 tmpvertex = vec4(VERTEX, 1);
-	
-	tmpvertex = inv_xform * tmpvertex;
-
 	tmpvertex = offset * tmpvertex;
 	
-	//tmpvertex = cam_xform * tmpvertex;
+	tmpvertex = inv_xform * tmpvertex;
+	
+	tmpvertex = inv_cam_xform * tmpvertex;
 
 	tmpvertex = projection * tmpvertex;
 
-	//tmpvertex = cam_xform * tmpvertex;
-
-	tmpvertex = inv_offset * tmpvertex;
+	tmpvertex = cam_xform * tmpvertex;
 
 	tmpvertex = inv_xform * tmpvertex;
+	
+	tmpvertex = inv_offset * tmpvertex;
 	
 	VERTEX = tmpvertex.xyz / tmpvertex.w;
 }
