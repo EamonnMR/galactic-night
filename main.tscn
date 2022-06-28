@@ -10,6 +10,8 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/cam_xform = null
 shader_param/inv_cam_xform = null
+shader_param/offset = null
+shader_param/inv_offset = null
 shader_param/S = 0.5
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -18,6 +20,8 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/cam_xform = null
 shader_param/inv_cam_xform = null
+shader_param/offset = null
+shader_param/inv_offset = null
 shader_param/S = 0.5
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -26,6 +30,8 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/cam_xform = null
 shader_param/inv_cam_xform = null
+shader_param/offset = null
+shader_param/inv_offset = null
 shader_param/S = 0.5
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -34,6 +40,8 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/cam_xform = null
 shader_param/inv_cam_xform = null
+shader_param/offset = null
+shader_param/inv_offset = null
 shader_param/S = 0.5
 
 [node name="Spatial" type="Spatial"]
