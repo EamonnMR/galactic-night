@@ -1,10 +1,6 @@
 shader_type spatial;
 uniform mat4 xform;
 uniform mat4 inv_xform;
-uniform mat4 cam_xform;
-uniform mat4 inv_cam_xform;
-uniform mat4 offset;
-uniform mat4 inv_offset;
 uniform float S = 0.5;
 
 void vertex() {
@@ -17,19 +13,12 @@ void vertex() {
 		vec4(0,0,0,1)
 	);
 	vec4 tmpvertex = vec4(VERTEX, 1);
-	tmpvertex = offset * tmpvertex;
 	
-	tmpvertex = inv_xform * tmpvertex;
-	
-	tmpvertex = inv_cam_xform * tmpvertex;
-
-	tmpvertex = projection * tmpvertex;
-
-	tmpvertex = cam_xform * tmpvertex;
-
-	tmpvertex = inv_xform * tmpvertex;
-	
-	tmpvertex = inv_offset * tmpvertex;
+	tmpvertex = 
+		inv_xform *
+		projection *
+		xform * 
+		tmpvertex;
 	
 	VERTEX = tmpvertex.xyz / tmpvertex.w;
 }
