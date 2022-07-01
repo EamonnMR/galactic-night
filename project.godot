@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="25d_shader_test"
+config/name="Asteroids '22"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
