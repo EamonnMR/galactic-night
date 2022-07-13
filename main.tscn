@@ -1,17 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://perspective.gdshader" type="Shader" id=1]
 [ext_resource path="res://MeshInstance.gd" type="Script" id=2]
 [ext_resource path="res://grid.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://asset_sources/xic_prospector_ma.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Spaceship.gd" type="Script" id=5]
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 1 )
-shader_param/xform = null
-shader_param/inv_xform = null
-shader_param/S = 0.5
-
-[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
 shader_param/xform = null
 shader_param/inv_xform = null
@@ -29,25 +24,36 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/S = 0.5
 
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/xform = null
+shader_param/inv_xform = null
+shader_param/S = 0.5
+
 [node name="Spatial" type="Spatial"]
 
-[node name="Camera" type="Camera" parent="."]
+[node name="CameraTransform" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraTransform"]
 transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4, 4, 4 )
 projection = 1
 size = 9.82505
 far = 500.0
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30178, 0, 3.44212 )
+[node name="Spaceship" type="KinematicBody" parent="."]
+script = ExtResource( 5 )
+
+[node name="Graphics" type="MeshInstance" parent="Spaceship"]
 mesh = ExtResource( 4 )
+skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 script = ExtResource( 2 )
+spin_aimlessly = false
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30178, 0, -1.71519 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 5 )
-script = ExtResource( 2 )
+[node name="CameraFollower" type="RemoteTransform" parent="Spaceship"]
+remote_path = NodePath("../../CameraTransform")
+update_rotation = false
+update_scale = false
 
 [node name="MeshInstance3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, -1.71519 )
@@ -59,4 +65,14 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, 3.72169 )
 mesh = ExtResource( 3 )
 material/0 = SubResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Asteroid" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
+axis_lock_linear_y = true
+
+[node name="MeshInstance2" type="MeshInstance" parent="Asteroid"]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 5 )
 script = ExtResource( 2 )
