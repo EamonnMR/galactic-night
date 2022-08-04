@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://perspective.gdshader" type="Shader" id=1]
 [ext_resource path="res://MeshInstance.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Spaceship.gd" type="Script" id=5]
 [ext_resource path="res://Background.gd" type="Script" id=6]
 [ext_resource path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" type="Texture" id=7]
+[ext_resource path="res://Camera.gd" type="Script" id=8]
 
 [sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
@@ -59,6 +60,35 @@ shader = SubResource( 12 )
 shader_param/position = null
 shader_param/nebula = ExtResource( 7 )
 
+[sub_resource type="NoiseTexture" id=14]
+width = 1224
+height = 1224
+
+[sub_resource type="GDScript" id=15]
+script/source = "extends Label
+
+var move_scale_oom = 0.1
+
+func _process(delta):
+	modify_move_scale()
+	text = \"Move Scale: \" + str(get_node(\"../Background\").MOVE_SCALE) + \"\\n\" \\
+		+ \"Change by: \" + str(move_scale_oom) + \"\\n\" \\
+		+ \"J/L to change, I/K to change oom\"
+	
+func modify_move_scale():
+	# Tired of manually iterating on this
+	if Input.is_action_just_pressed(\"bg_scale_plus\"):
+		get_node(\"../Background\").MOVE_SCALE += move_scale_oom
+	if Input.is_action_just_pressed(\"bg_scale_minus\"):
+		get_node(\"../Background\").MOVE_SCALE += move_scale_oom
+	if Input.is_action_just_pressed(\"bg_scale_oom_plus\"):
+		move_scale_oom *= 10.0
+	if Input.is_action_just_pressed(\"bg_scale_oom_minus\"):
+		move_scale_oom /= 10.0
+	if move_scale_oom >= 0.1:
+		move_scale_oom = 0.1
+"
+
 [sub_resource type="Environment" id=9]
 background_mode = 4
 background_canvas_max_layer = -1
@@ -98,9 +128,16 @@ layer = -1
 material = SubResource( 13 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = SubResource( 14 )
 stretch_mode = 3
 script = ExtResource( 6 )
+
+[node name="MoveScaleLabel" type="Label" parent="Background"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 52.0
+margin_bottom = 26.0
+script = SubResource( 15 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 9 )
@@ -114,6 +151,7 @@ transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.
 projection = 1
 size = 9.82505
 far = 500.0
+script = ExtResource( 8 )
 
 [node name="Spaceship" type="KinematicBody" parent="3d"]
 script = ExtResource( 5 )
