@@ -1,10 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://perspective.gdshader" type="Shader" id=1]
 [ext_resource path="res://MeshInstance.gd" type="Script" id=2]
 [ext_resource path="res://grid.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://asset_sources/xic_prospector_ma.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Spaceship.gd" type="Script" id=5]
+
+[sub_resource type="OpenSimplexNoise" id=10]
+
+[sub_resource type="NoiseTexture" id=11]
+noise = SubResource( 10 )
+
+[sub_resource type="Environment" id=9]
+background_mode = 4
+background_canvas_max_layer = -1
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 1 )
@@ -32,20 +41,34 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/S = 0.5
 
-[node name="Spatial" type="Spatial"]
+[node name="Node" type="Node"]
 
-[node name="CameraTransform" type="Spatial" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Camera" type="Camera" parent="CameraTransform"]
+[node name="Background" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 11 )
+expand = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 9 )
+
+[node name="3d" type="Spatial" parent="."]
+
+[node name="CameraTransform" type="Spatial" parent="3d"]
+
+[node name="Camera" type="Camera" parent="3d/CameraTransform"]
 transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4, 4, 4 )
 projection = 1
 size = 9.82505
 far = 500.0
 
-[node name="Spaceship" type="KinematicBody" parent="."]
+[node name="Spaceship" type="KinematicBody" parent="3d"]
 script = ExtResource( 5 )
 
-[node name="Graphics" type="MeshInstance" parent="Spaceship"]
+[node name="Graphics" type="MeshInstance" parent="3d/Spaceship"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 mesh = ExtResource( 4 )
 skeleton = NodePath("../..")
@@ -53,38 +76,38 @@ material/0 = SubResource( 6 )
 script = ExtResource( 2 )
 spin_aimlessly = false
 
-[node name="CameraFollower" type="RemoteTransform" parent="Spaceship"]
+[node name="CameraFollower" type="RemoteTransform" parent="3d/Spaceship"]
 remote_path = NodePath("../../CameraTransform")
 update_rotation = false
 update_scale = false
 
-[node name="MeshInstance" type="MeshInstance" parent="Spaceship"]
+[node name="MeshInstance" type="MeshInstance" parent="3d/Spaceship"]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -1.10364e-08, -0.252484, -0.470493, -2.05659e-08, 8.98964e-16, 3.8294, 0, 0 )
 visible = false
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="MeshInstance3" type="MeshInstance" parent="."]
+[node name="MeshInstance3" type="MeshInstance" parent="3d"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, -1.71519 )
 mesh = ExtResource( 3 )
 material/0 = SubResource( 3 )
 script = ExtResource( 2 )
 
-[node name="MeshInstance4" type="MeshInstance" parent="."]
+[node name="MeshInstance4" type="MeshInstance" parent="3d"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, 3.72169 )
 mesh = ExtResource( 3 )
 material/0 = SubResource( 4 )
 script = ExtResource( 2 )
 
-[node name="Asteroid" type="RigidBody" parent="."]
+[node name="Asteroid" type="RigidBody" parent="3d"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
 axis_lock_linear_y = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="Asteroid"]
+[node name="MeshInstance2" type="MeshInstance" parent="3d/Asteroid"]
 mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 5 )
 script = ExtResource( 2 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
+[node name="DirectionalLight" type="DirectionalLight" parent="3d"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
