@@ -6,6 +6,13 @@ uniform float S = 0.5;
 void vertex() {
 	//https://discord.com/channels/212250894228652034/408555922349359105/988915027035693186
 	
+	mat4 reflection = mat4(
+		vec4(-1, 0, 0, 0),
+		vec4(0, 1, 0, 0),
+		vec4(0, 0, -1, 0),
+		vec4(0, 0, 0, 1)
+	);
+	
 	mat4 projection = mat4(
 		vec4(1,0,0,0),
 		vec4(0,1,0,0),
@@ -17,7 +24,8 @@ void vertex() {
 	tmpvertex = 
 		inv_xform *
 		projection *
-		xform * 
+		xform *
+		reflection *
 		tmpvertex;
 	
 	VERTEX = tmpvertex.xyz / tmpvertex.w;

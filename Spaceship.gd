@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 func get_limited_velocity_with_thrust(delta):
 	if Input.is_action_pressed("ui_up"):
-		linear_velocity += Vector2(accel * delta * 100, 0).rotated(rotation.y)
+		linear_velocity += Vector2(accel * delta * 100, 0).rotated(-rotation.y)
 	if linear_velocity.length() > max_speed:
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
@@ -24,8 +24,10 @@ func get_limited_velocity_with_thrust(delta):
 
 func get_rotation_change():
 	var dc = 0
+	# TODO:
+	# Something is fucked up about the shader so invert this for now.
 	if Input.is_action_pressed("ui_left"):
-		dc -= 1
-	if Input.is_action_pressed("ui_right"):
 		dc += 1
+	if Input.is_action_pressed("ui_right"):
+		dc -= 1
 	return dc
