@@ -6,7 +6,7 @@ var turn = 1
 
 var linear_velocity = Vector2()
 
-const PLAY_AREA_RADIUS = 3000
+const PLAY_AREA_RADIUS = 300
 
 func _ready():
 	Client.player = self

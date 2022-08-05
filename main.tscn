@@ -70,17 +70,18 @@ script/source = "extends Label
 var move_scale_oom = 0.1
 
 func _process(delta):
+	return
 	modify_move_scale()
-	text = \"Move Scale: \" + str(get_node(\"../Background\").MOVE_SCALE) + \"\\n\" \\
+	text = \"Move Scale.y: \" + str(get_node(\"../Background\").MOVE_SCALE.y) + \"\\n\" \\
 		+ \"Change by: \" + str(move_scale_oom) + \"\\n\" \\
 		+ \"J/L to change, I/K to change oom\"
 	
 func modify_move_scale():
 	# Tired of manually iterating on this
 	if Input.is_action_just_pressed(\"bg_scale_plus\"):
-		get_node(\"../Background\").MOVE_SCALE += move_scale_oom
+		get_node(\"../Background\").MOVE_SCALE.y += move_scale_oom
 	if Input.is_action_just_pressed(\"bg_scale_minus\"):
-		get_node(\"../Background\").MOVE_SCALE += move_scale_oom
+		get_node(\"../Background\").MOVE_SCALE.y -= move_scale_oom
 	if Input.is_action_just_pressed(\"bg_scale_oom_plus\"):
 		move_scale_oom *= 10.0
 	if Input.is_action_just_pressed(\"bg_scale_oom_minus\"):

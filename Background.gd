@@ -1,5 +1,5 @@
 extends TextureRect
-export var MOVE_SCALE = 0.11111111
+export var MOVE_SCALE = Vector2(0.071111, 0.048111)
 func _physics_process(delta):
 	get_material().set_shader_param("position",
 		Util.flatten_25d(
