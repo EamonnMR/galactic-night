@@ -2,7 +2,7 @@
 
 [ext_resource path="res://perspective.gdshader" type="Shader" id=1]
 [ext_resource path="res://MeshInstance.gd" type="Script" id=2]
-[ext_resource path="res://grid.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/asteroid.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://asset_sources/xic_prospector_ma.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Spaceship.gd" type="Script" id=5]
 [ext_resource path="res://Background.gd" type="Script" id=6]
@@ -52,25 +52,19 @@ shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/S = 0.5
 
+[sub_resource type="ConvexPolygonShape" id=16]
+points = PoolVector3Array( -0.76173, 0.0146557, -1.00448, -0.852955, 0.0146557, -0.987765, -0.76173, 0.0676971, -0.944305, -0.531406, 0.0146557, -0.942929, -0.76173, -0.0383857, -0.944305, -0.76173, -0.306209, -0.370285, -1.0304, -0.217648, -0.212966, -0.918931, 0.0146557, -0.69987, -1.0304, 0.246959, -0.212966, -0.76173, 0.404419, -0.222798, -0.528786, 0.137705, -0.749229, -0.528786, -0.108394, -0.749229, 1.3543, 0.0146557, 5.60284e-06, -0.76173, -0.339667, 5.60284e-06, -0.90607, -0.320639, 5.60284e-06, -0.509731, -0.242226, -0.453075, 0.1367, -0.269421, 5.60284e-06, -1.07899, -0.228986, 5.60284e-06, -1.07899, 0.258297, 5.60284e-06, -0.90607, 0.394667, 5.60284e-06, -0.76173, 0.470225, 5.60284e-06, -0.521879, 0.452306, 5.60284e-06, -0.509731, 0.271458, -0.453075, 0.184813, 0.33227, 5.60284e-06, -0.114584, 0.143097, -0.530555, -0.114584, -0.113785, -0.530555, -0.0495601, -0.181256, -0.35357, -0.531406, 0.0146557, 0.942743, -0.528786, -0.108394, 0.749043, -0.114584, -0.113785, 0.530369, -0.0495601, -0.181256, 0.353385, 0.184813, -0.170949, 0.238541, 0.184813, -0.170949, -0.238727, -0.114584, 0.143097, 0.530369, -0.528786, 0.137705, 0.749043, -0.76173, -0.306209, 0.3701, -1.0304, -0.217648, 0.21278, -0.509731, -0.242226, 0.452889, -1.0304, 0.246959, 0.21278, -0.76173, 0.404419, 0.222613, -0.509731, 0.271458, 0.452889, -0.76173, 0.0676971, 0.94412, -0.76173, 0.0146557, 1.00429, -0.76173, -0.0383857, 0.94412, -0.852955, 0.0146557, 0.987579, -0.918931, 0.0146557, 0.699685 )
+
 [sub_resource type="PrismMesh" id=7]
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 1 )
-shader_param/xform = null
-shader_param/inv_xform = null
-shader_param/S = 0.5
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 1 )
-shader_param/xform = null
-shader_param/inv_xform = null
-shader_param/S = 0.5
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
 shader_param/xform = null
 shader_param/inv_xform = null
 shader_param/S = 0.5
+
+[sub_resource type="ConvexPolygonShape" id=17]
+points = PoolVector3Array( 0.0291231, 0.0284654, -1.05039, -0.699559, 0.0544144, -0.885851, -0.01957, 0.682887, -0.969354, 0.661642, 0.105469, -0.915481, 0.0484535, -0.586717, -1.01021, -0.562778, -0.858865, -0.503802, -1.23641, 0.138801, -0.507842, -0.349899, 0.78584, -0.800328, 0.521191, 0.950183, -0.573612, 0.520213, -0.89051, -0.520637, 1.21317, 0.215805, -0.455316, 1.26333, 0.0343724, -0.352284, -0.226576, -0.831439, -0.65532, -0.956482, -0.644311, 0.618551, -1.03282, -0.627433, -0.0245572, -0.0841677, -1.04093, 0.106309, -1.14856, -0.0297617, 0.379939, -0.984621, 0.62023, 0.834267, -0.981684, 0.729722, 0.091943, -0.504542, 1.00039, -0.461377, 0.75389, 0.943221, 0.0109092, -0.144361, 1.11411, 0.0966569, 0.36508, -0.938189, 0.228421, 0.989035, -0.666462, -0.0434128, 0.934225, 0.741325, 0.687913, 1.08691, 0.371921, 0.701156, 1.14343, -0.00486755, 0.392285, 0.940587, -0.573637, 0.643243, -0.241992, -0.937978, 0.388693, -0.398103, -0.6114, 1.04392, -0.907544, 0.224454, 0.925403, 0.352356, -0.694099, 1.02058, -0.0283787, -0.0206901, 1.2428, 0.596311, 0.726558, 0.98354, 0.117211, 1.0139, 0.779945, -0.57281, 1.00166, 0.406651, 0.68709, 0.0744563, 1.02394 )
 
 [node name="Node" type="Node"]
 
@@ -103,6 +97,7 @@ environment = SubResource( 9 )
 transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4, 4, 4 )
 projection = 1
 size = 9.82505
+near = 0.01
 far = 500.0
 script = ExtResource( 8 )
 
@@ -117,6 +112,9 @@ material/0 = SubResource( 6 )
 script = ExtResource( 2 )
 spin_aimlessly = false
 
+[node name="CollisionShape" type="CollisionShape" parent="3d/Spaceship"]
+shape = SubResource( 16 )
+
 [node name="CameraFollower" type="RemoteTransform" parent="3d/Spaceship"]
 remote_path = NodePath("../../CameraTransform")
 update_rotation = false
@@ -127,18 +125,6 @@ transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -1.10364e-08, -0.252484
 visible = false
 mesh = SubResource( 7 )
 
-[node name="MeshInstance3" type="MeshInstance" parent="3d"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, -1.71519 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 3 )
-script = ExtResource( 2 )
-
-[node name="MeshInstance4" type="MeshInstance" parent="3d"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, 3.72169 )
-mesh = ExtResource( 3 )
-material/0 = SubResource( 4 )
-script = ExtResource( 2 )
-
 [node name="Asteroid" type="RigidBody" parent="3d"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
 axis_lock_linear_y = true
@@ -148,6 +134,9 @@ mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 5 )
 script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="3d/Asteroid"]
+shape = SubResource( 17 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="3d"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
