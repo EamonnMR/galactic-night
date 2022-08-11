@@ -8,61 +8,13 @@
 [ext_resource path="res://Background.gd" type="Script" id=6]
 [ext_resource path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" type="Texture" id=7]
 [ext_resource path="res://Camera.gd" type="Script" id=8]
-
-[sub_resource type="Shader" id=12]
-code = "shader_type canvas_item;
-
-uniform vec2 position;
-uniform sampler2D nebula;
-const int LAYERS = 5;
-const float DEPTH_FACTOR = 0.7;
-const float DEPTH_OFFSET = 0.0;
-
-void fragment(){
-	COLOR = vec4(0,0,0,0);
-	vec2 shifted_uv_front = UV;
-	for (int i = 1; i <= LAYERS; i ++){
-		
-		// Offset stars by player position
-		vec2 shifted_uv = UV;
-		shifted_uv.x += (
-			position.x / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR) * TEXTURE_PIXEL_SIZE.x
-		);
-		shifted_uv.y += (
-			position.y / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR) * TEXTURE_PIXEL_SIZE.y
-		);
-
-		// Extra offset to avoid stacking
-		shifted_uv += (TEXTURE_PIXEL_SIZE * float(i) * 250.0);
-
-		shifted_uv.x = fract(shifted_uv.x);
-		shifted_uv.y = fract(shifted_uv.y);
-		
-		// Invert every other layer
-		if(bool(i % 2)){
-			shifted_uv.x = 1.0 - shifted_uv.x;
-			shifted_uv.y = 1.0 - shifted_uv.y;
-		}
-		if(bool(i % 3)){
-			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
-				//COLOR = vec4(1,1,1,1)
-			}
-			COLOR += texture(nebula, shifted_uv) / (float(i) + 0.5)
-		} else {
-			COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5)
-		}
-	}
-}
-"
+[ext_resource path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" type="Texture" id=9]
+[ext_resource path="res://starfield.gdshader" type="Shader" id=10]
 
 [sub_resource type="ShaderMaterial" id=13]
-shader = SubResource( 12 )
+shader = ExtResource( 10 )
 shader_param/position = null
 shader_param/nebula = ExtResource( 7 )
-
-[sub_resource type="NoiseTexture" id=14]
-width = 1224
-height = 1224
 
 [sub_resource type="GDScript" id=15]
 script/source = "extends Label
@@ -129,8 +81,8 @@ layer = -1
 material = SubResource( 13 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 14 )
-stretch_mode = 3
+texture = ExtResource( 9 )
+stretch_mode = 2
 script = ExtResource( 6 )
 
 [node name="MoveScaleLabel" type="Label" parent="Background"]
@@ -174,7 +126,6 @@ update_scale = false
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -1.10364e-08, -0.252484, -0.470493, -2.05659e-08, 8.98964e-16, 3.8294, 0, 0 )
 visible = false
 mesh = SubResource( 7 )
-material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="3d"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507011, 0, -1.71519 )
