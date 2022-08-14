@@ -12,5 +12,5 @@ func _process(delta):
 		.rotated(Vector3(0,1,0), offset)\
 		.rotated(Vector3(1,0,0), ortho_cam_angle)
 
-	get_surface_material(0).set_shader_param("xform", xform)
-	get_surface_material(0).set_shader_param("inv_xform", xform.inverse())
+	#get_surface_material(0).set_shader_param("xform", xform)
+	#get_surface_material(0).set_shader_param("inv_xform", xform.inverse())
