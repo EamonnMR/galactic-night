@@ -44,6 +44,10 @@ func modify_move_scale():
 [sub_resource type="Environment" id=9]
 background_mode = 4
 background_canvas_max_layer = -1
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.4
+glow_blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
@@ -106,3 +110,4 @@ shape = SubResource( 17 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="3d"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+light_energy = 0.5

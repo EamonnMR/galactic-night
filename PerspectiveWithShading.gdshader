@@ -17,9 +17,21 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
+uniform sampler2D texture_base_emission : hint_black_albedo;
+uniform sampler2D texture_engine_emission : hint_black_albedo;
+uniform sampler2D texture_weapon_emission : hint_black_albedo;
+
+
+uniform vec4 emission : hint_color;
+uniform float emission_energy;
+
 uniform mat4 xform;
 uniform mat4 inv_xform;
-uniform float S = 0.5;
+uniform float perspective_correct = 0.5;
+
+uniform float engine_emission_factor;
+uniform float weapon_emission_factor;
+uniform float base_emission_factor;
 
 void vertex() {
 	//https://discord.com/channels/212250894228652034/408555922349359105/988915027035693186
@@ -36,7 +48,7 @@ void vertex() {
 	mat4 projection = mat4(
 		vec4(1,0,0,0),
 		vec4(0,1,0,0),
-		vec4(0,0,1,-S),
+		vec4(0,0,1,-perspective_correct),
 		vec4(0,0,0,1)
 	);
 	vec4 tmpvertex = vec4(VERTEX, 1);
@@ -52,8 +64,6 @@ void vertex() {
 }
 
 
-
-
 void fragment() {
 	vec2 base_uv = UV;
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
@@ -64,4 +74,16 @@ void fragment() {
 	SPECULAR = specular;
 	NORMALMAP = texture(texture_normal,base_uv).rgb;
 	NORMALMAP_DEPTH = normal_scale;
+	
+	vec3 base_emission_tex = texture(texture_base_emission,base_uv).rgb;
+	vec3 weapon_emission_tex = texture(texture_weapon_emission,base_uv).rgb;
+	vec3 engine_emission_tex = texture(texture_engine_emission,base_uv).rgb;
+	
+	EMISSION = (
+		emission.rgb+
+		base_emission_tex+
+		weapon_emission_tex+
+		engine_emission_tex
+	)*emission_energy;
+	
 }

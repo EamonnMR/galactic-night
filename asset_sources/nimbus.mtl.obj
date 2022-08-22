@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'nimbus.blend'
 # www.blender.org
-mtllib nimbus.mtl
+mtllib nimbus.mtl.mtl
 o Cube_Cube.001
 v -0.090896 0.136845 0.023221
 v -0.453274 0.136845 0.023221

@@ -1,3 +1,4 @@
+tool
 extends MeshInstance
 
 export var offset = PI/4
