@@ -44,15 +44,17 @@ func modify_move_scale():
 [sub_resource type="Environment" id=9]
 background_mode = 4
 background_canvas_max_layer = -1
+ambient_light_energy = 0.0
+ambient_light_sky_contribution = 0.0
 glow_enabled = true
-glow_intensity = 0.5
-glow_bloom = 0.4
-glow_blend_mode = 1
+glow_intensity = 0.25
+glow_bloom = 0.2
+glow_blend_mode = 0
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
-shader_param/xform = null
-shader_param/inv_xform = null
+shader_param/xform = Transform( -0.879658, 0, 0.475274, 0.33607, 0.707107, 0.622012, -0.33607, 0.707107, -0.622012, 0, 0, 0 )
+shader_param/inv_xform = Transform( -0.879658, 0.33607, -0.33607, 0, 0.707107, 0.707107, 0.475274, 0.622012, -0.622012, 0, 0, 0 )
 shader_param/S = 0.5
 
 [sub_resource type="ConvexPolygonShape" id=17]
@@ -100,6 +102,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
 axis_lock_linear_y = true
 
 [node name="MeshInstance2" type="MeshInstance" parent="3d/Asteroid"]
+transform = Transform( -0.285943, 0, 0.958082, 0, 1, 0, -0.958082, 0, -0.285943, 0, 0, 0 )
 mesh = ExtResource( 3 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 5 )
