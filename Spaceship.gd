@@ -15,10 +15,15 @@ func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	rotation.y += delta * turn * get_rotation_change()
 	move_and_slide(Util.raise_25d(linear_velocity))
-
+	handle_shooting()
+	
+func handle_shooting():
+	if Input.is_action_pressed("shoot"):
+		$Weapon.try_shoot()
+		$Weapon2.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("thrust"):
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(-rotation.y)
 		$Graphics.thrusting = true
 	else:
@@ -30,10 +35,11 @@ func get_limited_velocity_with_thrust(delta):
 
 func get_rotation_change():
 	var dc = 0
-	# TODO:
-	# Something is fucked up about the shader so invert this for now.
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("turn_left"):
 		dc += 1
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("turn_right"):
 		dc -= 1
 	return dc
+
+func flash_weapon():
+	$Graphics.flash_weapon()

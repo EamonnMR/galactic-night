@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://MeshInstance.gd" type="Script" id=1]
+[ext_resource path="res://assets/asteroid.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://perspective.gdshader" type="Shader" id=3]
+[ext_resource path="res://Asteroid.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 3 )
+shader_param/xform = Transform( 0.0859098, 0, -0.995917, -0.70422, 0.707107, -0.0607474, 0.70422, 0.707107, 0.0607474, 0, 0, 0 )
+shader_param/inv_xform = Transform( 0.0859098, -0.70422, 0.70422, 0, 0.707107, 0.707107, -0.995917, -0.0607474, 0.0607474, 0, 0, 0 )
+shader_param/S = 0.5
+
+[sub_resource type="ConvexPolygonShape" id=17]
+points = PoolVector3Array( 0.0291231, 0.0284654, -1.05039, -0.699559, 0.0544144, -0.885851, -0.01957, 0.682887, -0.969354, 0.661642, 0.105469, -0.915481, 0.0484535, -0.586717, -1.01021, -0.562778, -0.858865, -0.503802, -1.23641, 0.138801, -0.507842, -0.349899, 0.78584, -0.800328, 0.521191, 0.950183, -0.573612, 0.520213, -0.89051, -0.520637, 1.21317, 0.215805, -0.455316, 1.26333, 0.0343724, -0.352284, -0.226576, -0.831439, -0.65532, -0.956482, -0.644311, 0.618551, -1.03282, -0.627433, -0.0245572, -0.0841677, -1.04093, 0.106309, -1.14856, -0.0297617, 0.379939, -0.984621, 0.62023, 0.834267, -0.981684, 0.729722, 0.091943, -0.504542, 1.00039, -0.461377, 0.75389, 0.943221, 0.0109092, -0.144361, 1.11411, 0.0966569, 0.36508, -0.938189, 0.228421, 0.989035, -0.666462, -0.0434128, 0.934225, 0.741325, 0.687913, 1.08691, 0.371921, 0.701156, 1.14343, -0.00486755, 0.392285, 0.940587, -0.573637, 0.643243, -0.241992, -0.937978, 0.388693, -0.398103, -0.6114, 1.04392, -0.907544, 0.224454, 0.925403, 0.352356, -0.694099, 1.02058, -0.0283787, -0.0206901, 1.2428, 0.596311, 0.726558, 0.98354, 0.117211, 1.0139, 0.779945, -0.57281, 1.00166, 0.406651, 0.68709, 0.0744563, 1.02394 )
+
+[node name="Asteroid" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
+collision_layer = 3
+collision_mask = 3
+contact_monitor = true
+axis_lock_linear_y = true
+script = ExtResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -0.643473, 0, -0.764967, 0, 1, 0, 0.764967, 0, -0.643473, 0, 0, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 5 )
+script = ExtResource( 1 )
+spin_aimlessly = false
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 17 )
+
+[connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]

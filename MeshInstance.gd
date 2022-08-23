@@ -9,7 +9,11 @@ var thrusting: bool = false
 var weapons_glow: bool = false
 var base_glow: bool = true
 
+var weapon_glow_floating: float = 0
+var engine_glow_floating: float = 0
+
 func _process(delta):
+	var small_delta = delta
 	if spin_aimlessly:
 		rotate_y(delta * 0.5)
 	
@@ -21,6 +25,18 @@ func _process(delta):
 	get_surface_material(0).set_shader_param("xform", xform)
 	get_surface_material(0).set_shader_param("inv_xform", xform.inverse())
 	if thrusting:
-		get_surface_material(0).set_shader_param("engine_emission_factor", 1.0)
+		engine_glow_floating += small_delta
+		if engine_glow_floating >= 1:
+			engine_glow_floating = 1
 	else:
-		get_surface_material(0).set_shader_param("engine_emission_factor", 0)
+		engine_glow_floating -= small_delta
+		if engine_glow_floating <= 0:
+			engine_glow_floating = 0
+	get_surface_material(0).set_shader_param("engine_emission_factor", engine_glow_floating)
+	get_surface_material(0).set_shader_param("weapon_emission_factor", weapon_glow_floating)
+	weapon_glow_floating -= small_delta
+	if weapon_glow_floating < 0:
+		weapon_glow_floating = 0
+
+func flash_weapon():
+	weapon_glow_floating = 1

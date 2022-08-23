@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
+
+[node name="Weapon" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436 )
+script = ExtResource( 1 )
+projectile_scene = ExtResource( 2 )
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BurstCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+[connection signal="timeout" from="BurstCooldown" to="." method="_on_BurstCooldown_timeout"]
