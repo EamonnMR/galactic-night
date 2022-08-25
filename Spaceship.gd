@@ -14,6 +14,7 @@ func _ready():
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	rotation.y += delta * turn * get_rotation_change()
+# warning-ignore:return_value_discarded
 	move_and_slide(Util.raise_25d(linear_velocity))
 	handle_shooting()
 	
@@ -43,3 +44,6 @@ func get_rotation_change():
 
 func flash_weapon():
 	$Graphics.flash_weapon()
+
+func hit_by_asteroid():
+	call_deferred("queue_free")

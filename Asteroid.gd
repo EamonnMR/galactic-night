@@ -11,4 +11,13 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Asteroid_body_entered(body):
-	pass # Replace with function body.
+	if body.has_method("hit_by_asteroid"):
+		body.hit_by_asteroid()
+		break_up()
+	
+func hit_by_projectile():
+	break_up()
+
+func break_up():
+	# TODO: Spawn small asteroids
+	queue_free()

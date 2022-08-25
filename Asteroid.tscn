@@ -7,8 +7,8 @@
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 3 )
-shader_param/xform = Transform( 0.0859098, 0, -0.995917, -0.70422, 0.707107, -0.0607474, 0.70422, 0.707107, 0.0607474, 0, 0, 0 )
-shader_param/inv_xform = Transform( 0.0859098, -0.70422, 0.70422, 0, 0.707107, 0.707107, -0.995917, -0.0607474, 0.0607474, 0, 0, 0 )
+shader_param/xform = Transform( 0.0859092, 0, -0.995917, -0.70422, 0.707107, -0.060747, 0.70422, 0.707107, 0.060747, 0, 0, 0 )
+shader_param/inv_xform = Transform( 0.0859092, -0.70422, 0.70422, 0, 0.707107, 0.707107, -0.995917, -0.060747, 0.060747, 0, 0, 0 )
 shader_param/S = 0.5
 
 [sub_resource type="ConvexPolygonShape" id=17]
@@ -16,8 +16,8 @@ points = PoolVector3Array( 0.0291231, 0.0284654, -1.05039, -0.699559, 0.0544144,
 
 [node name="Asteroid" type="RigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.12977 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+contacts_reported = 7
 contact_monitor = true
 axis_lock_linear_y = true
 script = ExtResource( 4 )

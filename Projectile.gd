@@ -9,5 +9,5 @@ func initial_velocity():
 	)
 
 func _on_Projectile_body_entered(body):
-	# TODO: Delete asteroid
 	queue_free()
+	body.hit_by_projectile()
