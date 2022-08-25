@@ -14,3 +14,7 @@ func initial_velocity():
 func _on_Projectile_body_entered(body):
 	queue_free()
 	body.hit_by_projectile()
+
+
+func _on_Timer_timeout():
+	queue_free()

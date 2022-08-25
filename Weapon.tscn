@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 projectile_scene = ExtResource( 2 )
 
 [node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="BurstCooldown" type="Timer" parent="."]
