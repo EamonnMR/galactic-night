@@ -3,7 +3,6 @@ extends MeshInstance
 
 export var offset = PI/4
 export var ortho_cam_angle = PI/4
-export var spin_aimlessly = true
 
 var thrusting: bool = false
 var weapons_glow: bool = false
@@ -14,9 +13,6 @@ var engine_glow_floating: float = 0
 
 func _process(delta):
 	var small_delta = delta
-	if spin_aimlessly:
-		rotate_y(delta * 0.5)
-	
 	var xform = \
 		Transform(global_transform.basis)\
 		.rotated(Vector3(0,1,0), offset)\

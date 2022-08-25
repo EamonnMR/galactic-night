@@ -20,6 +20,8 @@ collision_layer = 2
 contacts_reported = 7
 contact_monitor = true
 axis_lock_linear_y = true
+linear_damp = 0.0
+angular_damp = 0.0
 script = ExtResource( 4 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
@@ -28,7 +30,6 @@ mesh = ExtResource( 2 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 5 )
 script = ExtResource( 1 )
-spin_aimlessly = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 17 )

@@ -17,6 +17,7 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	move_and_slide(Util.raise_25d(linear_velocity))
 	handle_shooting()
+	Util.wrap_to_play_radius(self)
 	
 func handle_shooting():
 	if Input.is_action_pressed("shoot"):
