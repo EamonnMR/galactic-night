@@ -16,3 +16,7 @@ transform = Transform( 0.999616, 0, 0, 0, 1, 0, 0, 0, 0.999616, 0, 0, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 transform = Transform( 0.999616, 0, 0, 0, 1, 0, 0, 0, 0.999616, 0, 0, 0 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area" index="0"]
+transform = Transform( 0.999616, 0, 0, 0, 1, 0, 0, 0, 0.999616, 0, 0, 0 )
+shape = SubResource( 1 )
