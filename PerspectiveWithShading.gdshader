@@ -44,6 +44,13 @@ void vertex() {
 		vec4(0, 0, 0, 1)
 	);
 	
+	mat4 backwards = mat4(
+		vec4(1, 0, 0, 0),
+		vec4(0, -1, 0, 0),
+		vec4(0, 0, 1, 0),
+		vec4(0, 0, 0, 1)
+	);
+	
 	mat4 projection = mat4(
 		vec4(1,0,0,0),
 		vec4(0,1,0,0),
@@ -54,6 +61,7 @@ void vertex() {
 	
 	tmpvertex = 
 		inv_xform *
+		backwards *
 		projection *
 		xform *
 		reflection *

@@ -22,7 +22,7 @@ func _physics_process(delta):
 func handle_shooting():
 	if Input.is_action_pressed("shoot"):
 		$Weapon.try_shoot()
-		$Weapon2.try_shoot()
+		#$Weapon2.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if Input.is_action_pressed("thrust"):

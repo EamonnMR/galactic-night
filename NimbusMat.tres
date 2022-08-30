@@ -41,9 +41,7 @@ uniform sampler2D texture_weapon_emission : hint_black_albedo;
 uniform vec4 emission : hint_color;
 uniform float emission_energy;
 
-uniform float base_emission_factor = 1;
-uniform float engine_emission_factor = 1;
-uniform float weapon_emission_factor=  1;
+
 void vertex() {
 	//https://discord.com/channels/212250894228652034/408555922349359105/988915027035693186
 	
@@ -94,9 +92,9 @@ void fragment() {
 	
 	EMISSION = (
 		emission.rgb+
-		base_emission_tex * base_emission_factor +
-		weapon_emission_tex * weapon_emission_factor+
-		engine_emission_tex * engine_emission_factor
+		base_emission_tex+
+		weapon_emission_tex+
+		engine_emission_tex
 	)*emission_energy;
 }
 "
@@ -120,9 +118,6 @@ shader_param/inv_xform = Transform( -0.707107, -0.5, 0.5, 0, 0.707107, 0.707107,
 shader_param/perspective_correct = 0.5
 shader_param/emission = Color( 0, 0, 0, 1 )
 shader_param/emission_energy = 6.0
-shader_param/base_emission_factor = 1.0
-shader_param/engine_emission_factor = 0.0
-shader_param/weapon_emission_factor = 0.0
 shader_param/texture_albedo = ExtResource( 1 )
 shader_param/texture_metallic = ExtResource( 2 )
 shader_param/texture_roughness = ExtResource( 2 )
