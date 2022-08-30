@@ -19,6 +19,17 @@ func _physics_process(delta):
 	handle_shooting()
 	Util.wrap_to_play_radius(self)
 	
+	handle_hitting_stuff()
+
+func handle_hitting_stuff():
+	var collision = get_last_slide_collision()
+	if collision:
+		breakpoint
+		if collision.collider.has_method("break_up"):
+			collision.collider.break_up()
+			hit_by_asteroid()
+			
+
 func handle_shooting():
 	if Input.is_action_pressed("shoot"):
 		$Weapon.try_shoot()

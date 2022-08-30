@@ -86,7 +86,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3459, 0, 0 )
 [node name="CameraTransform" type="Spatial" parent="World"]
 
 [node name="Camera" type="Camera" parent="World/CameraTransform"]
-transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4, 4, 4 )
+transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4.5, 6, 4.5 )
 projection = 1
 size = 9.82505
 near = 0.01
