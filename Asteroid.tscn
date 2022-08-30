@@ -1,133 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MeshInstance.gd" type="Script" id=1]
 [ext_resource path="res://assets/asteroid.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/nimbus/nimbus_N.png" type="Texture" id=3]
+[ext_resource path="res://BasicAsteroidMat.tres" type="Material" id=3]
 [ext_resource path="res://Asteroid.gd" type="Script" id=4]
-[ext_resource path="res://assets/asteroid_rare.png" type="Texture" id=5]
-[ext_resource path="res://assets/nimbus/nimbus_E_base.png" type="Texture" id=6]
-[ext_resource path="res://assets/nimbus/nimbus_E_weapon.png" type="Texture" id=7]
-[ext_resource path="res://assets/nimbus/nimbus_RM.png" type="Texture" id=8]
-[ext_resource path="res://assets/nimbus/nimbus_E_engine.png" type="Texture" id=9]
-
-[sub_resource type="Shader" id=1]
-code = "// NOTE: Shader automatically converted from Godot Engine 3.5.stable's SpatialMaterial.
-
-shader_type spatial;
-render_mode async_visible,blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : hint_color;
-uniform sampler2D texture_albedo : hint_albedo;
-uniform float specular;
-uniform float metallic;
-uniform float roughness : hint_range(0,1);
-uniform float point_size : hint_range(0,128);
-uniform sampler2D texture_metallic : hint_white;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_white;
-uniform vec4 roughness_texture_channel;
-uniform sampler2D texture_normal : hint_normal;
-uniform float normal_scale : hint_range(-16,16);
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-uniform mat4 xform;
-uniform mat4 inv_xform;
-uniform float perspective_correct = 0.5;
-
-uniform sampler2D texture_base_emission : hint_black_albedo;
-uniform sampler2D texture_engine_emission : hint_black_albedo;
-uniform sampler2D texture_weapon_emission : hint_black_albedo;
-
-
-uniform vec4 emission : hint_color;
-uniform float emission_energy;
-
-
-void vertex() {
-	//https://discord.com/channels/212250894228652034/408555922349359105/988915027035693186
-	
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	
-	mat4 reflection = mat4(
-		vec4(-1, 0, 0, 0),
-		vec4(0, 1, 0, 0),
-		vec4(0, 0, -1, 0),
-		vec4(0, 0, 0, 1)
-	);
-	
-	mat4 projection = mat4(
-		vec4(1,0,0,0),
-		vec4(0,1,0,0),
-		vec4(0,0,1,-perspective_correct),
-		vec4(0,0,0,1)
-	);
-	vec4 tmpvertex = vec4(VERTEX, 1);
-	
-	tmpvertex = 
-		inv_xform *
-		projection *
-		xform *
-		reflection *
-		tmpvertex;
-	
-	VERTEX = tmpvertex.xyz / tmpvertex.w;
-}
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	NORMALMAP = texture(texture_normal,base_uv).rgb;
-	NORMALMAP_DEPTH = normal_scale;
-	
-	vec3 base_emission_tex = texture(texture_base_emission,base_uv).rgb;
-	vec3 weapon_emission_tex = texture(texture_weapon_emission,base_uv).rgb;
-	vec3 engine_emission_tex = texture(texture_engine_emission,base_uv).rgb;
-	
-	
-	EMISSION = (
-		emission.rgb+
-		base_emission_tex+
-		weapon_emission_tex+
-		engine_emission_tex
-	)*emission_energy;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/albedo = Color( 1, 1, 1, 1 )
-shader_param/specular = 0.5
-shader_param/metallic = 0.0
-shader_param/roughness = 1.0
-shader_param/point_size = 1.0
-shader_param/metallic_texture_channel = Plane( 0, 0, 1, 0 )
-shader_param/roughness_texture_channel = Plane( 1, 0, 0, 0 )
-shader_param/normal_scale = 1.0
-shader_param/uv1_scale = Vector3( 1, 1, 1 )
-shader_param/uv1_offset = Vector3( 0, 0, 0 )
-shader_param/uv2_scale = Vector3( 1, 1, 1 )
-shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/xform = Transform( 0.353553, 0, 0.353553, 0.25, 0.353553, -0.25, -0.25, 0.353553, 0.25, 0, 0, 0 )
-shader_param/inv_xform = Transform( 0.353553, 0.25, -0.25, 0, 0.353553, 0.353553, 0.353553, -0.25, 0.25, 0, 0, 0 )
-shader_param/perspective_correct = 0.1
-shader_param/emission = Color( 0, 0, 0, 1 )
-shader_param/emission_energy = 6.0
-shader_param/texture_albedo = ExtResource( 5 )
-shader_param/texture_metallic = ExtResource( 8 )
-shader_param/texture_roughness = ExtResource( 8 )
-shader_param/texture_normal = ExtResource( 3 )
-shader_param/texture_base_emission = ExtResource( 6 )
-shader_param/texture_engine_emission = ExtResource( 9 )
-shader_param/texture_weapon_emission = ExtResource( 7 )
 
 [node name="Asteroid" type="RigidBody"]
 collision_layer = 2
@@ -142,7 +18,7 @@ script = ExtResource( 4 )
 transform = Transform( -0.643473, 0, -0.764967, 0, 1, 0, 0.764967, 0, -0.643473, 0, 0, 0 )
 mesh = ExtResource( 2 )
 skeleton = NodePath("../..")
-material/0 = SubResource( 2 )
+material/0 = ExtResource( 3 )
 script = ExtResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]

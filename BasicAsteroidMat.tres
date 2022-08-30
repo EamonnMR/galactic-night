@@ -1,11 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=2]
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
 
-[ext_resource path="res://assets/nimbus/nimbus_C.png" type="Texture" id=1]
-[ext_resource path="res://assets/nimbus/nimbus_RM.png" type="Texture" id=2]
-[ext_resource path="res://assets/nimbus/nimbus_N.png" type="Texture" id=3]
-[ext_resource path="res://assets/nimbus/nimbus_E_base.png" type="Texture" id=4]
-[ext_resource path="res://assets/nimbus/nimbus_E_engine.png" type="Texture" id=5]
-[ext_resource path="res://assets/nimbus/nimbus_E_weapon.png" type="Texture" id=6]
+[ext_resource path="res://assets/asteroids/basic/asteroid_N.png" type="Texture" id=1]
+[ext_resource path="res://assets/asteroids/basic/asteroid_RM.png" type="Texture" id=2]
+[ext_resource path="res://assets/asteroids/basic/asteroid_C.png" type="Texture" id=3]
+[ext_resource path="res://assets/asteroids/basic/asteroid_E.png" type="Texture" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.5.stable's SpatialMaterial.
@@ -114,18 +112,18 @@ shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/xform = Transform( -0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0 )
-shader_param/inv_xform = Transform( -0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0 )
-shader_param/perspective_correct = 0.5
+shader_param/xform = Transform( 0.0859094, 0, -0.995917, -0.70422, 0.707107, -0.0607471, 0.70422, 0.707107, 0.0607471, 0, 0, 0 )
+shader_param/inv_xform = Transform( 0.0859094, -0.70422, 0.70422, 0, 0.707107, 0.707107, -0.995917, -0.0607471, 0.0607471, 0, 0, 0 )
+shader_param/perspective_correct = 0.1
 shader_param/emission = Color( 0, 0, 0, 1 )
 shader_param/emission_energy = 6.0
 shader_param/base_emission_factor = 1.0
 shader_param/engine_emission_factor = 0.0
 shader_param/weapon_emission_factor = 0.0
-shader_param/texture_albedo = ExtResource( 1 )
+shader_param/texture_albedo = ExtResource( 3 )
 shader_param/texture_metallic = ExtResource( 2 )
 shader_param/texture_roughness = ExtResource( 2 )
-shader_param/texture_normal = ExtResource( 3 )
+shader_param/texture_normal = ExtResource( 1 )
 shader_param/texture_base_emission = ExtResource( 4 )
-shader_param/texture_engine_emission = ExtResource( 5 )
-shader_param/texture_weapon_emission = ExtResource( 6 )
+shader_param/texture_engine_emission = ExtResource( 4 )
+shader_param/texture_weapon_emission = ExtResource( 4 )
