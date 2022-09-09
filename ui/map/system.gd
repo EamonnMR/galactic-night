@@ -12,7 +12,7 @@ func _ready():
 	update()
 
 func clicked():
-	#Client.map_select_system(system_id, self)
+	Client.map_select_system(system_id, self)
 	update()
 
 func update():

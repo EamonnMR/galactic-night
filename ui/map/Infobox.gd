@@ -10,9 +10,9 @@ func _ready():
 	Client.connect("system_selection_updated", self, "_update")
 
 func _update():
-	var sysdat: SystemData = Procgen.systems[Client.player.get_node("Controller").selected_system]
+	var sysdat: SystemData = Procgen.systems[Client.selected_system]
 	print("Updated; system explored: ", sysdat.explored)
-	if sysdat.explored:
+	if sysdat.explored or Cheats.explore_all:
 		name_textbox.text = sysdat.name
 		biome.text = Data.biomes[sysdat.biome].name
 	else:
