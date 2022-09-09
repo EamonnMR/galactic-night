@@ -1,0 +1,12 @@
+id,name,spawns,map_color,ambient_color,starlight_color,do_seed,grow,always_do_one,background,startloc,fixed_name,auto_explore
+start,Deserted,start_sleeper start_asteroids free_asteroids,#C0C0C0,#262626,#FFFFFF,FALSE,FALSE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png,TRUE,Holdfast,TRUE
+empty,Deserted,sleeper asteroids,#C0C0C0,#262626,#FFFFFF,TRUE,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png,,,
+aliens,Hostile,aliens sleeper red_asteroids aliens,#FF0000,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png,,,
+rich,Rich,blue_asteroids green_asteroids free_asteroids planet,#A0A0A0,#262626,#FFFFFF,FALSE,TRUE,FALSE,res://assets/ScreamingBrain/Purple Nebula/1024x1024 Purple Nebula 1.png,,,
+blue,Blue,aliens sleeper planet,#000080,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 2.png,,,
+green,Green,aliens green_asteroids planet,#00AA00,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 4.png,,,
+orange,Orange,aliens sleeper red_asteroids planet,#FF4500,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/modified/1024x1024 Orange Nebula 1.png,,,
+lightblue,Light Blue,aliens sleeper blue_asteroids green_asteroids planet,#00CED1,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 5.png,,,
+gold,Gold,asteroids asteroids yellow_asteroids sleeper sleeper,#FFD700,#262626,#FFFFFF,TRUE,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 6.png,,,
+purple,Purple,blue_asteroids red_asteroids asteroids sleeper aliens,#800080,#262626,#FFFFFF,TRUE,FALSE,FALSE,res://assets/ScreamingBrain/modified/1024x1024 Purple Nebula 1.png,,,
+boss,Boss Lair,blue_asteroids aliens red_asteroids boss,#000000,#262626,#FF0000,FALSE,FALSE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png,,The Snake Eyes,TRUE

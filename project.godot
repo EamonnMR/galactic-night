@@ -9,25 +9,52 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "DataRow",
+"class": "BiomeData",
+"language": "GDScript",
+"path": "res://data/BiomeData.gd"
+}, {
+"base": "Reference",
+"class": "DataRow",
+"language": "GDScript",
+"path": "res://lib/DataRow.gd"
+}, {
+"base": "Reference",
+"class": "HyperlaneData",
+"language": "GDScript",
+"path": "res://procgen/HyperlaneData.gd"
+}, {
+"base": "Reference",
+"class": "SystemData",
+"language": "GDScript",
+"path": "res://procgen/SystemData.gd"
+}, {
 "base": "Spatial",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Weapon.gd"
 } ]
 _global_script_class_icons={
+"BiomeData": "",
+"DataRow": "",
+"HyperlaneData": "",
+"SystemData": "",
 "Weapon": ""
 }
 
 [application]
 
 config/name="Asteroids '22"
-run/main_scene="res://main.tscn"
+run/main_scene="res://ui/map/Map.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Util="*res://Util.gd"
 Client="*res://Client.gd"
+Procgen="*res://procgen/Procgen.tscn"
+Data="*res://data/Data.tscn"
+Cheats="*res://Cheats.tscn"
 
 [global]
 
