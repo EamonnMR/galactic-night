@@ -51,9 +51,10 @@ func get_color():
 	if mode == 3:
 		if "faction" in dat():
 			var color = Data.factions[dat()["faction"]].color
-			var divisor = dat().get("grow_generation", 0) + 1
+			#var divisor = dat().get("grow_generation", 0) + 1
+			var divisor = 1
 			return color / divisor
 		else:
-			return Color(0.5, 0.5, 0.5)
+			return DISPOSITION_COLORS["abandoned"]
 
 	return DISPOSITION_COLORS["abandoned"]

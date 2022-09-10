@@ -11,6 +11,9 @@ var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 
+onready var rng: RandomNumberGenerator
+
+
 func serialize() -> Dictionary:
 	# Make sure you cache state from the current system
 	var serial_systems = {}
@@ -64,14 +67,94 @@ func _random_location_in_system(rng: RandomNumberGenerator):
 
 func generate_systems(seed_value: int) -> String:
 	# Returns the id of the system that "start" gets put in
-	var start_sys: String
-	
-	var rng = RandomNumberGenerator.new()
+	rng = RandomNumberGenerator.new()
 	rng.seed = seed_value
 	print("Seed Value: ", seed_value)
 	
-	# Generate Systems
+	generate_positions_and_links()
+	cache_links()
+	var start_sys = populate_biomes()
+	calculate_system_distances()
 	
+	# Remember, we had a return value. Client needs to know which system to start in.
+	return start_sys
+
+func populate_biomes():
+	var start_sys = place_special_biomes()
+	place_biome_seeds()
+	grow_biome_seeds()
+	return start_sys
+	
+func place_special_biomes():
+	var always_biomes = []
+	var start_sys
+	
+	for biome_id in Data.biomes:
+		var biome = Data.biomes[biome_id]
+		if biome.always_do_one:
+			while true:
+				var system_id = random_select(systems.keys(), rng)
+				var system = systems[system_id]
+				if not systems[system_id].biome:
+					system.biome = biome_id
+					system.explored = biome.auto_explore
+					if biome.fixed_name:
+						system.name = biome.fixed_name
+					else:
+						system.name = random_name(systems[system_id], rng)
+					_set_light(system, biome)
+					if biome.startloc:
+						start_sys = system_id
+					break
+				else:
+					print("Cannot put always_do biome in an occupied system.")
+	return start_sys
+	
+func place_biome_seeds():
+	
+	var seed_biomes = []
+	
+	for biome_id in Data.biomes:
+		if Data.biomes[biome_id].do_seed:
+			seed_biomes.append(biome_id)
+	
+	var seed_count = int(systems.size() * SEED_DENSITY)
+	var seeds_planted = 0
+	while seeds_planted < seed_count:
+		var biome_id = random_select(seed_biomes, rng)
+		var system_id = random_select(systems.keys(), rng)
+		if not systems[system_id].biome:
+			systems[system_id].biome = biome_id
+			_set_light(systems[system_id], Data.biomes[biome_id])
+			systems[system_id].name = random_name(systems[system_id], rng)
+			seeds_planted += 1
+
+func grow_biome_seeds():
+	for _i in MAX_GROW_ITERATIONS:
+		print("Growing Seeds")
+		for system in systems.values():
+			if not system.biome:
+				var possible_biomes = []
+				
+				# Preferentially use the links cache
+				for list in [system.links_cache, system.long_links_cache]:
+					for link in list:
+						var other_system = systems[link]
+						if other_system.biome and Data.biomes[other_system.biome].grow:
+							possible_biomes.append(other_system.biome)
+				if possible_biomes.size():
+					system.biome = random_select(possible_biomes, rng)
+					# TODO: Names - per - biome
+					system.name = random_name(system, rng)
+					_set_light(system, Data.biomes[system.biome])
+					
+	# Fill in any systems that somehow fell through the cracks
+	for system in systems.values():
+		if not system.biome:
+			system.biome = "empty"
+			system.name = random_name(system, rng)
+
+func generate_positions_and_links():
 	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
@@ -108,83 +191,6 @@ func generate_systems(seed_value: int) -> String:
 		else:
 			longjumps.append(HyperlaneData.new(second, third))
 	
-	cache_links()
-	
-	# Select systems for special biomes
-	var always_biomes = []
-	
-	for biome_id in Data.biomes:
-		var biome = Data.biomes[biome_id]
-		if biome.always_do_one:
-			while true:
-				var system_id = random_select(systems.keys(), rng)
-				var system = systems[system_id]
-				if not systems[system_id].biome:
-					system.biome = biome_id
-					system.explored = biome.auto_explore
-					if biome.fixed_name:
-						system.name = biome.fixed_name
-					else:
-						system.name = random_name(systems[system_id], rng)
-					_set_light(system, biome)
-					if biome.startloc:
-						start_sys = system_id
-					break
-				else:
-					print("Cannot put always_do biome in an occupied system.")
-	
-	
-	# Select seed systems for biomes
-	
-	var seed_biomes = []
-	
-	for biome_id in Data.biomes:
-		if Data.biomes[biome_id].do_seed:
-			seed_biomes.append(biome_id)
-	
-	
-	var seed_count = int(systems.size() * SEED_DENSITY)
-	var seeds_planted = 0
-	while seeds_planted < seed_count:
-		var biome_id = random_select(seed_biomes, rng)
-		var system_id = random_select(systems.keys(), rng)
-		if not systems[system_id].biome:
-			systems[system_id].biome = biome_id
-			_set_light(systems[system_id], Data.biomes[biome_id])
-			systems[system_id].name = random_name(systems[system_id], rng)
-			seeds_planted += 1
-	# Player start system always gets the "start" biome
-	systems["0"].biome = "start"
-	systems["0"].name = "Holdfast"
-	# Grow Seeds
-	for _i in MAX_GROW_ITERATIONS:
-		print("Growing Seeds")
-		for system in systems.values():
-			if not system.biome:
-				var possible_biomes = []
-				
-				# Preferentially use the links cache
-				for list in [system.links_cache, system.long_links_cache]:
-					for link in list:
-						var other_system = systems[link]
-						if other_system.biome and Data.biomes[other_system.biome].grow:
-							possible_biomes.append(other_system.biome)
-				if possible_biomes.size():
-					system.biome = random_select(possible_biomes, rng)
-					# TODO: Names - per - biome
-					system.name = random_name(system, rng)
-					_set_light(system, Data.biomes[system.biome])
-					
-	# Fill in any systems that somehow fell through the cracks
-	for system in systems.values():
-		if not system.biome:
-			system.biome = "empty"
-			system.name = random_name(system, rng)
-	
-	calculate_system_distances()
-	
-	# Remember, we had a return value. Client needs to know which system to start in.
-	return start_sys
 
 func cache_links():
 	for lane in hyperlanes:

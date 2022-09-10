@@ -10,6 +10,7 @@ var state: Dictionary
 var explored: bool
 var ambient_color: Color
 var starlight_color: Color
+var faction: int
 
 var distance: float
 var distance_normalized: float
