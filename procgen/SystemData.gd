@@ -10,6 +10,10 @@ var state: Dictionary
 var explored: bool
 var ambient_color: Color
 var starlight_color: Color
+
+var distance: float
+var distance_normalized: float
+
 func serialize():
 	return {
 		"id": id,

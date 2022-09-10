@@ -8,8 +8,22 @@ var long_link_assoc_buckets = {}
 onready var circle_class = preload("res://ui/map/system.tscn")
 onready var lane_class = preload("res://ui/map/hyperlane.tscn")
 
+onready var mode = $MarginContainer/NinePatchPanel/MarginContainer2/Panel/VBoxContainer/Mode
 
 func _ready():
+	_populate_mode_dropdown()
+	_generate_map_nodes()
+	
+func _populate_mode_dropdown():
+	for item in [
+		"Biome",
+		"Disposition",
+		"Distance from core",
+		"Political",
+	]:
+		mode.add_item(item)
+	
+func _generate_map_nodes():
 	print("Init Map")
 	for i in Procgen.hyperlanes:
 		var lane = lane_class.instance()
@@ -76,6 +90,12 @@ func update_for_explore(system_id):
 			movement.get_node(link.data.lsys).show()
 			movement.get_node(link.data.rsys).show()
 
+func _update_for_mode_switch():
+	for node in movement.get_children():
+		node.update()
 
 func _on_Recenter_pressed():
 	_set_initial_center()
+
+func _on_Mode_item_selected(index):
+	_update_for_mode_switch()

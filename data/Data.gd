@@ -5,6 +5,7 @@ extends Node
 #var builds = {}
 #var spawns = {}
 var biomes = {}
+var factions = {}
 #var ships = {}
 
 # Game constants:
@@ -18,6 +19,7 @@ func _init():
 #		[BuildData, builds],
 #		[SpawnData, spawns],
 		[BiomeData, biomes],
+		[FactionData, factions]
 #		[ShipData, ships]
 	]:
 		var DataClass = data_class_and_destination[0]

@@ -181,6 +181,8 @@ func generate_systems(seed_value: int) -> String:
 			system.biome = "empty"
 			system.name = random_name(system, rng)
 	
+	calculate_system_distances()
+	
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
 
@@ -244,3 +246,23 @@ func random_select(iterable, rng: RandomNumberGenerator):
 func _set_light(system: SystemData, biome: BiomeData):
 	system.ambient_color = biome.ambient_color
 	system.starlight_color = biome.starlight_color
+
+func calculate_system_distances():
+	var sum_position = Vector2(0,0)
+	
+	for system_id in systems:
+		var system = systems[system_id]
+		sum_position += system.position
+		
+	var mean_position = sum_position / systems.size()
+
+	var max_distance = 0
+	for system_id in systems:
+		var system = systems[system_id]
+		system.distance = mean_position.distance_to(system.position)
+		if system.distance > max_distance:
+			max_distance = system.distance
+		
+	for system_id in systems:
+		var system = systems[system_id]
+		system.distance_normalized = system.distance / max_distance
