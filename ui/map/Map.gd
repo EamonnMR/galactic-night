@@ -19,7 +19,8 @@ func _populate_mode_dropdown():
 		"Biome",
 		"Disposition",
 		"Distance from core",
-		"Political",
+		"Faction",
+		"Faction Seeds"
 	]:
 		mode.add_item(item)
 	

@@ -8,7 +8,7 @@ var short: String
 var color: Color
 var initial_disposition: float
 var is_default: bool
-var core_systems_per_500: int
+var core_systems_per_hundred: int
 var systems_radius: int
 var npc_radius: int
 var spawn_anywhere: bool
@@ -25,3 +25,6 @@ func _init(data: Dictionary):
 	init(data)
 	for field in ["allies", "enemies"]:
 		set(field, parse_int_array(data[field]))
+
+static func get_csv_path():
+	return "res://data/factions.csv"

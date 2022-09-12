@@ -2,6 +2,7 @@ extends Node2D
 
 onready var map = get_node("../../../../../../../")
 
+
 func dat():
 	return get_node("../").data
 
@@ -33,7 +34,8 @@ func get_color():
 	if mode == 0:
 		return Data.biomes[dat()["biome"]].map_color
 	if mode == 1:
-		if "faction" in dat():
+		var data = dat()
+		if data.faction:
 			var faction = Data.factions[dat()["faction"]]
 			var disposition = faction["initial_disposition"]
 			if disposition < 0:
@@ -49,11 +51,18 @@ func get_color():
 		var brightness = 1 - ((distance * 0.9) + 0.1)
 		return Color(brightness, brightness, brightness)
 	if mode == 3:
-		if "faction" in dat():
+		var data = dat()
+		if data.faction:
 			var color = Data.factions[dat()["faction"]].color
 			#var divisor = dat().get("grow_generation", 0) + 1
 			var divisor = 1
 			return color / divisor
+		else:
+			return DISPOSITION_COLORS["abandoned"]
+	if mode == 4:
+		var data = dat()
+		if data.core:
+			return DISPOSITION_COLORS["friendly"]
 		else:
 			return DISPOSITION_COLORS["abandoned"]
 

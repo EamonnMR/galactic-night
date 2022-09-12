@@ -1,6 +1,6 @@
 extends Node
 
-var RADIUS = 1000
+var RADIUS = 2000
 var DENSITY = 1.0/3000.0
 var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
@@ -75,6 +75,7 @@ func generate_systems(seed_value: int) -> String:
 	cache_links()
 	var start_sys = populate_biomes()
 	calculate_system_distances()
+	populate_factions()
 	
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
@@ -83,6 +84,7 @@ func populate_biomes():
 	var start_sys = place_special_biomes()
 	place_biome_seeds()
 	grow_biome_seeds()
+	fill_remaining_empty_biomes()
 	return start_sys
 	
 func place_special_biomes():
@@ -145,14 +147,18 @@ func grow_biome_seeds():
 				if possible_biomes.size():
 					system.biome = random_select(possible_biomes, rng)
 					# TODO: Names - per - biome
-					system.name = random_name(system, rng)
-					_set_light(system, Data.biomes[system.biome])
-					
+					#system.name = random_name(system, rng)
+					#_set_light(system, Data.biomes[system.biome])
+
+func fill_remaining_empty_biomes():
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if not system.biome:
 			system.biome = "empty"
 			system.name = random_name(system, rng)
+
+func grow_attribute(attribute):
+	pass
 
 func generate_positions_and_links():
 	var systems_by_position = {}
@@ -227,6 +233,74 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 	print("Cannot find a suitable position for system in ", max_iter, " iterations")
 	return null
 
+func populate_factions():
+	assign_faction_core_worlds()
+	assign_peninsula_bonus_systems()
+	#grow_faction_influence_from_core_worlds()
+	#grow_npc_spawns()
+	#assign_names_to_systems()
+
+func assign_faction_core_worlds() -> Array:
+	print("Randomly Assigning core worlds ")
+	var sorted = systems_sorted_by_distance()
+	var sorted_reverse = sorted.duplicate()
+	sorted_reverse.invert()
+	var already_selected = []
+	for faction_id in Data.factions:
+		var faction = Data.factions[faction_id]
+		var i = 0
+		var system_count = int(int(faction.core_systems_per_hundred) * (systems.size() / 100))
+		while i < system_count:
+			var rnd_result = abs(rng.randfn(0.0))
+			var scale = int(faction.favor_galactic_center)
+			var scaled_rnd_result = 0
+			if scale:
+				scaled_rnd_result = int(rnd_result * (sorted.size() / scale))
+			else:
+				print(0, sorted.size())
+				scaled_rnd_result = rng.randi_range(0, sorted.size())
+			# TODO: This code kinda baffles me, but it's happening a lot.
+			# Fix it and we can get a decent perf improvement
+			if scaled_rnd_result > sorted.size() or scaled_rnd_result < 0 - sorted.size():
+				print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
+				continue
+			var system_id = sorted[scaled_rnd_result]
+			if system_id in already_selected:
+				print("Collision: ", system_id)
+				continue
+			else:
+				systems[system_id].faction = faction_id
+				systems[system_id].core = true
+				# add_npc_spawn(Game.systems[system_id], faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]))
+				already_selected.append(system_id)
+				i += 1
+	print("Core worlds assigned: ", already_selected.size())
+	return already_selected
+
+func assign_peninsula_bonus_systems() -> Array:
+	# The 'peninsula bonus' field lets you add core worlds to systems with only one link.
+	# This adds a little flavor.
+	var peninsula_factions = []
+	var core_systems = []
+	for faction_id in Data.factions:
+		var faction = Data.factions[faction_id]
+		if faction.peninsula_bonus:
+			peninsula_factions.append(faction_id)
+	var i = 0
+	if peninsula_factions.size():
+		print("Assigning factions to systems with only one connection")
+		for system_id in systems:
+			var system = systems[system_id]
+			if system.links_cache.size() == 1 and system.faction == null:
+				# TODO: Randomize, don't just iterate through
+				system["faction"] = peninsula_factions[i]
+				# add_npc_spawn(system, peninsula_factions[i], 10)
+				core_systems.append(system_id)
+				i += 1
+				if i == peninsula_factions.size():
+					i = 0
+	return core_systems
+
 func random_name(sys: SystemData, _rng: RandomNumberGenerator):
 	# TODO: Use the markov thing?
 	# TODO: Let the player change the name?
@@ -272,3 +346,13 @@ func calculate_system_distances():
 	for system_id in systems:
 		var system = systems[system_id]
 		system.distance_normalized = system.distance / max_distance
+
+func system_distance_comparitor(l_id, r_id) -> bool:
+	var lval = systems[l_id]["distance"]
+	var rval = systems[r_id]["distance"]
+	return lval < rval
+
+func systems_sorted_by_distance() -> Array:
+	var system_ids = systems.keys()
+	system_ids.sort_custom(self, "system_distance_comparitor")
+	return system_ids

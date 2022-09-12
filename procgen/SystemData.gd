@@ -10,7 +10,9 @@ var state: Dictionary
 var explored: bool
 var ambient_color: Color
 var starlight_color: Color
-var faction: int
+var faction: String
+var spawns: Array
+var core: bool
 
 var distance: float
 var distance_normalized: float
@@ -26,7 +28,9 @@ func serialize():
 		"state": state,
 		"explored": int(explored),
 		"ambient_color": ambient_color.to_html(false),
-		"starlight_color": starlight_color.to_html(false)
+		"starlight_color": starlight_color.to_html(false),
+		"spawns": spawns,
+		"core": core
 	}
 
 func deserialize(data: Dictionary):
@@ -39,3 +43,5 @@ func deserialize(data: Dictionary):
 	state = data["state"]
 	explored = bool(data["explored"])
 	ambient_color = Color(data["color"])
+	spawns = data["spawns"]
+	core = data["core"]
