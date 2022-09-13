@@ -30,15 +30,21 @@ func _init():
 		for key in data:
 			dest[key] = DataClass.new(data[key])
 
-	for corpus in [
-		["new_england", "res://data/corpus/ne_towns.txt"],
-		["beowulf", "res://data/corpus/beowulf.txt"]
-	]:
-		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
+	load_text()
 	# Tests
 	#assert_ingredients_exist()
 	#assert_spawns_exist()	
 
+func load_text():
+	print("Crunching markov chains")
+	for corpus in [
+		["new_england", "res://data/corpus/ne_towns.txt"],
+		["beowulf", "res://data/corpus/beowulf.txt"],
+		["tain", "res://data/corpus/tain.txt"]
+	]:
+		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
+	print("Chains crunched.")
+	
 func load_lines(file_name):
 	var lines = []
 	var file = File.new()

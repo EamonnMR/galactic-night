@@ -1,6 +1,6 @@
 extends Node
 
-var RADIUS = 2000
+var RADIUS = 1000
 var DENSITY = 1.0/3000.0
 var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
@@ -233,9 +233,8 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
-	#grow_faction_influence_from_core_worlds()
+	grow_faction_influence_from_core_worlds()
 	#grow_npc_spawns()
-	#assign_names_to_systems()
 
 func assign_faction_core_worlds() -> Array:
 	print("Randomly Assigning core worlds ")
@@ -259,7 +258,7 @@ func assign_faction_core_worlds() -> Array:
 			# TODO: This code kinda baffles me, but it's happening a lot.
 			# Fix it and we can get a decent perf improvement
 			if scaled_rnd_result > sorted.size() or scaled_rnd_result < 0 - sorted.size():
-				print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
+				# print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
 				continue
 			var system_id = sorted[scaled_rnd_result]
 			if system_id in already_selected:
@@ -297,6 +296,27 @@ func assign_peninsula_bonus_systems() -> Array:
 				if i == peninsula_factions.size():
 					i = 0
 	return core_systems
+
+func grow_faction_influence_from_core_worlds():
+	# TODO: This is obviously not optimal
+	print("Growing faction influence")
+	for faction_id in Data.factions:
+		var faction = Data.factions[faction_id]
+		for i in range(faction.systems_radius):
+			print("Full iteration: ", faction["name"], ", iteration: ", i)
+			var marked_systems = []
+			for system_id in systems:
+				var system = systems[system_id]
+				for link_id in system.links_cache:
+					var link_system = systems[link_id]
+					if "faction" in link_system and link_system.faction == faction_id:
+						marked_systems.append(system_id)
+						break
+			for system_id in marked_systems:
+				var system = systems[system_id]
+				system.faction = faction_id
+				# add_npc_spawn(system, faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]) - i)
+	print("Factions grown")
 
 func name_systems():
 	for system_id in systems:
