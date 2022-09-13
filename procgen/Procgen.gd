@@ -302,9 +302,9 @@ func assign_peninsula_bonus_systems() -> Array:
 	return core_systems
 
 func random_name(sys: SystemData, _rng: RandomNumberGenerator):
-	# TODO: Use the markov thing?
-	# TODO: Let the player change the name?
-	return "GSC " + sys.id
+	# TODO: Pick based on govt
+	
+	return Data.name_generators["beowulf"].get_random_name()
 
 func randi_radius(radius: int, rng: RandomNumberGenerator):
 	return (rng.randi() % (2 * radius)) - radius

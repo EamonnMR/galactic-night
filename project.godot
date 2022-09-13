@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://procgen/HyperlaneData.gd"
 }, {
 "base": "Reference",
+"class": "Markov",
+"language": "GDScript",
+"path": "res://lib/Markov.gd"
+}, {
+"base": "Reference",
 "class": "SystemData",
 "language": "GDScript",
 "path": "res://procgen/SystemData.gd"
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "DataRow": "",
 "FactionData": "",
 "HyperlaneData": "",
+"Markov": "",
 "SystemData": "",
 "Weapon": ""
 }

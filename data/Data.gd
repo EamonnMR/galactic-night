@@ -12,6 +12,8 @@ var factions = {}
 const PLAY_AREA_RADIUS = 3000
 # const JUMP_RADIUS = 2000
 
+var name_generators = {}
+
 func _init():
 	for data_class_and_destination in [
 #		[ItemData, items],
@@ -27,9 +29,25 @@ func _init():
 		var data = DataRow.load_csv(DataClass.get_csv_path())
 		for key in data:
 			dest[key] = DataClass.new(data[key])
+
+	for corpus in [
+		["new_england", "res://data/corpus/ne_towns.txt"],
+		["beowulf", "res://data/corpus/beowulf.txt"]
+	]:
+		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
 	# Tests
 	#assert_ingredients_exist()
-	#assert_spawns_exist()
+	#assert_spawns_exist()	
+
+func load_lines(file_name):
+	var lines = []
+	var file = File.new()
+	file.open(file_name, File.READ) # iterate through all lines until the end of file is reached
+	while not file.eof_reached():
+		lines.push_back(file.get_line())
+	file.close()
+	return lines
+
 	
 #func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
