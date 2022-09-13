@@ -20,6 +20,7 @@ var enemies: Array
 var disposition_per_player: Dictionary
 var destroy_penalty: float
 var destroy_foe_bonus: float
+var sys_name_scheme: String
 
 func _init(data: Dictionary):
 	init(data)

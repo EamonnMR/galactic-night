@@ -76,6 +76,7 @@ func generate_systems(seed_value: int) -> String:
 	var start_sys = populate_biomes()
 	calculate_system_distances()
 	populate_factions()
+	name_systems()
 	
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
@@ -102,8 +103,6 @@ func place_special_biomes():
 					system.explored = biome.auto_explore
 					if biome.fixed_name:
 						system.name = biome.fixed_name
-					else:
-						system.name = random_name(systems[system_id], rng)
 					_set_light(system, biome)
 					if biome.startloc:
 						start_sys = system_id
@@ -128,7 +127,6 @@ func place_biome_seeds():
 		if not systems[system_id].biome:
 			systems[system_id].biome = biome_id
 			_set_light(systems[system_id], Data.biomes[biome_id])
-			systems[system_id].name = random_name(systems[system_id], rng)
 			seeds_planted += 1
 
 func grow_biome_seeds():
@@ -155,7 +153,6 @@ func fill_remaining_empty_biomes():
 	for system in systems.values():
 		if not system.biome:
 			system.biome = "empty"
-			system.name = random_name(system, rng)
 
 func grow_attribute(attribute):
 	pass
@@ -301,11 +298,18 @@ func assign_peninsula_bonus_systems() -> Array:
 					i = 0
 	return core_systems
 
-func random_name(sys: SystemData, _rng: RandomNumberGenerator):
-	# TODO: Pick based on govt
-	
-	return Data.name_generators["beowulf"].get_random_name()
+func name_systems():
+	for system_id in systems:
+		var system = systems[system_id]
+		system.name = random_name(system)
 
+func random_name(sys: SystemData):
+	if sys.faction and sys.faction != "0":
+		return Data.name_generators[
+			Data.factions[sys.faction].sys_name_scheme
+		].get_random_name()
+	else:
+		return "NGC-" + sys.id
 func randi_radius(radius: int, rng: RandomNumberGenerator):
 	return (rng.randi() % (2 * radius)) - radius
 
