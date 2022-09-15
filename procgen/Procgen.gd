@@ -287,7 +287,7 @@ func assign_peninsula_bonus_systems() -> Array:
 		print("Assigning factions to systems with only one connection")
 		for system_id in systems:
 			var system = systems[system_id]
-			if system.links_cache.size() == 1 and system.faction == null:
+			if system.links_cache.size() == 1 and system.faction == "":
 				# TODO: Randomize, don't just iterate through
 				system["faction"] = peninsula_factions[i]
 				# add_npc_spawn(system, peninsula_factions[i], 10)

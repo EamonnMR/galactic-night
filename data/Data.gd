@@ -39,8 +39,10 @@ func load_text():
 	print("Crunching markov chains")
 	for corpus in [
 		["new_england", "res://data/corpus/ne_towns.txt"],
-		["beowulf", "res://data/corpus/beowulf.txt"],
-		["tain", "res://data/corpus/tain.txt"]
+		["beowulf", "res://data/corpus/beowulf_names.txt"],
+		["tain", "res://data/corpus/tain_names.txt"],
+		["illiad", "res://data/corpus/illiad_names.txt"],
+		["gilgamesh", "res://data/corpus/gilgamesh_names.txt"]
 	]:
 		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
 	print("Chains crunched.")
