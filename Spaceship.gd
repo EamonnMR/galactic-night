@@ -1,5 +1,7 @@
 extends KinematicBody
 
+onready var faction: String = Data.factions.keys()[0]
+
 var max_speed = 100
 var accel = 0.01
 var turn = 1
@@ -10,6 +12,9 @@ const PLAY_AREA_RADIUS = 300
 
 func _ready():
 	Client.player = self
+
+func _process(delta):
+	cycle_faction_colors()
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
@@ -24,7 +29,6 @@ func _physics_process(delta):
 func handle_hitting_stuff():
 	var collision = get_last_slide_collision()
 	if collision:
-		breakpoint
 		if collision.collider.has_method("break_up"):
 			collision.collider.break_up()
 			hit_by_asteroid()
@@ -59,3 +63,14 @@ func flash_weapon():
 
 func hit_by_asteroid():
 	call_deferred("queue_free")
+
+func cycle_faction_colors():
+	if Input.is_action_just_pressed("switch_color"):
+		# Thanks, I hate it
+		var keys: PoolStringArray = Data.factions.keys()
+		var index: int = keys.find(faction)
+		index += 1
+		if index == keys.size():
+			index = 0
+		faction = keys[index]
+		$Graphics.set_faction_color(faction)

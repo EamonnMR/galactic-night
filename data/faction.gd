@@ -29,3 +29,12 @@ func _init(data: Dictionary):
 
 static func get_csv_path():
 	return "res://data/factions.csv"
+
+func paint_hue():
+	return color.h
+	
+func paint_saturation():
+	return color.s
+
+func paint_value():
+	return color.s
