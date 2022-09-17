@@ -5,6 +5,8 @@ onready var faction: String = Data.factions.keys()[0]
 var max_speed = 100
 var accel = 0.01
 var turn = 1
+var max_bank = deg2rad(15)
+var bank_speed = 2.5
 
 var linear_velocity = Vector2()
 
@@ -18,7 +20,14 @@ func _process(delta):
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
-	rotation.y += delta * turn * get_rotation_change()
+	var rotation_impulse = delta * get_rotation_change()
+	rotation.y += turn * rotation_impulse
+	if rotation_impulse:
+		increase_bank(rotation_impulse)
+	else:
+		decrease_bank(delta)
+		
+	
 # warning-ignore:return_value_discarded
 	move_and_slide(Util.raise_25d(linear_velocity))
 	handle_shooting()
@@ -74,3 +83,15 @@ func cycle_faction_colors():
 			index = 0
 		faction = keys[index]
 		$Graphics.set_faction_color(faction)
+
+func increase_bank(rotation_impulse):
+	$Graphics.rotation.x += rotation_impulse * bank_speed
+	$Graphics.rotation.x = clamp(
+		$Graphics.rotation.x,
+		-max_bank,
+		max_bank
+	)
+
+func decrease_bank(delta):
+	$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
+		max($Graphics.rotation.x, bank_speed * delta)
