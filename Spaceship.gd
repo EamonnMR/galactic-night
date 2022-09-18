@@ -20,7 +20,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
-	var rotation_impulse = delta * get_rotation_change()
+	var rotation_impulse = delta * $Controller.rotation_impulse()
 	rotation.y += turn * rotation_impulse
 	if rotation_impulse:
 		increase_bank(rotation_impulse)
@@ -44,12 +44,12 @@ func handle_hitting_stuff():
 			
 
 func handle_shooting():
-	if Input.is_action_pressed("shoot"):
+	if $Controller.is_shooting():
 		$Weapon.try_shoot()
 		#$Weapon2.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
-	if Input.is_action_pressed("thrust"):
+	if $Controller.is_thrusting():
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(-rotation.y)
 		$Graphics.thrusting = true
 	else:
@@ -58,14 +58,6 @@ func get_limited_velocity_with_thrust(delta):
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
 		return linear_velocity
-
-func get_rotation_change():
-	var dc = 0
-	if Input.is_action_pressed("turn_left"):
-		dc += 1
-	if Input.is_action_pressed("turn_right"):
-		dc -= 1
-	return dc
 
 func flash_weapon():
 	$Graphics.flash_weapon()
