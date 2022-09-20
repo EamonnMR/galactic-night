@@ -71,5 +71,8 @@ func increase_bank(rotation_impulse):
 	)
 
 func decrease_bank(delta):
-	$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
-		max($Graphics.rotation.x, bank_speed * delta)
+	if abs($Graphics.rotation.x) < delta:
+		$Graphics.rotation.x = 0
+	else:
+		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
+			max($Graphics.rotation.x, bank_speed * delta)
