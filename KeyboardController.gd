@@ -1,5 +1,7 @@
 extends Controller
 
+var skin_id = "0"
+
 func is_shooting() -> bool:
 	return Input.is_action_pressed("shoot")
 	
@@ -14,3 +16,18 @@ func rotation_impulse() -> int:
 		dc -= 1
 	return dc
 
+func _process(delta):
+	cycle_skins()
+
+func _ready():
+	return
+	get_node("../Graphics").set_skin_data(Data.skins[skin_id])
+
+func cycle_skins():
+	if Input.is_action_just_pressed("switch_color"):
+		skin_id = str(
+			(int(skin_id) + 1) % Data.skins.size()
+		)
+		var skin = Data.skins[skin_id]
+		print(skin)
+		get_node("../Graphics").set_skin_data(skin)

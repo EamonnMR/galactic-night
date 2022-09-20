@@ -15,9 +15,6 @@ const PLAY_AREA_RADIUS = 300
 func _ready():
 	Client.player = self
 
-func _process(delta):
-	cycle_faction_colors()
-
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	var rotation_impulse = delta * $Controller.rotation_impulse()
@@ -64,17 +61,6 @@ func flash_weapon():
 
 func hit_by_asteroid():
 	call_deferred("queue_free")
-
-func cycle_faction_colors():
-	if Input.is_action_just_pressed("switch_color"):
-		# Thanks, I hate it
-		var keys: PoolStringArray = Data.factions.keys()
-		var index: int = keys.find(faction)
-		index += 1
-		if index == keys.size():
-			index = 0
-		faction = keys[index]
-		$Graphics.set_faction_color(faction)
 
 func increase_bank(rotation_impulse):
 	$Graphics.rotation.x += rotation_impulse * bank_speed

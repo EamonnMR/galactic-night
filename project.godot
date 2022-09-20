@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://lib/Markov.gd"
 }, {
+"base": "DataRow",
+"class": "SkinData",
+"language": "GDScript",
+"path": "res://data/SkinData.gd"
+}, {
 "base": "Reference",
 "class": "SystemData",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_class_icons={
 "FactionData": "",
 "HyperlaneData": "",
 "Markov": "",
+"SkinData": "",
 "SystemData": "",
 "Weapon": ""
 }

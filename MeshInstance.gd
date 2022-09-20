@@ -38,8 +38,5 @@ func _process(delta):
 func flash_weapon():
 	weapon_glow_floating = 1
 
-func set_faction_color(faction_id):
-	#var adjusted_hue = Data.factions[faction_id].paint_hue() - default_hue
-	var adjusted_hue = Data.factions[faction_id].paint_hue()
-	get_surface_material(0).set_shader_param("paint_hue", 360 * adjusted_hue)
-	print(Data.factions[faction_id].name, ": ", adjusted_hue)
+func set_skin_data(skin: SkinData):
+	skin.apply_to_shader(get_surface_material(0))
