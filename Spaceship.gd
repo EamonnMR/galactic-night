@@ -12,13 +12,10 @@ var linear_velocity = Vector2()
 
 const PLAY_AREA_RADIUS = 300
 
-func _ready():
-	Client.player = self
-
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	var rotation_impulse = $Controller.rotation_impulse
-	rotation.y += turn * rotation_impulse
+	rotation.y += rotation_impulse
 	if rotation_impulse:
 		increase_bank(rotation_impulse)
 	else:
