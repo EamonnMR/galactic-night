@@ -5,7 +5,18 @@
 
 [node name="Controller" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+accel_margin = 1.5708
+shoot_margin = 1.5708
+max_target_distance = 1000
+destination_margin = 100
+engagement_range_radius = 10
 
 [node name="Rethink" type="Timer" parent="." index="0"]
 
+[node name="EngagementRange" type="Area" parent="." index="1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="EngagementRange" index="0"]
+
 [connection signal="timeout" from="Rethink" to="." method="_on_Rethink_timeout"]
+[connection signal="body_entered" from="EngagementRange" to="." method="_on_EngagementRange_body_entered"]
+[connection signal="body_exited" from="EngagementRange" to="." method="_on_EngagementRange_body_exited"]
