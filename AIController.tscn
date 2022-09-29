@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Controller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://AIController.gd" type="Script" id=2]
+
+[sub_resource type="CylinderShape" id=1]
 
 [node name="Controller" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -17,6 +19,7 @@ autostart = true
 [node name="EngagementRange" type="Area" parent="." index="1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="EngagementRange" index="0"]
+shape = SubResource( 1 )
 
 [connection signal="timeout" from="Rethink" to="." method="_on_Rethink_timeout"]
 [connection signal="body_entered" from="EngagementRange" to="." method="_on_EngagementRange_body_entered"]

@@ -31,6 +31,7 @@ func _constrained_point(source_position: Vector2, current_rotation: float,
 		max_turn: float, target_position: Vector2) -> Array:
 	# For finding the right direction and amount to turn when your rotation speed is limited
 	var ideal_face = (target_position - source_position).angle()
+	ideal_face = PI * 2 - ideal_face
 	var ideal_turn = anglemod(ideal_face - current_rotation)
 	if(ideal_turn > PI):
 		ideal_turn = anglemod(ideal_turn - 2 * PI)

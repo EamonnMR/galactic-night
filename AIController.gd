@@ -23,9 +23,11 @@ func ready():
 	get_node("../Graphics").set_skin_data(Data.skins[1])
 
 func _verify_target():
-	if not target or not is_instance_valid(target):
+	if target == null or not is_instance_valid(target):
 		print("No target", target)
 		change_state_idle()
+		return false
+	return true
 
 func _physics_process(delta):
 	match state:
@@ -40,13 +42,16 @@ func process_state_idle(delta):
 	pass
 
 func process_state_attack(delta):
-	_verify_target()
+	if not _verify_target():
+		return
+	
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(global_transform.origin), delta)
 	shooting = _facing_within_margin(shoot_margin)
-	thrusting = parent.joust and _facing_within_margin(accel_margin)
+	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
 	
 func process_state_persue(delta):
-	_verify_target()
+	if not _verify_target():
+		return
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
@@ -95,6 +100,9 @@ func rethink_state_attack():
 func change_state_idle():
 	state = STATES.IDLE
 	target = null
+	thrusting = false
+	shooting = false
+	rotation_impulse = 0
 	print("New State: Idle")
 
 func change_state_persue(target):
