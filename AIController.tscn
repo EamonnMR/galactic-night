@@ -12,6 +12,7 @@ destination_margin = 100
 engagement_range_radius = 10
 
 [node name="Rethink" type="Timer" parent="." index="0"]
+autostart = true
 
 [node name="EngagementRange" type="Area" parent="." index="1"]
 

@@ -24,6 +24,7 @@ func ready():
 
 func _verify_target():
 	if not target or not is_instance_valid(target):
+		print("No target", target)
 		change_state_idle()
 
 func _physics_process(delta):
@@ -40,21 +41,25 @@ func process_state_idle(delta):
 
 func process_state_attack(delta):
 	_verify_target()
-	populate_rotation_impulse_and_ideal_face(target.global_position, delta)
+	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(global_transform.origin), delta)
 	shooting = _facing_within_margin(shoot_margin)
 	thrusting = parent.joust and _facing_within_margin(accel_margin)
 	
 func process_state_persue(delta):
 	_verify_target()
-	populate_rotation_impulse_and_ideal_face(target.global_position, delta)
+	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
 	
 func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
+	var origin_2d = Util.flatten_25d(parent.global_transform.origin)
+	var rot_2d = Util.flatten_rotation(parent)
+	var max_move = parent.turn * delta
+	
 	var impulse = Util._constrained_point(
-		Util.flatten_25d(parent.global_transform.origin),
-		Util.flatten_rotation(parent),
-		parent.turn * delta,
+		origin_2d,
+		rot_2d,
+		max_move,
 		at
 	)
 	rotation_impulse = impulse[0]
@@ -63,7 +68,8 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
 	if is_instance_valid(Client.player):
-		change_state_chase(Client.player)
+		print("Target found: ", Client.player)
+		change_state_persue(Client.player)
 	else:
 		change_state_idle()
 
@@ -80,7 +86,8 @@ func rethink_state_idle():
 	_find_target()
 
 func rethink_state_persue():
-	_find_target()
+	#_find_target()
+	pass
 
 func rethink_state_attack():
 	pass
@@ -88,27 +95,29 @@ func rethink_state_attack():
 func change_state_idle():
 	state = STATES.IDLE
 	target = null
+	print("New State: Idle")
 
-func change_state_chase(target):
-	state = STATES.CHASE
-	target = target
+func change_state_persue(target):
+	state = STATES.PERSUE
+	self.target = target
+	print("New State: Persue")
 
 func change_state_attack():
 	state = STATES.ATTACK
+	print("New State: Attack")
 
 func _facing_within_margin(margin):
 	""" Relies on 'ideal face' being populated """
-	return (
-		parent.has_turrets or
-		(ideal_face and abs(Util.anglemod(ideal_face - parent.rotation)) < margin)
-	)
+	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
-	if body == target and state == STATES.CHASE:
+	if body == target and state == STATES.PERSUE:
+		print("Reached target")
 		change_state_attack()
 
 
 func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:
-		change_state_chase(target)
+		print("Target left engagement range")
+		change_state_persue(target)

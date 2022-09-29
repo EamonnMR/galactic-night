@@ -12,7 +12,7 @@ func flatten_25d(three_d_vec: Vector3) -> Vector2:
 	return Vector2(three_d_vec.x, three_d_vec.z)
 	
 func flatten_rotation(object: Spatial) -> float:
-	return object.get_rotation_quat().get_euler().y
+	return object.global_transform.basis.get_rotation_quat().get_euler().y
 
 func wrap_to_play_radius(entity: Spatial) -> bool:
 	var position = flatten_25d(entity.global_transform.origin)
