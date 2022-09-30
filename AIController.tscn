@@ -4,6 +4,7 @@
 [ext_resource path="res://AIController.gd" type="Script" id=2]
 
 [sub_resource type="CylinderShape" id=1]
+radius = 5.0
 
 [node name="Controller" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -11,7 +12,6 @@ accel_margin = 1.5708
 shoot_margin = 1.5708
 max_target_distance = 1000
 destination_margin = 100
-engagement_range_radius = 10
 
 [node name="Rethink" type="Timer" parent="." index="0"]
 autostart = true

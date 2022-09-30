@@ -6,7 +6,7 @@ var max_speed = 100
 var accel = 0.01
 var turn = 1
 var max_bank = deg2rad(15)
-var bank_speed = 2.5
+var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
 
