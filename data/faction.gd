@@ -21,6 +21,7 @@ var disposition_per_player: Dictionary
 var destroy_penalty: float
 var destroy_foe_bonus: float
 var sys_name_scheme: String
+var color_scheme: String
 
 func _init(data: Dictionary):
 	init(data)
@@ -29,12 +30,3 @@ func _init(data: Dictionary):
 
 static func get_csv_path():
 	return "res://data/factions.csv"
-
-func paint_hue():
-	return color.h
-	
-func paint_saturation():
-	return color.s
-
-func paint_value():
-	return color.s

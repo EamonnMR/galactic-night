@@ -2,13 +2,8 @@ extends Controller
 
 var skin_id = "0"
 
-func is_shooting() -> bool:
-	return Input.is_action_pressed("shoot")
 	
-func is_thrusting() -> bool:
-	return Input.is_action_pressed("thrust")
-	
-func rotation_impulse() -> int:
+func get_rotation_impulse() -> int:
 	var dc = 0
 	if Input.is_action_pressed("turn_left"):
 		dc += 1
@@ -16,12 +11,14 @@ func rotation_impulse() -> int:
 		dc -= 1
 	return dc
 
-func _process(delta):
+func _physics_process(delta):
+	thrusting = Input.is_action_pressed("thrust")
+	shooting = Input.is_action_pressed("shoot")
+	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
 
 func _ready():
-	return
-	get_node("../Graphics").set_skin_data(Data.skins[skin_id])
+	Client.player = parent
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):
