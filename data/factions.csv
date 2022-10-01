@@ -1,7 +1,7 @@
-id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,spawn_anywhere,host_spawn_anywhere,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme
-1,Independent,Ind,#0000FF,0,TRUE,3,2,2,FALSE,TRUE,-1,TRUE,1,3,10,15,new_england
-2,Trader,Trd,#0000FF,20,FALSE,0,0,0,TRUE,FALSE,0,FALSE,,3,0,0,new_england
-3,Compact,Cmp,#FF0000,-10,FALSE,3,2,3,FALSE,TRUE,1,FALSE,1,3,1,5,beowulf
-4,Pirate,Pir,#060606,-30,TRUE,1,0,6,FALSE,FALSE,-2,TRUE,,0 1 2 4 5,0,0,illiad
-5,WarpCorp,Wrp,#000800,0,FALSE,3,0,5,FALSE,TRUE,0,FALSE,,3,5,20,new_england
-6,The Society,Soc,#FFFF00,0,FALSE,2,1,2,FALSE,FALSE,-2,TRUE,1,3,20,5,tain
+id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,spawn_anywhere,host_spawn_anywhere,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme,skin
+1,Independent,Ind,#0000FF,0,TRUE,3,2,2,FALSE,TRUE,-1,TRUE,1,3,10,15,new_england,2
+2,Trader,Trd,#0000FF,20,FALSE,0,0,0,TRUE,FALSE,0,FALSE,,3,0,0,cornwall,2
+3,Compact,Cmp,#FF0000,-10,FALSE,3,2,3,FALSE,TRUE,1,FALSE,1,3,1,5,beowulf,0
+4,Pirate,Pir,#060606,-30,TRUE,1,0,6,FALSE,FALSE,-2,TRUE,,0 1 2 4 5,0,0,illiad,1
+5,WarpCorp,Wrp,#000800,0,FALSE,3,0,5,FALSE,TRUE,0,FALSE,,3,5,20,gilgamesh,3
+6,The Society,Soc,#FFFF00,0,FALSE,2,1,2,FALSE,FALSE,-2,TRUE,1,3,20,5,tain,5
