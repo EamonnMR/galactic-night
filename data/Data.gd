@@ -3,7 +3,7 @@ extends Node
 #var items = {}
 #var recipes = {}
 #var builds = {}
-#var spawns = {}
+var spawns = {}
 var biomes = {}
 var factions = {}
 var skins = {}
@@ -20,7 +20,7 @@ func _init():
 #		[ItemData, items],
 #		[RecipeData, recipes],
 #		[BuildData, builds],
-#		[SpawnData, spawns],
+		[SpawnData, spawns],
 		[BiomeData, biomes],
 		[FactionData, factions],
 		[SkinData, skins]
