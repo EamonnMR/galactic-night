@@ -108,6 +108,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 light_energy = 0.5
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [connection signal="body_entered" from="World/Asteroid" to="World/Asteroid" method="_on_Asteroid_body_entered"]
 [connection signal="body_entered" from="World/Asteroid2" to="World/Asteroid2" method="_on_Asteroid_body_entered"]

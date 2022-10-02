@@ -16,9 +16,15 @@ func _physics_process(delta):
 	shooting = Input.is_action_pressed("shoot")
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
+	toggle_map()
 
 func _ready():
 	Client.player = parent
+
+func toggle_map():
+	if Input.is_action_just_released("toggle_map"):
+		var map = get_tree().get_root().get_node("Node/Map")
+		map.visible = not map.visible
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):
