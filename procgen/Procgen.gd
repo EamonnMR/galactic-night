@@ -21,7 +21,7 @@ func serialize() -> Dictionary:
 	var serial_longjumps = []
 	
 	for system_id in systems:
-		 serial_systems[system_id] = systems[system_id].serialize()
+		serial_systems[system_id] = systems[system_id].serialize()
 	for jump in hyperlanes:
 		serial_hyperlanes.append([jump.lsys, jump.rsys])
 	for jump in longjumps:
@@ -98,7 +98,7 @@ func place_special_biomes():
 			while true:
 				var system_id = random_select(systems.keys(), rng)
 				var system = systems[system_id]
-				if not systems[system_id].biome:
+				if systems[system_id].biome == "":
 					system.biome = biome_id
 					system.explored = biome.auto_explore
 					if biome.fixed_name:
@@ -108,7 +108,7 @@ func place_special_biomes():
 						start_sys = system_id
 					break
 				else:
-					print("Cannot put always_do biome in an occupied system.")
+					print("Cannot put always_do biome in an occupied system: ", system_id, ", biome: ", system.biome)
 	return start_sys
 	
 func place_biome_seeds():
@@ -124,7 +124,7 @@ func place_biome_seeds():
 	while seeds_planted < seed_count:
 		var biome_id = random_select(seed_biomes, rng)
 		var system_id = random_select(systems.keys(), rng)
-		if not systems[system_id].biome:
+		if systems[system_id].biome == "":
 			systems[system_id].biome = biome_id
 			_set_light(systems[system_id], Data.biomes[biome_id])
 			seeds_planted += 1
@@ -133,7 +133,7 @@ func grow_biome_seeds():
 	for _i in MAX_GROW_ITERATIONS:
 		print("Growing Seeds")
 		for system in systems.values():
-			if not system.biome:
+			if system.biome == "":
 				var possible_biomes = []
 				
 				# Preferentially use the links cache
@@ -151,7 +151,7 @@ func grow_biome_seeds():
 func fill_remaining_empty_biomes():
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
-		if not system.biome:
+		if system.biome == "":
 			system.biome = "empty"
 
 func grow_attribute(attribute):
@@ -324,7 +324,11 @@ func name_systems():
 		system.name = random_name(system)
 
 func random_name(sys: SystemData):
-	if sys.faction and sys.faction != "0":
+	if sys.faction != "" and sys.faction != "0":
+		var foo = sys.faction
+		print(Data.name_generators.keys())
+		var bla = Data.name_generators
+		var blar = Data.factions[sys.faction]
 		return Data.name_generators[
 			Data.factions[sys.faction].sys_name_scheme
 		].get_random_name()
@@ -336,7 +340,9 @@ func randi_radius(radius: int, rng: RandomNumberGenerator):
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
 	"""Remember to seed first if desired"""
 	var position: Vector2
-	while not position or position.length() > radius:
+	var do_once: bool = true  # The rare case where I miss do while
+	while do_once or position.length() > radius:
+		do_once = false
 		position = Vector2(
 			self.randi_radius(radius, rng),
 			self.randi_radius(radius, rng)

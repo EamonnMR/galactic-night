@@ -40,11 +40,11 @@ func init(data: Dictionary):
 
 func convert_column_value(string_val: String, type: int, type_class: String):
 	if type == TYPE_INT:
-		return int(string_val)
+		return string_val.to_int()
 	elif type == TYPE_BOOL:
 		return parse_bool(string_val)
 	elif type == TYPE_FLOAT:
-		return float(string_val)
+		return string_val.to_float()
 	elif type == TYPE_STRING:
 		return string_val
 	elif type == TYPE_COLOR:
@@ -80,7 +80,7 @@ func parse_x_dict(x_dict: String) -> Dictionary:
 	var dict = {}
 	for i in x_dict.split(" "):
 		var key_count = i.split("x")
-		dict[key_count[0]] = int(key_count[1])
+		dict[key_count[0]] = key_count[1].to_int()
 	return dict
 	
 func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
@@ -97,13 +97,13 @@ func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 				var key_value = kvp.split(":")
 				var key = key_value[0].strip_edges()
 				var value = key_value[1].strip_edges()
-				dict[key] = int(value)
+				dict[key] = value.to_int()
 	return dict
-
+	
 func parse_int_array(text: String) -> Array:
 	var int_array = []
 	for i in text.split(" "):
-		int_array.append(int(i))
+		int_array.append(i.to_int())
 	return int_array
 
 func parse_string_array(text: String) -> Array:

@@ -10,13 +10,13 @@ func _ready():
 	$Label.text = data.name
 	position = data.position
 	update()
-
+	
 func clicked():
 	Client.map_select_system(system_id, self)
 	update()
 
 func update():
-	$circle.update()
+	# $circle.update() # I can't figure out why this used to work
 	if data.explored or Cheats.explore_all:
 		$Label.show()
 	else:
