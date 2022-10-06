@@ -1,14 +1,14 @@
 extends Control
 
-onready var movement = get_node("MarginContainer/NinePatchPanel/MarginContainer2/Panel/Movement")
+@onready var movement = get_node("MarginContainer/NinePatchPanel/MarginContainer2/Panel/Movement")
 var reveal = true
 var dragging = false
 var link_assoc_buckets = {}
 var long_link_assoc_buckets = {}
-onready var circle_class = preload("res://ui/map/system.tscn")
-onready var lane_class = preload("res://ui/map/hyperlane.tscn")
+@onready var circle_class = preload("res://ui/map/system.tscn")
+@onready var lane_class = preload("res://ui/map/hyperlane.tscn")
 
-onready var mode = $MarginContainer/NinePatchPanel/MarginContainer2/Panel/VBoxContainer/Mode
+@onready var mode = $MarginContainer/NinePatchPanel/MarginContainer2/Panel/VBoxContainer/Mode
 
 func _ready():
 	_populate_mode_dropdown()
@@ -27,7 +27,7 @@ func _populate_mode_dropdown():
 func _generate_map_nodes():
 	print("Init Map")
 	for i in Procgen.hyperlanes:
-		var lane = lane_class.instance()
+		var lane = lane_class.instantiate()
 		lane.data = i
 		lane.name = i.lsys + "_to_" + i.rsys
 		if not Cheats.explore_all:
@@ -36,14 +36,14 @@ func _generate_map_nodes():
 		update_link_assoc_bucket(i.lsys, lane, link_assoc_buckets)
 		update_link_assoc_bucket(i.rsys, lane, link_assoc_buckets)
 	for i in Procgen.longjumps:
-		var long_lane = lane_class.instance()
+		var long_lane = lane_class.instantiate()
 		long_lane.data = i
 		# Note that we omit adding it to the scene.
 		# TODO: Make a different sometimes-shown class for longjumps.
 		update_link_assoc_bucket(i.lsys, long_lane, long_link_assoc_buckets)
 		update_link_assoc_bucket(i.rsys, long_lane, long_link_assoc_buckets)
 	for i in Procgen.systems:
-		var circle = circle_class.instance()
+		var circle = circle_class.instantiate()
 		circle.system_id = i
 		circle.name = i
 		if not Cheats.explore_all:
@@ -59,14 +59,14 @@ func _generate_map_nodes():
 func _set_initial_center():
 		var position = Procgen.systems[Client.current_system].position * -1
 		var mvm: Control = movement
-		var size = mvm.rect_size / 2
-		mvm.rect_position = position + size
+		var size = mvm.size / 2
+		mvm.position = position + size
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		dragging = event.pressed
 	elif event is InputEventMouseMotion and dragging:
-		movement.rect_position += event.relative
+		movement.position += event.relative
 
 func update_link_assoc_bucket(system_id: String, link: Node, buckets: Dictionary):
 	if system_id in buckets:

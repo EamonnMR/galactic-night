@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 class_name Weapon
 
@@ -6,15 +6,15 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
-onready var world = get_node("../../")
-export var projectile_scene: PackedScene
-export var burst_count = 0
-export var dupe_count = 1
-export var spread: float = 0
-export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
+@onready var world = get_node("../../")
+@export var projectile_scene: PackedScene
+@export var burst_count = 0
+@export var dupe_count = 1
+@export var spread: float = 0
+@export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
 
 
-export var dmg_factor: float = 1
+@export var dmg_factor: float = 1
 
 func try_shoot():
 	if not cooldown and not burst_cooldown:
@@ -34,7 +34,7 @@ func _shoot():
 	_effects()
 
 func _create_projectile():
-	var projectile = projectile_scene.instance()
+	var projectile = projectile_scene.instantiate()
 	# projectile.init()
 	if world_projectile:
 		world.add_child(projectile)
@@ -44,8 +44,8 @@ func _create_projectile():
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
 	projectile.global_transform = global_transform
-	projectile.rotate_x(rand_range(-spread/2, spread/2))
-	projectile.rotate_y(rand_range(-spread/2, spread/2))
+	projectile.rotate_x(randf_range(-spread/2, spread/2))
+	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	
 
 func _effects():

@@ -1,13 +1,13 @@
-extends RigidBody
+extends RigidBody3D
 
-export var initial_vel: float = 3.0
-export var size = 3
+@export var initial_vel: float = 3.0
+@export var size = 3
 
-export var next_type: PackedScene
-export var next_count: int = 0
+@export var next_type: PackedScene
+@export var next_count: int = 0
 
 func _ready():
-	rotate_y(rand_range(0, PI*2))
+	rotate_y(randf_range(0, PI*2))
 	call_deferred("initial_velocity")
 
 func _physics_process(delta):
@@ -20,7 +20,7 @@ func break_up():
 	# TODO: Spawn small asteroids
 	if next_count:
 		for i in range(next_count):
-			var sub_roid: RigidBody = next_type.instance()
+			var sub_roid: RigidBody3D = next_type.instantiate()
 			sub_roid.set_linear_velocity(linear_velocity)
 			sub_roid.transform.origin = global_transform.origin
 			get_node("../").add_child(sub_roid)

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var map = get_node("../../../../../../../")
+@onready var map = get_node("../../../../../../../")
 
 
 func dat():

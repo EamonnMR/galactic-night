@@ -1,14 +1,14 @@
 extends NinePatchRect
 
-onready var name_textbox = get_node("MarginContainer/VBoxContainer/Name")
-onready var biome = get_node("MarginContainer/VBoxContainer/Biome")
-onready var planets = get_node("MarginContainer/VBoxContainer/Planets")
-onready var aliens = get_node("MarginContainer/VBoxContainer/Aliens")
-onready var sleepers = get_node("MarginContainer/VBoxContainer/Sleepers")
-onready var faction = get_node("MarginContainer/VBoxContainer/Faction")
+@onready var name_textbox = get_node("MarginContainer/VBoxContainer/Name")
+@onready var biome = get_node("MarginContainer/VBoxContainer/Biome")
+@onready var planets = get_node("MarginContainer/VBoxContainer/Planets")
+@onready var aliens = get_node("MarginContainer/VBoxContainer/Aliens")
+@onready var sleepers = get_node("MarginContainer/VBoxContainer/Sleepers")
+@onready var faction = get_node("MarginContainer/VBoxContainer/Faction")
 
 func _ready():
-	Client.connect("system_selection_updated", self, "_update")
+	Client.connect("system_selection_updated",Callable(self,"_update"))
 
 func _update():
 	var sysdat: SystemData = Procgen.systems[Client.selected_system]

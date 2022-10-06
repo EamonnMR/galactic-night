@@ -3,8 +3,8 @@
 [ext_resource path="res://Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
 
-[node name="Weapon" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436 )
+[node name="Weapon" type="Node3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436 )
 script = ExtResource( 1 )
 projectile_scene = ExtResource( 2 )
 

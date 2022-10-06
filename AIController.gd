@@ -6,10 +6,10 @@ enum STATES {
 	PERSUE
 }
 
-export var accel_margin = PI / 4
-export var shoot_margin = PI / 2
-export var max_target_distance = 1000
-export var destination_margin = 100
+@export var accel_margin = PI / 4
+@export var shoot_margin = PI / 2
+@export var max_target_distance = 1000
+@export var destination_margin = 100
 
 #export var engagement_range_radius = 100
 
@@ -19,7 +19,7 @@ var ideal_face
 var state = STATES.IDLE
 
 func ready():
-	#$EngagementRange/CollisionShape.shape.radius = engagement_range_radius
+	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
 	get_node("../Graphics").set_skin_data(Data.skins[1])
 
 func _verify_target():
@@ -115,7 +115,7 @@ func change_state_attack():
 	print("New State: Attack")
 
 func _facing_within_margin(margin):
-	""" Relies on 'ideal face' being populated """
+	""" Relies checked 'ideal face' being populated """
 	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
 # Somewhat questioning the need for a whole node setup for this.

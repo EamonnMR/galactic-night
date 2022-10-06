@@ -43,14 +43,14 @@ func convert_column_value(string_val: String, type: int, type_class: String):
 		return int(string_val)
 	elif type == TYPE_BOOL:
 		return parse_bool(string_val)
-	elif type == TYPE_REAL:
+	elif type == TYPE_FLOAT:
 		return float(string_val)
 	elif type == TYPE_STRING:
 		return string_val
 	elif type == TYPE_COLOR:
 		return parse_color(string_val)
 	elif type == TYPE_OBJECT:
-		if type_class in ["PackedScene", "Texture", "Resource"]:
+		if type_class in ["PackedScene", "Texture2D", "Resource"]:
 			#var loaded = load(string_val)
 			var loaded = null
 			return loaded

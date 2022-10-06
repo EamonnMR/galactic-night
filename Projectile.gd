@@ -1,4 +1,4 @@
-extends RigidBody
+extends RigidBody3D
 
 func _ready():
 	call_deferred("initial_velocity")

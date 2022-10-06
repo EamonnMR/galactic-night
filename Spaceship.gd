@@ -1,11 +1,11 @@
-extends KinematicBody
+extends CharacterBody3D
 
-onready var faction: String = Data.factions.keys()[0]
+@onready var faction: String = Data.factions.keys()[0]
 
 var max_speed = 100
 var accel = 0.01
 var turn = 1
-var max_bank = deg2rad(15)
+var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
@@ -23,7 +23,9 @@ func _physics_process(delta):
 		
 	
 # warning-ignore:return_value_discarded
-	move_and_slide(Util.raise_25d(linear_velocity))
+	set_velocity(Util.raise_25d(linear_velocity))
+	move_and_slide()
+	velocity
 	handle_shooting()
 	Util.wrap_to_play_radius(self)
 	

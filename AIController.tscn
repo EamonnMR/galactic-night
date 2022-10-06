@@ -3,7 +3,7 @@
 [ext_resource path="res://Controller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://AIController.gd" type="Script" id=2]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 5.0
 
 [node name="Controller" instance=ExtResource( 1 )]
@@ -16,9 +16,9 @@ destination_margin = 100
 [node name="Rethink" type="Timer" parent="." index="0"]
 autostart = true
 
-[node name="EngagementRange" type="Area" parent="." index="1"]
+[node name="EngagementRange" type="Area3D" parent="." index="1"]
 
-[node name="CollisionShape" type="CollisionShape" parent="EngagementRange" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EngagementRange" index="0"]
 shape = SubResource( 1 )
 
 [connection signal="timeout" from="Rethink" to="." method="_on_Rethink_timeout"]

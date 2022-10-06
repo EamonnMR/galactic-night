@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
 class_name Controller
 
-onready var parent = get_node("../")
+@onready var parent = get_node("../")
 
 var shooting: bool
 

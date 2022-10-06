@@ -25,4 +25,4 @@ func apply_to_shader(shader):
 	for column in get_columns():
 		if column != "id" and column != "name":
 			var val = get(column)
-			shader.set_shader_param(column, get(column))
+			shader.set_shader_parameter(column, get(column))

@@ -11,7 +11,7 @@ var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 
-onready var rng: RandomNumberGenerator
+@onready var rng: RandomNumberGenerator
 
 
 func serialize() -> Dictionary:
@@ -59,7 +59,7 @@ func _random_location_in_system(rng: RandomNumberGenerator):
 #		for _i in range(spawn.count):
 #			if spawn.chance >= rng.randf():
 #				var position = _random_location_in_system(rng)
-#				var instance: Node = spawn.scene.instance()
+#				var instance: Node = spawn.scene.instantiate()
 #				if spawn.type:
 #					instance.type = spawn.type
 #				instance.position = position
@@ -169,8 +169,8 @@ func generate_positions_and_links():
 			system.position = position
 			systems[system_id] = system
 			systems_by_position[position] = system_id
-	var points = PoolVector2Array(systems_by_position.keys())
-	var link_mesh = Geometry.triangulate_delaunay_2d(points)
+	var points = PackedVector2Array(systems_by_position.keys())
+	var link_mesh = Geometry2D.triangulate_delaunay(points)
 	for i in range(0, link_mesh.size(), 3):
 		
 		var first_pos = points[link_mesh[i]]
@@ -240,7 +240,7 @@ func assign_faction_core_worlds() -> Array:
 	print("Randomly Assigning core worlds ")
 	var sorted = systems_sorted_by_distance()
 	var sorted_reverse = sorted.duplicate()
-	sorted_reverse.invert()
+	sorted_reverse.reverse()
 	var already_selected = []
 	for faction_id in Data.factions:
 		var faction = Data.factions[faction_id]
@@ -378,5 +378,5 @@ func system_distance_comparitor(l_id, r_id) -> bool:
 
 func systems_sorted_by_distance() -> Array:
 	var system_ids = systems.keys()
-	system_ids.sort_custom(self, "system_distance_comparitor")
+	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids
