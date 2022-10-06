@@ -1,54 +1,62 @@
-; Project was converted by built-in tool to Godot 4.0
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
+
 _global_script_classes=[{
 "base": "DataRow",
-"class": "BiomeData",
-"language": "GDScript",
+"class": &"BiomeData",
+"language": &"GDScript",
 "path": "res://data/BiomeData.gd"
 }, {
-"base": "Spatial",
-"class": "Controller",
-"language": "GDScript",
+"base": "Node3D",
+"class": &"Controller",
+"language": &"GDScript",
 "path": "res://Controller.gd"
 }, {
-"base": "Reference",
-"class": "DataRow",
-"language": "GDScript",
+"base": "RefCounted",
+"class": &"DataRow",
+"language": &"GDScript",
 "path": "res://lib/DataRow.gd"
 }, {
 "base": "DataRow",
-"class": "FactionData",
-"language": "GDScript",
+"class": &"FactionData",
+"language": &"GDScript",
 "path": "res://data/faction.gd"
 }, {
-"base": "Reference",
-"class": "HyperlaneData",
-"language": "GDScript",
+"base": "RefCounted",
+"class": &"HyperlaneData",
+"language": &"GDScript",
 "path": "res://procgen/HyperlaneData.gd"
 }, {
-"base": "Reference",
-"class": "Markov",
-"language": "GDScript",
+"base": "RefCounted",
+"class": &"Markov",
+"language": &"GDScript",
 "path": "res://lib/Markov.gd"
 }, {
 "base": "DataRow",
-"class": "SkinData",
-"language": "GDScript",
+"class": &"SkinData",
+"language": &"GDScript",
 "path": "res://data/SkinData.gd"
 }, {
 "base": "DataRow",
-"class": "SpawnData",
-"language": "GDScript",
+"class": &"SpawnData",
+"language": &"GDScript",
 "path": "res://data/Spawn.gd"
 }, {
-"base": "Reference",
-"class": "SystemData",
-"language": "GDScript",
+"base": "RefCounted",
+"class": &"SystemData",
+"language": &"GDScript",
 "path": "res://procgen/SystemData.gd"
 }, {
-"base": "Spatial",
-"class": "Weapon",
-"language": "GDScript",
+"base": "Node3D",
+"class": &"Weapon",
+"language": &"GDScript",
 "path": "res://Weapon.gd"
 }]
 _global_script_class_icons={
@@ -68,6 +76,7 @@ _global_script_class_icons={
 
 config/name="Asteroids '22"
 run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
@@ -172,9 +181,9 @@ toggle_map={
 
 [physics]
 
-common/enable_pause_aware_picking=true
 3d/physics_engine="Bullet"
 3d/default_gravity=0.0
+common/enable_pause_aware_picking=true
 
 [rendering]
 

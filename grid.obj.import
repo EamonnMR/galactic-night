@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh"
+uid="uid://cr4aibunr4fxw"
+path="res://.godot/imported/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh"
 
 [deps]
 
-files=[ "res://.import/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh" ]
+files=["res://.godot/imported/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh"]
 
 source_file="res://grid.obj"
-dest_files=[ "res://.import/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh", "res://.import/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh" ]
+dest_files=["res://.godot/imported/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh", "res://.godot/imported/grid.obj-8f0896f605f33cda086deaf71d938a6a.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

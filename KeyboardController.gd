@@ -29,7 +29,7 @@ func toggle_map():
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):
 		skin_id = str(
-			(int(skin_id) + 1) % Data.skins.size()
+			(skin_id.to_int() + 1) % Data.skins.size()
 		)
 		var skin = Data.skins[skin_id]
 		print(skin)
