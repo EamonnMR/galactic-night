@@ -51,7 +51,7 @@ glow_intensity = 0.25
 glow_bloom = 0.2
 glow_blend_mode = 0
 
-[node name="Node" type="Node"]
+[node name="World" type="Node"]
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
