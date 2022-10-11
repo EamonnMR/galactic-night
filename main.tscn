@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfckswko781qc"]
+[gd_scene load_steps=11 format=3 uid="uid://cfckswko781qc"]
 
-[ext_resource type="PackedScene" path="res://AsteroidLarge.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Adversary.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Spaceship.tscn" id="4"]
@@ -76,18 +75,6 @@ environment = SubResource("9")
 
 [node name="World3D" type="Node3D" parent="."]
 
-[node name="Asteroid" parent="World3D" instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.6067)
-collision_mask = 1
-
-[node name="Asteroid2" parent="World3D" instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7761, 0, 0)
-collision_mask = 1
-
-[node name="Asteroid3" parent="World3D" instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3459, 0, 0)
-collision_mask = 1
-
 [node name="CameraTransform" type="Node3D" parent="World3D"]
 
 [node name="Camera3D" type="Camera3D" parent="World3D/CameraTransform"]
@@ -113,7 +100,3 @@ layout_mode = 3
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
-
-[connection signal="body_entered" from="World3D/Asteroid" to="World3D/Asteroid" method="_on_Asteroid_body_entered"]
-[connection signal="body_entered" from="World3D/Asteroid2" to="World3D/Asteroid2" method="_on_Asteroid_body_entered"]
-[connection signal="body_entered" from="World3D/Asteroid3" to="World3D/Asteroid3" method="_on_Asteroid_body_entered"]

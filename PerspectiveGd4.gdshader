@@ -52,7 +52,7 @@ void vertex() {
 		reflection *
 		tmpvertex;
 	
-	//VERTEX = tmpvertex.xyz / tmpvertex.w;
+	VERTEX = tmpvertex.xyz / tmpvertex.w;
 }
 
 void fragment() {
