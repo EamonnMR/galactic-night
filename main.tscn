@@ -58,6 +58,8 @@ material = SubResource("13")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("9")
 stretch_mode = 2
 script = ExtResource("6")
@@ -109,6 +111,8 @@ light_energy = 0.5
 visible = false
 layout_mode = 3
 anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="World3D/Asteroid" to="World3D/Asteroid" method="_on_Asteroid_body_entered"]
 [connection signal="body_entered" from="World3D/Asteroid2" to="World3D/Asteroid2" method="_on_Asteroid_body_entered"]

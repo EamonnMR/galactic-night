@@ -32,10 +32,10 @@ func _physics_process(delta):
 	handle_hitting_stuff()
 
 func handle_hitting_stuff():
-	var collision = get_last_slide_collision()
+	var collision: KinematicCollision3D = get_last_slide_collision()
 	if collision:
-		if collision.collider.has_method("break_up"):
-			collision.collider.break_up()
+		if collision.get_collider().has_method("break_up"):
+			collision.get_collider().break_up()
 			hit_by_asteroid()
 			
 

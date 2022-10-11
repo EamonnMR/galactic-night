@@ -21,8 +21,9 @@ func _process(delta):
 		Transform3D(global_transform.basis)\
 		.rotated(Vector3(0,1,0), offset)\
 		.rotated(Vector3(1,0,0), ortho_cam_angle)
-	#get_surface_override_material(0).set_shader_parameter("xform", xform)
-	#get_surface_override_material(0).set_shader_parameter("inv_xform", xform.inverse())
+	if get_active_material(1) != null:
+		get_active_material(1).set_shader_parameter("xform", xform)
+		get_active_material(1).set_shader_parameter("inv_xform", xform.inverse())
 	if thrusting:
 		engine_glow_floating += small_delta
 		if engine_glow_floating >= 1:
