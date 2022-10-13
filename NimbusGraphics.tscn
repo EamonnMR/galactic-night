@@ -1,37 +1,50 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj2muj3ersqr8"]
+[gd_scene load_steps=13 format=3 uid="uid://cj2muj3ersqr8"]
 
 [ext_resource type="Script" path="res://MeshInstance.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://j5sa1sp1gcfp" path="res://assets/nimbus/nimbus_C.png" id="1_6i5jn"]
 [ext_resource type="Shader" path="res://PerspectiveGd4.gdshader" id="1_ktu82"]
-[ext_resource type="Texture2D" uid="uid://dvqpm8e27bhdh" path="res://assets/nimbus/nimbus_E.png" id="2_lbax7"]
-[ext_resource type="Texture2D" uid="uid://cmaswn2bk40lq" path="res://assets/nimbus/nimbus_RM.png" id="2_wbwbk"]
+[ext_resource type="Texture2D" uid="uid://j5sa1sp1gcfp" path="res://assets/nimbus/nimbus_C.png" id="2_065ky"]
+[ext_resource type="Texture2D" uid="uid://dcr4yn2vsqmu0" path="res://assets/nimbus/nimbus_E_base.png" id="3_8a1ok"]
 [ext_resource type="Script" path="res://DirectionalLight.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://dpjp21swcuih2" path="res://assets/nimbus/nimbus_N.png" id="4_lxcfl"]
+[ext_resource type="Texture2D" uid="uid://b3v5r0w1wny1q" path="res://assets/nimbus/nimbus_E_engine.png" id="4_3geq8"]
+[ext_resource type="Texture2D" uid="uid://cmaswn2bk40lq" path="res://assets/nimbus/nimbus_RM.png" id="5_sew3r"]
+[ext_resource type="Texture2D" uid="uid://dpjp21swcuih2" path="res://assets/nimbus/nimbus_N.png" id="6_7opjw"]
+[ext_resource type="Texture2D" uid="uid://h8su110xwk50" path="res://assets/nimbus/nimbus_C_paint.png" id="7_50aw0"]
+[ext_resource type="Texture2D" uid="uid://n0omha2t56lp" path="res://assets/nimbus/nimbus_E_weapon.png" id="8_p7thu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_woff6"]
 render_priority = 0
 shader = ExtResource("1_ktu82")
 shader_parameter/xform = null
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/weapon_saturation = null
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_emission_factor = null
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/texture_roughness = ExtResource("2_wbwbk")
-shader_parameter/texture_normal = ExtResource("4_lxcfl")
-shader_parameter/texture_metallic = ExtResource("2_wbwbk")
-shader_parameter/texture_emission = ExtResource("2_lbax7")
-shader_parameter/texture_albedo = ExtResource("1_6i5jn")
-shader_parameter/specular = 0.5
-shader_parameter/roughness = 1.0
-shader_parameter/point_size = 1.0
-shader_parameter/perspective_correct = 0.5
-shader_parameter/normal_scale = 1.0
-shader_parameter/metallic_texture_channel = Plane(0, 0, 1, 0)
-shader_parameter/metallic = 1.0
+shader_parameter/uv1_offset = null
+shader_parameter/texture_weapon_emission = ExtResource("8_p7thu")
+shader_parameter/texture_roughness = ExtResource("5_sew3r")
+shader_parameter/texture_paint = ExtResource("7_50aw0")
+shader_parameter/texture_normal = ExtResource("6_7opjw")
+shader_parameter/texture_metallic = ExtResource("5_sew3r")
+shader_parameter/texture_engine_emission = ExtResource("4_3geq8")
+shader_parameter/texture_base_emission = ExtResource("3_8a1ok")
+shader_parameter/texture_albedo = ExtResource("2_065ky")
+shader_parameter/specular = null
+shader_parameter/roughness = null
+shader_parameter/perspective_correct = null
+shader_parameter/paint_saturation = null
+shader_parameter/paint_hue = null
+shader_parameter/paint_brightness = null
+shader_parameter/normal_scale = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic = null
+shader_parameter/lights_saturation = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_brightness = null
 shader_parameter/inv_xform = null
-shader_parameter/emission_energy = 1.0
-shader_parameter/emission = Color(0, 0, 0, 1)
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/engine_emission_factor = null
+shader_parameter/emission_energy = 6.0
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/base_brightness = null
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xjqwh"]
 _surfaces = [{

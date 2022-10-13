@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://Adversary.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://ui/map/Map.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Spaceship.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cijdnx2y3v7o2" path="res://Spaceship.tscn" id="4"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="Script" path="res://Camera.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
@@ -10,6 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id="13"]
 shader = ExtResource("10")
+shader_parameter/position = null
 
 [sub_resource type="GDScript" id="15"]
 script/source = "extends Label

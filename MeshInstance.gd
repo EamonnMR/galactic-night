@@ -1,4 +1,4 @@
-#tool
+@tool
 extends MeshInstance3D
 
 # BIG TODO: FIX SHADER!!!
@@ -32,8 +32,9 @@ func _process(delta):
 		engine_glow_floating -= small_delta
 		if engine_glow_floating <= 0:
 			engine_glow_floating = 0
-	#get_surface_override_material(0).set_shader_parameter("engine_emission_factor", engine_glow_floating)
-	#get_surface_override_material(0).set_shader_parameter("weapon_emission_factor", weapon_glow_floating)
+	if mesh.surface_get_material(0).has_method("set_shader_parameter"):
+		mesh.surface_get_material(0).set_shader_parameter("engine_emission_factor", engine_glow_floating)
+		mesh.surface_get_material(0).set_shader_parameter("weapon_emission_factor", weapon_glow_floating)
 	weapon_glow_floating -= small_delta
 	if weapon_glow_floating < 0:
 		weapon_glow_floating = 0
@@ -42,5 +43,4 @@ func flash_weapon():
 	weapon_glow_floating = 1
 
 func set_skin_data(skin: SkinData):
-	pass
-	#skin.apply_to_shader(get_surface_override_material(0))
+	skin.apply_to_shader(mesh.surface_get_material(0))
