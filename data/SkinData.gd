@@ -11,8 +11,8 @@ var base_brightness: float
 var lights_hue: float
 var lights_saturation: float
 var lights_brightness: float
-var weapon_glow_hue: float
-var weapon_glow_saturation: float
+var weapon_hue: float
+var weapon_saturation: float
 
 
 func _init(data: Dictionary):

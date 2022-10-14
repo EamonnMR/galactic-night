@@ -1,5 +1,5 @@
 0b7126e0c6e86d3ec295a72f5aa6e0bd
-::res://::1665620569
+::res://::1665705812
 Adversary.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://assets/nimbus/nimbus_C.png<>res://Spaceship.gd<>res://AIController.tscn<>res://assets/nimbus/nimbus_RM.png<>res://Weapon.tscn<>res://MeshInstance.gd<>res://asset_sources/nimbus.obj<>res://assets/nimbus/nimbus_C_paint.png<>res://DirectionalLight.gd<>res://assets/nimbus/nimbus_N.png<>res://assets/nimbus/nimbus_E_base.png<>res://assets/nimbus/nimbus_E_weapon.png<>res://assets/nimbus/nimbus_E_engine.png
 AIController.gd::GDScript::-1::1665025404::0::1::::<>Controller<>::
 AIController.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://Controller.tscn<>res://AIController.gd
@@ -22,17 +22,17 @@ export_presets.cfg::TextFile::-1::1663985760::0::1::::<><>::
 grid.obj::Mesh::6025933034485688400::1663985760::1665027036::1::::<><>::
 icon.png::CompressedTexture2D::7658665369023115074::1663985760::1665027035::1::::<><>::
 KeyboardController.gd::GDScript::-1::1665456293::0::1::::<>Controller<>::
-KeyboardController.tscn::PackedScene::5115092134717874250::1665537780::0::1::::<><>::res://Controller.tscn<>res://KeyboardController.gd<>res://Label3D.gd
+KeyboardController.tscn::PackedScene::5115092134717874250::1665625553::0::1::::<><>::res://Controller.tscn<>res://KeyboardController.gd<>res://Label3D.gd
 Label3D.gd::GDScript::-1::1665025404::0::1::::<>Label3D<>::
-main.tscn::PackedScene::5128554826944370002::1665537780::0::1::::<><>::res://Adversary.tscn<>res://ui/map/Map.tscn<>uid://cijdnx2y3v7o2<>res://Background.gd<>res://Camera.gd<>uid://chrh53vm0rbdj<>res://starfield.gdshader
-MeshInstance.gd::GDScript::-1::1665457500::0::1::::<>MeshInstance3D<>::
-NimbusGraphics.tscn::PackedScene::5461043995449263939::1665621360::0::1::::<><>::res://MeshInstance.gd<>res://PerspectiveGd4.gdshader<>uid://j5sa1sp1gcfp<>res://DirectionalLight.gd
-PerspectiveGd4.gdshader::Shader::-1::1665621360::0::1::::<><>::
-Projectile.gd::GDScript::-1::1665025404::0::1::::<>RigidBody3D<>::
+main.tscn::PackedScene::5128554826944370002::1665625552::0::1::::<><>::res://Adversary.tscn<>res://ui/map/Map.tscn<>uid://cijdnx2y3v7o2<>res://Background.gd<>res://Camera.gd<>uid://chrh53vm0rbdj<>res://starfield.gdshader
+MeshInstance.gd::GDScript::-1::1665624206::0::1::::<>MeshInstance3D<>::
+NimbusGraphics.tscn::PackedScene::5461043995449263939::1665625553::0::1::::<><>::res://MeshInstance.gd<>res://PerspectiveGd4.gdshader<>uid://j5sa1sp1gcfp<>uid://dcr4yn2vsqmu0<>res://DirectionalLight.gd<>uid://b3v5r0w1wny1q<>uid://cmaswn2bk40lq<>uid://dpjp21swcuih2<>uid://h8su110xwk50<>uid://n0omha2t56lp
+PerspectiveGd4.gdshader::Shader::-1::1665631042::0::1::::<><>::
+Projectile.gd::GDScript::-1::1665621520::0::1::::<>RigidBody3D<>::
 Projectile.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://Projectile.gd
 Spaceship.gd::GDScript::-1::1665450047::0::1::::<>CharacterBody3D<>::
-Spaceship.tscn::PackedScene::5353138133451565215::1665537780::0::1::::<><>::uid://cj2muj3ersqr8<>res://Spaceship.gd<>uid://ce4125ctijp0u<>res://Weapon.tscn
-starfield.gdshader::Shader::-1::1663985760::0::1::::<><>::
+Spaceship.tscn::PackedScene::5353138133451565215::1665625553::0::1::::<><>::uid://cj2muj3ersqr8<>res://Spaceship.gd<>uid://ce4125ctijp0u<>res://Weapon.tscn
+starfield.gdshader::Shader::-1::1665631042::0::1::::<><>::
 Util.gd::GDScript::-1::1665025404::0::1::::<>Node<>::
 Weapon.gd::GDScript::-1::1665025404::0::1::::Weapon<>Node3D<>::
 Weapon.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://Weapon.gd<>res://Projectile.tscn
@@ -49,7 +49,7 @@ asteroid_RM.png::CompressedTexture2D::419903168384108047::1663985760::1665027035
 box.png::CompressedTexture2D::5818660112395153456::1663985760::1665027035::1::::<><>::
 Dialogue_cracked.png::CompressedTexture2D::2414605750871032392::1663985760::1665027035::1::::<><>::
 radar.png::CompressedTexture2D::1990943474075170375::1663985760::1665027035::1::::<><>::
-::res://assets/nimbus/::1665283522
+::res://assets/nimbus/::1665621400
 nimbus_C.png::CompressedTexture2D::694725225363978737::1663985760::1665283522::1::::<><>::
 nimbus_C_paint.png::CompressedTexture2D::560576400037610749::1663985760::1665621400::1::::<><>::
 nimbus_E.png::CompressedTexture2D::8667191736680634481::1663985760::1665027039::1::::<><>::
@@ -104,7 +104,7 @@ Procgen.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://procgen/Procgen.g
 SystemData.gd::GDScript::-1::1665025404::0::1::::SystemData<>RefCounted<>::
 ::res://ui/::1665025374
 NinePatchPanel.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://assets/danc_cc_by/Dialogue_cracked.png
-::res://ui/map/::1665537780
+::res://ui/map/::1665625553
 circle.gd::GDScript::-1::1665025404::0::1::::<>Node2D<>::
 hyperlane.gd::GDScript::-1::1665025404::0::1::::<>Node2D<>::
 hyperlane.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://ui/map/hyperlane.gd
@@ -112,4 +112,4 @@ Infobox.gd::GDScript::-1::1665025404::0::1::::<>NinePatchRect<>::
 Map.gd::GDScript::-1::1665025404::0::1::::<>Control<>::
 Map.tscn::PackedScene::-1::1665025404::0::1::::<><>::res://ui/map/Infobox.gd<>res://ui/NinePatchPanel.tscn<>res://ui/map/Map.gd
 system.gd::GDScript::-1::1665028702::0::1::::<>Control<>::
-system.tscn::PackedScene::2438391772054658211::1665537780::0::1::::<><>::res://ui/map/circle.gd<>res://ui/map/system.gd
+system.tscn::PackedScene::2438391772054658211::1665625553::0::1::::<><>::res://ui/map/circle.gd<>res://ui/map/system.gd
