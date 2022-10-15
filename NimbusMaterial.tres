@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://d3u3e2etjtd7r"]
+
+[ext_resource type="Shader" path="res://PerspectiveGd4.gdshader" id="1_bxjy3"]
+[ext_resource type="Texture2D" uid="uid://j5sa1sp1gcfp" path="res://assets/nimbus/nimbus_C.png" id="2_0rplv"]
+[ext_resource type="Texture2D" uid="uid://dcr4yn2vsqmu0" path="res://assets/nimbus/nimbus_E_base.png" id="3_lgaef"]
+[ext_resource type="Texture2D" uid="uid://b3v5r0w1wny1q" path="res://assets/nimbus/nimbus_E_engine.png" id="4_ik1r6"]
+[ext_resource type="Texture2D" uid="uid://cmaswn2bk40lq" path="res://assets/nimbus/nimbus_RM.png" id="5_dusos"]
+[ext_resource type="Texture2D" uid="uid://dpjp21swcuih2" path="res://assets/nimbus/nimbus_N.png" id="6_3etqg"]
+[ext_resource type="Texture2D" uid="uid://h8su110xwk50" path="res://assets/nimbus/nimbus_C_paint.png" id="7_boq1l"]
+[ext_resource type="Texture2D" uid="uid://n0omha2t56lp" path="res://assets/nimbus/nimbus_E_weapon.png" id="8_pex4y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bxjy3")
+shader_parameter/xform = Transform3D(-0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0)
+shader_parameter/weapon_saturation = null
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/texture_weapon_emission = ExtResource("8_pex4y")
+shader_parameter/texture_roughness = ExtResource("5_dusos")
+shader_parameter/texture_paint = ExtResource("7_boq1l")
+shader_parameter/texture_normal = ExtResource("6_3etqg")
+shader_parameter/texture_metallic = ExtResource("5_dusos")
+shader_parameter/texture_engine_emission = ExtResource("4_ik1r6")
+shader_parameter/texture_base_emission = ExtResource("3_lgaef")
+shader_parameter/texture_albedo = ExtResource("2_0rplv")
+shader_parameter/specular = null
+shader_parameter/roughness = null
+shader_parameter/perspective_correct = null
+shader_parameter/paint_saturation = null
+shader_parameter/paint_hue = null
+shader_parameter/paint_brightness = null
+shader_parameter/normal_scale = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic = null
+shader_parameter/lights_saturation = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_brightness = null
+shader_parameter/inv_xform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0)
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/emission_energy = 6.0
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/base_brightness = null

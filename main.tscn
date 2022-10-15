@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cfckswko781qc"]
 
-[ext_resource type="PackedScene" path="res://Adversary.tscn" id="2"]
+[ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cijdnx2y3v7o2" path="res://Spaceship.tscn" id="4"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
@@ -48,6 +48,7 @@ glow_bloom = 0.2
 glow_blend_mode = 0
 
 [node name="World3D" type="Node"]
+script = ExtResource("1_ayf7x")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -87,9 +88,6 @@ far = 500.0
 script = ExtResource("8")
 
 [node name="Spaceship" parent="World3D" instance=ExtResource("4")]
-
-[node name="Spaceship2" parent="World3D" instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.26655)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
