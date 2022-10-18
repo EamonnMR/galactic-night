@@ -10,8 +10,8 @@ func _ready():
 	for i in range(asteroid_count):
 		var asteroid = preload("res://AsteroidLarge.tscn").instantiate()
 		asteroid.global_position = Util.raise_25d(Vector2(
-			randf_range(0, 40),
-			randf_range(0, 40)
+			randf_range(5, 9),
+			randf_range(5, 9)
 		))
 		add_child(asteroid)
 

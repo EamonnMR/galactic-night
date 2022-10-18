@@ -1,8 +1,6 @@
 @tool
 extends MeshInstance3D
 
-# BIG TODO: FIX SHADER!!!
-
 @export var offset = PI/4
 @export var ortho_cam_angle = PI/4
 
