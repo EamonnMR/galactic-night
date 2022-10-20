@@ -1,16 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfckswko781qc"]
+[gd_scene load_steps=14 format=3 uid="uid://cfckswko781qc"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cijdnx2y3v7o2" path="res://Spaceship.tscn" id="4"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="6_16u5p"]
+[ext_resource type="Script" path="res://BackgroundHack.gd" id="7_dvtuk"]
 [ext_resource type="Script" path="res://Camera.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
-[ext_resource type="Shader" path="res://starfield.gdshader" id="10"]
-
-[sub_resource type="ShaderMaterial" id="13"]
-shader = ExtResource("10")
-shader_parameter/position = null
 
 [sub_resource type="GDScript" id="15"]
 script/source = "extends Label
@@ -38,24 +35,40 @@ func modify_move_scale():
 		move_scale_oom = 0.1
 "
 
-[sub_resource type="Environment" id="9"]
-background_canvas_max_layer = -1
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.0
-glow_enabled = true
-glow_intensity = 0.25
-glow_bloom = 0.2
-glow_blend_mode = 0
+[sub_resource type="Environment" id="Environment_7gyux"]
+
+[sub_resource type="Shader" id="Shader_xiwc0"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo_tex.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap2qu"]
+render_priority = 0
+shader = SubResource("Shader_xiwc0")
+shader_parameter/texture_albedo = ExtResource("6_16u5p")
+
+[sub_resource type="QuadMesh" id="QuadMesh_l5ydf"]
+material = SubResource("ShaderMaterial_ap2qu")
+size = Vector2(30, 30)
 
 [node name="World3D" type="Node"]
 script = ExtResource("1_ayf7x")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background_busted" type="CanvasLayer" parent="."]
 layer = -1
 visible = false
+metadata/remark = ""
 
-[node name="Background" type="TextureRect" parent="Background"]
-material = SubResource("13")
+[node name="Background" type="TextureRect" parent="Background_busted"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -65,7 +78,7 @@ texture = ExtResource("9")
 stretch_mode = 2
 script = ExtResource("6")
 
-[node name="MoveScaleLabel" type="Label" parent="Background"]
+[node name="MoveScaleLabel" type="Label" parent="Background_busted"]
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 52.0
@@ -73,7 +86,7 @@ offset_bottom = 26.0
 script = SubResource("15")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("9")
+environment = SubResource("Environment_7gyux")
 
 [node name="World3D" type="Node3D" parent="."]
 
@@ -87,11 +100,23 @@ near = 0.01
 far = 500.0
 script = ExtResource("8")
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="World3D/CameraTransform/Camera3D"]
+remote_path = NodePath("../../../BackgroundOffset")
+
 [node name="Spaceship" parent="World3D" instance=ExtResource("4")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 light_energy = 0.5
+
+[node name="BackgroundOffset" type="Node3D" parent="World3D"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4.5, 6, 4.5)
+
+[node name="BackgroundHack" type="MeshInstance3D" parent="World3D/BackgroundOffset"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+mesh = SubResource("QuadMesh_l5ydf")
+skeleton = NodePath("../..")
+script = ExtResource("7_dvtuk")
 
 [node name="Map" parent="." instance=ExtResource("3")]
 visible = false

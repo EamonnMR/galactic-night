@@ -52,11 +52,9 @@ func load_text():
 	
 func load_lines(file_name):
 	var lines = []
-	var file = File.new()
-	file.open(file_name, File.READ) # iterate through all lines until the end of file is reached
+	var file = FileAccess.open(file_name, FileAccess.READ) # iterate through all lines until the end of file is reached
 	while not file.eof_reached():
 		lines.push_back(file.get_line())
-	file.close()
 	return lines
 
 	
