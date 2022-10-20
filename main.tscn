@@ -45,20 +45,57 @@ render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlic
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
 
 
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo_tex.rgb;
-}"
+uniform vec2 position;
+const int LAYERS = 5;
+const float DEPTH_FACTOR = 0.7;
+const float DEPTH_OFFSET = 0.0;
+
+void fragment(){
+	ALBEDO = vec3(0,0,0);
+	vec2 shifted_uv_front = UV;
+	for (int i = 1; i <= LAYERS; i ++){
+		
+		// Offset stars by player position
+		vec2 shifted_uv = UV;
+		shifted_uv.x += (
+			position.x / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR)
+		);
+		shifted_uv.y += (
+			position.y / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR)
+		);
+
+		// Extra offset to avoid stacking
+		shifted_uv += float(i) * 250.0;
+
+		shifted_uv.x = fract(shifted_uv.x);
+		shifted_uv.y = fract(shifted_uv.y);
+		
+		// Invert every other layer
+		if(bool(i % 2)){
+			shifted_uv.x = 1.0 - shifted_uv.x;
+			shifted_uv.y = 1.0 - shifted_uv.y;
+		}
+		if(bool(i % 3)){
+			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
+				//COLOR = vec4(1,1,1,1)
+			}
+			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+		} else {
+			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+		}
+	}
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ap2qu"]
 render_priority = 0
 shader = SubResource("Shader_xiwc0")
+shader_parameter/position = null
 shader_parameter/texture_albedo = ExtResource("6_16u5p")
 
 [sub_resource type="QuadMesh" id="QuadMesh_l5ydf"]
 material = SubResource("ShaderMaterial_ap2qu")
-size = Vector2(30, 30)
+size = Vector2(20, 20)
 
 [node name="World3D" type="Node"]
 script = ExtResource("1_ayf7x")
