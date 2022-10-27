@@ -1,6 +1,6 @@
 extends Node
 
-var PLAY_AREA_RADIUS = 25
+var PLAY_AREA_RADIUS = 35
 
 func anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)

@@ -36,6 +36,7 @@ func modify_move_scale():
 "
 
 [sub_resource type="Environment" id="Environment_7gyux"]
+glow_enabled = true
 
 [sub_resource type="Shader" id="Shader_xiwc0"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
