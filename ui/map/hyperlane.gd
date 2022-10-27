@@ -1,7 +1,7 @@
 extends Node2D
 
-export var start: String = ""
-export var end: String = ""
+@export var start: String = ""
+@export var end: String = ""
 
 var data: HyperlaneData
 

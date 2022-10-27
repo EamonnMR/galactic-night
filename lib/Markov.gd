@@ -21,7 +21,7 @@ var markov = {}
 
 var rng: RandomNumberGenerator
 
-func _init(rng: RandomNumberGenerator, corpus: Array):
+func _init(rng: RandomNumberGenerator,corpus: Array):
 	self.rng = rng
 	markov = load_names(corpus)
 

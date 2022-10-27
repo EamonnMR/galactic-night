@@ -1,2 +1,4 @@
 .import/*
 *.blend1
+.godot/editor/*
+.godot/*

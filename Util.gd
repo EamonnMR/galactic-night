@@ -1,6 +1,6 @@
 extends Node
 
-var PLAY_AREA_RADIUS = 25
+var PLAY_AREA_RADIUS = 35
 
 func anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)
@@ -11,10 +11,10 @@ func raise_25d(two_d_vec: Vector2) -> Vector3:
 func flatten_25d(three_d_vec: Vector3) -> Vector2:
 	return Vector2(three_d_vec.x, three_d_vec.z)
 	
-func flatten_rotation(object: Spatial) -> float:
-	return object.global_transform.basis.get_rotation_quat().get_euler().y
+func flatten_rotation(object: Node3D) -> float:
+	return object.global_transform.basis.get_rotation_quaternion().get_euler().y
 
-func wrap_to_play_radius(entity: Spatial) -> bool:
+func wrap_to_play_radius(entity: Node3D) -> bool:
 	var position = flatten_25d(entity.global_transform.origin)
 	if position.length() > PLAY_AREA_RADIUS:
 		entity.global_transform.origin = raise_25d(

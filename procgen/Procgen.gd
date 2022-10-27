@@ -11,7 +11,7 @@ var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 
-onready var rng: RandomNumberGenerator
+@onready var rng: RandomNumberGenerator
 
 
 func serialize() -> Dictionary:
@@ -21,7 +21,7 @@ func serialize() -> Dictionary:
 	var serial_longjumps = []
 	
 	for system_id in systems:
-		 serial_systems[system_id] = systems[system_id].serialize()
+		serial_systems[system_id] = systems[system_id].serialize()
 	for jump in hyperlanes:
 		serial_hyperlanes.append([jump.lsys, jump.rsys])
 	for jump in longjumps:
@@ -59,7 +59,7 @@ func _random_location_in_system(rng: RandomNumberGenerator):
 #		for _i in range(spawn.count):
 #			if spawn.chance >= rng.randf():
 #				var position = _random_location_in_system(rng)
-#				var instance: Node = spawn.scene.instance()
+#				var instance: Node = spawn.scene.instantiate()
 #				if spawn.type:
 #					instance.type = spawn.type
 #				instance.position = position
@@ -98,7 +98,7 @@ func place_special_biomes():
 			while true:
 				var system_id = random_select(systems.keys(), rng)
 				var system = systems[system_id]
-				if not systems[system_id].biome:
+				if systems[system_id].biome == "":
 					system.biome = biome_id
 					system.explored = biome.auto_explore
 					if biome.fixed_name:
@@ -108,7 +108,7 @@ func place_special_biomes():
 						start_sys = system_id
 					break
 				else:
-					print("Cannot put always_do biome in an occupied system.")
+					print("Cannot put always_do biome in an occupied system: ", system_id, ", biome: ", system.biome)
 	return start_sys
 	
 func place_biome_seeds():
@@ -124,7 +124,7 @@ func place_biome_seeds():
 	while seeds_planted < seed_count:
 		var biome_id = random_select(seed_biomes, rng)
 		var system_id = random_select(systems.keys(), rng)
-		if not systems[system_id].biome:
+		if systems[system_id].biome == "":
 			systems[system_id].biome = biome_id
 			_set_light(systems[system_id], Data.biomes[biome_id])
 			seeds_planted += 1
@@ -133,7 +133,7 @@ func grow_biome_seeds():
 	for _i in MAX_GROW_ITERATIONS:
 		print("Growing Seeds")
 		for system in systems.values():
-			if not system.biome:
+			if system.biome == "":
 				var possible_biomes = []
 				
 				# Preferentially use the links cache
@@ -151,7 +151,7 @@ func grow_biome_seeds():
 func fill_remaining_empty_biomes():
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
-		if not system.biome:
+		if system.biome == "":
 			system.biome = "empty"
 
 func grow_attribute(attribute):
@@ -169,8 +169,8 @@ func generate_positions_and_links():
 			system.position = position
 			systems[system_id] = system
 			systems_by_position[position] = system_id
-	var points = PoolVector2Array(systems_by_position.keys())
-	var link_mesh = Geometry.triangulate_delaunay_2d(points)
+	var points = PackedVector2Array(systems_by_position.keys())
+	var link_mesh = Geometry2D.triangulate_delaunay(points)
 	for i in range(0, link_mesh.size(), 3):
 		
 		var first_pos = points[link_mesh[i]]
@@ -240,7 +240,7 @@ func assign_faction_core_worlds() -> Array:
 	print("Randomly Assigning core worlds ")
 	var sorted = systems_sorted_by_distance()
 	var sorted_reverse = sorted.duplicate()
-	sorted_reverse.invert()
+	sorted_reverse.reverse()
 	var already_selected = []
 	for faction_id in Data.factions:
 		var faction = Data.factions[faction_id]
@@ -324,7 +324,11 @@ func name_systems():
 		system.name = random_name(system)
 
 func random_name(sys: SystemData):
-	if sys.faction and sys.faction != "0":
+	if sys.faction != "" and sys.faction != "0":
+		var foo = sys.faction
+		print(Data.name_generators.keys())
+		var bla = Data.name_generators
+		var blar = Data.factions[sys.faction]
 		return Data.name_generators[
 			Data.factions[sys.faction].sys_name_scheme
 		].get_random_name()
@@ -336,7 +340,9 @@ func randi_radius(radius: int, rng: RandomNumberGenerator):
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
 	"""Remember to seed first if desired"""
 	var position: Vector2
-	while not position or position.length() > radius:
+	var do_once: bool = true  # The rare case where I miss do while
+	while do_once or position.length() > radius:
+		do_once = false
 		position = Vector2(
 			self.randi_radius(radius, rng),
 			self.randi_radius(radius, rng)
@@ -378,5 +384,5 @@ func system_distance_comparitor(l_id, r_id) -> bool:
 
 func systems_sorted_by_distance() -> Array:
 	var system_ids = systems.keys()
-	system_ids.sort_custom(self, "system_distance_comparitor")
+	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids

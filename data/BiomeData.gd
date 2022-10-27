@@ -8,7 +8,7 @@ var spawns: Array
 var map_color: Color
 var do_seed: bool
 var grow: bool
-var background: Texture
+var background: Texture2D
 var always_do_one: bool
 var startloc: bool
 var fixed_name: String

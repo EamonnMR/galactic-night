@@ -1,4 +1,4 @@
-extends DirectionalLight
+extends DirectionalLight3D
 
 func _ready():
 	queue_free()

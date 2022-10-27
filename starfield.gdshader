@@ -35,9 +35,9 @@ void fragment(){
 			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
 				//COLOR = vec4(1,1,1,1)
 			}
-			COLOR += texture(nebula, shifted_uv) / (float(i) + 0.5)
+			COLOR += texture(nebula, shifted_uv) / (float(i) + 0.5);
 		} else {
-			COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5)
+			COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5);
 		}
 	}
 }

@@ -11,8 +11,8 @@ var base_brightness: float
 var lights_hue: float
 var lights_saturation: float
 var lights_brightness: float
-var weapon_glow_hue: float
-var weapon_glow_saturation: float
+var weapon_hue: float
+var weapon_saturation: float
 
 
 func _init(data: Dictionary):
@@ -25,4 +25,4 @@ func apply_to_shader(shader):
 	for column in get_columns():
 		if column != "id" and column != "name":
 			var val = get(column)
-			shader.set_shader_param(column, get(column))
+			shader.set_shader_parameter(column, get(column))
