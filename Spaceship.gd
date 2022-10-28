@@ -75,3 +75,6 @@ func decrease_bank(delta):
 	else:
 		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
 			max($Graphics.rotation.x, bank_speed * delta)
+
+func hit_by_projectile():
+	hit_by_asteroid()
