@@ -25,19 +25,12 @@ func _ready():
 
 func toggle_map():
 	if Input.is_action_just_released("toggle_map"):
-		toggle_map_hack_what_happened_to_visibility()
-
-func toggle_map_hack_what_happened_to_visibility():
-	map.visible = not map.visible
-	return
-	# This is busted, actually
-	#print("Toggle map")
-	if get_tree().get_root().get_node("Node/Map") != null:
-		print("Map exists, remove map")
-		get_tree().get_root().remove_child(map)
-	else:
-		print("No map, add map")
-		get_tree().get_root().add_child(map)
+		if map.visible:
+			map.visible = false
+			get_tree().pause = false
+		else:
+			map.visible = true
+			get_tree().paused = true
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):

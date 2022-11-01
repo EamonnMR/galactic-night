@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce4125ctijp0u"]
 
-[ext_resource type="PackedScene" path="res://Controller.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c3q3cv3jeiqm2" path="res://Controller.tscn" id="1"]
 [ext_resource type="Script" path="res://KeyboardController.gd" id="2"]
 [ext_resource type="Script" path="res://Label3D.gd" id="3"]
 

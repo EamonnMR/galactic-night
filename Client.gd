@@ -17,6 +17,6 @@ func map_select_system(system_id, system_node):
 func sel_sys(system_id: String, node):
 	selected_system = system_id
 	for old_node in selected_system_circle_cache:
-		old_node.update()
+		old_node.redraw()
 	selected_system_circle_cache = [node]
 	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump

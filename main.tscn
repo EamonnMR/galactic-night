@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cfckswko781qc"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
-[ext_resource type="PackedScene" path="res://ui/map/Map.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cijdnx2y3v7o2" path="res://Spaceship.tscn" id="4"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="6_16u5p"]

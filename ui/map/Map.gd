@@ -79,7 +79,7 @@ func update_link_assoc_bucket(system_id: String, link: Node, buckets: Dictionary
 func update_for_explore(system_id):
 	var sys_node = movement.get_node(system_id)
 	sys_node.show()
-	sys_node.update()
+	sys_node.redraw()
 	if system_id in link_assoc_buckets:
 		for link in link_assoc_buckets[system_id]:
 			link.show()
@@ -93,7 +93,8 @@ func update_for_explore(system_id):
 
 func _update_for_mode_switch():
 	for node in movement.get_children():
-		node.update()
+		if node.has_method("redraw"):
+			node.redraw()
 
 func _on_Recenter_pressed():
 	_set_initial_center()
