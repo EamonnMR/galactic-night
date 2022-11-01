@@ -17,7 +17,6 @@ func hit_by_projectile():
 	break_up()
 
 func break_up():
-	# TODO: Spawn small asteroids
 	if next_count:
 		for i in range(next_count):
 			var sub_roid: RigidBody3D = next_type.instantiate()
@@ -25,6 +24,7 @@ func break_up():
 			sub_roid.transform.origin = global_transform.origin
 			get_node("../").add_child(sub_roid)
 	queue_free()
+
 func initial_velocity():
 	apply_central_impulse(
 		initial_vel * transform.basis.x

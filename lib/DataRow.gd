@@ -51,9 +51,7 @@ func convert_column_value(string_val: String, type: int, type_class: String):
 		return parse_color(string_val)
 	elif type == TYPE_OBJECT:
 		if type_class in ["PackedScene", "Texture2D", "Resource"]:
-			#var loaded = load(string_val)
-			var loaded = null
-			return loaded
+			return load(string_val)
 		else:
 			print("Unknown Class: ", type_class)
 	return null

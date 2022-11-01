@@ -10,8 +10,10 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 		for _i in range(spawn.count):
 			if spawn.chance >= rng.randf():
 				var position = Procgen.random_location_in_system(rng)
-				var instance: Node = spawn.scene.instance()
+				var instance: Node = spawn.scene.instantiate()
 				if spawn.type:
 					instance.type = spawn.type
-				instance.position = position
-				gameplay.get_node(spawn.destination).add_child(instance)
+				instance.transform.origin = Util.raise_25d(position)
+				# TODO: This will be important for visual layering
+				#gameplay.get_node(spawn.destination).add_child(instance)
+				gameplay.add_child(instance)

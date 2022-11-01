@@ -2,3 +2,4 @@
 *.blend1
 .godot/editor/*
 .godot/*
+data/.~lock.*
