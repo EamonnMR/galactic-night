@@ -86,6 +86,7 @@ Client="*res://Client.gd"
 Procgen="*res://procgen/Procgen.tscn"
 Data="*res://data/Data.tscn"
 Cheats="*res://Cheats.tscn"
+SystemGen="*res://procgen/SystemGen.gd"
 
 [global]
 
