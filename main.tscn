@@ -63,7 +63,7 @@ script = SubResource("15")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7gyux")
 
-[node name="World3D" parent="." instance=ExtResource("4_0jdkg")]
-
 [node name="Map" parent="." instance=ExtResource("3")]
 visible = false
+
+[node name="World3D" parent="." instance=ExtResource("4_0jdkg")]

@@ -86,7 +86,7 @@ func hit_by_projectile():
 	
 func handle_jumping():
 	if $Controller.jumping and $Client.selected_system:
-		Client.exit_system_hyperjump($Controller.selected_system)
+		Client.change_system()
 		#_jump_effects()
 		#queue_free()
 	else:

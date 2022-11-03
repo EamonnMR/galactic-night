@@ -2,7 +2,7 @@ extends Controller
 
 var skin_id = "0"
 
-@onready var map: Control = get_tree().get_root().get_node("World3D/Map")
+@onready var map: Control = get_tree().get_root().get_node("Main/Map")
 	
 func get_rotation_impulse() -> int:
 	var dc = 0
