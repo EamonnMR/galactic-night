@@ -1,3 +1,3 @@
-id,count,respawn,chance,scene,type,destination
-asteroids,4,TRUE,1,res://AsteroidLarge.tscn,,asteroids
-adversary,1,TRUE,1,res://Adversary.tscn,,npcs
+id,count,respawn,chance,scene,type,faction,destination
+asteroids,4,TRUE,1,res://AsteroidLarge.tscn,,,asteroids
+adversary,1,TRUE,1,res://Adversary.tscn,,4,npcs

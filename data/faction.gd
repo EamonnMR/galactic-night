@@ -22,6 +22,7 @@ var destroy_penalty: float
 var destroy_foe_bonus: float
 var sys_name_scheme: String
 var color_scheme: String
+var skin: String
 
 func _init(data: Dictionary):
 	init(data)
