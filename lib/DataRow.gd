@@ -105,7 +105,13 @@ func parse_int_array(text: String) -> Array:
 	return int_array
 
 func parse_string_array(text: String) -> Array:
-	return Array(text.split(" "))
+	# This might be a bug in split()
+	var raw_array = Array(text.split(" "))
+	var processed_array = []
+	for item in raw_array:
+		if item != "":
+			processed_array.push_back(item)
+	return processed_array
 
 static func load_csv(csv):
 	var file = FileAccess.open(csv, FileAccess.READ)

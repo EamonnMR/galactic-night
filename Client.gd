@@ -21,7 +21,9 @@ func sel_sys(system_id: String, node):
 	selected_system_circle_cache = [node]
 	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump
 
-func change_sys():
+func change_system():
+	current_system = selected_system
+	selected_system = null
 	get_main().change_system()
 
 func get_world():

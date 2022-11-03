@@ -85,9 +85,12 @@ func hit_by_projectile():
 	hit_by_asteroid()
 	
 func handle_jumping():
-	if $Controller.jumping and $Client.selected_system:
-		Client.change_system()
-		#_jump_effects()
-		#queue_free()
-	else:
-		print("Can't jump, select a system from the map with 'M'")
+	if $Controller.jumping:
+		$Controller.jumping = false
+		if Client.selected_system:
+			Client.change_system()
+			#_jump_effects()
+			#queue_free()
+		else:
+			pass
+			# TODO: Print some sort of reminder to select a destination

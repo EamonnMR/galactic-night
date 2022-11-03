@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ce4125ctijp0u" path="res://KeyboardController.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://Weapon.tscn" id="5"]
 
-[sub_resource type="Shader" id="Shader_8ai13"]
+[sub_resource type="Shader" id="Shader_khqmp"]
 code = "shader_type spatial;
 
 #include \"perspective.gdshaderinc\"
@@ -103,33 +103,33 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jn2m7"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h3ev3"]
 load_path = "res://.godot/imported/nimbus_C.png-cdd980ccd2213c4563009395b05f13a3.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lvoa4"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nsq7j"]
 load_path = "res://.godot/imported/nimbus_E_base.png-fcabe75f4d9609d09107a04184542ace.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_48t40"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_absum"]
 load_path = "res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wfxlb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7i7av"]
 load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ws4gv"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wfffq"]
 load_path = "res://.godot/imported/nimbus_N.png-f32090842a58b321a1aa9ca6ea4516aa.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uyos8"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k4ws2"]
 load_path = "res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vuk7v"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f2g0e"]
 load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l0csa"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_42n7t"]
 load_path = "res://.godot/imported/nimbus_E_weapon.png-74f29039f06181e4cca0dca1458190d8.s3tc.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cs55u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_julra"]
 render_priority = 0
-shader = SubResource("Shader_8ai13")
+shader = SubResource("Shader_khqmp")
 shader_parameter/base_brightness = null
 shader_parameter/base_emission_factor = 1.0
 shader_parameter/emission_energy = 6.0
@@ -147,14 +147,14 @@ shader_parameter/paint_saturation = null
 shader_parameter/perspective_correct = null
 shader_parameter/roughness = null
 shader_parameter/specular = null
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_jn2m7")
-shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_lvoa4")
-shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_48t40")
-shader_parameter/texture_metallic = SubResource("CompressedTexture2D_wfxlb")
-shader_parameter/texture_normal = SubResource("CompressedTexture2D_ws4gv")
-shader_parameter/texture_paint = SubResource("CompressedTexture2D_uyos8")
-shader_parameter/texture_roughness = SubResource("CompressedTexture2D_vuk7v")
-shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_l0csa")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_h3ev3")
+shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_nsq7j")
+shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_absum")
+shader_parameter/texture_metallic = SubResource("CompressedTexture2D_7i7av")
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_wfffq")
+shader_parameter/texture_paint = SubResource("CompressedTexture2D_k4ws2")
+shader_parameter/texture_roughness = SubResource("CompressedTexture2D_f2g0e")
+shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_42n7t")
 shader_parameter/uv1_offset = null
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/weapon_emission_factor = 0.0
@@ -169,7 +169,7 @@ points = PackedVector3Array(-0.22999, -0.0709796, -0.673112, -0.22999, -0.178905
 script = ExtResource("2")
 
 [node name="Graphics" parent="." instance=ExtResource("1")]
-surface_material_override/0 = SubResource("ShaderMaterial_cs55u")
+surface_material_override/0 = SubResource("ShaderMaterial_julra")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("1")

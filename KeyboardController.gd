@@ -28,7 +28,7 @@ func toggle_map():
 	if Input.is_action_just_released("toggle_map"):
 		if map.visible:
 			map.visible = false
-			get_tree().pause = false
+			get_tree().paused = false
 		else:
 			map.visible = true
 			get_tree().paused = true
