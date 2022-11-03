@@ -158,7 +158,5 @@ script = ExtResource("7_dvtuk")
 
 [node name="Map" parent="." instance=ExtResource("3")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2

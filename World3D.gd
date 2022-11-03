@@ -1,4 +1,8 @@
 extends Node
 
+func enter_system():
+	var system: SystemData = Procgen.systems[Client.current_system_id()]
+	SystemGen.do_spawns(1, Client.current_system_id(), system.biome, $World3D)
+
 func _ready():
-	SystemGen.do_spawns(1, "0", "start", $World3D)
+	call_deferred("enter_system")
