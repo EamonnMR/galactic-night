@@ -12,6 +12,10 @@ var linear_velocity = Vector2()
 
 const PLAY_AREA_RADIUS = 300
 
+func _ready():
+	if self == Client.player:
+		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
+
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	var rotation_impulse = $Controller.rotation_impulse
@@ -27,6 +31,7 @@ func _physics_process(delta):
 	move_and_slide()
 	velocity
 	handle_shooting()
+	handle_jumping()
 	Util.wrap_to_play_radius(self)
 	
 	handle_hitting_stuff()
@@ -78,3 +83,11 @@ func decrease_bank(delta):
 
 func hit_by_projectile():
 	hit_by_asteroid()
+	
+func handle_jumping():
+	if $Controller.jumping and $Client.selected_system:
+		Client.exit_system_hyperjump($Controller.selected_system)
+		#_jump_effects()
+		#queue_free()
+	else:
+		print("Can't jump, select a system from the map with 'M'")

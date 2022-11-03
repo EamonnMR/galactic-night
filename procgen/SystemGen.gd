@@ -15,5 +15,4 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 					instance.type = spawn.type
 				instance.transform.origin = Util.raise_25d(position)
 				# TODO: This will be important for visual layering
-				#gameplay.get_node(spawn.destination).add_child(instance)
-				gameplay.add_child(instance)
+				gameplay.get_node(spawn.destination).add_child(instance)

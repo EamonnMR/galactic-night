@@ -8,7 +8,7 @@
 [sub_resource type="ConvexPolygonShape3D" id="1"]
 points = PackedVector3Array(-0.22999, -0.0709796, -0.673112, -0.22999, -0.178905, -0.640432, -0.568929, -0.0836513, -0.520647, -0.568929, -0.069019, -0.521306, -0.22999, 0.0486133, -0.636874, 0.245449, -0.0709796, -0.673112, -0.22999, -0.258187, -0.54384, -0.568929, -0.108134, -0.498377, -0.568929, -0.096084, -0.513004, 0.245449, -0.178905, -0.640432, -0.748809, -0.0151281, -0.0432225, -0.748809, -1.76132e-05, -0.0469122, -0.748809, 0.0150451, -0.0432225, -0.568929, -0.0508482, -0.515771, -0.543335, -0.0421453, -0.524469, -0.543335, -0.0249786, -0.510369, -0.228978, 0.117328, -0.55056, -0.0739688, 0.111829, -0.613154, 0.0892826, 0.111829, -0.613154, 0.311964, 0.0464615, -0.636346, 0.728407, -0.0656239, -0.520911, 0.728407, -0.0832688, -0.519461, -0.228978, -0.267273, -0.433807, -0.543335, -0.126688, -0.479533, -0.543335, -0.120232, -0.500749, 0.311964, -0.256035, -0.544499, 0.0892826, -0.297494, -0.488889, -0.0739688, -0.297494, -0.488889, -0.568929, -0.113681, -0.480192, -0.748809, -0.0414758, -0.0168673, -0.748809, -0.030908, -0.0326804, 0.728407, -0.0987618, -0.510896, -0.748809, 0.0308729, -0.0326804, -0.568929, -0.036168, -0.503648, -0.568929, -0.0271783, -0.486912, -0.543335, -0.0145065, -0.490866, -0.72336, 0.0540646, -0.0200299, -0.655543, 0.0783561, -0.0296496, -0.0729566, 0.180591, -0.526709, 0.0904394, 0.180591, -0.526709, 0.246461, 0.117328, -0.55056, 0.728407, -0.0324861, -0.503253, 0.728407, -0.0473096, -0.515376, -0.228978, -0.267273, 0.433675, -0.72336, -0.0584512, -0.000131726, -0.0729566, -0.306579, -0.378856, 0.728407, -0.110908, -0.496137, 0.728407, -0.116455, -0.477688, 0.311964, -0.256035, 0.544367, 0.0904394, -0.306579, -0.378856, -0.748809, -0.0451578, -0.000131726, -0.748809, 0.0413928, -0.0168673, -0.748809, 0.0451226, -0.000131726, -0.72336, 0.0583682, -0.000131726, -0.655543, 0.0845725, -0.000131726, -0.0729566, 0.18193, -0.504966, -0.453395, 0.136838, -0.0233243, -0.453395, 0.139515, -0.000131726, 0.0904394, 0.18193, -0.504966, 0.728407, -0.0215357, -0.467278, 0.728407, -0.0234484, -0.486385, -0.22999, -0.258187, 0.543708, -0.543335, -0.126688, 0.479401, -0.0729566, -0.306579, 0.378724, -0.568929, -0.113681, 0.48006, 0.728407, -0.116455, 0.477557, 0.0892826, -0.297494, 0.488757, 0.0904394, -0.306579, 0.378724, 0.728407, -0.110908, 0.496005, 0.728407, -0.0987618, 0.510764, 0.245449, -0.178905, 0.6403, -0.748809, -0.0414758, 0.0167356, -0.748809, 0.0413928, 0.0167356, -0.72336, 0.0540646, 0.0198982, -0.655543, 0.0783561, 0.0295179, -0.453395, 0.136838, 0.0231926, -0.0729566, 0.180591, 0.526577, -0.0729566, 0.18193, 0.504834, 0.0904394, 0.18193, 0.504834, 0.728407, -0.0215357, 0.467146, -0.22999, -0.178905, 0.6403, -0.568929, -0.108134, 0.498245, -0.543335, -0.120232, 0.500617, -0.0739688, -0.297494, 0.488757, 0.728407, -0.0832688, 0.519329, 0.245449, -0.0709796, 0.67298, -0.748809, -0.030908, 0.0325488, -0.748809, 0.0308729, 0.0325488, -0.568929, -0.036168, 0.503516, -0.568929, -0.0271783, 0.486781, -0.543335, -0.0145065, 0.490734, -0.228978, 0.117328, 0.550429, -0.0739688, 0.111829, 0.613022, 0.0904394, 0.180591, 0.526577, 0.728407, -0.0234484, 0.486254, -0.22999, -0.0709796, 0.67298, -0.568929, -0.0836513, 0.520516, -0.568929, -0.096084, 0.512872, 0.728407, -0.0656239, 0.520779, 0.311964, 0.0464615, 0.636215, -0.22999, 0.0486133, 0.636742, -0.748809, -0.0151281, 0.0430908, -0.748809, 0.0150451, 0.0430908, -0.568929, -0.0508482, 0.51564, -0.543335, -0.0249786, 0.510237, 0.0892826, 0.111829, 0.613022, 0.246461, 0.117328, 0.550429, 0.728407, -0.0324861, 0.503121, -0.568929, -0.069019, 0.521174, -0.748809, -1.76132e-05, 0.0467806, 0.728407, -0.0473096, 0.515244, -0.543335, -0.0421453, 0.524337)
 
-[sub_resource type="Shader" id="Shader_wi3fu"]
+[sub_resource type="Shader" id="Shader_vnk4k"]
 code = "shader_type spatial;
 
 #include \"perspective.gdshaderinc\"
@@ -106,33 +106,33 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gexek"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fiqqb"]
 load_path = "res://.godot/imported/nimbus_C.png-cdd980ccd2213c4563009395b05f13a3.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w343l"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6fru3"]
 load_path = "res://.godot/imported/nimbus_E_base.png-fcabe75f4d9609d09107a04184542ace.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cg5e6"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gymv6"]
 load_path = "res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pfnnx"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpwgd"]
 load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_glrsm"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_utroi"]
 load_path = "res://.godot/imported/nimbus_N.png-f32090842a58b321a1aa9ca6ea4516aa.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iwtvw"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_parx4"]
 load_path = "res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_krl7y"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rfhry"]
 load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sctbo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jupcx"]
 load_path = "res://.godot/imported/nimbus_E_weapon.png-74f29039f06181e4cca0dca1458190d8.s3tc.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1e2m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvms1"]
 render_priority = 0
-shader = SubResource("Shader_wi3fu")
+shader = SubResource("Shader_vnk4k")
 shader_parameter/base_brightness = null
 shader_parameter/base_emission_factor = 1.0
 shader_parameter/emission_energy = 6.0
@@ -150,14 +150,14 @@ shader_parameter/paint_saturation = null
 shader_parameter/perspective_correct = null
 shader_parameter/roughness = null
 shader_parameter/specular = null
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_gexek")
-shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_w343l")
-shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_cg5e6")
-shader_parameter/texture_metallic = SubResource("CompressedTexture2D_pfnnx")
-shader_parameter/texture_normal = SubResource("CompressedTexture2D_glrsm")
-shader_parameter/texture_paint = SubResource("CompressedTexture2D_iwtvw")
-shader_parameter/texture_roughness = SubResource("CompressedTexture2D_krl7y")
-shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_sctbo")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_fiqqb")
+shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_6fru3")
+shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_gymv6")
+shader_parameter/texture_metallic = SubResource("CompressedTexture2D_gpwgd")
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_utroi")
+shader_parameter/texture_paint = SubResource("CompressedTexture2D_parx4")
+shader_parameter/texture_roughness = SubResource("CompressedTexture2D_rfhry")
+shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_jupcx")
 shader_parameter/uv1_offset = null
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/weapon_emission_factor = 0.0
@@ -179,4 +179,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952441, 0, 0)
 [node name="Controller" parent="." instance=ExtResource("3")]
 
 [node name="Graphics" parent="." instance=ExtResource("4_a8bcl")]
-surface_material_override/0 = SubResource("ShaderMaterial_g1e2m")
+surface_material_override/0 = SubResource("ShaderMaterial_vvms1")

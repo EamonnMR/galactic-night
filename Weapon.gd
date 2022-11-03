@@ -6,7 +6,7 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
-@onready var world = get_node("../../")
+@onready var world = Client.get_world().get_node("projectiles")
 @export var projectile_scene: PackedScene
 @export var burst_count = 0
 @export var dupe_count = 1

@@ -9,3 +9,5 @@ var shooting: bool
 var thrusting: bool
 
 var rotation_impulse: float
+
+var jumping: bool

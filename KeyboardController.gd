@@ -18,6 +18,7 @@ func _physics_process(delta):
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
 	toggle_map()
+	check_jumped()
 
 func _ready():
 	Client.player = parent
@@ -40,3 +41,7 @@ func cycle_skins():
 		var skin = Data.skins[skin_id]
 		print(skin)
 		get_node("../Graphics").set_skin_data(skin)
+		
+func check_jumped():
+	if Input.is_action_just_released("jump"):
+		jumping = true
