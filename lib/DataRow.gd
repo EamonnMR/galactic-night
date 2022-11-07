@@ -1,13 +1,11 @@
 # Basic use: Inherit from DataRow to make a class for your row, add type hints for any variables that appear in the CSV, make your CSV file,
-# simlink it to .csv.txt to make export work, use DataRow.load_csv to load the CSV into dictionaries, then pass each dictionary into your class
-# like YourClass.new(dict) to instantiate a row object.
+# simlink it to .csv.txt to make export work.
+
+# Use load_from_csv to get a dict where the first column of your CSV is keys, and the values are DataRows with the parsed csv data.
+
 
 class_name DataRow
 
-static func get_csv_path():
-	print("Implement _get_csv_path in your subclass")
-	return ""
-	
 func get_columns():
 	var keys = []
 	for prop in get_property_list():
@@ -25,7 +23,7 @@ func apply_to_node(node: Node):
 				dat = dat.duplicate()
 			node.set(stat, dat)
 
-func init(data: Dictionary):
+func _init(data: Dictionary):
 	var props = get_property_list()
 	for prop in props:
 		var prop_name = prop["name"]
@@ -35,10 +33,11 @@ func init(data: Dictionary):
 			set(prop_name, convert_column_value(
 				string_val,
 				type,
-				prop["class_name"]
+				prop["class_name"],
+				get(prop_name)
 			))
 
-func convert_column_value(string_val: String, type: int, type_class: String):
+func convert_column_value(string_val: String, type: int, type_class: String, initial_value):
 	if type == TYPE_INT:
 		return string_val.to_int()
 	elif type == TYPE_BOOL:
@@ -49,6 +48,8 @@ func convert_column_value(string_val: String, type: int, type_class: String):
 		return string_val
 	elif type == TYPE_COLOR:
 		return parse_color(string_val)
+	elif type == TYPE_ARRAY:
+		return parse_array(string_val, initial_value)
 	elif type == TYPE_OBJECT:
 		if type_class in ["PackedScene", "Texture2D", "Resource"]:
 			return load(string_val)
@@ -97,7 +98,19 @@ func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 				var value = key_value[1].strip_edges()
 				dict[key] = value.to_int()
 	return dict
-	
+
+func parse_array(string_val, array):
+	if not(array.is_typed()):
+		print("Untyped array: ", string_val)
+		return []
+	match array.get_typed_class_name():
+		"String":
+			return parse_string_array(string_val)
+		"int":
+			return parse_int_array(string_val)
+	print("Unknown array type: ", array.get_typed_class_name())
+	return ""
+
 func parse_int_array(text: String) -> Array:
 	var int_array = []
 	for i in text.split(" "):
@@ -132,8 +145,22 @@ static func load_csv(csv):
 	print("Parsed ", csv, "got ", parsed_file.size(), " rows")
 	return parsed_file
 
+
+static func load_from_csv(cls):
+	# Pass the subclass you make as CLS
+	# this is required due to how static functions works
+	var parsed = {}
+	var data = load_csv(cls.get_csv_path())
+	for key in data:
+		parsed[key] = cls.new(data[key])
+	return parsed
+
+static func get_csv_path():
+	print("Implement get_csv_path in your subclass")
+	return ""
 	
-# Copyright (c) 2021, Eamonn McHugh-Roohr
+	
+# Copyright (c) 2022, Eamonn McHugh-Roohr
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without

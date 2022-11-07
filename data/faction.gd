@@ -15,19 +15,14 @@ var spawn_anywhere: bool
 var host_spawn_anywhere: bool
 var favor_galactic_center: int
 var peninsula_bonus: bool
-var allies: Array
-var enemies: Array
+var allies: Array[int]
+var enemies: Array[int]
 var disposition_per_player: Dictionary
 var destroy_penalty: float
 var destroy_foe_bonus: float
 var sys_name_scheme: String
 var color_scheme: String
 var skin: String
-
-func _init(data: Dictionary):
-	init(data)
-	for field in ["allies", "enemies"]:
-		set(field, parse_int_array(data[field]))
 
 static func get_csv_path():
 	return "res://data/factions.csv"

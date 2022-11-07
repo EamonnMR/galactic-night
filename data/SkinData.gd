@@ -15,9 +15,6 @@ var weapon_hue: float
 var weapon_saturation: float
 
 
-func _init(data: Dictionary):
-	init(data)
-
 static func get_csv_path():
 	return "res://data/skins.csv"
 

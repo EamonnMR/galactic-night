@@ -1,9 +1,10 @@
 extends Node
 
+@export var seed: int = 0
 var player
 var camera
 signal system_selection_updated
-@onready var current_system = Procgen.generate_systems(0)
+@onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
 

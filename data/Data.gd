@@ -16,22 +16,19 @@ const PLAY_AREA_RADIUS = 3000
 var name_generators = {}
 
 func _init():
-	for data_class_and_destination in [
+	for class_and_dest in [
 #		[ItemData, items],
 #		[RecipeData, recipes],
 #		[BuildData, builds],
-		[SpawnData, spawns],
-		[BiomeData, biomes],
-		[FactionData, factions],
-		[SkinData, skins]
-#		[ShipData, ships]
+		[SpawnData, "spawns"],
+		[BiomeData, "biomes"],
+		[FactionData, "factions"],
+		[SkinData, "skins"]
+#		[ShipData, "ships"]
 	]:
-		var DataClass = data_class_and_destination[0]
-		var dest = data_class_and_destination[1]
-		var data = DataRow.load_csv(DataClass.get_csv_path())
-		for key in data:
-			dest[key] = DataClass.new(data[key])
-
+		var cls = class_and_dest[0]
+		var dest = class_and_dest[1]
+		set(dest, DataRow.load_from_csv(cls))
 	load_text()
 	# Tests
 	#assert_ingredients_exist()

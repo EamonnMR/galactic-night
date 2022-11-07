@@ -11,8 +11,5 @@ var destination: String
 var type: String
 var faction: int
 
-func _init(data: Dictionary):
-	init(data)
-
 static func get_csv_path():
 	return "res://data/spawns.csv"
