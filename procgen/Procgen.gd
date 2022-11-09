@@ -310,7 +310,6 @@ func name_systems():
 func random_name(sys: SystemData):
 	if sys.faction != "" and sys.faction != "0":
 		var foo = sys.faction
-		print(Data.name_generators.keys())
 		var bla = Data.name_generators
 		var blar = Data.factions[sys.faction]
 		return Data.name_generators[
