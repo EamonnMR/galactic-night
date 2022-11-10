@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var faction: String = Data.factions.keys()[0]
+var faction
 
 var max_speed = 100
 var accel = 0.01
@@ -26,7 +26,6 @@ func _physics_process(delta):
 		increase_bank(rotation_impulse)
 	else:
 		decrease_bank(delta)
-		
 	
 # warning-ignore:return_value_discarded
 	set_velocity(Util.raise_25d(linear_velocity))
