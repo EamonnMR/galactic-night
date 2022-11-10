@@ -251,6 +251,7 @@ func assign_faction_core_worlds() -> Array:
 			else:
 				systems[system_id].faction = faction_id
 				systems[system_id].core = true
+				systems[system_id].generation = 0
 				# add_npc_spawn(Game.systems[system_id], faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]))
 				already_selected.append(system_id)
 				i += 1
@@ -299,7 +300,7 @@ func grow_faction_influence_from_core_worlds():
 			for system_id in marked_systems:
 				var system = systems[system_id]
 				system.faction = faction_id
-				# add_npc_spawn(system, faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]) - i)
+				system.generation = i
 	print("Factions grown")
 
 func name_systems():

@@ -3,7 +3,7 @@ extends Node
 func enter_system():
 	Client.player = $World3D/players.get_children()[0]
 	var system: SystemData = Procgen.systems[Client.current_system_id()]
-	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, Client.current_system_id(), system.biome, $World3D)
+	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
 
 func _ready():
 	call_deferred("enter_system")

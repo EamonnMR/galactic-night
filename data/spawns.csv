@@ -1,3 +1,8 @@
 id,count,respawn,chance,scene,type,faction,destination
 asteroids,4,TRUE,1,res://AsteroidLarge.tscn,,,asteroids
-adversary,1,TRUE,1,res://Adversary.tscn,,4,npcs
+Ind_npcs,1,TRUE,1,res://Adversary.tscn,,1,npcs
+trader_npcs,1,TRUE,1,res://Adversary.tscn,,2,npcs
+compact_npcs,1,TRUE,1,res://Adversary.tscn,,3,npcs
+pirate_npcs,2,TRUE,1,res://Adversary.tscn,,4,npcs
+warpcorp_npcs,1,TRUE,1,res://Adversary.tscn,,5,npcs
+society_npcs,1,TRUE,1,res://Adversary.tscn,,6,npcs

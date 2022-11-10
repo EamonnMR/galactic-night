@@ -124,7 +124,6 @@ func _on_EngagementRange_body_entered(body):
 		print("Reached target")
 		change_state_attack()
 
-
 func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:
 		print("Target left engagement range")

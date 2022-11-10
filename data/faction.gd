@@ -23,6 +23,9 @@ var destroy_foe_bonus: float
 var sys_name_scheme: String
 var color_scheme: String
 var skin: String
+var spawns_system: Array[String]
+var spawns_anywhere: Array[String]
+var spawns_core: Array[String]
 
 static func get_csv_path():
 	return "res://data/factions.csv"
