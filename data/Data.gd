@@ -7,12 +7,12 @@ var spawns = {}
 var biomes = {}
 var factions = {}
 var skins = {}
+var evergreen_spawns = []
 #var ships = {}
 
 # Game constants:
 const PLAY_AREA_RADIUS = 3000
 # const JUMP_RADIUS = 2000
-
 var name_generators = {}
 
 func _init():
@@ -30,6 +30,7 @@ func _init():
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
 	load_text()
+	cache_evergreen_spawns()
 	# Tests
 	#assert_ingredients_exist()
 	#assert_spawns_exist()	
@@ -54,6 +55,10 @@ func load_lines(file_name):
 		lines.push_back(file.get_line())
 	return lines
 
+func cache_evergreen_spawns():
+	for spawn in spawns:
+		if spawns[spawn].evergreen:
+			evergreen_spawns.push_back(spawn)
 	
 #func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
@@ -67,9 +72,17 @@ func load_lines(file_name):
 #			for key in blueprint.ingredients:
 #				assert(key in items)
 
-# A good idea
-#func assert_spawns_exist():
-#	for biome_id in biomes:
-#		var biome = biomes[biome_id]
-#		for spawn_id in biome.spawns:
-#			assert(spawn_id in spawns)
+func assert_spawns_exist():
+	for biome_id in biomes:
+		var biome = biomes[biome_id]
+		for spawn_id in biome.spawns:
+			assert(spawn_id in spawns)
+	
+	for faction_id in factions:
+		var faction: FactionData = factions[faction_id]
+		for spawn_list_name in [
+			"spawns_system", "spawns_core", "spawns_adjacent"
+		]:
+			var spawn_list = faction.get(spawn_list_name)
+			for spawn in spawn_list:
+				assert(spawn in spawns)

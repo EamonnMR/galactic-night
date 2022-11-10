@@ -10,6 +10,7 @@ var scene: PackedScene
 var destination: String
 var type: String
 var faction: int
+var evergreen: bool
 
 static func get_csv_path():
 	return "res://data/spawns.csv"
