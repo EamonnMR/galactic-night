@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var faction
 
-var max_speed = 100
+var max_speed = 25
 var accel = 0.01
 var turn = 1
 var max_bank = deg_to_rad(15)
@@ -19,23 +19,33 @@ func _ready():
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
 
 func _physics_process(delta):
+	
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	var rotation_impulse = $Controller.rotation_impulse
 	rotation.y += rotation_impulse
+	
 	if rotation_impulse:
 		increase_bank(rotation_impulse)
 	else:
 		decrease_bank(delta)
 	
-# warning-ignore:return_value_discarded
-	set_velocity(Util.raise_25d(linear_velocity))
-	move_and_slide()
-	velocity
+	handle_movement(delta)
 	handle_shooting()
 	handle_jumping()
 	Util.wrap_to_play_radius(self)
 	
-	handle_hitting_stuff()
+	#handle_hitting_stuff()
+
+func handle_movement(delta):
+	# warning-ignore:return_value_discarded
+	#call_set_velocity()
+	call_move_and_collide(delta)
+
+func call_set_velocity():
+	set_velocity(Util.raise_25d(linear_velocity))
+
+func call_move_and_collide(delta):
+	move_and_collide(Util.raise_25d(linear_velocity) * delta)
 
 func handle_hitting_stuff():
 	var collision: KinematicCollision3D = get_last_slide_collision()

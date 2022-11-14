@@ -120,11 +120,13 @@ func _facing_within_margin(margin):
 
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
+	print("Body Entered")
 	if body == target and state == STATES.PERSUE:
 		print("Reached target")
 		change_state_attack()
 
 func _on_EngagementRange_body_exited(body):
+	print("Body exited")
 	if body == target and state == STATES.ATTACK:
 		print("Target left engagement range")
 		change_state_persue(target)
