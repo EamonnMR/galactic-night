@@ -17,19 +17,18 @@ func hit_by_projectile():
 	break_up()
 
 func break_up():
-	# TODO: Spawn small asteroids
 	if next_count:
 		for i in range(next_count):
 			var sub_roid: RigidBody3D = next_type.instantiate()
 			sub_roid.set_linear_velocity(linear_velocity)
 			sub_roid.transform.origin = global_transform.origin
-			get_node("../").add_child(sub_roid)
+			Client.get_world().get_node("asteroids").add_child(sub_roid)
 	queue_free()
+
 func initial_velocity():
 	apply_central_impulse(
 		initial_vel * transform.basis.x
 	)
-
 
 func _on_Area_body_entered(body):
 	if body.has_method("hit_by_asteroid"):

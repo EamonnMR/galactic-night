@@ -9,14 +9,14 @@ func _ready():
 	data = Procgen.systems[system_id]
 	$Label.text = data.name
 	position = data.position
-	update()
+	redraw()
 	
 func clicked():
 	Client.map_select_system(system_id, self)
-	update()
+	redraw()
 
-func update():
-	# $circle.update() # I can't figure out why this used to work
+func redraw():
+	$circle.queue_redraw()
 	if data.explored or Cheats.explore_all:
 		$Label.show()
 	else:

@@ -86,6 +86,7 @@ Client="*res://Client.gd"
 Procgen="*res://procgen/Procgen.tscn"
 Data="*res://data/Data.tscn"
 Cheats="*res://Cheats.tscn"
+SystemGen="*res://procgen/SystemGen.gd"
 
 [global]
 
@@ -176,6 +177,11 @@ switch_color={
 toggle_map={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":77,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
+}
+jump={
+"deadzone": 0.5,
+"events": [null, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":74,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

@@ -46,24 +46,8 @@ func deserialize(data: Dictionary):
 		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
 
 
-func _random_location_in_system(rng: RandomNumberGenerator):
+func random_location_in_system(rng: RandomNumberGenerator):
 	return random_circular_coordinate(1000, rng)
-
-#func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node):
-#	var rng = RandomNumberGenerator.new()
-#	print("Seed: ", (seed_value + 10) * int(system_id))
-#	rng.seed = (seed_value + 10) * int(system_id)
-#	var biome_data: BiomeData = Data.biomes[biome]
-#	for spawn_id in biome_data.spawns:
-#		var spawn: SpawnData = Data.spawns[spawn_id]
-#		for _i in range(spawn.count):
-#			if spawn.chance >= rng.randf():
-#				var position = _random_location_in_system(rng)
-#				var instance: Node = spawn.scene.instantiate()
-#				if spawn.type:
-#					instance.type = spawn.type
-#				instance.position = position
-#				gameplay.get_node(spawn.destination).add_child(instance)
 
 func generate_systems(seed_value: int) -> String:
 	# Returns the id of the system that "start" gets put in
@@ -267,6 +251,7 @@ func assign_faction_core_worlds() -> Array:
 			else:
 				systems[system_id].faction = faction_id
 				systems[system_id].core = true
+				systems[system_id].generation = 0
 				# add_npc_spawn(Game.systems[system_id], faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]))
 				already_selected.append(system_id)
 				i += 1
@@ -315,7 +300,7 @@ func grow_faction_influence_from_core_worlds():
 			for system_id in marked_systems:
 				var system = systems[system_id]
 				system.faction = faction_id
-				# add_npc_spawn(system, faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]) - i)
+				system.generation = i
 	print("Factions grown")
 
 func name_systems():
@@ -326,7 +311,6 @@ func name_systems():
 func random_name(sys: SystemData):
 	if sys.faction != "" and sys.faction != "0":
 		var foo = sys.faction
-		print(Data.name_generators.keys())
 		var bla = Data.name_generators
 		var blar = Data.factions[sys.faction]
 		return Data.name_generators[

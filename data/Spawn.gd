@@ -9,9 +9,8 @@ var chance: float
 var scene: PackedScene
 var destination: String
 var type: String
-
-func _init(data: Dictionary):
-	init(data)
+var faction: int
+var evergreen: bool
 
 static func get_csv_path():
 	return "res://data/spawns.csv"

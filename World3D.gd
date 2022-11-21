@@ -1,16 +1,19 @@
 extends Node
 
-var asteroid_count = 4
+func enter_system():
+	Client.player = $World3D/players.get_children()[0]
+	var system: SystemData = Procgen.systems[Client.current_system_id()]
+	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
 
 func _ready():
-	var badguy = preload("res://Adversary.tscn").instantiate()
-	badguy.global_position = Util.raise_25d(Vector2(4,4))
-	add_child(badguy)
-	
-	for i in range(asteroid_count):
-		var asteroid = preload("res://AsteroidLarge.tscn").instantiate()
-		asteroid.global_position = Util.raise_25d(Vector2(
-			randf_range(7, 12),
-			randf_range(7, 12)
-		))
-		add_child(asteroid)
+	call_deferred("enter_system")
+
+func leave_system():
+	var old_world: Node = $World3D
+	remove_child($World3D)
+	old_world.queue_free()
+
+func change_system():
+	leave_system()
+	add_child(preload("res://World3D.tscn").instantiate())
+	call_deferred("enter_system")

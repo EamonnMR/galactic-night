@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b4cqr31wdwni2"
+path="res://.godot/imported/burner.obj-8f9c92193b4256750928d6671b03f49d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/burner.obj-8f9c92193b4256750928d6671b03f49d.mesh"]
+
+source_file="res://assets/burner/burner.obj"
+dest_files=["res://.godot/imported/burner.obj-8f9c92193b4256750928d6671b03f49d.mesh", "res://.godot/imported/burner.obj-8f9c92193b4256750928d6671b03f49d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

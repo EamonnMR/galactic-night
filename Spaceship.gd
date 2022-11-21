@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var faction: String = Data.factions.keys()[0]
+var faction
 
 var max_speed = 100
 var accel = 0.01
@@ -12,6 +12,12 @@ var linear_velocity = Vector2()
 
 const PLAY_AREA_RADIUS = 300
 
+func _ready():
+	if self == Client.player:
+		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
+	else:
+		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
+
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	var rotation_impulse = $Controller.rotation_impulse
@@ -20,13 +26,13 @@ func _physics_process(delta):
 		increase_bank(rotation_impulse)
 	else:
 		decrease_bank(delta)
-		
 	
 # warning-ignore:return_value_discarded
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	velocity
 	handle_shooting()
+	handle_jumping()
 	Util.wrap_to_play_radius(self)
 	
 	handle_hitting_stuff()
@@ -78,3 +84,14 @@ func decrease_bank(delta):
 
 func hit_by_projectile():
 	hit_by_asteroid()
+	
+func handle_jumping():
+	if $Controller.jumping:
+		$Controller.jumping = false
+		if Client.selected_system:
+			Client.change_system()
+			#_jump_effects()
+			#queue_free()
+		else:
+			pass
+			# TODO: Print some sort of reminder to select a destination

@@ -2,7 +2,7 @@ extends Controller
 
 var skin_id = "0"
 
-@onready var map: Control = get_tree().get_root().get_node("World3D/Map")
+@onready var map: Control = get_tree().get_root().get_node("Main/Map")
 	
 func get_rotation_impulse() -> int:
 	var dc = 0
@@ -18,6 +18,7 @@ func _physics_process(delta):
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
 	toggle_map()
+	check_jumped()
 
 func _ready():
 	Client.player = parent
@@ -25,19 +26,12 @@ func _ready():
 
 func toggle_map():
 	if Input.is_action_just_released("toggle_map"):
-		toggle_map_hack_what_happened_to_visibility()
-
-func toggle_map_hack_what_happened_to_visibility():
-	map.visible = not map.visible
-	return
-	# This is busted, actually
-	#print("Toggle map")
-	if get_tree().get_root().get_node("Node/Map") != null:
-		print("Map exists, remove map")
-		get_tree().get_root().remove_child(map)
-	else:
-		print("No map, add map")
-		get_tree().get_root().add_child(map)
+		if map.visible:
+			map.visible = false
+			get_tree().paused = false
+		else:
+			map.visible = true
+			get_tree().paused = true
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):
@@ -47,3 +41,7 @@ func cycle_skins():
 		var skin = Data.skins[skin_id]
 		print(skin)
 		get_node("../Graphics").set_skin_data(skin)
+		
+func check_jumped():
+	if Input.is_action_just_released("jump"):
+		jumping = true
