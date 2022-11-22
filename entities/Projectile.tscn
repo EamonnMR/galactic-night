@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://djxaf48l2mu8l"]
 
-[ext_resource type="Script" path="res://Projectile.gd" id="1"]
+[ext_resource type="Script" path="res://entities/Projectile.gd" id="1_4oaxy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbhu1"]
 albedo_color = Color(1, 0, 0, 1)
@@ -22,7 +22,7 @@ axis_lock_linear_y = true
 continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1")
+script = ExtResource("1_4oaxy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

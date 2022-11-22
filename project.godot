@@ -34,6 +34,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://procgen/HyperlaneData.gd"
 }, {
+"base": "Node",
+"class": &"Inventory",
+"language": &"GDScript",
+"path": "res://component/Inventory.gd"
+}, {
 "base": "RefCounted",
 "class": &"Markov",
 "language": &"GDScript",
@@ -57,7 +62,7 @@ _global_script_classes=[{
 "base": "Node3D",
 "class": &"Weapon",
 "language": &"GDScript",
-"path": "res://Weapon.gd"
+"path": "res://component/Weapon.gd"
 }]
 _global_script_class_icons={
 "BiomeData": "",
@@ -65,6 +70,7 @@ _global_script_class_icons={
 "DataRow": "",
 "FactionData": "",
 "HyperlaneData": "",
+"Inventory": "",
 "Markov": "",
 "SkinData": "",
 "SpawnData": "",

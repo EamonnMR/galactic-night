@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cnqxxfr3dlx7w"]
 
-[ext_resource path="res://Weapon.gd" type="Script" id=1]
-[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://component/Weapon.gd" id="1_wor20"]
+[ext_resource type="PackedScene" uid="uid://djxaf48l2mu8l" path="res://entities/Projectile.tscn" id="2"]
 
 [node name="Weapon" type="Node3D"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436 )
-script = ExtResource( 1 )
-projectile_scene = ExtResource( 2 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436)
+script = ExtResource("1_wor20")
+projectile_scene = ExtResource("2")
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.5
