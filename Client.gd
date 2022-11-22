@@ -8,6 +8,8 @@ signal system_selection_updated
 var selected_system = null
 var selected_system_circle_cache = []
 
+@onready var ui_inventory = get_tree().get_root().get_node("Main/Inventory")
+
 func current_system_id():
 	return current_system
 

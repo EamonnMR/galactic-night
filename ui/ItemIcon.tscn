@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/ItemIcon.gd" type="Script" id=1]
+
+[node name="ItemIcon" type="TextureRect"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -18.0
+offset_right = 40.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}

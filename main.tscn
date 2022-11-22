@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfckswko781qc"]
+[gd_scene load_steps=9 format=3 uid="uid://cfckswko781qc"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dgrskffsd1l7k" path="res://World3D.tscn" id="4_0jdkg"]
+[ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="5_qva3f"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
 
@@ -65,5 +66,7 @@ environment = SubResource("Environment_7gyux")
 
 [node name="Map" parent="." instance=ExtResource("3")]
 visible = false
+
+[node name="Inventory" parent="." instance=ExtResource("5_qva3f")]
 
 [node name="World3D" parent="." instance=ExtResource("4_0jdkg")]

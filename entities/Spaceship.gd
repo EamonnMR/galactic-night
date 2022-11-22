@@ -15,6 +15,7 @@ const PLAY_AREA_RADIUS = 300
 func _ready():
 	if self == Client.player:
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
+		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
 

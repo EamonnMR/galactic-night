@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Camera.gd" id="1_2by11"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="3_kxeph"]
-[ext_resource type="PackedScene" path="res://entities/Spaceship.tscn" id="4_lcnn8"]
+[ext_resource type="PackedScene" uid="uid://ogsddeirqecn" path="res://entities/Spaceship.tscn" id="4_lcnn8"]
 [ext_resource type="Script" path="res://BackgroundHack.gd" id="4_rqqeh"]
 
 [sub_resource type="Shader" id="Shader_xiwc0"]
