@@ -15,9 +15,6 @@ offset_bottom = -133.35
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NinePatchPanel" parent="." instance=ExtResource("1")]
 anchors_preset = 15
@@ -34,29 +31,30 @@ grow_vertical = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = -10.0001
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchPanel/MarginContainer"]
-offset_right = 460.0
-offset_bottom = 347.0
+offset_right = 435.0
+offset_bottom = 326.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchPanel/MarginContainer/VBoxContainer"]
-offset_right = 460.0
+offset_right = 435.0
+offset_bottom = 23.0
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer"]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer/TextureRect"]
-offset_left = 107.723
-offset_top = 4.24264
-offset_right = 173.723
-offset_bottom = 25.2426
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+offset_bottom = 23.0
 text = "Inventory"
+fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchPanel/MarginContainer/VBoxContainer"]
-offset_top = 4.0
-offset_right = 460.0
-offset_bottom = 347.0
+offset_top = 27.0
+offset_right = 435.0
+offset_bottom = 326.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer"]

@@ -24,7 +24,7 @@ func update_count():
 func _get_drag_data(_position):
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
-	drag_texture.expand = true
+	# drag_texture.expand = true
 	drag_texture.size = size
 	set_drag_preview(drag_texture)
 
@@ -35,4 +35,3 @@ func _get_drag_data(_position):
 	
 func dropped():
 	get_node("../").remove_item_icon(self)
-

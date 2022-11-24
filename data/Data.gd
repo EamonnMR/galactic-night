@@ -1,6 +1,6 @@
 extends Node
 
-#var items = {}
+var items = {}
 #var recipes = {}
 #var builds = {}
 var spawns = {}
@@ -17,7 +17,7 @@ var name_generators = {}
 
 func _init():
 	for class_and_dest in [
-#		[ItemData, items],
+		[ItemData, "items"],
 #		[RecipeData, recipes],
 #		[BuildData, builds],
 		[SpawnData, "spawns"],

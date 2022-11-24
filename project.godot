@@ -39,6 +39,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://component/Inventory.gd"
 }, {
+"base": "DataRow",
+"class": &"ItemData",
+"language": &"GDScript",
+"path": "res://data/ItemData.gd"
+}, {
 "base": "TextureRect",
 "class": &"ItemIcon",
 "language": &"GDScript",
@@ -76,6 +81,7 @@ _global_script_class_icons={
 "FactionData": "",
 "HyperlaneData": "",
 "Inventory": "",
+"ItemData": "",
 "ItemIcon": "",
 "Markov": "",
 "SkinData": "",
@@ -86,7 +92,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Asteroids '22"
+config/name="Space Craft 22"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"

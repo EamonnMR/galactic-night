@@ -24,7 +24,7 @@ func ready():
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
-		print("No target", target)
+		#print("No target", target)
 		change_state_idle()
 		return false
 	return true
@@ -73,7 +73,7 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
 	if is_instance_valid(Client.player):
-		print("Target found: ", Client.player)
+		#print("Target found: ", Client.player)
 		change_state_persue(Client.player)
 	else:
 		change_state_idle()
@@ -103,16 +103,16 @@ func change_state_idle():
 	thrusting = false
 	shooting = false
 	rotation_impulse = 0
-	print("New State: Idle")
+	#print("New State: Idle")
 
 func change_state_persue(target):
 	state = STATES.PERSUE
 	self.target = target
-	print("New State: Persue")
+	#print("New State: Persue")
 
 func change_state_attack():
 	state = STATES.ATTACK
-	print("New State: Attack")
+	#print("New State: Attack")
 
 func _facing_within_margin(margin):
 	""" Relies checked 'ideal face' being populated """
@@ -121,10 +121,10 @@ func _facing_within_margin(margin):
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
 	if body == target and state == STATES.PERSUE:
-		print("Reached target")
+		#print("Reached target")
 		change_state_attack()
 
 func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:
-		print("Target left engagement range")
+		#print("Target left engagement range")
 		change_state_persue(target)

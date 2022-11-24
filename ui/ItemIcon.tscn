@@ -1,24 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://c8w58u2hkvmxl"]
 
-[ext_resource path="res://ui/ItemIcon.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://ui/ItemIcon.gd" id="1"]
 
 [node name="ItemIcon" type="TextureRect"]
 show_behind_parent = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stretch_mode = 4
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 
 [node name="Count" type="Label" parent="."]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = -18.0
 offset_right = 40.0
+grow_vertical = 0
 text = "1"
-__meta__ = {
-"_edit_use_anchors_": false
-}

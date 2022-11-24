@@ -9,7 +9,7 @@ func _ready():
 	if(has_node("ItemIcon")):
 		$TextureRect.hide()
 
-func can_drop_data(pos, data):
+func _can_drop_data(pos, data):
 	print(category)
 	print(has_node("ItemIcon"))
 	if has_node("ItemIcon"):
@@ -17,7 +17,7 @@ func can_drop_data(pos, data):
 	else:
 		return category == "" or data["equip_category"] == category
 
-func drop_data(pos, data):
+func _drop_data(pos, data):
 	var dropped_item = data["dragged_item"]
 	dropped_item.dropped()
 	attach_item_icon(dropped_item)

@@ -7,7 +7,7 @@ var inventory_slot = preload("res://ui/EquipBox.tscn")
 var item_icon = preload("res://ui/ItemIcon.tscn")
 
 @onready var grid_container = get_node("NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
-@onready var name_slot = get_node("NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer/TextureRect/RichTextLabel")
+@onready var name_slot = get_node("NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel")
 
 func assign(bound_inventory: Inventory, new_name: String):
 	inventory = bound_inventory.get_path()

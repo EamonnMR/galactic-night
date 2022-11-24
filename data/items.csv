@@ -1,0 +1,2 @@
+id,name,equip_category,consumable_effect,consumable_magnitude,icon,tooltip,stackable
+metal,Metal,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice",TRUE
