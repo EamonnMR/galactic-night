@@ -13,7 +13,7 @@ func assign(bound_inventory: Inventory, new_name: String):
 	inventory = bound_inventory.get_path()
 	label = new_name
 	bound_inventory.connect("updated",Callable(self,"rebuild"))
-	rebuild()
+	call_deferred("rebuild")
 
 func _ready():
 	name_slot.text = label

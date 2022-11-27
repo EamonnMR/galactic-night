@@ -13,7 +13,6 @@ stretch_mode = 4
 script = ExtResource("1")
 
 [node name="Count" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

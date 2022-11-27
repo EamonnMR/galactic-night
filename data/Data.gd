@@ -33,7 +33,7 @@ func _init():
 	cache_evergreen_spawns()
 	# Tests
 	assert_ingredients_exist()
-	assert_spawns_exist()	
+	assert_spawns_exist()
 
 func load_text():
 	print("Crunching markov chains")
