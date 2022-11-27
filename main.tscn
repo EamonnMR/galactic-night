@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfckswko781qc"]
+[gd_scene load_steps=11 format=3 uid="uid://b5cwh0c06uon8"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dgrskffsd1l7k" path="res://World3D.tscn" id="4_0jdkg"]
-[ext_resource type="Script" path="res://Ui.gd" id="5_dan6e"]
+[ext_resource type="Script" path="res://ui/Ui.gd" id="5_dan6e"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="5_qva3f"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="6_rg7fq"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
 
 [sub_resource type="GDScript" id="15"]
@@ -71,10 +72,20 @@ environment = SubResource("Environment_7gyux")
 layer = 10
 script = ExtResource("5_dan6e")
 
+[node name="Crafting" parent="UI" instance=ExtResource("6_rg7fq")]
+visible = false
+offset_left = -533.0
+offset_top = 79.0
+offset_right = -240.0
+offset_bottom = 400.0
+grow_horizontal = 0
+
 [node name="Map" parent="UI" instance=ExtResource("3")]
 visible = false
 
 [node name="Inventory" parent="UI" instance=ExtResource("5_qva3f")]
 visible = false
-offset_right = 390.493
-offset_bottom = 64.65
+offset_left = 430.0
+offset_top = 105.0
+offset_right = -302.0
+offset_bottom = -196.0

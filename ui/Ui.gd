@@ -3,14 +3,14 @@ extends CanvasLayer
 func get_default_children():
 	return [
 #		$Equipment,
-#		$Crafting,
+		$Crafting,
 		$Inventory
 	]
 
 func get_all_inventory_children():
 	return [
 #		$Equipment,
-#		$Crafting,
+		$Crafting,
 		$Inventory
 #		$OtherInventory
 	]
@@ -31,13 +31,14 @@ func toggle_inventory(elements: Array = []):
 				i.unassign()
 		get_tree().paused = false
 	else:
+		var children = []
 		if elements.size() == 0:
-			elements = get_default_children()
+			children = get_default_children()
 		else:
-			for i in range(elements.size()):
-				elements[i] = get_node(elements[i])
+			for i in elements:
+				children.push_back(get_node(i))
 		
-		for i in elements:
+		for i in children:
 			i.rebuild()
 			i.show()
 		get_tree().paused = true

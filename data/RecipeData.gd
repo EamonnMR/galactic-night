@@ -3,7 +3,7 @@ extends DataRow
 class_name RecipeData
 
 var id: String
-var prod_type: String
+var prod_item: String
 var prod_count: int
 var require_level: int
 var ingredients: Dictionary

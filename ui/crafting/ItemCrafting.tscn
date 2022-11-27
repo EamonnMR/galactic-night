@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b53bbudux4tjy"]
+
+[ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="1"]
+
+[node name="Crafting" instance=ExtResource("1")]
+grow_horizontal = 0
+
+[node name="NinePatchPanel" parent="." index="0"]
+grow_horizontal = 0
+
+[node name="MarginContainer" parent="NinePatchPanel" index="0"]
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Craft" parent="NinePatchPanel/MarginContainer/TabContainer" index="1"]
+grow_horizontal = 2
+grow_vertical = 2
