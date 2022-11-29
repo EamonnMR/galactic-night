@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5cwh0c06uon8"]
+[gd_scene load_steps=12 format=3 uid="uid://b5cwh0c06uon8"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="6_rg7fq"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
+[ext_resource type="Script" path="res://Button.gd" id="9_1w44f"]
 
 [sub_resource type="GDScript" id="15"]
 script/source = "extends Label
@@ -69,6 +70,7 @@ environment = SubResource("Environment_7gyux")
 [node name="World3D" parent="." instance=ExtResource("4_0jdkg")]
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 10
 script = ExtResource("5_dan6e")
 
@@ -78,7 +80,6 @@ offset_left = -533.0
 offset_top = 79.0
 offset_right = -240.0
 offset_bottom = 400.0
-grow_horizontal = 0
 
 [node name="Map" parent="UI" instance=ExtResource("3")]
 visible = false
@@ -89,3 +90,15 @@ offset_left = 430.0
 offset_top = 105.0
 offset_right = -302.0
 offset_bottom = -196.0
+
+[node name="Button" type="Button" parent="UI"]
+visible = false
+offset_left = 752.0
+offset_top = 402.0
+offset_right = 855.0
+offset_bottom = 433.0
+text = "Build Recipe"
+script = ExtResource("9_1w44f")
+
+[connection signal="visibility_changed" from="UI/Crafting" to="UI/Button" method="_on_crafting_visibility_changed"]
+[connection signal="pressed" from="UI/Button" to="UI/Crafting" method="_on_craft_button_pressed"]

@@ -75,7 +75,7 @@ func _update_blueprint_selection():
 	var ingredients = blueprint_detail.get_node("Ingredients")
 	clear(ingredients)
 	
-	blueprint_detail.get_node("CraftButton").disabled = true
+	# get_node("CraftButton").disabled = true
 	for ingredient_type in blueprint.ingredients:
 		var item_data = Data.items[ingredient_type]
 		var ingredient_quantity = blueprint.ingredients[ingredient_type]
@@ -87,7 +87,9 @@ func _update_blueprint_selection():
 			count_text.text = "X " + str(ingredient_quantity)
 			ingredients.add_child(count_text)
 	if _can_craft(blueprint):
-		blueprint_detail.get_node("CraftButton").disabled = false
+		pass
+		#var button: Button = get_node("CraftButton")
+		#button.disabled = false
 		
 func _get_product_name(blueprint):
 	# Get the name representing the blueprint
@@ -102,7 +104,9 @@ func clear(list):
 		list.remove_child(child)
 
 func _can_craft(blueprint):
-	return Client.player.get_node("Inventory").has_ingredients(current_blueprint.ingredients)
+	var inventory = Client.player.get_node("Inventory")
+	var has_ingredients = inventory.has_ingredients(current_blueprint.ingredients)
+	return has_ingredients
 
 func _on_CraftButton_pressed():
 	if _can_craft(current_blueprint):
