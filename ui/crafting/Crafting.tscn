@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf46l4qga0grl"]
+
+[ext_resource type="PackedScene" path="res://ui/NinePatchPanel.tscn" id="1"]
+[ext_resource type="Script" path="res://ui/crafting/CraftingMain.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://ecaqh0syukcx" path="res://ui/crafting/ItemCraftSubmenu.tscn" id="4"]
+
+[node name="Crafting" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -293.0
+offset_bottom = 321.0
+grow_horizontal = 0
+mouse_filter = 1
+script = ExtResource("2")
+
+[node name="NinePatchPanel" parent="." instance=ExtResource("1")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -286.0
+offset_right = 0.0
+offset_bottom = 313.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = -13.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="NinePatchPanel/MarginContainer"]
+offset_right = 260.0
+offset_bottom = 287.0
+
+[node name="Craft" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4")]
+process_mode = 0
+offset_top = 31.0

@@ -1,7 +1,7 @@
 extends Node
 
-#var items = {}
-#var recipes = {}
+var items = {}
+var recipes = {}
 #var builds = {}
 var spawns = {}
 var biomes = {}
@@ -17,8 +17,8 @@ var name_generators = {}
 
 func _init():
 	for class_and_dest in [
-#		[ItemData, items],
-#		[RecipeData, recipes],
+		[ItemData, "items"],
+		[RecipeData, "recipes"],
 #		[BuildData, builds],
 		[SpawnData, "spawns"],
 		[BiomeData, "biomes"],
@@ -32,8 +32,8 @@ func _init():
 	load_text()
 	cache_evergreen_spawns()
 	# Tests
-	#assert_ingredients_exist()
-	#assert_spawns_exist()	
+	assert_ingredients_exist()
+	assert_spawns_exist()
 
 func load_text():
 	print("Crunching markov chains")
@@ -60,17 +60,17 @@ func cache_evergreen_spawns():
 		if spawns[spawn].evergreen:
 			evergreen_spawns.push_back(spawn)
 	
-#func assert_ingredients_exist():
+func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
-#	for craftable_type in [
-#		recipes,
+	for craftable_type in [
+		recipes
 #		builds,
 #		ships
-#	]:
-#		for blueprint_id in craftable_type:
-#			var blueprint = craftable_type[blueprint_id ]
-#			for key in blueprint.ingredients:
-#				assert(key in items)
+	]:
+		for blueprint_id in craftable_type:
+			var blueprint = craftable_type[blueprint_id ]
+			for key in blueprint.ingredients:
+				assert(key in items)
 
 func assert_spawns_exist():
 	for biome_id in biomes:

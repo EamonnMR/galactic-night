@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://ecaqh0syukcx"]
+
+[ext_resource type="PackedScene" uid="uid://jp0r11cthf4q" path="res://ui/crafting/CraftSubmenut.tscn" id="1"]
+[ext_resource type="Script" path="res://ui/crafting/ItemCraftSubmenu.gd" id="2"]
+
+[node name="Craft" instance=ExtResource("1")]
+process_mode = 3
+visible = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+mouse_filter = 1
+script = ExtResource("2")
+
+[node name="ScrollContainer" parent="HBoxContainer" index="0"]
+custom_minimum_size = Vector2(30, 0)
+offset_right = 30.0
+offset_bottom = 648.0
+
+[node name="Details" parent="HBoxContainer" index="1"]
+offset_left = 34.0
+offset_right = 34.0
+offset_bottom = 648.0
+
+[node name="Name" parent="HBoxContainer/Details" index="0"]
+offset_bottom = 23.0
+
+[node name="Description" parent="HBoxContainer/Details" index="1"]
+offset_left = 5.0
+offset_top = 37.0
+offset_right = 198.0
+offset_bottom = 137.0
+autowrap_mode = 2
+
+[node name="Ingredients" parent="HBoxContainer/Details" index="2"]
+offset_left = 3.0
+offset_top = 123.0
+offset_right = 209.0
+offset_bottom = 163.0

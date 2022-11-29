@@ -2,6 +2,17 @@ extends Node
 
 var PLAY_AREA_RADIUS = 35
 
+func get_multiple(object: Object, attributes: Array[String]) -> Dictionary:
+	var attrs = {}
+	for i in attributes:
+		attrs[i] = object.get(i)
+	return attrs
+
+func set_multiple(object: Object, attributes: Dictionary):
+	for key in attributes:
+		object.set(key, attributes[key])
+
+
 func anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)
 

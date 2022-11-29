@@ -1,0 +1,191 @@
+[gd_scene load_steps=17 format=3 uid="uid://ogsddeirqecn"]
+
+[ext_resource type="Script" path="res://entities/Spaceship.gd" id="1_2jypx"]
+[ext_resource type="PackedScene" uid="uid://cnqxxfr3dlx7w" path="res://component/Weapon.tscn" id="2_n0axn"]
+[ext_resource type="PackedScene" uid="uid://ce4125ctijp0u" path="res://KeyboardController.tscn" id="3_ww0ly"]
+[ext_resource type="PackedScene" uid="uid://dc8rd6lf3tkwc" path="res://NimbusGraphics.tscn" id="4_1dogq"]
+[ext_resource type="PackedScene" uid="uid://da271thfaabmi" path="res://component/Inventory.tscn" id="5_kv55q"]
+
+[sub_resource type="Shader" id="Shader_kwvj3"]
+code = "shader_type spatial;
+
+#include \"perspective.gdshaderinc\"
+#include \"colorshift.gdshaderinc\"
+
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+
+uniform mat4 xform;
+uniform mat4 inv_xform;
+uniform float perspective_correct = 0.5;
+
+uniform sampler2D texture_base_emission: source_color;
+uniform sampler2D texture_engine_emission : source_color;
+uniform sampler2D texture_weapon_emission : source_color;
+
+uniform float emission_energy;
+
+uniform float base_emission_factor = 1;
+uniform float engine_emission_factor = 1;
+uniform float weapon_emission_factor=  1;
+
+uniform sampler2D texture_paint : source_color;
+
+uniform float paint_hue: hint_range(0,1);
+uniform float paint_saturation: hint_range(0,2);
+uniform float paint_brightness: hint_range(-1,1);
+uniform float base_brightness: hint_range(-1,1);
+
+uniform float lights_hue: hint_range(0,1);
+uniform float lights_saturation: hint_range(0,2);
+uniform float lights_brightness: hint_range(0,2);
+uniform float weapon_hue: hint_range(0,1);
+uniform float weapon_saturation: hint_range(0,2);
+
+void vertex() {
+	//https://discord.com/channels/212250894228652034/408555922349359105/988915027035693186
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	VERTEX = adjust_for_perspective(VERTEX, perspective_correct, xform, inv_xform);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	vec4 paint_tex = texture(texture_paint,base_uv);
+	if (paint_tex.a > 0.5){
+		vec3 paint_tex_hsv = rgb2hsv(paint_tex.rgb);
+		paint_tex_hsv.x += paint_hue;
+		paint_tex_hsv.y *= paint_saturation;
+		paint_tex_hsv.z += paint_brightness;
+		ALBEDO = hsv2rgb(paint_tex_hsv);
+	} else {
+		vec3 albedo_tex_hsv = rgb2hsv(albedo_tex.rgb);
+		albedo_tex_hsv.z += base_brightness;
+		ALBEDO = hsv2rgb(albedo_tex_hsv);
+	}
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	//METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	
+	vec3 base_emission_hsv = rgb2hsv(texture(texture_base_emission,base_uv).rgb);
+	base_emission_hsv.x += lights_hue;
+	base_emission_hsv.y *= lights_saturation;
+	base_emission_hsv.z *= lights_brightness;
+	vec3 base_emission_tex = hsv2rgb(base_emission_hsv);
+	vec3 weapon_emission_hsv = rgb2hsv(texture(texture_weapon_emission,base_uv).rgb);
+	weapon_emission_hsv.x += weapon_hue;
+	weapon_emission_hsv.y *= weapon_saturation;
+	vec3 weapon_emission_tex = hsv2rgb(weapon_emission_hsv);
+	
+	vec3 engine_emission_tex = texture(texture_engine_emission,base_uv).rgb;
+	
+	EMISSION = albedo_tex.rgb * 6.0;
+	EMISSION = (
+		base_emission_tex * base_emission_factor +
+		weapon_emission_tex * weapon_emission_factor +
+		engine_emission_tex * engine_emission_factor
+	)*emission_energy;
+	
+}
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gwlpn"]
+load_path = "res://.godot/imported/nimbus_C.png-cdd980ccd2213c4563009395b05f13a3.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_30757"]
+load_path = "res://.godot/imported/nimbus_E_base.png-fcabe75f4d9609d09107a04184542ace.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d1n4d"]
+load_path = "res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ufvmp"]
+load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s41ck"]
+load_path = "res://.godot/imported/nimbus_N.png-f32090842a58b321a1aa9ca6ea4516aa.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r0vo7"]
+load_path = "res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_omt7o"]
+load_path = "res://.godot/imported/nimbus_RM.png-53db0f8520322be5b9b7dc3d51a0236d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g7a74"]
+load_path = "res://.godot/imported/nimbus_E_weapon.png-74f29039f06181e4cca0dca1458190d8.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y3ir"]
+render_priority = 0
+shader = SubResource("Shader_kwvj3")
+shader_parameter/base_brightness = null
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/emission_energy = 6.0
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/inv_xform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0)
+shader_parameter/lights_brightness = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_saturation = null
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/normal_scale = null
+shader_parameter/paint_brightness = null
+shader_parameter/paint_hue = null
+shader_parameter/paint_saturation = null
+shader_parameter/perspective_correct = null
+shader_parameter/roughness = null
+shader_parameter/specular = null
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_gwlpn")
+shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_30757")
+shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_d1n4d")
+shader_parameter/texture_metallic = SubResource("CompressedTexture2D_ufvmp")
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_s41ck")
+shader_parameter/texture_paint = SubResource("CompressedTexture2D_r0vo7")
+shader_parameter/texture_roughness = SubResource("CompressedTexture2D_omt7o")
+shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_g7a74")
+shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_saturation = null
+shader_parameter/xform = Transform3D(-0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5cr5s"]
+points = PackedVector3Array(-0.22999, -0.0709796, -0.673112, -0.22999, -0.178905, -0.640432, -0.568929, -0.0836513, -0.520647, -0.568929, -0.069019, -0.521306, -0.22999, 0.0486133, -0.636874, 0.245449, -0.0709796, -0.673112, -0.22999, -0.258187, -0.54384, -0.568929, -0.108134, -0.498377, -0.568929, -0.096084, -0.513004, 0.245449, -0.178905, -0.640432, -0.748809, -0.0151281, -0.0432225, -0.748809, -1.76132e-05, -0.0469122, -0.748809, 0.0150451, -0.0432225, -0.568929, -0.0508482, -0.515771, -0.543335, -0.0421453, -0.524469, -0.543335, -0.0249786, -0.510369, -0.228978, 0.117328, -0.55056, -0.0739688, 0.111829, -0.613154, 0.0892826, 0.111829, -0.613154, 0.311964, 0.0464615, -0.636346, 0.728407, -0.0656239, -0.520911, 0.728407, -0.0832688, -0.519461, -0.228978, -0.267273, -0.433807, -0.543335, -0.126688, -0.479533, -0.543335, -0.120232, -0.500749, 0.311964, -0.256035, -0.544499, 0.0892826, -0.297494, -0.488889, -0.0739688, -0.297494, -0.488889, -0.568929, -0.113681, -0.480192, -0.748809, -0.0414758, -0.0168673, -0.748809, -0.030908, -0.0326804, 0.728407, -0.0987618, -0.510896, -0.748809, 0.0308729, -0.0326804, -0.568929, -0.036168, -0.503648, -0.568929, -0.0271783, -0.486912, -0.543335, -0.0145065, -0.490866, -0.72336, 0.0540646, -0.0200299, -0.655543, 0.0783561, -0.0296496, -0.0729566, 0.180591, -0.526709, 0.0904394, 0.180591, -0.526709, 0.246461, 0.117328, -0.55056, 0.728407, -0.0324861, -0.503253, 0.728407, -0.0473096, -0.515376, -0.228978, -0.267273, 0.433675, -0.72336, -0.0584512, -0.000131726, -0.0729566, -0.306579, -0.378856, 0.728407, -0.110908, -0.496137, 0.728407, -0.116455, -0.477688, 0.311964, -0.256035, 0.544367, 0.0904394, -0.306579, -0.378856, -0.748809, -0.0451578, -0.000131726, -0.748809, 0.0413928, -0.0168673, -0.748809, 0.0451226, -0.000131726, -0.72336, 0.0583682, -0.000131726, -0.655543, 0.0845725, -0.000131726, -0.0729566, 0.18193, -0.504966, -0.453395, 0.136838, -0.0233243, -0.453395, 0.139515, -0.000131726, 0.0904394, 0.18193, -0.504966, 0.728407, -0.0215357, -0.467278, 0.728407, -0.0234484, -0.486385, -0.22999, -0.258187, 0.543708, -0.543335, -0.126688, 0.479401, -0.0729566, -0.306579, 0.378724, -0.568929, -0.113681, 0.48006, 0.728407, -0.116455, 0.477557, 0.0892826, -0.297494, 0.488757, 0.0904394, -0.306579, 0.378724, 0.728407, -0.110908, 0.496005, 0.728407, -0.0987618, 0.510764, 0.245449, -0.178905, 0.6403, -0.748809, -0.0414758, 0.0167356, -0.748809, 0.0413928, 0.0167356, -0.72336, 0.0540646, 0.0198982, -0.655543, 0.0783561, 0.0295179, -0.453395, 0.136838, 0.0231926, -0.0729566, 0.180591, 0.526577, -0.0729566, 0.18193, 0.504834, 0.0904394, 0.18193, 0.504834, 0.728407, -0.0215357, 0.467146, -0.22999, -0.178905, 0.6403, -0.568929, -0.108134, 0.498245, -0.543335, -0.120232, 0.500617, -0.0739688, -0.297494, 0.488757, 0.728407, -0.0832688, 0.519329, 0.245449, -0.0709796, 0.67298, -0.748809, -0.030908, 0.0325488, -0.748809, 0.0308729, 0.0325488, -0.568929, -0.036168, 0.503516, -0.568929, -0.0271783, 0.486781, -0.543335, -0.0145065, 0.490734, -0.228978, 0.117328, 0.550429, -0.0739688, 0.111829, 0.613022, 0.0904394, 0.180591, 0.526577, 0.728407, -0.0234484, 0.486254, -0.22999, -0.0709796, 0.67298, -0.568929, -0.0836513, 0.520516, -0.568929, -0.096084, 0.512872, 0.728407, -0.0656239, 0.520779, 0.311964, 0.0464615, 0.636215, -0.22999, 0.0486133, 0.636742, -0.748809, -0.0151281, 0.0430908, -0.748809, 0.0150451, 0.0430908, -0.568929, -0.0508482, 0.51564, -0.543335, -0.0249786, 0.510237, 0.0892826, 0.111829, 0.613022, 0.246461, 0.117328, 0.550429, 0.728407, -0.0324861, 0.503121, -0.568929, -0.069019, 0.521174, -0.748809, -1.76132e-05, 0.0467806, 0.728407, -0.0473096, 0.515244, -0.543335, -0.0421453, 0.524337)
+
+[node name="Spaceship" type="CharacterBody3D"]
+script = ExtResource("1_2jypx")
+
+[node name="CameraFollower" type="RemoteTransform3D" parent="."]
+update_rotation = false
+update_scale = false
+
+[node name="Weapon" parent="." instance=ExtResource("2_n0axn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952441, 0, 0)
+
+[node name="Controller" parent="." instance=ExtResource("3_ww0ly")]
+
+[node name="Graphics" parent="." instance=ExtResource("4_1dogq")]
+surface_material_override/0 = SubResource("ShaderMaterial_4y3ir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_5cr5s")
+
+[node name="Inventory" parent="." instance=ExtResource("5_kv55q")]
+default_contents = {
+"metal": 5,
+"missile": 2
+}
