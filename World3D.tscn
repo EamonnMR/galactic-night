@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgrskffsd1l7k"]
+[gd_scene load_steps=7 format=3 uid="uid://b13g3vw6vpvvt"]
 
 [ext_resource type="Script" path="res://Camera.gd" id="1_2by11"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="3_kxeph"]
-[ext_resource type="PackedScene" uid="uid://ogsddeirqecn" path="res://entities/Spaceship.tscn" id="4_lcnn8"]
 [ext_resource type="Script" path="res://BackgroundHack.gd" id="4_rqqeh"]
 
 [sub_resource type="Shader" id="Shader_xiwc0"]
@@ -96,8 +95,6 @@ script = ExtResource("4_rqqeh")
 [node name="projectiles" type="Node3D" parent="."]
 
 [node name="players" type="Node3D" parent="."]
-
-[node name="Spaceship" parent="players" instance=ExtResource("4_lcnn8")]
 
 [node name="asteroids" type="Node3D" parent="."]
 

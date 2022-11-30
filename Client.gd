@@ -10,6 +10,10 @@ var selected_system_circle_cache = []
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 
+func _ready():
+	var ship_type = load("res://entities/ship/ship_types/Nimbus.tscn")
+	player = ship_type.instantiate()
+
 func current_system_id():
 	return current_system
 

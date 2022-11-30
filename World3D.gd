@@ -1,7 +1,7 @@
 extends Node
 
 func enter_system():
-	Client.player = $World3D/players.get_children()[0]
+	$World3D/players.add_child(Client.player)
 	var system: SystemData = Procgen.systems[Client.current_system_id()]
 	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dgrskffsd1l7k" path="res://World3D.tscn" id="4_0jdkg"]
+[ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
 [ext_resource type="Script" path="res://ui/Ui.gd" id="5_dan6e"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="5_qva3f"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]

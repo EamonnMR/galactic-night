@@ -1,8 +1,8 @@
 id,count,respawn,chance,scene,type,faction,destination,evergreen
 asteroids,4,TRUE,1,res://entities/AsteroidLarge.tscn,,,asteroids,FALSE
-ind_npcs,1,TRUE,1,res://entities/Adversary.tscn,,1,npcs,FALSE
-trader_npcs,1,TRUE,1,res://entities/Adversary.tscn,,2,npcs,TRUE
-compact_npcs,1,TRUE,1,res://entities/Adversary.tscn,,3,npcs,FALSE
-pirate_npcs,2,TRUE,1,res://entities/Adversary.tscn,,4,npcs,FALSE
-warpcorp_npcs,1,TRUE,1,res://entities/Adversary.tscn,,5,npcs,FALSE
-society_npcs,1,TRUE,1,res://entities/Adversary.tscn,,6,npcs,FALSE
+ind_npcs,1,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,1,npcs,FALSE
+trader_npcs,1,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,2,npcs,TRUE
+compact_npcs,1,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,3,npcs,FALSE
+pirate_npcs,2,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,4,npcs,FALSE
+warpcorp_npcs,1,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,5,npcs,FALSE
+society_npcs,1,TRUE,1,res://entities/ship/ship_types/Nimbus.tscn,,6,npcs,FALSE

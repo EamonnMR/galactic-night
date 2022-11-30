@@ -54,9 +54,11 @@ func handle_shooting():
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(-rotation.y)
-		$Graphics.thrusting = true
+		if $Graphics != null:
+			$Graphics.thrusting = true
 	else:
-		$Graphics.thrusting = false
+		if $Graphics != null:
+			$Graphics.thrusting = false
 	if linear_velocity.length() > max_speed:
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
@@ -69,19 +71,21 @@ func hit_by_asteroid():
 	call_deferred("queue_free")
 
 func increase_bank(rotation_impulse):
-	$Graphics.rotation.x += rotation_impulse * bank_speed
-	$Graphics.rotation.x = clamp(
-		$Graphics.rotation.x,
-		-max_bank,
-		max_bank
-	)
+	if $Graphics != null:
+		$Graphics.rotation.x += rotation_impulse * bank_speed
+		$Graphics.rotation.x = clamp(
+			$Graphics.rotation.x,
+			-max_bank,
+			max_bank
+		)
 
 func decrease_bank(delta):
-	if abs($Graphics.rotation.x) < delta:
-		$Graphics.rotation.x = 0
-	else:
-		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
-			max($Graphics.rotation.x, bank_speed * delta)
+	if $Graphics != null:
+		if abs($Graphics.rotation.x) < delta:
+			$Graphics.rotation.x = 0
+		else:
+			$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
+				max($Graphics.rotation.x, bank_speed * delta)
 
 func hit_by_projectile():
 	hit_by_asteroid()
