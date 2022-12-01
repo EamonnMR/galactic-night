@@ -9,6 +9,8 @@ func _ready():
 	call_deferred("enter_system")
 
 func leave_system():
+	# Don't free the player
+	Client.player.get_node("../").remove_child(Client.player)
 	var old_world: Node = $World3D
 	remove_child($World3D)
 	old_world.queue_free()
