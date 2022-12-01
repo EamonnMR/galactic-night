@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3epfsw8gpeg5"
-path.s3tc="res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.s3tc.ctex"
-path.etc2="res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.etc2.ctex"
+uid="uid://cd7kfs58jow63"
+path.s3tc="res://.godot/imported/burner_engine.png-4658e24fd4b9b96e96966c933a3b6a9e.s3tc.ctex"
+path.etc2="res://.godot/imported/burner_engine.png-4658e24fd4b9b96e96966c933a3b6a9e.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/burner/burner_N.png"
-dest_files=["res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.s3tc.ctex", "res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.etc2.ctex"]
+source_file="res://assets/burner/burner_engine.png"
+dest_files=["res://.godot/imported/burner_engine.png-4658e24fd4b9b96e96966c933a3b6a9e.s3tc.ctex", "res://.godot/imported/burner_engine.png-4658e24fd4b9b96e96966c933a3b6a9e.etc2.ctex"]
 
 [params]
 
@@ -21,11 +21,11 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=-3
 roughness/src_normal="res://assets/burner/burner_N.png"
 process/fix_alpha_border=true
 process/premult_alpha=false

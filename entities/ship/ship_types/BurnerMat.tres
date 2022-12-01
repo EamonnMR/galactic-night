@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://qc743sncdl3s"]
+
+[ext_resource type="Shader" path="res://entities/ship/Ship.gdshader" id="1_eoi35"]
+[ext_resource type="Texture2D" uid="uid://dri5fshe1b5lh" path="res://assets/burner/burner_base.png" id="2_ywodf"]
+[ext_resource type="Texture2D" uid="uid://cik2m0kuour0k" path="res://assets/burner/burner_emission.png" id="3_lvcq6"]
+[ext_resource type="Texture2D" uid="uid://cd7kfs58jow63" path="res://assets/burner/burner_engine.png" id="4_brs65"]
+[ext_resource type="Texture2D" uid="uid://b2fypcd7jradj" path="res://assets/burner/burner_RM.png" id="5_5m1f7"]
+[ext_resource type="Texture2D" uid="uid://b3epfsw8gpeg5" path="res://assets/burner/burner_N.png" id="6_3nmcx"]
+[ext_resource type="Texture2D" uid="uid://dsoe608rfoumm" path="res://assets/burner/burner_paint.png" id="7_myd6s"]
+[ext_resource type="Texture2D" uid="uid://ce4a4kepws7a2" path="res://assets/burner/burner_wep.png" id="8_lxxvt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_eoi35")
+shader_parameter/base_brightness = null
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/emission_energy = 6.0
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/inv_xform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0)
+shader_parameter/lights_brightness = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_saturation = null
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/normal_scale = null
+shader_parameter/paint_brightness = null
+shader_parameter/paint_hue = null
+shader_parameter/paint_saturation = null
+shader_parameter/perspective_correct = null
+shader_parameter/roughness = null
+shader_parameter/specular = null
+shader_parameter/texture_albedo = ExtResource("2_ywodf")
+shader_parameter/texture_base_emission = ExtResource("3_lvcq6")
+shader_parameter/texture_engine_emission = ExtResource("4_brs65")
+shader_parameter/texture_metallic = ExtResource("5_5m1f7")
+shader_parameter/texture_normal = ExtResource("6_3nmcx")
+shader_parameter/texture_paint = ExtResource("7_myd6s")
+shader_parameter/texture_roughness = ExtResource("5_5m1f7")
+shader_parameter/texture_weapon_emission = ExtResource("8_lxxvt")
+shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_saturation = null
+shader_parameter/xform = Transform3D(-0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0)
