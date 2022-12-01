@@ -13,10 +13,15 @@ var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 300
 
 func _ready():
+	# TODO: Better way to determine if it's the player
 	if self == Client.player:
+		# TODO: Check client for proper controller type?
+		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
+		# TODO: Select AI type?
+		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
 
 func _physics_process(delta):
@@ -54,11 +59,9 @@ func handle_shooting():
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(-rotation.y)
-		if $Graphics != null:
-			$Graphics.thrusting = true
+		$Graphics.thrusting = true
 	else:
-		if $Graphics != null:
-			$Graphics.thrusting = false
+		$Graphics.thrusting = false
 	if linear_velocity.length() > max_speed:
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
@@ -71,21 +74,19 @@ func hit_by_asteroid():
 	call_deferred("queue_free")
 
 func increase_bank(rotation_impulse):
-	if $Graphics != null:
-		$Graphics.rotation.x += rotation_impulse * bank_speed
-		$Graphics.rotation.x = clamp(
-			$Graphics.rotation.x,
-			-max_bank,
-			max_bank
-		)
+	$Graphics.rotation.x += rotation_impulse * bank_speed
+	$Graphics.rotation.x = clamp(
+		$Graphics.rotation.x,
+		-max_bank,
+		max_bank
+	)
 
 func decrease_bank(delta):
-	if $Graphics != null:
-		if abs($Graphics.rotation.x) < delta:
-			$Graphics.rotation.x = 0
-		else:
-			$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
-				max($Graphics.rotation.x, bank_speed * delta)
+	if abs($Graphics.rotation.x) < delta:
+		$Graphics.rotation.x = 0
+	else:
+		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
+			max($Graphics.rotation.x, bank_speed * delta)
 
 func hit_by_projectile():
 	hit_by_asteroid()

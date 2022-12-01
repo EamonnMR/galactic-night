@@ -17,7 +17,7 @@ _global_script_classes=[{
 "base": "Node3D",
 "class": &"Controller",
 "language": &"GDScript",
-"path": "res://Controller.gd"
+"path": "res://component/controllers/Controller.gd"
 }, {
 "base": "Control",
 "class": &"Crafting",

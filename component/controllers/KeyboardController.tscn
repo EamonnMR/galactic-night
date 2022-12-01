@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhh0irbnhsr62"]
+
+[ext_resource type="PackedScene" uid="uid://c3q3cv3jeiqm2" path="res://component/controllers/Controller.tscn" id="1_cr6re"]
+[ext_resource type="Script" path="res://component/controllers/KeyboardController.gd" id="2_hnlns"]
+[ext_resource type="Script" path="res://Label3D.gd" id="3_ieu7q"]
+
+[node name="Controller" instance=ExtResource("1_cr6re")]
+process_mode = 3
+script = ExtResource("2_hnlns")
+
+[node name="Timer" type="Timer" parent="." index="0"]
+
+[node name="Label3D" type="Label3D" parent="." index="1"]
+visible = false
+script = ExtResource("3_ieu7q")
+
+[connection signal="timeout" from="Timer" to="." method="_on_rethink_timeout"]
