@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h8su110xwk50"
-path.s3tc="res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex"
-path.etc2="res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.etc2.ctex"
+uid="uid://ekb8iw2mw0iq"
+path.s3tc="res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.s3tc.ctex"
+path.etc2="res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/nimbus/nimbus_C_paint.png"
-dest_files=["res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex", "res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.etc2.ctex"]
+source_file="res://assets/dragon/dragon_N.png"
+dest_files=["res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.s3tc.ctex", "res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.etc2.ctex"]
 
 [params]
 
@@ -21,11 +21,11 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=-3
+roughness/mode=1
 roughness/src_normal="res://assets/dragon/dragon_N.png"
 process/fix_alpha_border=true
 process/premult_alpha=false

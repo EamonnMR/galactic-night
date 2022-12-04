@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h8su110xwk50"
-path.s3tc="res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex"
-path.etc2="res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.etc2.ctex"
+uid="uid://li7j3a7xdely"
+path.s3tc="res://.godot/imported/dragon_lights.png-361365dfb4a96b3e46956c80880aff03.s3tc.ctex"
+path.etc2="res://.godot/imported/dragon_lights.png-361365dfb4a96b3e46956c80880aff03.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/nimbus/nimbus_C_paint.png"
-dest_files=["res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.s3tc.ctex", "res://.godot/imported/nimbus_C_paint.png-e761ef35e78ddd121a2cbda3aec26bf4.etc2.ctex"]
+source_file="res://assets/dragon/dragon_lights.png"
+dest_files=["res://.godot/imported/dragon_lights.png-361365dfb4a96b3e46956c80880aff03.s3tc.ctex", "res://.godot/imported/dragon_lights.png-361365dfb4a96b3e46956c80880aff03.etc2.ctex"]
 
 [params]
 
