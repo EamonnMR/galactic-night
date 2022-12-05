@@ -26,7 +26,6 @@ points = PackedVector3Array(0.93792, -0.537038, -0.0729742, -0.227102, 0.754276,
 [node name="Graphics" type="MeshInstance3D" parent="." index="3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_noyhj")
-surface_material_override/0 = ExtResource("2_yi80h")
 script = ExtResource("3_4cno0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
