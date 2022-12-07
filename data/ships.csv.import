@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d2qk4l264a1dx"
+
+[deps]
+
+files=["res://data/ships.name.translation", "res://data/ships.max.translation", "res://data/ships.accel.translation", "res://data/ships.turn.translation", "res://data/ships.max.translation", "res://data/ships.bank.translation", "res://data/ships.scene.translation"]
+
+source_file="res://data/ships.csv"
+dest_files=["res://data/ships.name.translation", "res://data/ships.max.translation", "res://data/ships.accel.translation", "res://data/ships.turn.translation", "res://data/ships.max.translation", "res://data/ships.bank.translation", "res://data/ships.scene.translation"]
+
+[params]
+
+compress=true
+delimiter=0

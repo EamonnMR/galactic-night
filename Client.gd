@@ -11,8 +11,9 @@ var selected_system_circle_cache = []
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 
 func _ready():
-	var ship_type = load("res://entities/ship/ship_types/Dragon.tscn")
-	player = ship_type.instantiate()
+	var ship_type = "nimbus"
+	player = Data.ships[ship_type].scene.instantiate()
+	player.type = ship_type
 
 func current_system_id():
 	return current_system

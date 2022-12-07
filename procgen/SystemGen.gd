@@ -30,7 +30,11 @@ func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 		for _i in range(spawn.count):
 			if spawn.chance >= rng.randf():
 				var position = Procgen.random_location_in_system(rng)
-				var instance: Node = spawn.scene.instantiate()
+				var instance: Node
+				if spawn.data_type != "":
+					instance = Data.get(spawn.data_type)[spawn.type].scene.instantiate()
+				else:
+					instance = spawn.scene.instantiate()
 				if spawn.type != null and spawn.type != "":
 					instance.type = spawn.type
 				if "faction" in instance:

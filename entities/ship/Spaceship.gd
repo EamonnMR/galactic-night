@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var faction
+var type: String
 
 var max_speed = 100
 var accel = 0.01
@@ -13,6 +14,7 @@ var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 300
 
 func _ready():
+	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	if self == Client.player:
 		# TODO: Check client for proper controller type?

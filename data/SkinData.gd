@@ -19,6 +19,7 @@ static func get_csv_path():
 	return "res://data/skins.csv"
 
 func apply_to_shader(shader):
+	# similar to apply_to_node, but different to merit a new func
 	for column in get_columns():
 		if column != "id" and column != "name":
 			var val = get(column)

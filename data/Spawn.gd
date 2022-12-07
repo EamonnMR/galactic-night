@@ -9,6 +9,7 @@ var chance: float
 var scene: PackedScene
 var destination: String
 var type: String
+var data_type: String
 var faction: int
 var evergreen: bool
 

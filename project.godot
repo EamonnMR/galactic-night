@@ -65,6 +65,11 @@ _global_script_classes=[{
 "path": "res://data/RecipeData.gd"
 }, {
 "base": "DataRow",
+"class": &"ShipData",
+"language": &"GDScript",
+"path": "res://data/ShipData.gd"
+}, {
+"base": "DataRow",
 "class": &"SkinData",
 "language": &"GDScript",
 "path": "res://data/SkinData.gd"
@@ -96,6 +101,7 @@ _global_script_class_icons={
 "ItemIcon": "",
 "Markov": "",
 "RecipeData": "",
+"ShipData": "",
 "SkinData": "",
 "SpawnData": "",
 "SystemData": "",
