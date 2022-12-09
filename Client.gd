@@ -39,3 +39,21 @@ func get_world():
 
 func get_main():
 	return get_tree().get_root().get_node("Main")
+
+func switch_ship(new_type: String):
+	var old_ship = player
+	var old_inventory = player.get_node("Inventory")
+	old_ship.remove_child(old_inventory)
+	var position = player.global_transform
+	
+	player = Data.ships[new_type].scene.instantiate()
+	player.type = new_type
+	
+	player.remove_child(player.get_node("Inventory"))
+	player.add_child(old_inventory)
+	
+	var parent = old_ship.get_node("../")
+	parent.remove_child(old_ship)
+	parent.add_child(player)
+	
+	
