@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2fypcd7jradj"
-path.s3tc="res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.s3tc.ctex"
-path.etc2="res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.etc2.ctex"
+uid="uid://6s0nejsotq5a"
+path.s3tc="res://.godot/imported/dragon_weapon.png-27671e27f24fcfef578174557e76c1a5.s3tc.ctex"
+path.etc2="res://.godot/imported/dragon_weapon.png-27671e27f24fcfef578174557e76c1a5.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/burner/burner_RM.png"
-dest_files=["res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.s3tc.ctex", "res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.etc2.ctex"]
+source_file="res://assets/dragon/dragon_weapon.png"
+dest_files=["res://.godot/imported/dragon_weapon.png-27671e27f24fcfef578174557e76c1a5.s3tc.ctex", "res://.godot/imported/dragon_weapon.png-27671e27f24fcfef578174557e76c1a5.etc2.ctex"]
 
 [params]
 

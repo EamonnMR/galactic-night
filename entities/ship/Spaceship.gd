@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var faction
+var type: String
 
 var max_speed = 100
 var accel = 0.01
@@ -13,10 +14,16 @@ var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 300
 
 func _ready():
+	# Data.ships[type].apply_to_node(self)
+	# TODO: Better way to determine if it's the player
 	if self == Client.player:
+		# TODO: Check client for proper controller type?
+		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
+		# TODO: Select AI type?
+		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
 
 func _physics_process(delta):

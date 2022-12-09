@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2fypcd7jradj"
-path.s3tc="res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.s3tc.ctex"
-path.etc2="res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.etc2.ctex"
+uid="uid://b7jk45myqdsyg"
+path.s3tc="res://.godot/imported/dragon_base.png-c5432cfdadc032827fff2a1f4a2dd330.s3tc.ctex"
+path.etc2="res://.godot/imported/dragon_base.png-c5432cfdadc032827fff2a1f4a2dd330.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/burner/burner_RM.png"
-dest_files=["res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.s3tc.ctex", "res://.godot/imported/burner_RM.png-b71368cb30f40c4ec991375bf1c2a215.etc2.ctex"]
+source_file="res://assets/dragon/dragon_base.png"
+dest_files=["res://.godot/imported/dragon_base.png-c5432cfdadc032827fff2a1f4a2dd330.s3tc.ctex", "res://.godot/imported/dragon_base.png-c5432cfdadc032827fff2a1f4a2dd330.etc2.ctex"]
 
 [params]
 

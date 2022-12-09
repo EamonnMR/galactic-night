@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://uc7oyjsn3215"]
+
+[ext_resource type="Script" path="res://entities/ship/Spaceship.gd" id="1_v25r1"]
+[ext_resource type="PackedScene" uid="uid://cnqxxfr3dlx7w" path="res://component/Weapon.tscn" id="2_p4ka6"]
+[ext_resource type="PackedScene" uid="uid://da271thfaabmi" path="res://component/Inventory.tscn" id="4_4rw1x"]
+
+[node name="Spaceship" type="CharacterBody3D"]
+collision_mask = 0
+script = ExtResource("1_v25r1")
+
+[node name="CameraFollower" type="RemoteTransform3D" parent="."]
+update_rotation = false
+update_scale = false
+
+[node name="Weapon" parent="." instance=ExtResource("2_p4ka6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952441, 0, 0)
+
+[node name="Inventory" parent="." instance=ExtResource("4_4rw1x")]
+default_contents = {
+"metal": 5,
+"missile": 2
+}

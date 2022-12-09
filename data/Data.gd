@@ -8,7 +8,7 @@ var biomes = {}
 var factions = {}
 var skins = {}
 var evergreen_spawns = []
-#var ships = {}
+var ships = {}
 
 # Game constants:
 const PLAY_AREA_RADIUS = 3000
@@ -23,8 +23,8 @@ func _init():
 		[SpawnData, "spawns"],
 		[BiomeData, "biomes"],
 		[FactionData, "factions"],
-		[SkinData, "skins"]
-#		[ShipData, "ships"]
+		[SkinData, "skins"],
+		[ShipData, "ships"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]

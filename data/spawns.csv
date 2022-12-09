@@ -1,8 +1,8 @@
-id,count,respawn,chance,scene,type,faction,destination,evergreen
-asteroids,4,TRUE,1,res://entities/AsteroidLarge.tscn,,,asteroids,FALSE
-ind_npcs,1,TRUE,1,res://entities/Adversary.tscn,,1,npcs,FALSE
-trader_npcs,1,TRUE,1,res://entities/Adversary.tscn,,2,npcs,TRUE
-compact_npcs,1,TRUE,1,res://entities/Adversary.tscn,,3,npcs,FALSE
-pirate_npcs,2,TRUE,1,res://entities/Adversary.tscn,,4,npcs,FALSE
-warpcorp_npcs,1,TRUE,1,res://entities/Adversary.tscn,,5,npcs,FALSE
-society_npcs,1,TRUE,1,res://entities/Adversary.tscn,,6,npcs,FALSE
+id,count,respawn,chance,scene,type,faction,destination,evergreen,data_type
+asteroids,4,TRUE,1,res://entities/AsteroidLarge.tscn,,,asteroids,FALSE,
+ind_npcs,1,TRUE,1,,burner,1,npcs,FALSE,ships
+trader_npcs,1,TRUE,1,,burner,2,npcs,TRUE,ships
+compact_npcs,1,TRUE,1,,dragon,3,npcs,FALSE,ships
+pirate_npcs,2,TRUE,1,,nimbus,4,npcs,FALSE,ships
+warpcorp_npcs,1,TRUE,1,,nimbus,5,npcs,FALSE,ships
+society_npcs,1,TRUE,1,,nimbus,6,npcs,FALSE,ships

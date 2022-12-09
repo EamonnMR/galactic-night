@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://ipl5i7qxuo2b"]
+
+[ext_resource type="Shader" path="res://entities/ship/Ship.gdshader" id="1_6h4df"]
+[ext_resource type="Texture2D" uid="uid://b7jk45myqdsyg" path="res://assets/dragon/dragon_base.png" id="2_tkmwd"]
+[ext_resource type="Texture2D" uid="uid://li7j3a7xdely" path="res://assets/dragon/dragon_lights.png" id="3_g2s0x"]
+[ext_resource type="Texture2D" uid="uid://corellkb6lblt" path="res://assets/dragon/dragon_engine.png" id="4_tuhko"]
+[ext_resource type="Texture2D" uid="uid://daab6vaoknqp0" path="res://assets/dragon/dragon_RM.png" id="5_ux50p"]
+[ext_resource type="Texture2D" uid="uid://ekb8iw2mw0iq" path="res://assets/dragon/dragon_N.png" id="6_qul7f"]
+[ext_resource type="Texture2D" uid="uid://d3h7aexdrs075" path="res://assets/dragon/dragon_paint.png" id="7_2621i"]
+[ext_resource type="Texture2D" uid="uid://6s0nejsotq5a" path="res://assets/dragon/dragon_weapon.png" id="8_rpdx8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6h4df")
+shader_parameter/base_brightness = null
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/emission_energy = 6.0
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/inv_xform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0)
+shader_parameter/lights_brightness = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_saturation = null
+shader_parameter/metallic = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/normal_scale = null
+shader_parameter/paint_brightness = null
+shader_parameter/paint_hue = null
+shader_parameter/paint_saturation = null
+shader_parameter/perspective_correct = null
+shader_parameter/roughness = null
+shader_parameter/specular = null
+shader_parameter/texture_albedo = ExtResource("2_tkmwd")
+shader_parameter/texture_base_emission = ExtResource("3_g2s0x")
+shader_parameter/texture_engine_emission = ExtResource("4_tuhko")
+shader_parameter/texture_metallic = ExtResource("5_ux50p")
+shader_parameter/texture_normal = ExtResource("6_qul7f")
+shader_parameter/texture_paint = ExtResource("7_2621i")
+shader_parameter/texture_roughness = ExtResource("5_ux50p")
+shader_parameter/texture_weapon_emission = ExtResource("8_rpdx8")
+shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_saturation = null
+shader_parameter/xform = Transform3D(-0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0)

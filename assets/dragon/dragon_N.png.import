@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3epfsw8gpeg5"
-path.s3tc="res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.s3tc.ctex"
-path.etc2="res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.etc2.ctex"
+uid="uid://ekb8iw2mw0iq"
+path.s3tc="res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.s3tc.ctex"
+path.etc2="res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/burner/burner_N.png"
-dest_files=["res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.s3tc.ctex", "res://.godot/imported/burner_N.png-cbe8ec6dd619e58427a939e2f42cc85c.etc2.ctex"]
+source_file="res://assets/dragon/dragon_N.png"
+dest_files=["res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.s3tc.ctex", "res://.godot/imported/dragon_N.png-955816322d7acb76f6e03a8f13451bda.etc2.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/burner/burner_N.png"
+roughness/src_normal="res://assets/dragon/dragon_N.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -1,7 +1,7 @@
 extends Node
 
 func enter_system():
-	Client.player = $World3D/players.get_children()[0]
+	$World3D/players.add_child(Client.player)
 	var system: SystemData = Procgen.systems[Client.current_system_id()]
 	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
 
@@ -9,6 +9,8 @@ func _ready():
 	call_deferred("enter_system")
 
 func leave_system():
+	# Don't free the player
+	Client.player.get_node("../").remove_child(Client.player)
 	var old_world: Node = $World3D
 	remove_child($World3D)
 	old_world.queue_free()

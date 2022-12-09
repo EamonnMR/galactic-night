@@ -17,6 +17,7 @@ func _physics_process(delta):
 	shooting = Input.is_action_pressed("shoot")
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
+	cycle_ships()
 	toggle_map()
 	toggle_inventory()
 	check_jumped()
@@ -41,6 +42,13 @@ func cycle_skins():
 		var skin = Data.skins[skin_id]
 		print(skin)
 		get_node("../Graphics").set_skin_data(skin)
+		
+func cycle_ships():
+	if Input.is_action_just_pressed("switch_ship"):
+		var all_types: Array[String] = Data.ships.keys()
+		var index = all_types.find(get_node("../").type)
+		var next_index = (index + 1) % all_types.size()
+		Client.switch_ship(all_types[next_index])
 		
 func check_jumped():
 	if Input.is_action_just_released("jump"):
