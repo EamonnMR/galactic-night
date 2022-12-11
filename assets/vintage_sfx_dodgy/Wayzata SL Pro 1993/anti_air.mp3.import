@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://du1xrofe62yc7"
+path="res://.godot/imported/anti_air.mp3-199a31e171ddfb8b27c159f9dcddcc59.mp3str"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/anti_air.mp3"
+dest_files=["res://.godot/imported/anti_air.mp3-199a31e171ddfb8b27c159f9dcddcc59.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

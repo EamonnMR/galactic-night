@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bogsbfvhvpihi"
+path="res://.godot/imported/electric.mp3-ea16222ea7134da7d6654481939ab81c.mp3str"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/electric.mp3"
+dest_files=["res://.godot/imported/electric.mp3-ea16222ea7134da7d6654481939ab81c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chbx84puxam6i"
+path="res://.godot/imported/floop_be.mp3-45cf4a51d044a9b2d9dac4144c8524cb.mp3str"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/ Sound Library 2000 - Wayzata Technology (1995)/floop_be.mp3"
+dest_files=["res://.godot/imported/floop_be.mp3-45cf4a51d044a9b2d9dac4144c8524cb.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

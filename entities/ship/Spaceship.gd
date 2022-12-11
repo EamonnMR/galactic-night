@@ -11,6 +11,8 @@ var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
 
+@export var explosion: PackedScene
+
 const PLAY_AREA_RADIUS = 300
 
 func _ready():
@@ -74,6 +76,8 @@ func flash_weapon():
 
 func hit_by_asteroid():
 	call_deferred("queue_free")
+	if explosion != null:
+		Explosion.make_explo(explosion, self)
 
 func increase_bank(rotation_impulse):
 	$Graphics.rotation.x += rotation_impulse * bank_speed

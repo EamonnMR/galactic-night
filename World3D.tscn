@@ -92,6 +92,8 @@ mesh = SubResource("QuadMesh_l5ydf")
 skeleton = NodePath("../..")
 script = ExtResource("4_rqqeh")
 
+[node name="explosions" type="Node3D" parent="."]
+
 [node name="projectiles" type="Node3D" parent="."]
 
 [node name="players" type="Node3D" parent="."]
