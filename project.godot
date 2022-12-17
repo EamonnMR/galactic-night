@@ -136,6 +136,10 @@ Data="*res://data/Data.tscn"
 Cheats="*res://Cheats.tscn"
 SystemGen="*res://procgen/SystemGen.gd"
 
+[editor]
+
+movie_writer/movie_file="/home/eamonnm/movie.avi"
+
 [global]
 
 contrast=false

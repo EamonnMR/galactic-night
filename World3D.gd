@@ -19,3 +19,6 @@ func change_system():
 	leave_system()
 	add_child(preload("res://World3D.tscn").instantiate())
 	call_deferred("enter_system")
+
+func get_ships():
+	return $World3D/players.get_children() + $World3D/npcs.get_children()

@@ -5,6 +5,7 @@ class_name IffProfile
 var owner: Node
 var faction
 var exclude_allies: bool
+var explosion: PackedScene
 
 func _init(owner: Node, faction, exclude_allies: bool):
 	self.owner = owner
