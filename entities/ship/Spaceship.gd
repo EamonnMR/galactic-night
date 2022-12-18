@@ -18,6 +18,7 @@ const PLAY_AREA_RADIUS = 300
 func _ready():
 	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
+	add_to_group("radar")
 	if self == Client.player:
 		# TODO: Check client for proper controller type?
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
