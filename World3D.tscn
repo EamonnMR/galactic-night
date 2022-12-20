@@ -7,8 +7,8 @@
 
 [sub_resource type="Shader" id="Shader_dl17i"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
-
 shader_type spatial;
+#include \"colorshift.gdshaderinc\"
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
 uniform sampler2D second_texture_albedo : source_color,filter_nearest,repeat_enable;
@@ -17,6 +17,8 @@ uniform vec2 position;
 const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
+
+uniform float color_shift;
 
 void fragment(){
 	ALBEDO = vec3(0,0,0);
@@ -44,9 +46,9 @@ void fragment(){
 			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
 				//COLOR = vec4(1,1,1,1)
 			}
-			ALBEDO += (texture(second_texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+			ALBEDO += shift_color_by_amount((texture(second_texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb, color_shift);
 		} else {
-			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+			ALBEDO += shift_color_by_amount((texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb, color_shift);
 		}
 	}
 }
@@ -55,6 +57,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n30lp"]
 render_priority = 0
 shader = SubResource("Shader_dl17i")
+shader_parameter/color_shift = 0.0
 shader_parameter/position = null
 shader_parameter/second_texture_albedo = ExtResource("2_fl7u5")
 shader_parameter/texture_albedo = ExtResource("3_kxeph")

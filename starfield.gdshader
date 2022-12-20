@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+#include "colorshift.gdshaderinc"
+
 uniform vec2 position;
 uniform sampler2D nebula;
 const int LAYERS = 5;

@@ -16,3 +16,10 @@ vec3 hsv2rgb(vec3 c)
     vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
     return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
 }
+
+vec3 shift_color_by_amount(vec3 c, float shift)
+{
+	vec3 hsv = rgb2hsv(c);
+	hsv.x += shift;
+	return hsv2rgb(hsv);
+}
