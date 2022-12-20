@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://b13g3vw6vpvvt"]
+[gd_scene load_steps=8 format=3 uid="uid://b13g3vw6vpvvt"]
 
 [ext_resource type="Script" path="res://Camera.gd" id="1_2by11"]
+[ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="2_fl7u5"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="3_kxeph"]
 [ext_resource type="Script" path="res://BackgroundHack.gd" id="4_rqqeh"]
 
-[sub_resource type="Shader" id="Shader_g5kfh"]
+[sub_resource type="Shader" id="Shader_dl17i"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
 
 shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-
+uniform sampler2D second_texture_albedo : source_color,filter_nearest,repeat_enable;
 
 uniform vec2 position;
 const int LAYERS = 5;
@@ -30,10 +31,7 @@ void fragment(){
 		shifted_uv.y += (
 			position.y / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR)
 		);
-
-		// Extra offset to avoid stacking
-		shifted_uv += float(i) * 250.0;
-
+		
 		shifted_uv.x = fract(shifted_uv.x);
 		shifted_uv.y = fract(shifted_uv.y);
 		
@@ -46,7 +44,7 @@ void fragment(){
 			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
 				//COLOR = vec4(1,1,1,1)
 			}
-			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+			ALBEDO += (texture(second_texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
 		} else {
 			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
 		}
@@ -54,14 +52,15 @@ void fragment(){
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryua3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n30lp"]
 render_priority = 0
-shader = SubResource("Shader_g5kfh")
+shader = SubResource("Shader_dl17i")
 shader_parameter/position = null
+shader_parameter/second_texture_albedo = ExtResource("2_fl7u5")
 shader_parameter/texture_albedo = ExtResource("3_kxeph")
 
-[sub_resource type="QuadMesh" id="QuadMesh_vaqnp"]
-material = SubResource("ShaderMaterial_ryua3")
+[sub_resource type="QuadMesh" id="QuadMesh_iwq8e"]
+material = SubResource("ShaderMaterial_n30lp")
 size = Vector2(20, 20)
 
 [node name="World3D" type="Node3D"]
@@ -88,16 +87,16 @@ transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0
 
 [node name="BackgroundHack" type="MeshInstance3D" parent="BackgroundOffset"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-mesh = SubResource("QuadMesh_vaqnp")
+mesh = SubResource("QuadMesh_iwq8e")
 skeleton = NodePath("../..")
 script = ExtResource("4_rqqeh")
 
-[node name="explosions" type="Node3D" parent="."]
+[node name="asteroids" type="Node3D" parent="."]
 
 [node name="projectiles" type="Node3D" parent="."]
 
-[node name="players" type="Node3D" parent="."]
-
-[node name="asteroids" type="Node3D" parent="."]
-
 [node name="npcs" type="Node3D" parent="."]
+
+[node name="explosions" type="Node3D" parent="."]
+
+[node name="players" type="Node3D" parent="."]

@@ -9,6 +9,7 @@ extends RigidBody3D
 @export var explosion: PackedScene
 
 func _ready():
+	add_to_group("radar")
 	rotate_y(randf_range(0, PI*2))
 	call_deferred("initial_velocity")
 
