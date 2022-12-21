@@ -1,6 +1,6 @@
 extends Node2D
 
-var radar_scale = 2.0
+var radar_scale = 2
 
 # TODO: Don't hardcode this
 @onready var radar_offset = Vector2(119, 119)
@@ -15,7 +15,7 @@ var DISPOSITION_COLORS = {
 
 func _relative_position(subject: Node3D, player_position: Vector2) -> Vector2:
 	var relative_position = (Util.flatten_25d(subject.global_transform.origin) - player_position) * radar_scale
-	return relative_position.limit_length((radar_offset.x - 5) / radar_scale)
+	return relative_position.limit_length((radar_offset.x - 5))
 	
 func _process(delta):
 	queue_redraw()

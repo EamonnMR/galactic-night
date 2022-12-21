@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="3_kxeph"]
 [ext_resource type="Script" path="res://BackgroundHack.gd" id="4_rqqeh"]
 
-[sub_resource type="Shader" id="Shader_dl17i"]
+[sub_resource type="Shader" id="Shader_u5peg"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
 shader_type spatial;
 #include \"colorshift.gdshaderinc\"
@@ -54,16 +54,16 @@ void fragment(){
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n30lp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v5d6"]
 render_priority = 0
-shader = SubResource("Shader_dl17i")
+shader = SubResource("Shader_u5peg")
 shader_parameter/color_shift = 0.0
 shader_parameter/position = null
 shader_parameter/second_texture_albedo = ExtResource("2_fl7u5")
 shader_parameter/texture_albedo = ExtResource("3_kxeph")
 
-[sub_resource type="QuadMesh" id="QuadMesh_iwq8e"]
-material = SubResource("ShaderMaterial_n30lp")
+[sub_resource type="QuadMesh" id="QuadMesh_3mfjm"]
+material = SubResource("ShaderMaterial_6v5d6")
 size = Vector2(20, 20)
 
 [node name="World3D" type="Node3D"]
@@ -90,7 +90,7 @@ transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0
 
 [node name="BackgroundHack" type="MeshInstance3D" parent="BackgroundOffset"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-mesh = SubResource("QuadMesh_iwq8e")
+mesh = SubResource("QuadMesh_3mfjm")
 skeleton = NodePath("../..")
 script = ExtResource("4_rqqeh")
 

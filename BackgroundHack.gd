@@ -6,7 +6,6 @@ extends MeshInstance3D
 func _ready():
 	var bgcolor = Client.current_biome().bg_color_shift
 	mat.set_shader_parameter("color_shift", bgcolor)
-	breakpoint
 func _process(delta):
 	if not is_instance_valid(Client.player):
 		return
