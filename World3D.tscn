@@ -73,6 +73,7 @@ size = Vector2(20, 20)
 [node name="Camera3D" type="Camera3D" parent="CameraTransform"]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4.5, 6, 4.5)
 projection = 1
+current = true
 size = 9.82505
 near = 0.01
 far = 500.0

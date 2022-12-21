@@ -310,14 +310,12 @@ func name_systems():
 
 func random_name(sys: SystemData):
 	if sys.faction != "" and sys.faction != "0":
-		var foo = sys.faction
-		var bla = Data.name_generators
-		var blar = Data.factions[sys.faction]
-		return Data.name_generators[
-			Data.factions[sys.faction].sys_name_scheme
-		].get_random_name()
+		var name_scheme = Data.factions[sys.faction].sys_name_scheme
+		# print("Current name scheme", name_scheme)
+		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
 		return "NGC-" + sys.id
+
 func randi_radius(radius: int, rng: RandomNumberGenerator):
 	return (rng.randi() % (2 * radius)) - radius
 

@@ -12,6 +12,14 @@ func set_multiple(object: Object, attributes: Dictionary):
 	for key in attributes:
 		object.set(key, attributes[key])
 
+func default_serialize(object: Object):
+	const NO_SERIAL_PROPS = ["Script", "script", "Script Variables"]
+	var keys = []
+	for prop in get_property_list():
+		if not (prop["name"] in NO_SERIAL_PROPS):
+			keys.append(prop["name"])
+	return get_multiple(object, keys)
+
 
 func anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)
