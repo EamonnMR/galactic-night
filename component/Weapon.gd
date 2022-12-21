@@ -6,14 +6,24 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
+var iff: IffProfile
+
 @export var projectile_scene: PackedScene
 @export var burst_count = 0
 @export var dupe_count = 1
 @export var spread: float = 0
 @export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
-
+@export var vary_pitch = 0
 
 @export var dmg_factor: float = 1
+
+func _ready():
+	var parent = get_node("../")
+	iff = IffProfile.new(
+		parent,
+		parent.faction,
+		false
+	)
 
 func try_shoot():
 	if not cooldown and not burst_cooldown:
@@ -45,7 +55,7 @@ func _create_projectile():
 	projectile.global_transform = global_transform
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
-	
+	projectile.iff = iff
 
 func _effects():
 	#$Emerge/MuzzleFlash.restart()

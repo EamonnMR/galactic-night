@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctmme2u3cnn63"
+path="res://.godot/imported/Explosion.wav-854bd84035b6e819f609f918607b61be.sample"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/Questionable Origin/Explosion.wav"
+dest_files=["res://.godot/imported/Explosion.wav-854bd84035b6e819f609f918607b61be.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

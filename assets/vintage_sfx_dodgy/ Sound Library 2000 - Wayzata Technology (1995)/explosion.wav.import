@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://binv48gxi5qvx"
+path="res://.godot/imported/explosion.wav-aea08773d5411e1f7541a630d7615b0e.sample"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/ Sound Library 2000 - Wayzata Technology (1995)/explosion.wav"
+dest_files=["res://.godot/imported/explosion.wav-aea08773d5411e1f7541a630d7615b0e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

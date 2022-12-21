@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnqxxfr3dlx7w"]
+[gd_scene load_steps=4 format=3 uid="uid://cnqxxfr3dlx7w"]
 
 [ext_resource type="Script" path="res://component/Weapon.gd" id="1_wor20"]
 [ext_resource type="PackedScene" uid="uid://djxaf48l2mu8l" path="res://entities/Projectile.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://bgvqg7wmqk5rx" path="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/photon_s.mp3" id="3_b5341"]
 
 [node name="Weapon" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436)
@@ -17,6 +18,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_b5341")
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="timeout" from="BurstCooldown" to="." method="_on_BurstCooldown_timeout"]

@@ -18,6 +18,8 @@ var ideal_face
 
 var state = STATES.IDLE
 
+@onready var faction: FactionData = Data.factions[get_node("../").faction]
+
 func ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
 	get_node("../Graphics").set_skin_data(Data.skins[1])
@@ -72,11 +74,30 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
-	if is_instance_valid(Client.player):
-		#print("Target found: ", Client.player)
-		change_state_persue(Client.player)
-	else:
+	var ships_in_system: Array[Node3D] = Client.ships_in_system()
+	var enemy_ships: Array[Node3D] = []
+	for ship in ships_in_system:
+		if (
+			ship.faction != null and ship.faction in faction.enemies
+		) or (
+			ship == Client.player and faction.initial_disposition < 0
+		):
+			enemy_ships.push_back(ship)
+	if enemy_ships.size() == 0:
 		change_state_idle()
+	elif enemy_ships.size() == 1:
+		change_state_persue(enemy_ships[0])
+	else:
+		var parent_position: Vector2 = Util.flatten_25d(get_node("../").global_transform.origin)
+		enemy_ships.sort_custom(
+			func distance_comparitor(lval: Node3D, rval: Node3D):
+				# For sorting other nodes by how close they are
+				
+				var ldist =  Util.flatten_25d(lval.global_transform.origin).distance_to(parent_position)
+				var rdist = Util.flatten_25d(rval.global_transform.origin).distance_to(parent_position)
+				return ldist < rdist
+		)
+		change_state_persue(enemy_ships[0])
 
 func _on_Rethink_timeout():
 	match state:

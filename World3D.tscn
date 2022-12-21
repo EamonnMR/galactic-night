@@ -1,21 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://b13g3vw6vpvvt"]
+[gd_scene load_steps=8 format=3 uid="uid://b13g3vw6vpvvt"]
 
 [ext_resource type="Script" path="res://Camera.gd" id="1_2by11"]
+[ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="2_fl7u5"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="3_kxeph"]
 [ext_resource type="Script" path="res://BackgroundHack.gd" id="4_rqqeh"]
 
-[sub_resource type="Shader" id="Shader_xiwc0"]
+[sub_resource type="Shader" id="Shader_u5peg"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.0.beta3's StandardMaterial3D.
-
 shader_type spatial;
+#include \"colorshift.gdshaderinc\"
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-
+uniform sampler2D second_texture_albedo : source_color,filter_nearest,repeat_enable;
 
 uniform vec2 position;
 const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
+
+uniform float color_shift;
 
 void fragment(){
 	ALBEDO = vec3(0,0,0);
@@ -30,10 +33,7 @@ void fragment(){
 		shifted_uv.y += (
 			position.y / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR)
 		);
-
-		// Extra offset to avoid stacking
-		shifted_uv += float(i) * 250.0;
-
+		
 		shifted_uv.x = fract(shifted_uv.x);
 		shifted_uv.y = fract(shifted_uv.y);
 		
@@ -46,22 +46,24 @@ void fragment(){
 			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
 				//COLOR = vec4(1,1,1,1)
 			}
-			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+			ALBEDO += shift_color_by_amount((texture(second_texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb, color_shift);
 		} else {
-			ALBEDO += (texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb;
+			ALBEDO += shift_color_by_amount((texture(texture_albedo, shifted_uv) / (float(i) + 0.5)).rgb, color_shift);
 		}
 	}
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap2qu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v5d6"]
 render_priority = 0
-shader = SubResource("Shader_xiwc0")
+shader = SubResource("Shader_u5peg")
+shader_parameter/color_shift = 0.0
 shader_parameter/position = null
+shader_parameter/second_texture_albedo = ExtResource("2_fl7u5")
 shader_parameter/texture_albedo = ExtResource("3_kxeph")
 
-[sub_resource type="QuadMesh" id="QuadMesh_l5ydf"]
-material = SubResource("ShaderMaterial_ap2qu")
+[sub_resource type="QuadMesh" id="QuadMesh_3mfjm"]
+material = SubResource("ShaderMaterial_6v5d6")
 size = Vector2(20, 20)
 
 [node name="World3D" type="Node3D"]
@@ -88,14 +90,16 @@ transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0
 
 [node name="BackgroundHack" type="MeshInstance3D" parent="BackgroundOffset"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-mesh = SubResource("QuadMesh_l5ydf")
+mesh = SubResource("QuadMesh_3mfjm")
 skeleton = NodePath("../..")
 script = ExtResource("4_rqqeh")
 
-[node name="projectiles" type="Node3D" parent="."]
-
-[node name="players" type="Node3D" parent="."]
-
 [node name="asteroids" type="Node3D" parent="."]
 
+[node name="projectiles" type="Node3D" parent="."]
+
 [node name="npcs" type="Node3D" parent="."]
+
+[node name="explosions" type="Node3D" parent="."]
+
+[node name="players" type="Node3D" parent="."]

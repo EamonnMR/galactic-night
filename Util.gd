@@ -1,6 +1,6 @@
 extends Node
 
-var PLAY_AREA_RADIUS = 35
+var PLAY_AREA_RADIUS = 100
 
 func get_multiple(object: Object, attributes: Array[String]) -> Dictionary:
 	var attrs = {}

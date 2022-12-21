@@ -6,7 +6,10 @@ extends RigidBody3D
 @export var next_type: PackedScene
 @export var next_count: int = 0
 
+@export var explosion: PackedScene
+
 func _ready():
+	add_to_group("radar")
 	rotate_y(randf_range(0, PI*2))
 	call_deferred("initial_velocity")
 
@@ -17,6 +20,8 @@ func hit_by_projectile():
 	break_up()
 
 func break_up():
+	if explosion != null:
+		Explosion.make_explo(explosion, self)
 	if next_count:
 		for i in range(next_count):
 			var sub_roid: RigidBody3D = next_type.instantiate()

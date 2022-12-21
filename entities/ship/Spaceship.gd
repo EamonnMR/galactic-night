@@ -11,11 +11,14 @@ var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
 
+@export var explosion: PackedScene
+
 const PLAY_AREA_RADIUS = 300
 
 func _ready():
 	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
+	add_to_group("radar")
 	if self == Client.player:
 		# TODO: Check client for proper controller type?
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
@@ -42,16 +45,6 @@ func _physics_process(delta):
 	handle_shooting()
 	handle_jumping()
 	Util.wrap_to_play_radius(self)
-	
-	handle_hitting_stuff()
-
-func handle_hitting_stuff():
-	var collision: KinematicCollision3D = get_last_slide_collision()
-	if collision:
-		if collision.get_collider().has_method("break_up"):
-			collision.get_collider().break_up()
-			hit_by_asteroid()
-			
 
 func handle_shooting():
 	if $Controller.shooting:
@@ -72,9 +65,6 @@ func get_limited_velocity_with_thrust(delta):
 func flash_weapon():
 	$Graphics.flash_weapon()
 
-func hit_by_asteroid():
-	call_deferred("queue_free")
-
 func increase_bank(rotation_impulse):
 	$Graphics.rotation.x += rotation_impulse * bank_speed
 	$Graphics.rotation.x = clamp(
@@ -91,7 +81,9 @@ func decrease_bank(delta):
 			max($Graphics.rotation.x, bank_speed * delta)
 
 func hit_by_projectile():
-	hit_by_asteroid()
+	call_deferred("queue_free")
+	if explosion != null:
+		Explosion.make_explo(explosion, self)
 	
 func handle_jumping():
 	if $Controller.jumping:

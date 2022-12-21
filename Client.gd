@@ -36,6 +36,9 @@ func change_system():
 
 func get_world():
 	return get_main().get_node("World3D")
+	
+func ships_in_system() -> Array[Node3D]:
+	return get_main().get_ships()
 
 func get_main():
 	return get_tree().get_root().get_node("Main")
@@ -56,4 +59,8 @@ func switch_ship(new_type: String):
 	parent.remove_child(old_ship)
 	parent.add_child(player)
 	
-	
+func current_biome() -> BiomeData:
+	if current_system in Procgen.systems:
+		return Data.biomes[Procgen.systems[current_system].biome]
+	else:
+		return BiomeData.new({})

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wrxcihg6stlw"
+path="res://.godot/imported/headcras.mp3-2f8d0f7c7cdcae2e1bfc513724f2dfaf.mp3str"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/headcras.mp3"
+dest_files=["res://.godot/imported/headcras.mp3-2f8d0f7c7cdcae2e1bfc513724f2dfaf.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

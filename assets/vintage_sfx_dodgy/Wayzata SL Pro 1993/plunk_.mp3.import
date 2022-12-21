@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg7ihyr1d7oot"
+path="res://.godot/imported/plunk_.mp3-ab9faec5157c69975be2e4fe90729c85.mp3str"
+
+[deps]
+
+source_file="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/plunk_.mp3"
+dest_files=["res://.godot/imported/plunk_.mp3-ab9faec5157c69975be2e4fe90729c85.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

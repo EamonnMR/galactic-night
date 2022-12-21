@@ -29,6 +29,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://lib/DataRow.gd"
 }, {
+"base": "Node3D",
+"class": &"Explosion",
+"language": &"GDScript",
+"path": "res://effects/Explosion.gd"
+}, {
 "base": "DataRow",
 "class": &"FactionData",
 "language": &"GDScript",
@@ -38,6 +43,11 @@ _global_script_classes=[{
 "class": &"HyperlaneData",
 "language": &"GDScript",
 "path": "res://procgen/HyperlaneData.gd"
+}, {
+"base": "RefCounted",
+"class": &"IffProfile",
+"language": &"GDScript",
+"path": "res://IffProfile.gd"
 }, {
 "base": "Node",
 "class": &"Inventory",
@@ -94,8 +104,10 @@ _global_script_class_icons={
 "Controller": "",
 "Crafting": "",
 "DataRow": "",
+"Explosion": "",
 "FactionData": "",
 "HyperlaneData": "",
+"IffProfile": "",
 "Inventory": "",
 "ItemData": "",
 "ItemIcon": "",
@@ -123,6 +135,10 @@ Procgen="*res://procgen/Procgen.tscn"
 Data="*res://data/Data.tscn"
 Cheats="*res://Cheats.tscn"
 SystemGen="*res://procgen/SystemGen.gd"
+
+[editor]
+
+movie_writer/movie_file="/home/eamonnm/movie.avi"
 
 [global]
 
