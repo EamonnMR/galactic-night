@@ -8,6 +8,8 @@ var biomes = {}
 var factions = {}
 var skins = {}
 var evergreen_spawns = []
+var evergreen_natural_spawns = []
+var evergreen_artificial_spawns = []
 var ships = {}
 
 # Game constants:
@@ -59,7 +61,15 @@ func cache_evergreen_spawns():
 	for spawn in spawns:
 		if spawns[spawn].evergreen:
 			evergreen_spawns.push_back(spawn)
-	
+
+func cache_evergreen_preset_spawns():
+	for spawn in spawns:
+		if spawns[spawn].evergreen and spawns[spawn].preset:
+			if spawns[spawn].natural:
+				evergreen_natural_spawns.push_back(spawn)
+			else:
+				evergreen_artificial_spawns.push_back(spawn)
+
 func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
 	for craftable_type in [

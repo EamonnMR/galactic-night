@@ -59,9 +59,10 @@ func generate_systems(seed_value: int) -> String:
 	cache_links()
 	var start_sys = populate_biomes()
 	calculate_system_distances()
+	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
-	
+	place_artificial_static_spawns()
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
 
@@ -307,6 +308,35 @@ func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
 		system.name = random_name(system)
+		
+func place_natural_static_spawns():
+	for system_id in systems:
+		var system = systems[system_id]
+		for spawn_id in (
+			Data.biomes[system.biome].spawns + Data.evergreen_natural_spawns
+		):
+			var spawn = Data.spawns[spawn_id]
+			if spawn.preset:
+				pass
+				
+				# TODO: Place stuff in system.entities 
+				# if not system.entities["spobs"]:
+				#     system.entities["spobs"] = []
+				# system.entities.spobs.push_back(
+
+func place_artificial_static_spawns():
+	for system_id in systems:
+		var system = systems[system_id]
+		for spawn_id in (
+			Data.biomes[system.biome].spawns + Data.evergreen_artificial_spawns
+		):
+			pass
+			# TODO: Place stuff in system.entities 
+			# 
+	
+
+func place_artificial_static_spawns():
+	place_spawns(false)
 
 func random_name(sys: SystemData):
 	if sys.faction != "" and sys.faction != "0":
