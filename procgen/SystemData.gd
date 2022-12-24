@@ -41,3 +41,9 @@ func deserialize(data: Dictionary):
 	generation = data["generation"].to_int()
 	core = data["core"]
 	entities = data["entities"]
+
+func deserialize_entities(world3D: Node3D):
+	for destination_str in entities:
+		var destination = world3D.get_child(destination_str)
+		for serialized in entities[destination_str]:
+			

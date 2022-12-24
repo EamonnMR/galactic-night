@@ -64,3 +64,8 @@ func current_biome() -> BiomeData:
 		return Data.biomes[Procgen.systems[current_system].biome]
 	else:
 		return BiomeData.new({})
+
+func deserialize_entity(destination, serial_data):
+ 	var object = Client.cache_load(serial_data["scene"]).instance()
+ 	object.deserialize(serial_data["state"])
+ 	return

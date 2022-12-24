@@ -307,44 +307,42 @@ func grow_faction_influence_from_core_worlds():
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
-		system.name = random_name(system)
+		system.name = random_name(system, "NGC-")
 		
 func place_natural_static_spawns():
+	place_static_spawns(
+		func(system): return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
+	)
+
+func place_artificial_static_spawns():
+	place_static_spawns(
+		func(system): return Data.factions[system.faction].spawns + Data.evergreen_artificial_spawns
+	)
+
+func place_static_spawns(get_spawns: Callable):
 	for system_id in systems:
 		var system = systems[system_id]
-		for spawn_id in (
-			Data.biomes[system.biome].spawns + Data.evergreen_natural_spawns
-		):
+		for spawn_id in (get_spawns.call(system)):
 			var spawn = Data.spawns[spawn_id]
 			if spawn.preset:
-				pass
-				
-				# TODO: Place stuff in system.entities 
-				# if not system.entities["spobs"]:
-				#     system.entities["spobs"] = []
-				# system.entities.spobs.push_back(
+				var entities = spawn.do_spawn(rng)
+				var i = 0
+				for entity in entities:
+					i += 1
+					if "spob_name" in entity:
+						entity.spob_name = random_name(system, "SPB-", i.to_string())
+				if not system.entities[spawn.destination]:
+					system.entities[spawn.destination] = []
+				for instance in entities:
+					system.entities.spobs.push_back(instance.serialize())
 
-func place_artificial_static_spawns():
-	for system_id in systems:
-		var system = systems[system_id]
-		for spawn_id in (
-			Data.biomes[system.biome].spawns + Data.evergreen_artificial_spawns
-		):
-			pass
-			# TODO: Place stuff in system.entities 
-			# 
-	
-
-func place_artificial_static_spawns():
-	place_spawns(false)
-
-func random_name(sys: SystemData):
+func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
 	if sys.faction != "" and sys.faction != "0":
 		var name_scheme = Data.factions[sys.faction].sys_name_scheme
 		# print("Current name scheme", name_scheme)
 		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
-		return "NGC-" + sys.id
+		return default_prefix + sys.id + default_postfix
 
 func randi_radius(radius: int, rng: RandomNumberGenerator):
 	return (rng.randi() % (2 * radius)) - radius

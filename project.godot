@@ -89,11 +89,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://data/Spawn.gd"
 }, {
-"base": "RefCounted",
-"class": &"SystemData",
-"language": &"GDScript",
-"path": "res://procgen/SystemData.gd"
-}, {
 "base": "Node3D",
 "class": &"Weapon",
 "language": &"GDScript",
@@ -116,7 +111,6 @@ _global_script_class_icons={
 "ShipData": "",
 "SkinData": "",
 "SpawnData": "",
-"SystemData": "",
 "Weapon": ""
 }
 
