@@ -42,8 +42,7 @@ func deserialize(data: Dictionary):
 	core = data["core"]
 	entities = data["entities"]
 
-func deserialize_entities(world3D: Node3D):
+func deserialize_entities():
 	for destination_str in entities:
-		var destination = world3D.get_child(destination_str)
-		for serialized in entities[destination_str]:
-			
+		for serial_data in entities[destination_str]:
+			Client.deserialize_entity(destination_str, serial_data)

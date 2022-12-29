@@ -24,6 +24,8 @@ func _get_color(node: Node):
 	return DISPOSITION_COLORS["player"]
 
 func _get_size(node: Node):
+	if node.name == "Spob":
+		return 5
 	return 2
 
 func _draw():

@@ -96,3 +96,10 @@ func assert_spawns_exist():
 			var spawn_list = faction.get(spawn_list_name)
 			for spawn in spawn_list:
 				assert(spawn in spawns)
+
+func assert_spawns_have_scenes_or_types():
+	for spawn_id in spawns:
+		var spawn = spawns[spawn_id]
+		assert(not (
+			spawn.scene == null and spawn.type == null
+		))

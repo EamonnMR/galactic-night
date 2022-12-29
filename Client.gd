@@ -65,7 +65,9 @@ func current_biome() -> BiomeData:
 	else:
 		return BiomeData.new({})
 
-func deserialize_entity(destination, serial_data):
- 	var object = Client.cache_load(serial_data["scene"]).instance()
- 	object.deserialize(serial_data["state"])
- 	return
+func deserialize_entity(destination_path, serial_data):
+	var destination = get_world().get_node(destination_path)
+	var entity = load(serial_data["scene_file_path"]).instantiate() # TODO: Explicitly list allowed nodes and cache them at load time.
+	entity.deserialize(serial_data)
+	# object.name = serial_data["name"] # TODO: We want to deal with names/IDs for networked play
+	destination.add_child(entity)

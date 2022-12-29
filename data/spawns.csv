@@ -6,5 +6,5 @@ compact_npcs,1,FALSE,FALSE,1,,dragon,3,npcs,FALSE,ships
 pirate_npcs,2,FALSE,FALSE,1,,nimbus,4,npcs,FALSE,ships
 warpcorp_npcs,1,FALSE,FALSE,1,,nimbus,5,npcs,FALSE,ships
 society_npcs,1,FALSE,FALSE,1,,nimbus,6,npcs,FALSE,ships
-planet,1,TRUE,TRUE,1,res://entities/Spob.tscn,,,spobs,FALSE,
-station,1,TRUE,FALSE,1,res://entities/Spob.tscn,,,spobs,FALSE,
+planet,1,TRUE,TRUE,1,res://entities/spobs/Spob.tscn,,,spobs,FALSE,
+station,1,TRUE,FALSE,1,res://entities/spobs/Spob.tscn,,,spobs,FALSE,

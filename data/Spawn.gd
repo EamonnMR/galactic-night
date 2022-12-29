@@ -19,7 +19,7 @@ static func get_csv_path():
 	return "res://data/spawns.csv"
 
 func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
-	var instances = Array[Node]
+	var instances: Array[Node] = []
 	for i in range(count):
 		if chance >= rng.randf():
 			var position = Procgen.random_location_in_system(rng)

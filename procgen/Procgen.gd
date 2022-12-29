@@ -316,7 +316,16 @@ func place_natural_static_spawns():
 
 func place_artificial_static_spawns():
 	place_static_spawns(
-		func(system): return Data.factions[system.faction].spawns + Data.evergreen_artificial_spawns
+		func(system):
+			if system.faction == null or system.faction == "":
+				return Data.evergreen_artificial_spawns
+			
+			var faction = Data.factions[system.faction]
+			return (
+				faction.spawns_system
+				+ Data.evergreen_artificial_spawns
+				+ (faction.spawns_core if system.core else [])
+			)
 	)
 
 func place_static_spawns(get_spawns: Callable):
@@ -325,13 +334,13 @@ func place_static_spawns(get_spawns: Callable):
 		for spawn_id in (get_spawns.call(system)):
 			var spawn = Data.spawns[spawn_id]
 			if spawn.preset:
-				var entities = spawn.do_spawn(rng)
-				var i = 0
+				var entities = spawn.do_spawns(rng)
+				var i: int = 0
 				for entity in entities:
 					i += 1
 					if "spob_name" in entity:
-						entity.spob_name = random_name(system, "SPB-", i.to_string())
-				if not system.entities[spawn.destination]:
+						entity.spob_name = random_name(system, "SPB-", str(i))
+				if not (spawn.destination in system.entities):
 					system.entities[spawn.destination] = []
 				for instance in entities:
 					system.entities.spobs.push_back(instance.serialize())
