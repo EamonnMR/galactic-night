@@ -13,8 +13,6 @@ var linear_velocity = Vector2()
 
 @export var explosion: PackedScene
 
-const PLAY_AREA_RADIUS = 300
-
 func _ready():
 	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player

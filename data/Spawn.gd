@@ -14,6 +14,7 @@ var type: String
 var data_type: String
 var faction: int
 var evergreen: bool
+var distance: float
 
 static func get_csv_path():
 	return "res://data/spawns.csv"
