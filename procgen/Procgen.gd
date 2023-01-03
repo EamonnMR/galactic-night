@@ -1,6 +1,7 @@
 extends Node
 
 var RADIUS = 1000
+#var RADIUS = 500
 var DENSITY = 1.0/3000.0
 var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
@@ -216,6 +217,7 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 	return null
 
 func populate_factions():
+	print("Populate factions")
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
@@ -310,11 +312,14 @@ func name_systems():
 		system.name = random_name(system, "NGC-")
 		
 func place_natural_static_spawns():
+	# TODO: This is causing an issue.
+	print("Place natural static spawns")
 	place_static_spawns(
 		func(system): return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
 	)
 
 func place_artificial_static_spawns():
+	print("Place artificial static spawns")
 	place_static_spawns(
 		func(system):
 			if system.faction == null or system.faction == "":
@@ -330,21 +335,28 @@ func place_artificial_static_spawns():
 
 func place_static_spawns(get_spawns: Callable):
 	for system_id in systems:
+		#if int(system_id) > 60:
+		#	return
+		# This will avoid the crash
 		var system = systems[system_id]
 		for spawn_id in (get_spawns.call(system)):
 			var spawn = Data.spawns[spawn_id]
 			if spawn.preset:
+				print(system_id)
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
 				for entity in entities:
 					i += 1
 					if "spob_name" in entity:
+						# This seems to not affect the crash.
 						entity.spob_name = random_name(system, "SPB-", str(i))
 				if not (spawn.destination in system.entities):
 					system.entities[spawn.destination] = []
 				for instance in entities:
-					system.entities.spobs.push_back(instance.serialize())
-
+					system.entities.spobs = [instance.serialize()]
+					#instance.free()
+					# I was hoping this was a memory bottleneck but it isn't
+					
 func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
 	if sys.faction != "" and sys.faction != "0":
 		var name_scheme = Data.factions[sys.faction].sys_name_scheme

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc2jt0kmi825s"]
+
+[ext_resource type="PackedScene" uid="uid://c0arcyowgbhj1" path="res://entities/spobs/Spob.tscn" id="1_3ailm"]
+[ext_resource type="Texture2D" uid="uid://3q221oiu5emv" path="res://assets/eamonn/fts_recycled/oe_station.png" id="2_rogri"]
+
+[node name="Spob" instance=ExtResource("1_3ailm")]
+
+[node name="Sprite3D" parent="." index="0"]
+texture = ExtResource("2_rogri")

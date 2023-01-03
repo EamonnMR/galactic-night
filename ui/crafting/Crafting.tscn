@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf46l4qga0grl"]
 
-[ext_resource type="PackedScene" path="res://ui/NinePatchPanel.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1"]
 [ext_resource type="Script" path="res://ui/crafting/CraftingMain.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ecaqh0syukcx" path="res://ui/crafting/ItemCraftSubmenu.tscn" id="4"]
 

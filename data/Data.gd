@@ -95,6 +95,8 @@ func assert_spawns_exist():
 		]:
 			var spawn_list = faction.get(spawn_list_name)
 			for spawn in spawn_list:
+				if not (spawn in spawns):
+					print("Spawn: ", spawn, " ain't real")
 				assert(spawn in spawns)
 
 func assert_spawns_have_scenes_or_types():

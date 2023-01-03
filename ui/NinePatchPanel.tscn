@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b5sa7qn1e2xyb"]
 
-[ext_resource path="res://assets/danc_cc_by/Dialogue_cracked.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://banwg60unu1ya" path="res://assets/danc_cc_by/Dialogue_cracked.png" id="1"]
 
 [node name="NinePatchPanel" type="NinePatchRect"]
 offset_right = 166.0
 offset_bottom = 114.0
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 patch_margin_left = 75
 patch_margin_top = 39
 patch_margin_right = 70
