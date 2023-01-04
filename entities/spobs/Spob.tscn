@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0arcyowgbhj1"]
+
+[ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
+[ext_resource type="Texture2D" uid="uid://cyv5kxpnv1w56" path="res://assets/Renderwahn_cc0/A00.png" id="2_goxaf"]
+
+[node name="Spob" type="Node3D"]
+script = ExtResource("1_1liil")
+spob_prefix = "UBP-"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, -2)
+pixel_size = 0.005
+billboard = 1
+fixed_size = true
+texture_filter = 0
+texture = ExtResource("2_goxaf")

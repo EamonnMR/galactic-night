@@ -64,3 +64,10 @@ func current_biome() -> BiomeData:
 		return Data.biomes[Procgen.systems[current_system].biome]
 	else:
 		return BiomeData.new({})
+
+func deserialize_entity(destination_path, serial_data):
+	var destination = get_world().get_node(destination_path)
+	var entity = load(serial_data["scene_file_path"]).instantiate() # TODO: Explicitly list allowed nodes and cache them at load time.
+	entity.deserialize(serial_data)
+	# object.name = serial_data["name"] # TODO: We want to deal with names/IDs for networked play
+	destination.add_child(entity)

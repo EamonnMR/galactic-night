@@ -3,7 +3,9 @@ extends Node
 func enter_system():
 	$World3D/players.add_child(Client.player)
 	var system: SystemData = Procgen.systems[Client.current_system_id()]
+	system.deserialize_entities()  # Probably make this a method on World3D
 	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
+	
 
 func _ready():
 	call_deferred("enter_system")

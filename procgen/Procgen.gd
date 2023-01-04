@@ -1,6 +1,7 @@
 extends Node
 
 var RADIUS = 1000
+#var RADIUS = 500
 var DENSITY = 1.0/3000.0
 var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
@@ -47,7 +48,7 @@ func deserialize(data: Dictionary):
 
 
 func random_location_in_system(rng: RandomNumberGenerator):
-	return random_circular_coordinate(1000, rng)
+	return random_circular_coordinate(rng.randf() * Util.PLAY_AREA_RADIUS, rng)
 
 func generate_systems(seed_value: int) -> String:
 	# Returns the id of the system that "start" gets put in
@@ -59,9 +60,10 @@ func generate_systems(seed_value: int) -> String:
 	cache_links()
 	var start_sys = populate_biomes()
 	calculate_system_distances()
+	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
-	
+	place_artificial_static_spawns()
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
 
@@ -215,6 +217,7 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 	return null
 
 func populate_factions():
+	print("Populate factions")
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
@@ -306,36 +309,67 @@ func grow_faction_influence_from_core_worlds():
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
-		system.name = random_name(system)
+		system.name = random_name(system, "NGC-")
+		
+func place_natural_static_spawns():
+	# TODO: This is causing an issue.
+	print("Place natural static spawns")
+	place_static_spawns(
+		func(system): return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
+	)
 
-func random_name(sys: SystemData):
+func place_artificial_static_spawns():
+	print("Place artificial static spawns")
+	place_static_spawns(
+		func(system):
+			if system.faction == null or system.faction == "":
+				return Data.evergreen_artificial_spawns
+			
+			var faction = Data.factions[system.faction]
+			return (
+				faction.spawns_system
+				+ Data.evergreen_artificial_spawns
+				+ (faction.spawns_core if system.core else [])
+			)
+	)
+
+func place_static_spawns(get_spawns: Callable):
+	for system_id in systems:
+		#if int(system_id) > 60:
+		#	return
+		# This will avoid the crash
+		var system = systems[system_id]
+		for spawn_id in (get_spawns.call(system)):
+			var spawn = Data.spawns[spawn_id]
+			if spawn.preset:
+				print(system_id)
+				var entities = spawn.do_spawns(rng)
+				var i: int = 0
+				for entity in entities:
+					if "spob_name" in entity:
+						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
+					i += 1
+				if not (spawn.destination in system.entities):
+					system.entities[spawn.destination] = []
+				for instance in entities:
+					system.entities.spobs += [instance.serialize()]
+
+					
+func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
 	if sys.faction != "" and sys.faction != "0":
-		var foo = sys.faction
-		var bla = Data.name_generators
-		var blar = Data.factions[sys.faction]
-		return Data.name_generators[
-			Data.factions[sys.faction].sys_name_scheme
-		].get_random_name()
+		var name_scheme = Data.factions[sys.faction].sys_name_scheme
+		# print("Current name scheme", name_scheme)
+		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
-		return "NGC-" + sys.id
-func randi_radius(radius: int, rng: RandomNumberGenerator):
-	return (rng.randi() % (2 * radius)) - radius
+		return default_prefix + sys.id + default_postfix
 
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
-	"""Remember to seed first if desired"""
-	var position: Vector2
-	var do_once: bool = true  # The rare case where I miss do while
-	while do_once or position.length() > radius:
-		do_once = false
-		position = Vector2(
-			self.randi_radius(radius, rng),
-			self.randi_radius(radius, rng)
-		)
-	return position
-	
+	return radius * Vector2(sqrt(rng.randf()), 0).rotated(PI * 2 * rng.randf())
+
 func random_select(iterable, rng: RandomNumberGenerator):
 	""" Remember to seed the rng"""
 	return iterable[rng.randi() % iterable.size()]
+
 
 func _set_light(system: SystemData, biome: BiomeData):
 	system.ambient_color = biome.ambient_color

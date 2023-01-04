@@ -13,25 +13,20 @@ var starlight_color: Color
 var faction: String
 var core: bool
 var generation: int
+var entities: Dictionary
 
 var distance: float
 var distance_normalized: float
 
 func serialize():
-	return {
-		"id": id,
-		"name": name,
-		"position": [position.x, position.y],
-		"biome": biome,
-		"links_cache": links_cache,
-		"long_links_cache": long_links_cache,
-		"state": state,
-		"explored": int(explored),
-		"ambient_color": ambient_color.to_html(false),
-		"starlight_color": starlight_color.to_html(false),
-		"core": core,
-		"generation": generation
-	}
+	
+	var serialized = Util.default_serialize(self)
+	serialized["position"] = [position.x, position.y]
+	serialized["explored"] = int(explored)
+	serialized["ambient_color"] = ambient_color.to_html(false)
+	serialized["starlight_color"] = starlight_color.to_html(false)
+	
+	return serialized
 
 func deserialize(data: Dictionary):
 	id = data["id"]
@@ -45,3 +40,9 @@ func deserialize(data: Dictionary):
 	ambient_color = Color(data["color"])
 	generation = data["generation"].to_int()
 	core = data["core"]
+	entities = data["entities"]
+
+func deserialize_entities():
+	for destination_str in entities:
+		for serial_data in entities[destination_str]:
+			Client.deserialize_entity(destination_str, serial_data)

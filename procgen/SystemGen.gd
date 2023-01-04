@@ -1,5 +1,7 @@
 extends Node
 
+# For incidental randomness in systems
+
 func get_faction_spawns(system: SystemData) -> Array[String]:
 	if system.faction == "":
 		return []
@@ -27,18 +29,7 @@ func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 	):
 		var spawn: SpawnData = Data.spawns[spawn_id]
 		print(spawn.id)
-		for _i in range(spawn.count):
-			if spawn.chance >= rng.randf():
-				var position = Procgen.random_location_in_system(rng)
-				var instance: Node
-				if spawn.data_type != "":
-					instance = Data.get(spawn.data_type)[spawn.type].scene.instantiate()
-				else:
-					instance = spawn.scene.instantiate()
-				if spawn.type != null and spawn.type != "":
-					instance.type = spawn.type
-				if "faction" in instance:
-					instance.faction = str(spawn.faction)
-				instance.transform.origin = Util.raise_25d(position)
-				# TODO: This will be important for visual layering
+		if not spawn.preset:
+			var entities = spawn.do_spawns(rng)
+			for instance in entities:
 				gameplay.get_node(spawn.destination).add_child(instance)

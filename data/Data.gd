@@ -8,6 +8,8 @@ var biomes = {}
 var factions = {}
 var skins = {}
 var evergreen_spawns = []
+var evergreen_natural_spawns = []
+var evergreen_artificial_spawns = []
 var ships = {}
 
 # Game constants:
@@ -31,6 +33,7 @@ func _init():
 		set(dest, DataRow.load_from_csv(cls))
 	load_text()
 	cache_evergreen_spawns()
+	cache_evergreen_preset_spawns()
 	# Tests
 	assert_ingredients_exist()
 	assert_spawns_exist()
@@ -43,7 +46,8 @@ func load_text():
 		["tain", "res://data/corpus/tain_names.txt"],
 		["illiad", "res://data/corpus/illiad_names.txt"],
 		["gilgamesh", "res://data/corpus/gilgamesh_names.txt"],
-		["cornwall", "res://data/corpus/cornwall_places.txt"]
+		["cornwall", "res://data/corpus/cornwall_places.txt"],
+		["cali", "res://data/corpus/cali.txt"]
 	]:
 		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
 	print("Chains crunched.")
@@ -59,7 +63,16 @@ func cache_evergreen_spawns():
 	for spawn in spawns:
 		if spawns[spawn].evergreen:
 			evergreen_spawns.push_back(spawn)
-	
+
+func cache_evergreen_preset_spawns():
+	for spawn in spawns:
+		var spawn_dat: SpawnData = spawns[spawn]
+		if spawn_dat.evergreen and spawn_dat.preset:
+			if spawn_dat.natural:
+				evergreen_natural_spawns.push_back(spawn)
+			else:
+				evergreen_artificial_spawns.push_back(spawn)
+
 func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
 	for craftable_type in [
@@ -85,4 +98,13 @@ func assert_spawns_exist():
 		]:
 			var spawn_list = faction.get(spawn_list_name)
 			for spawn in spawn_list:
+				if not (spawn in spawns):
+					print("Spawn: ", spawn, " ain't real")
 				assert(spawn in spawns)
+
+func assert_spawns_have_scenes_or_types():
+	for spawn_id in spawns:
+		var spawn = spawns[spawn_id]
+		assert(not (
+			spawn.scene == null and spawn.type == null
+		))

@@ -2,9 +2,7 @@ extends NinePatchRect
 
 @onready var name_textbox = get_node("MarginContainer/VBoxContainer/Name")
 @onready var biome = get_node("MarginContainer/VBoxContainer/Biome")
-@onready var planets = get_node("MarginContainer/VBoxContainer/Planets")
-@onready var aliens = get_node("MarginContainer/VBoxContainer/Aliens")
-@onready var sleepers = get_node("MarginContainer/VBoxContainer/Sleepers")
+@onready var spobs = get_node("MarginContainer/VBoxContainer/Spobs")
 @onready var faction = get_node("MarginContainer/VBoxContainer/Faction")
 
 func _ready():
@@ -20,6 +18,13 @@ func _update():
 			faction.text = "Faction: " + Data.factions[sysdat.faction].name + " (" + sysdat.faction + ")"
 		else:
 			faction.text = "Faction: None"
+		if "spobs" in sysdat.entities:
+			var spob_names: PackedStringArray = []
+			for spob in sysdat.entities.spobs:
+				spob_names.push_back(spob.spob_name)
+			spobs.text = "Spobs: " + (", ".join(spob_names))
+		else:
+			spobs.text = ""
 	else:
 		name_textbox.text = "Unexplored System"
 		biome.text = "Unknown"

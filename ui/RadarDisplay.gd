@@ -5,6 +5,8 @@ var radar_scale = 2
 # TODO: Don't hardcode this
 @onready var radar_offset = Vector2(119, 119)
 
+@onready var radar_rotate = PI + Util.flatten_25d(Client.camera.global_position).angle()
+
 var DISPOSITION_COLORS = {
 		"hostile": Color(1,0,0),
 		"neutral": Color(1,1,0),
@@ -14,7 +16,8 @@ var DISPOSITION_COLORS = {
 }
 
 func _relative_position(subject: Node3D, player_position: Vector2) -> Vector2:
-	var relative_position = (Util.flatten_25d(subject.global_transform.origin) - player_position) * radar_scale
+	var relative_position: Vector2 = (Util.flatten_25d(subject.global_transform.origin) - player_position) * radar_scale
+	relative_position = relative_position.rotated(radar_rotate)
 	return relative_position.limit_length((radar_offset.x - 5))
 	
 func _process(delta):
@@ -24,6 +27,8 @@ func _get_color(node: Node):
 	return DISPOSITION_COLORS["player"]
 
 func _get_size(node: Node):
+	if node.name == "Spob":
+		return 5
 	return 2
 
 func _draw():
