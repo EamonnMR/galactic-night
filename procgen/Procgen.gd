@@ -365,24 +365,13 @@ func random_name(sys: SystemData, default_prefix: String, default_postfix: Strin
 	else:
 		return default_prefix + sys.id + default_postfix
 
-func randi_radius(radius: int, rng: RandomNumberGenerator):
-	return (rng.randi() % (2 * radius)) - radius
-
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
-	"""Remember to seed first if desired"""
-	var position: Vector2
-	var do_once: bool = true  # The rare case where I miss do while
-	while do_once or position.length() > radius:
-		do_once = false
-		position = Vector2(
-			self.randi_radius(radius, rng),
-			self.randi_radius(radius, rng)
-		)
-	return position
-	
+	return radius * Vector2(sqrt(rng.randf()), 0).rotated(PI * 2 * rng.randf())
+
 func random_select(iterable, rng: RandomNumberGenerator):
 	""" Remember to seed the rng"""
 	return iterable[rng.randi() % iterable.size()]
+
 
 func _set_light(system: SystemData, biome: BiomeData):
 	system.ambient_color = biome.ambient_color
