@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3q221oiu5emv" path="res://assets/eamonn/fts_recycled/oe_station.png" id="2_rogri"]
 
 [node name="Spob" instance=ExtResource("1_3ailm")]
+spob_prefix = "Outpost "
 
 [node name="Sprite3D" parent="." index="0"]
 texture = ExtResource("2_rogri")

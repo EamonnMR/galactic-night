@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pdt6murqymyn" path="res://assets/eamonn/fts_recycled/loyal_station.png" id="2_6ai0d"]
 
 [node name="Spob" instance=ExtResource("1_xssk4")]
+spob_prefix = "F-"
 
 [node name="Sprite3D" parent="." index="0"]
 texture = ExtResource("2_6ai0d")

@@ -33,6 +33,7 @@ func _init():
 		set(dest, DataRow.load_from_csv(cls))
 	load_text()
 	cache_evergreen_spawns()
+	cache_evergreen_preset_spawns()
 	# Tests
 	assert_ingredients_exist()
 	assert_spawns_exist()
@@ -45,7 +46,8 @@ func load_text():
 		["tain", "res://data/corpus/tain_names.txt"],
 		["illiad", "res://data/corpus/illiad_names.txt"],
 		["gilgamesh", "res://data/corpus/gilgamesh_names.txt"],
-		["cornwall", "res://data/corpus/cornwall_places.txt"]
+		["cornwall", "res://data/corpus/cornwall_places.txt"],
+		["cali", "res://data/corpus/cali.txt"]
 	]:
 		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
 	print("Chains crunched.")
@@ -64,8 +66,9 @@ func cache_evergreen_spawns():
 
 func cache_evergreen_preset_spawns():
 	for spawn in spawns:
-		if spawns[spawn].evergreen and spawns[spawn].preset:
-			if spawns[spawn].natural:
+		var spawn_dat: SpawnData = spawns[spawn]
+		if spawn_dat.evergreen and spawn_dat.preset:
+			if spawn_dat.natural:
 				evergreen_natural_spawns.push_back(spawn)
 			else:
 				evergreen_artificial_spawns.push_back(spawn)

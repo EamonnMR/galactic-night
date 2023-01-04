@@ -346,16 +346,14 @@ func place_static_spawns(get_spawns: Callable):
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
 				for entity in entities:
-					i += 1
 					if "spob_name" in entity:
-						# This seems to not affect the crash.
-						entity.spob_name = random_name(system, "SPB-", str(i))
+						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
+					i += 1
 				if not (spawn.destination in system.entities):
 					system.entities[spawn.destination] = []
 				for instance in entities:
-					system.entities.spobs = [instance.serialize()]
-					#instance.free()
-					# I was hoping this was a memory bottleneck but it isn't
+					system.entities.spobs += [instance.serialize()]
+
 					
 func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
 	if sys.faction != "" and sys.faction != "0":

@@ -1,0 +1,114 @@
+los angeles 
+san diego 
+san jose 
+san francisco 
+fresno 
+sacramento 
+anaheim 
+santa ana 
+irvine 
+chula vista 
+fremont 
+santa clarita 
+san bernardino 
+modesto 
+moreno valley 
+fontana 
+oxnard 
+glendale 
+santa rosa 
+rancho cucamonga 
+salinas 
+corona 
+pomona 
+escondido 
+visalia 
+orange 
+pasadena 
+santa clara 
+vallejo 
+concord 
+berkeley 
+costa mesa 
+murrieta 
+ventura 
+temecula 
+santa maria 
+el monte 
+el cajon 
+san mateo 
+san marcos 
+mission viejo 
+san leandro 
+merced 
+manteca 
+alhambra 
+folsom 
+tustin 
+milpitas 
+rancho cordova 
+napa 
+alameda 
+turlock 
+camarillo 
+tulare 
+palo alto 
+yorba linda 
+lodi 
+madera 
+laguna niguel 
+san clemente 
+la habra 
+santa cruz 
+montebello 
+la mesa 
+cupertino 
+santee 
+petaluma 
+yucaipa 
+colton 
+san jacinto 
+novato 
+beaumont 
+glendora 
+aliso viejo 
+cathedral city 
+delano 
+covina 
+cerritos 
+la mirada 
+rancho santa margarita 
+newark 
+brea 
+san luis obispo 
+los banos 
+morgan hill 
+lompoc 
+el centro 
+rancho palos verdes 
+coachella 
+culver
+san gabriel 
+la puente 
+adelanto 
+monrovia 
+montclair 
+la quinta 
+san juan capistrano 
+san dimas 
+los gatos 
+goleta 
+san pablo 
+atwater 
+lawndale 
+los altos 
+paso robles 
+laguna
+la verne 
+san carlos 
+santa paula 
+monterey 
+el cerrito 
+barstow 
+galt 
+loma linda 

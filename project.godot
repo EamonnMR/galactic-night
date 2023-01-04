@@ -256,5 +256,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 anti_aliasing/quality/screen_space_aa=1
-textures/canvas_textures/default_texture_filter=0
 environment/default_environment="res://default_env.tres"
