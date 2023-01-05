@@ -8,17 +8,19 @@ var burst_counter: int = 0
 
 var iff: IffProfile
 
+@onready var parent = get_node("../")
+
 @export var projectile_scene: PackedScene
 @export var burst_count = 0
 @export var dupe_count = 1
 @export var spread: float = 0
 @export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
 @export var vary_pitch = 0
+@export var ammo_item: String
 
 @export var dmg_factor: float = 1
 
 func _ready():
-	var parent = get_node("../")
 	iff = IffProfile.new(
 		parent,
 		parent.faction,
@@ -27,8 +29,9 @@ func _ready():
 
 func try_shoot():
 	if not cooldown and not burst_cooldown:
-		# TODO: Consume ammo
-		_shoot()
+		if _try_consume_ammo():
+			# TODO: Consume ammo
+			_shoot()
 
 func _shoot():
 	if burst_count:
@@ -69,3 +72,8 @@ func _on_Cooldown_timeout():
 func _on_BurstCooldown_timeout():
 	burst_cooldown = false
 	burst_counter = 0
+	
+func _try_consume_ammo():
+	if ammo_item == "":
+		return true
+	return parent.get_node("Inventory").deduct_ingredients({ammo_item: 1})

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://uc7oyjsn3215"]
+[gd_scene load_steps=6 format=3 uid="uid://uc7oyjsn3215"]
 
 [ext_resource type="Script" path="res://entities/ship/Spaceship.gd" id="1_v25r1"]
 [ext_resource type="PackedScene" uid="uid://nt7stcr8sbj1" path="res://effects/GenericExplosion.tscn" id="2_1wg5t"]
 [ext_resource type="PackedScene" uid="uid://cnqxxfr3dlx7w" path="res://component/Weapon.tscn" id="2_p4ka6"]
 [ext_resource type="PackedScene" uid="uid://da271thfaabmi" path="res://component/Inventory.tscn" id="4_4rw1x"]
+[ext_resource type="PackedScene" uid="uid://cgnfwx0kmrbli" path="res://component/RocketLauncher.tscn" id="5_ehbj4"]
 
 [node name="Spaceship" type="CharacterBody3D"]
 collision_mask = 0
@@ -22,3 +23,5 @@ default_contents = {
 "metal": 5,
 "missile": 2
 }
+
+[node name="SecondaryWeapon" parent="." instance=ExtResource("5_ehbj4")]

@@ -47,7 +47,8 @@ func _physics_process(delta):
 func handle_shooting():
 	if $Controller.shooting:
 		$Weapon.try_shoot()
-		#$Weapon2.try_shoot()
+	if $Controller.shooting_secondary:
+		$SecondaryWeapon.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:

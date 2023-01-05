@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgnfwx0kmrbli"]
+
+[ext_resource type="PackedScene" uid="uid://cnqxxfr3dlx7w" path="res://component/Weapon.tscn" id="1_i3fgp"]
+[ext_resource type="PackedScene" uid="uid://uir3l6k363sk" path="res://entities/projectiles/missile.tscn" id="2_fh0nm"]
+
+[node name="Weapon" instance=ExtResource("1_i3fgp")]
+projectile_scene = ExtResource("2_fh0nm")
+ammo_item = "missile"
+
+[node name="Cooldown" parent="." index="0"]
+wait_time = 1.0

@@ -15,6 +15,7 @@ func get_rotation_impulse() -> int:
 func _physics_process(delta):
 	thrusting = Input.is_action_pressed("thrust")
 	shooting = Input.is_action_pressed("shoot")
+	shooting_secondary = Input.is_action_pressed("shoot_secondary")
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	cycle_skins()
 	cycle_ships()
