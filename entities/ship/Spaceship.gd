@@ -11,6 +11,8 @@ var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
 
+signal destroyed
+
 @export var explosion: PackedScene
 
 func _ready():
@@ -81,6 +83,7 @@ func decrease_bank(delta):
 
 func hit_by_projectile():
 	call_deferred("queue_free")
+	emit_signal("destroyed")
 	if explosion != null:
 		Explosion.make_explo(explosion, self)
 	

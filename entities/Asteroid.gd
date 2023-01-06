@@ -8,6 +8,8 @@ extends RigidBody3D
 
 @export var explosion: PackedScene
 
+signal destroyed
+
 func _ready():
 	add_to_group("radar")
 	rotate_y(randf_range(0, PI*2))
@@ -28,6 +30,7 @@ func break_up():
 			sub_roid.set_linear_velocity(linear_velocity)
 			sub_roid.transform.origin = global_transform.origin
 			Client.get_world().get_node("asteroids").add_child(sub_roid)
+	emit_signal("destroyed")
 	queue_free()
 
 func initial_velocity():

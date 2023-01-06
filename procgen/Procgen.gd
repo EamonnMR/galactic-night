@@ -221,7 +221,7 @@ func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
-	#grow_npc_spawns()
+
 
 func assign_faction_core_worlds() -> Array:
 	print("Randomly Assigning core worlds ")
@@ -358,7 +358,7 @@ func place_static_spawns(get_spawns: Callable):
 func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
 	if sys.faction != "" and sys.faction != "0":
 		var name_scheme = Data.factions[sys.faction].sys_name_scheme
-		# print("Current name scheme", name_scheme)
+		print("Current name scheme", name_scheme)
 		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
 		return default_prefix + sys.id + default_postfix
