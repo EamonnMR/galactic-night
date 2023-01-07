@@ -19,5 +19,6 @@ func drop():
 			# TODO: We need a fixed RNG, right?
 			if randf() <= drop_chance:
 				var pickup = preload("res://entities/pickup.tscn").instantiate()
+				pickup.type = item_type
 				Client.get_world().get_node("pickups").add_child(pickup)
 				pickup.transform.origin = global_transform.origin

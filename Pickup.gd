@@ -16,13 +16,6 @@ func _ready():
 	$AudioStreamPlayer3D.connect("finished", self.queue_free)
 	call_deferred("initial_velocity")
 
-func _on_PickupRange_body_entered(body):
-	if not picked_up and body.has_method("is_player") and body.is_player():
-		body.get_node("Inventory").add(type, 1)
-		$AudioStreamPlayer3D.play()
-		hide()
-		
-
 func serialize() -> Dictionary:
 	var position = Util.flatten_25d(global_transform.origin)
 	return {
@@ -36,3 +29,10 @@ func deserialize(data):
 		global_transform.origin = Util.raise_25d(
 			Vector2(data["position"][0], data["position"][1])
 		)
+
+func _on_pickup_range_body_entered(body):
+	if body == Client.player:
+		body.get_node("Inventory").add(type, 1)
+		$AudioStreamPlayer3D.play()
+		hide()
+
