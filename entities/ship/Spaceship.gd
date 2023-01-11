@@ -13,8 +13,6 @@ var linear_velocity = Vector2()
 
 signal destroyed
 
-@export var explosion: PackedScene
-
 func _ready():
 	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
@@ -96,5 +94,3 @@ func handle_jumping():
 func _on_health_destroyed():
 	call_deferred("queue_free")
 	emit_signal("destroyed")
-	if explosion != null:
-		Explosion.make_explo(explosion, self)

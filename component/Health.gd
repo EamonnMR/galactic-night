@@ -10,7 +10,7 @@ signal destroyed
 
 @export var max_health: int = 1
 @export var health: int = -1
-#@export var explosion: PackedScene
+@export var explosion: PackedScene
 
 func _ready():
 	if health == -1:
@@ -35,6 +35,8 @@ func take_damage(damage):
 	if health <= 0 and not already_destroyed:
 		already_destroyed = true
 		emit_signal("destroyed")
+		if explosion != null:
+			Explosion.make_explo(explosion, get_node("../"))
 	else:
 		emit_signal("damaged")
 

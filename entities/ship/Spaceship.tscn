@@ -11,7 +11,6 @@
 [node name="Spaceship" type="CharacterBody3D"]
 collision_mask = 0
 script = ExtResource("1_v25r1")
-explosion = ExtResource("2_1wg5t")
 
 [node name="CameraFollower" type="RemoteTransform3D" parent="."]
 update_rotation = false
@@ -36,5 +35,6 @@ loot_items = {
 
 [node name="Health" parent="." instance=ExtResource("7_rsi77")]
 max_health = 3
+explosion = ExtResource("2_1wg5t")
 
 [connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]
