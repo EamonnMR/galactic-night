@@ -80,12 +80,6 @@ func decrease_bank(delta):
 	else:
 		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
 			max($Graphics.rotation.x, bank_speed * delta)
-
-func hit_by_projectile():
-	call_deferred("queue_free")
-	emit_signal("destroyed")
-	if explosion != null:
-		Explosion.make_explo(explosion, self)
 	
 func handle_jumping():
 	if $Controller.jumping:
@@ -97,3 +91,10 @@ func handle_jumping():
 		else:
 			pass
 			# TODO: Print some sort of reminder to select a destination
+
+
+func _on_health_destroyed():
+	call_deferred("queue_free")
+	emit_signal("destroyed")
+	if explosion != null:
+		Explosion.make_explo(explosion, self)

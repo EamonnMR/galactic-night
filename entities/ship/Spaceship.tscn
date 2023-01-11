@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://uc7oyjsn3215"]
+[gd_scene load_steps=8 format=3 uid="uid://uc7oyjsn3215"]
 
 [ext_resource type="Script" path="res://entities/ship/Spaceship.gd" id="1_v25r1"]
 [ext_resource type="PackedScene" uid="uid://nt7stcr8sbj1" path="res://effects/GenericExplosion.tscn" id="2_1wg5t"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://da271thfaabmi" path="res://component/Inventory.tscn" id="4_4rw1x"]
 [ext_resource type="PackedScene" uid="uid://cgnfwx0kmrbli" path="res://component/RocketLauncher.tscn" id="5_ehbj4"]
 [ext_resource type="PackedScene" uid="uid://bjmll63x6x8c2" path="res://component/Loot.tscn" id="6_5xw71"]
+[ext_resource type="PackedScene" uid="uid://r6jv80byk5dl" path="res://component/Health.tscn" id="7_rsi77"]
 
 [node name="Spaceship" type="CharacterBody3D"]
 collision_mask = 0
@@ -32,3 +33,8 @@ drop_chance = 1.0
 loot_items = {
 "metal": 3
 }
+
+[node name="Health" parent="." instance=ExtResource("7_rsi77")]
+max_health = 3
+
+[connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]

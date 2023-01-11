@@ -17,10 +17,9 @@ func _ready():
 
 func _physics_process(delta):
 	Util.wrap_to_play_radius(self)
-	
+
 func hit_by_projectile():
 	break_up()
-
 func break_up():
 	if explosion != null:
 		Explosion.make_explo(explosion, self)
@@ -42,3 +41,7 @@ func _on_Area_body_entered(body):
 	if body.has_method("hit_by_asteroid"):
 		body.hit_by_asteroid()
 		break_up()
+
+
+func _on_health_destroyed():
+	break_up()

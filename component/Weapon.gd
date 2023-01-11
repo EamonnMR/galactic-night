@@ -18,7 +18,8 @@ var iff: IffProfile
 @export var vary_pitch = 0
 @export var ammo_item: String
 
-@export var dmg_factor: float = 1
+# @export var dmg_factor: float = 1
+@export var damage: int
 
 func _ready():
 	iff = IffProfile.new(
@@ -56,6 +57,7 @@ func _create_projectile():
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
 	projectile.global_transform = global_transform
+	projectile.damage = damage
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
