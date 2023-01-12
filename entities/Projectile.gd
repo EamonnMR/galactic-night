@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 var iff: IffProfile
+var damage: int
 
 func _ready():
 	call_deferred("initial_velocity")
@@ -16,7 +17,7 @@ func initial_velocity():
 func _on_Projectile_body_entered(body):
 	if not iff.should_exclude(body):
 		queue_free()
-		body.hit_by_projectile( )
+		Health.do_damage(body, damage)
 
 
 func _on_Timer_timeout():

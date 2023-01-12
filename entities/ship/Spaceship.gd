@@ -11,7 +11,7 @@ var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
 
-@export var explosion: PackedScene
+signal destroyed
 
 func _ready():
 	# Data.ships[type].apply_to_node(self)
@@ -47,7 +47,8 @@ func _physics_process(delta):
 func handle_shooting():
 	if $Controller.shooting:
 		$Weapon.try_shoot()
-		#$Weapon2.try_shoot()
+	if $Controller.shooting_secondary:
+		$SecondaryWeapon.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
@@ -77,11 +78,6 @@ func decrease_bank(delta):
 	else:
 		$Graphics.rotation.x -= sign($Graphics.rotation.x) * \
 			max($Graphics.rotation.x, bank_speed * delta)
-
-func hit_by_projectile():
-	call_deferred("queue_free")
-	if explosion != null:
-		Explosion.make_explo(explosion, self)
 	
 func handle_jumping():
 	if $Controller.jumping:
@@ -93,3 +89,8 @@ func handle_jumping():
 		else:
 			pass
 			# TODO: Print some sort of reminder to select a destination
+
+
+func _on_health_destroyed():
+	call_deferred("queue_free")
+	emit_signal("destroyed")

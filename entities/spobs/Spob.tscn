@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0arcyowgbhj1"]
 
 [ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
-[ext_resource type="Texture2D" uid="uid://cyv5kxpnv1w56" path="res://assets/Renderwahn_cc0/A00.png" id="2_goxaf"]
+[ext_resource type="Texture2D" uid="uid://d2wcac08xu0fp" path="res://assets/eamonn/red_alpha.png" id="2_pd10b"]
 
 [node name="Spob" type="Node3D"]
 script = ExtResource("1_1liil")
@@ -13,4 +13,4 @@ pixel_size = 0.005
 billboard = 1
 fixed_size = true
 texture_filter = 0
-texture = ExtResource("2_goxaf")
+texture = ExtResource("2_pd10b")

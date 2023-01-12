@@ -6,8 +6,11 @@ class_name Controller
 
 var shooting: bool
 
+var shooting_secondary: bool
+
 var thrusting: bool
 
 var rotation_impulse: float
 
 var jumping: bool
+
