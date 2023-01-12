@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5cwh0c06uon8"]
+[gd_scene load_steps=11 format=3 uid="uid://c4tpyjes28vxu"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="Shader" path="res://starfield.gdshader" id="2_0a4pk"]
 [ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
+[ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="4_to02v"]
 [ext_resource type="PackedScene" uid="uid://bgtxo5vmdxx77" path="res://ui/ui.tscn" id="5_qu37x"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61vo"]
 shader = ExtResource("2_0a4pk")
+shader_parameter/position = null
+shader_parameter/nebula = ExtResource("9")
 
 [sub_resource type="GDScript" id="15"]
 script/source = "extends Label
@@ -16,11 +19,14 @@ script/source = "extends Label
 var move_scale_oom = 0.1
 
 func _process(delta):
-	return
-	modify_move_scale()
-	text = \"Move Scale.y: \" + str(get_node(\"../Background\").MOVE_SCALE.y) + \"\\n\" \\
-		+ \"Change by: \" + str(move_scale_oom) + \"\\n\" \\
-		+ \"J/L to change, I/K to change oom\"
+	#fewddmodify_move_scale()
+	if get_node(\"../\").has_node(\"Background\"):
+		text = \"Pos.x: \" + str(get_node(\"../Background\").pos.x) + \"\\n\" \\
+			+ \"Pos.y: \" + str(get_node(\"../Background\").pos.y) + \"\\n\" \\
+			+ \"Move Scale.x: \" + str(get_node(\"../Background\").MOVE_SCALE.x) + \"\\n\" \\
+			+ \"Move Scale.y: \" + str(get_node(\"../Background\").MOVE_SCALE.y) + \"\\n\" \\
+			+ \"Change by: \" + str(move_scale_oom) + \"\\n\" \\
+			+ \"J/L to change, I/K to change oom\"
 	
 func modify_move_scale():
 	# Tired of manually iterating checked this
@@ -57,15 +63,15 @@ offset_left = 1.0
 offset_right = 249.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9")
+texture = ExtResource("4_to02v")
 stretch_mode = 1
 script = ExtResource("6")
 
 [node name="MoveScaleLabel" type="Label" parent="background"]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 52.0
-offset_bottom = 26.0
+offset_left = 50.0
+offset_top = 87.0
+offset_right = 90.0
+offset_bottom = 110.0
 script = SubResource("15")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
