@@ -4,11 +4,16 @@ extends Node
 var player
 var camera
 signal system_selection_updated
+signal camera_updated
 @onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
+
+func set_camera(camera: Camera3D):
+	self.camera = camera
+	emit_signal("camera_updated")
 
 func _ready():
 	var ship_type = "nimbus"
