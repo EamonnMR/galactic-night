@@ -74,6 +74,12 @@ offset_right = 90.0
 offset_bottom = 110.0
 script = SubResource("15")
 
+[node name="SpobSprites" type="Control" parent="background"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7gyux")
 

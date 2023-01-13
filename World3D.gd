@@ -21,6 +21,11 @@ func change_system():
 	leave_system()
 	add_child(preload("res://World3D.tscn").instantiate())
 	call_deferred("enter_system")
+	for child in $background/SpobSprites.get_children():
+		$background/SpobSprites.remove_child(child)
+		
+func add_spob_sprite(sprite: Sprite2D):
+	$background/SpobSprites.add_child(sprite)
 
 func get_ships():
 	return $World3D/players.get_children() + $World3D/npcs.get_children()

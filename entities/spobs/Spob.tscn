@@ -1,16 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0arcyowgbhj1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0arcyowgbhj1"]
 
 [ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
 [ext_resource type="Texture2D" uid="uid://d2wcac08xu0fp" path="res://assets/eamonn/red_alpha.png" id="2_pd10b"]
+[ext_resource type="Script" path="res://component/FollowerSprite.gd" id="3_mu5to"]
 
 [node name="Spob" type="Node3D"]
 script = ExtResource("1_1liil")
 spob_prefix = "UBP-"
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, -2)
-pixel_size = 0.005
-billboard = 1
-fixed_size = true
-texture_filter = 0
+[node name="FollowerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_pd10b")
+script = ExtResource("3_mu5to")

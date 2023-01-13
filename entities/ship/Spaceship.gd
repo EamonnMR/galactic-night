@@ -17,12 +17,16 @@ func _ready():
 	# Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	add_to_group("radar")
+	add_to_group("ships")
+	
 	if self == Client.player:
+		add_to_group("players")
 		# TODO: Check client for proper controller type?
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
+		add_to_group("faction-" + faction)
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
