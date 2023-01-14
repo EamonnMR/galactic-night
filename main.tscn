@@ -68,6 +68,7 @@ stretch_mode = 1
 script = ExtResource("6")
 
 [node name="MoveScaleLabel" type="Label" parent="background"]
+visible = false
 offset_left = 50.0
 offset_top = 87.0
 offset_right = 90.0

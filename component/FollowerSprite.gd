@@ -3,6 +3,8 @@ extends Sprite2D
 var parent: Node3D
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	#var background = get_node("../../Background")
+	#if background:
+	#	position = -1 * background.pos / 10
+	position = Client.camera.unproject_position(parent.global_position)
