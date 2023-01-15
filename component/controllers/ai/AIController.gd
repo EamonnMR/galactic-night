@@ -32,6 +32,9 @@ func _verify_target():
 	return true
 
 func _physics_process(delta):
+	$Label.text = STATES.keys()[state] + "\n" \
+		+ "My faction: " + Data.factions[parent.faction].name + "\n" \
+		+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
 	match state:
 		STATES.IDLE:
 			process_state_idle(delta)
@@ -75,14 +78,10 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
 	var ships_in_system: Array[Node3D] = Client.ships_in_system()
-	var enemy_ships: Array[Node3D] = []
-	for ship in ships_in_system:
-		if (
-			ship.faction != null and ship.faction in faction.enemies
-		) or (
-			ship == Client.player and faction.initial_disposition < 0
-		):
-			enemy_ships.push_back(ship)
+	var enemy_ships: Array[Node3D] = [Client.player] if faction.initial_disposition < 0 else []
+	for faction_id in faction.enemies:
+		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
+
 	if enemy_ships.size() == 0:
 		change_state_idle()
 	elif enemy_ships.size() == 1:
