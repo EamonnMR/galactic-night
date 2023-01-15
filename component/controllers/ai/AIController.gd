@@ -22,9 +22,9 @@ var state = STATES.IDLE
 
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
 
-func ready():
+func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
-	get_node("../Graphics").set_skin_data(Data.skins[1])
+	get_node("../Health").connect("damaged", self._on_damage_taken)
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
@@ -34,9 +34,9 @@ func _verify_target():
 	return true
 
 func _physics_process(delta):
-	$Label.text = STATES.keys()[state] + "\n" \
-		+ "My faction: " + Data.factions[parent.faction].name + "\n" \
-		+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
+	#$Label.text = STATES.keys()[state] + "\n" \
+	#	+ "My faction: " + Data.factions[parent.faction].name + "\n" \
+	#	+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
 	match state:
 		STATES.IDLE:
 			process_state_idle(delta)
@@ -181,3 +181,6 @@ func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:
 		#print("Target left engagement range")
 		change_state_persue(target)
+
+func _on_damage_taken(source):
+	change_state_persue(source)

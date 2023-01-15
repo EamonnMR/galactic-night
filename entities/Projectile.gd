@@ -17,7 +17,7 @@ func initial_velocity():
 func _on_Projectile_body_entered(body):
 	if not iff.should_exclude(body):
 		queue_free()
-		Health.do_damage(body, damage)
+		Health.do_damage(body, damage, iff.owner)
 
 
 func _on_Timer_timeout():
