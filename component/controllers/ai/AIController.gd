@@ -3,7 +3,8 @@ extends Controller
 enum STATES {
 	IDLE,
 	ATTACK,
-	PERSUE
+	PERSUE,
+	PATH
 }
 
 @export var accel_margin = PI / 4
@@ -14,6 +15,7 @@ enum STATES {
 #export var engagement_range_radius = 100
 
 var target
+var path_target
 var ideal_face
 
 var state = STATES.IDLE
@@ -42,7 +44,14 @@ func _physics_process(delta):
 			process_state_attack(delta)
 		STATES.PERSUE:
 			process_state_persue(delta)
-			
+		STATES.PATH:
+			process_state_path(delta)
+
+func process_state_path(delta):
+	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(path_target.global_transform.origin), delta)
+	shooting = false
+	thrusting = _facing_within_margin(accel_margin)
+
 func process_state_idle(delta):
 	pass
 
@@ -82,7 +91,7 @@ func _find_target():
 		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
 
 	if enemy_ships.size() == 0:
-		change_state_idle()
+		_find_spob()
 	elif enemy_ships.size() == 1:
 		change_state_persue(enemy_ships[0])
 	else:
@@ -96,6 +105,16 @@ func _find_target():
 				return ldist < rdist
 		)
 		change_state_persue(enemy_ships[0])
+		
+func _find_spob():
+	var spobs = get_tree().get_nodes_in_group("spobs")
+	if spobs.size() == 0:
+		change_state_idle()
+	else:
+		var rng  = RandomNumberGenerator.new()
+		rng.randomize()
+		path_target = Procgen.random_select(spobs, rng)
+		change_state_path(Procgen.random_select(spobs, rng))
 
 func _on_Rethink_timeout():
 	match state:
@@ -105,9 +124,14 @@ func _on_Rethink_timeout():
 			rethink_state_attack()
 		STATES.PERSUE:
 			rethink_state_persue()
+		STATES.PATH:
+			rethink_state_path()
 
 func rethink_state_idle():
 	_find_target()
+
+func rethink_state_path():
+	pass
 
 func rethink_state_persue():
 	#_find_target()
@@ -132,6 +156,10 @@ func change_state_persue(target):
 func change_state_attack():
 	state = STATES.ATTACK
 	#print("New State: Attack")
+	
+func change_state_path(path_target):
+	self.path_target = path_target
+	state = STATES.PATH
 
 func _facing_within_margin(margin):
 	""" Relies checked 'ideal face' being populated """
@@ -142,6 +170,9 @@ func _on_EngagementRange_body_entered(body):
 	if body == target and state == STATES.PERSUE:
 		#print("Reached target")
 		change_state_attack()
+	
+	if body == path_target and state == STATES.PATH:
+		change_state_idle()
 
 func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:

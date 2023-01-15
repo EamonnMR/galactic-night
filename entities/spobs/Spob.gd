@@ -1,4 +1,4 @@
-extends Node3D
+extends StaticBody3D
 
 var spob_name: String
 @export var spob_prefix: String

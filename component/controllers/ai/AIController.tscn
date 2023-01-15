@@ -21,6 +21,8 @@ billboard = 1
 autostart = true
 
 [node name="EngagementRange" type="Area3D" parent="." index="2"]
+collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EngagementRange" index="0"]
 shape = SubResource("CylinderShape3D_np2nn")

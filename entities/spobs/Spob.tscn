@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0arcyowgbhj1"]
+[gd_scene load_steps=5 format=3 uid="uid://c0arcyowgbhj1"]
 
 [ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
 [ext_resource type="Texture2D" uid="uid://d2wcac08xu0fp" path="res://assets/eamonn/red_alpha.png" id="2_pd10b"]
 [ext_resource type="Script" path="res://component/FollowerSprite.gd" id="3_mu5to"]
 
-[node name="Spob" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q3qca"]
+height = 8.13
+radius = 6.556
+
+[node name="Spob" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_1liil")
 spob_prefix = "UBP-"
 
 [node name="FollowerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_pd10b")
 script = ExtResource("3_mu5to")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_q3qca")

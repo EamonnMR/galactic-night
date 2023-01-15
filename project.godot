@@ -258,6 +258,11 @@ shoot_secondary={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="shots_hit"
+3d_physics/layer_4="spobs"
+
 [physics]
 
 3d/physics_engine="Bullet"
