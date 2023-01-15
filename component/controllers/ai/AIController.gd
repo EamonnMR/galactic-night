@@ -3,7 +3,8 @@ extends Controller
 enum STATES {
 	IDLE,
 	ATTACK,
-	PERSUE
+	PERSUE,
+	PATH
 }
 
 @export var accel_margin = PI / 4
@@ -14,15 +15,16 @@ enum STATES {
 #export var engagement_range_radius = 100
 
 var target
+var path_target
 var ideal_face
 
 var state = STATES.IDLE
 
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
 
-func ready():
+func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
-	get_node("../Graphics").set_skin_data(Data.skins[1])
+	get_node("../Health").connect("damaged", self._on_damage_taken)
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
@@ -32,6 +34,9 @@ func _verify_target():
 	return true
 
 func _physics_process(delta):
+	#$Label.text = STATES.keys()[state] + "\n" \
+	#	+ "My faction: " + Data.factions[parent.faction].name + "\n" \
+	#	+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
 	match state:
 		STATES.IDLE:
 			process_state_idle(delta)
@@ -39,7 +44,15 @@ func _physics_process(delta):
 			process_state_attack(delta)
 		STATES.PERSUE:
 			process_state_persue(delta)
-			
+		STATES.PATH:
+			process_state_path(delta)
+
+func process_state_path(delta):
+	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(path_target.global_transform.origin), delta)
+	shooting = false
+	thrusting = _facing_within_margin(accel_margin)
+	braking = false
+
 func process_state_idle(delta):
 	pass
 
@@ -50,13 +63,15 @@ func process_state_attack(delta):
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = _facing_within_margin(shoot_margin)
 	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
-	
+	braking = true
+
 func process_state_persue(delta):
 	if not _verify_target():
 		return
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
+	braking = false
 	
 func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	var origin_2d = Util.flatten_25d(parent.global_transform.origin)
@@ -74,17 +89,12 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
-	var ships_in_system: Array[Node3D] = Client.ships_in_system()
-	var enemy_ships: Array[Node3D] = []
-	for ship in ships_in_system:
-		if (
-			ship.faction != null and ship.faction in faction.enemies
-		) or (
-			ship == Client.player and faction.initial_disposition < 0
-		):
-			enemy_ships.push_back(ship)
+	var enemy_ships: Array[Node3D] = [Client.player] if faction.initial_disposition < 0 else []
+	for faction_id in faction.enemies:
+		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
+
 	if enemy_ships.size() == 0:
-		change_state_idle()
+		_find_spob()
 	elif enemy_ships.size() == 1:
 		change_state_persue(enemy_ships[0])
 	else:
@@ -98,6 +108,16 @@ func _find_target():
 				return ldist < rdist
 		)
 		change_state_persue(enemy_ships[0])
+		
+func _find_spob():
+	var spobs = get_tree().get_nodes_in_group("spobs")
+	if spobs.size() == 0:
+		change_state_idle()
+	else:
+		var rng  = RandomNumberGenerator.new()
+		rng.randomize()
+		path_target = Procgen.random_select(spobs, rng)
+		change_state_path(Procgen.random_select(spobs, rng))
 
 func _on_Rethink_timeout():
 	match state:
@@ -107,9 +127,14 @@ func _on_Rethink_timeout():
 			rethink_state_attack()
 		STATES.PERSUE:
 			rethink_state_persue()
+		STATES.PATH:
+			rethink_state_path()
 
 func rethink_state_idle():
 	_find_target()
+
+func rethink_state_path():
+	pass
 
 func rethink_state_persue():
 	#_find_target()
@@ -134,6 +159,10 @@ func change_state_persue(target):
 func change_state_attack():
 	state = STATES.ATTACK
 	#print("New State: Attack")
+	
+func change_state_path(path_target):
+	self.path_target = path_target
+	state = STATES.PATH
 
 func _facing_within_margin(margin):
 	""" Relies checked 'ideal face' being populated """
@@ -144,8 +173,14 @@ func _on_EngagementRange_body_entered(body):
 	if body == target and state == STATES.PERSUE:
 		#print("Reached target")
 		change_state_attack()
+	
+	if body == path_target and state == STATES.PATH:
+		change_state_idle()
 
 func _on_EngagementRange_body_exited(body):
 	if body == target and state == STATES.ATTACK:
 		#print("Target left engagement range")
 		change_state_persue(target)
+
+func _on_damage_taken(source):
+	change_state_persue(source)

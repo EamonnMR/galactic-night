@@ -4,7 +4,7 @@ class_name Health
 
 var already_destroyed: bool = false
 
-signal damaged
+signal damaged(source)
 signal healed
 signal destroyed
 
@@ -26,7 +26,7 @@ func heal(amount):
 func can_heal():
 	return health < max_health
 
-func take_damage(damage):
+func take_damage(damage, source):
 	if health <= 0:  # Beating a dead horse
 		return
 
@@ -38,9 +38,9 @@ func take_damage(damage):
 		if explosion != null:
 			Explosion.make_explo(explosion, get_node("../"))
 	else:
-		emit_signal("damaged")
+		emit_signal("damaged", source)
 
 
-static func do_damage(entity, damage):
+static func do_damage(entity, damage, source):
 	if entity.has_node("Health"):
-		entity.get_node("Health").take_damage(damage)
+		entity.get_node("Health").take_damage(damage, source)

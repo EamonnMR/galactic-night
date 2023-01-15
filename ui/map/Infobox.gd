@@ -22,7 +22,7 @@ func _update():
 			var spob_names: PackedStringArray = []
 			for spob in sysdat.entities.spobs:
 				spob_names.push_back(spob.spob_name)
-			spobs.text = "Spobs: " + (", ".join(spob_names))
+			spobs.text = "Spobs: " + ("\n".join(spob_names))
 		else:
 			spobs.text = ""
 	else:

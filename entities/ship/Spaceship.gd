@@ -60,6 +60,8 @@ func get_limited_velocity_with_thrust(delta):
 		$Graphics.thrusting = true
 	else:
 		$Graphics.thrusting = false
+	if $Controller.braking:
+		linear_velocity = Vector2(linear_velocity.length() - (accel * delta * 100), 0).rotated(linear_velocity.angle())
 	if linear_velocity.length() > max_speed:
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:

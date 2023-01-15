@@ -73,23 +73,23 @@ void fragment() {
 	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
 	NORMAL_MAP_DEPTH = normal_scale;
 	
-	vec3 base_emission_hsv = rgb2hsv(texture(texture_base_emission,base_uv).rgb);
+	vec4 base_emission = texture(texture_base_emission,base_uv);
+	vec3 base_emission_hsv = rgb2hsv(base_emission.rgb);
 	base_emission_hsv.x += lights_hue;
 	base_emission_hsv.y *= lights_saturation;
 	base_emission_hsv.z *= lights_brightness;
 	vec3 base_emission_tex = hsv2rgb(base_emission_hsv);
-	vec3 weapon_emission_hsv = rgb2hsv(texture(texture_weapon_emission,base_uv).rgb);
+	vec4 weapon_emission = texture(texture_weapon_emission,base_uv);
+	vec3 weapon_emission_hsv = rgb2hsv(weapon_emission.rgb);
 	weapon_emission_hsv.x += weapon_hue;
 	weapon_emission_hsv.y *= weapon_saturation;
 	vec3 weapon_emission_tex = hsv2rgb(weapon_emission_hsv);
+	vec4 engine_emission = texture(texture_engine_emission,base_uv);
+	vec3 engine_emission_tex = engine_emission.rgb;
 	
-	vec3 engine_emission_tex = texture(texture_engine_emission,base_uv).rgb;
-	
-	EMISSION = albedo_tex.rgb * 6.0;
 	EMISSION = (
-		base_emission_tex * base_emission_factor +
-		weapon_emission_tex * weapon_emission_factor +
-		engine_emission_tex * engine_emission_factor
-	)*emission_energy;
-	
+		base_emission_tex * base_emission_factor * base_emission.a
+		+ weapon_emission_tex * weapon_emission_factor * weapon_emission.a
+		+ engine_emission_tex * engine_emission_factor * engine_emission.a
+	) * emission_energy;
 }

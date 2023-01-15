@@ -27,5 +27,3 @@ func change_system():
 func add_spob_sprite(sprite: Sprite2D):
 	$background/SpobSprites.add_child(sprite)
 
-func get_ships():
-	return $World3D/players.get_children() + $World3D/npcs.get_children()
