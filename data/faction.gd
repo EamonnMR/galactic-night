@@ -26,3 +26,9 @@ var spawns_adjacent: Array[String]
 
 static func get_csv_path():
 	return "res://data/factions.csv"
+
+func get_player_disposition():
+	if initial_disposition < 0:
+		return "hostile"
+	else:
+		return "neutral"

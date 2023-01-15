@@ -41,9 +41,6 @@ func change_system():
 
 func get_world():
 	return get_main().get_node("World3D")
-	
-func ships_in_system() -> Array[Node3D]:
-	return get_main().get_ships()
 
 func get_main():
 	return get_tree().get_root().get_node("Main")

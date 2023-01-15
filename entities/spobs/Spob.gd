@@ -5,7 +5,7 @@ var spob_name: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_to_group("radar")
+	add_to_group("radar-spobs")
 	add_to_group("spobs")
 	var sprite = $FollowerSprite
 	sprite.parent = self

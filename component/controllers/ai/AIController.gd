@@ -77,7 +77,6 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 
 func _find_target():
 	# This could be more complex, but to function as a basic enemy npc, this is all we need
-	var ships_in_system: Array[Node3D] = Client.ships_in_system()
 	var enemy_ships: Array[Node3D] = [Client.player] if faction.initial_disposition < 0 else []
 	for faction_id in faction.enemies:
 		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
