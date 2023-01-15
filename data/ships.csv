@@ -2,3 +2,4 @@ id,name,max_speed,accel,turn,max_bank,bank_speed,scene
 nimbus,Nimbus,100,0.01,1,15,2.5,res://entities/ship/ship_types/Nimbus.tscn
 burner,Burner,150,0.015,1,20,3,res://entities/ship/ship_types/Burner.tscn
 dragon,Dragon,80,0.08,0.8,15,1,res://entities/ship/ship_types/Dragon.tscn
+delivery,Delivery,70,0.6,1,15,1,res://entities/ship/ship_types/Delivery.tscn

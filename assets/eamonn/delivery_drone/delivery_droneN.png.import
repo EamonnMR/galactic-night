@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3v5r0w1wny1q"
-path.s3tc="res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.s3tc.ctex"
-path.etc2="res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.etc2.ctex"
+uid="uid://b78yjoskc4dmr"
+path.s3tc="res://.godot/imported/delivery_droneN.png-cd79975db44efa471bba24fe737ea2e9.s3tc.ctex"
+path.etc2="res://.godot/imported/delivery_droneN.png-cd79975db44efa471bba24fe737ea2e9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/nimbus/nimbus_E_engine.png"
-dest_files=["res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.s3tc.ctex", "res://.godot/imported/nimbus_E_engine.png-d6ecabbc629fa3731b3c997b9ac07f39.etc2.ctex"]
+source_file="res://assets/eamonn/delivery_drone/delivery_droneN.png"
+dest_files=["res://.godot/imported/delivery_droneN.png-cd79975db44efa471bba24fe737ea2e9.s3tc.ctex", "res://.godot/imported/delivery_droneN.png-cd79975db44efa471bba24fe737ea2e9.etc2.ctex"]
 
 [params]
 
@@ -21,11 +21,11 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=-3
+roughness/mode=1
 roughness/src_normal="res://assets/eamonn/delivery_drone/delivery_droneN.png"
 process/fix_alpha_border=true
 process/premult_alpha=false

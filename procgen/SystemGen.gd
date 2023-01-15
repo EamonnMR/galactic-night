@@ -9,6 +9,7 @@ func get_faction_spawns(system: SystemData) -> Array[String]:
 	return faction.spawns_system + (faction.spawns_core if system.core else [])
 
 func get_adjacent_spawns(system: SystemData) -> Array[String]:
+	# TODO: Adjacency Radius
 	var adjacent_spawns = []
 	for other_system_id in system.links_cache:
 		var other_system = Procgen.systems[other_system_id]
