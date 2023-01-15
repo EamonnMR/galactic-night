@@ -23,3 +23,9 @@ vec3 shift_color_by_amount(vec3 c, float shift)
 	hsv.x += shift;
 	return hsv2rgb(hsv);
 }
+
+vec4 shift_color_by_amount_rgba(vec4 c, float shift)
+{
+	float a = c.a;
+	return vec4(shift_color_by_amount(c.rgb, shift), a);
+}

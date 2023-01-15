@@ -52,19 +52,24 @@ func getName(firstChar: String, minLength: int, maxLength: int):
 		var random_letter = alphabet[rng.randi_range(0, alphabet.size()-1)]
 		name += random_letter
 	while count < maxLength:
+		print("Count: ", count)
 		var new_last = name.length()-1
 		var nextLetter = getNextLetter(name[new_last])
+		print("Next letter: ", nextLetter)
 		if str(nextLetter) == ".":
 			if count > minLength:
 				return name
 		else:
 			name += str(nextLetter)
-			count+=1
+			count += 1
 	return name
 
 func getNextLetter(letter):
+	print("Get next_letter after: ", letter)
 	var thisList = markov[letter]
-	return thisList[rng.randi_range(0, thisList.size()-1)]
+	var result = rng.randi_range(0, thisList.size()-1)
+	print("rng_result: ", result)
+	return thisList[result]
 
 func get_random_name() -> String:
 	var new_name = getName("-", 4, 7)
@@ -73,3 +78,15 @@ func get_random_name() -> String:
 	# print("Seed: ", seed_value, " Result: ", new_name)
 	# TODO: Add bad words filter here, hash the bad word result for a new seed value
 	return new_name
+
+func find_mandatory_terminal_letters() -> Array[String]:
+	var all_terms = []
+	for letter in markov:
+		var all_terminal = true
+		for i in markov[letter]:
+			if i != ".":
+				all_terminal = false
+				break
+		if all_terminal:
+			all_terms.push_back(letter)
+	return all_terms
