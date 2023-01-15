@@ -12,5 +12,6 @@ var thrusting: bool
 
 var rotation_impulse: float
 
-var jumping: bool
+var braking: bool
 
+var jumping: bool
