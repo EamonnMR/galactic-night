@@ -51,6 +51,7 @@ func process_state_path(delta):
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(path_target.global_transform.origin), delta)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
+	braking = false
 
 func process_state_idle(delta):
 	pass
@@ -62,13 +63,15 @@ func process_state_attack(delta):
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = _facing_within_margin(shoot_margin)
 	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
-	
+	braking = true
+
 func process_state_persue(delta):
 	if not _verify_target():
 		return
 	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
+	braking = false
 	
 func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	var origin_2d = Util.flatten_25d(parent.global_transform.origin)
