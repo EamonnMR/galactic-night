@@ -37,6 +37,7 @@ func _init():
 	# Tests
 	assert_ingredients_exist()
 	assert_spawns_exist()
+	assert_happy_markov()
 
 func load_text():
 	print("Crunching markov chains")
@@ -50,6 +51,7 @@ func load_text():
 		["cali", "res://data/corpus/cali.txt"]
 	]:
 		name_generators[corpus[0]] = Markov.new(RandomNumberGenerator.new(), load_lines(corpus[1]))
+
 	print("Chains crunched.")
 	
 func load_lines(file_name):
@@ -108,3 +110,8 @@ func assert_spawns_have_scenes_or_types():
 		assert(not (
 			spawn.scene == null and spawn.type == null
 		))
+
+func assert_happy_markov():
+	for name_generator_id in name_generators:
+		var terminators = name_generators[name_generator_id].find_mandatory_terminal_letters()
+		assert(terminators == [])

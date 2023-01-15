@@ -59,7 +59,6 @@ madera
 laguna niguel
 san clemente
 la habra
-santa cruz
 montebello
 la mesa
 cupertino
