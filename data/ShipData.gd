@@ -2,6 +2,7 @@ extends DataRow
 
 class_name ShipData
 
+var name: String
 var max_speed: float
 var accel: float
 var turn: float

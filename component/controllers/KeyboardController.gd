@@ -26,7 +26,7 @@ func _physics_process(delta):
 	check_jumped()
 
 func _ready():
-	Client.player = parent
+	Client.set_player(parent)
 	# toggle_map_hack_what_happened_to_visibility()
 
 func toggle_map():

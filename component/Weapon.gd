@@ -6,6 +6,7 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
+
 var iff: IffProfile
 
 @onready var parent = get_node("../")
@@ -17,6 +18,8 @@ var iff: IffProfile
 @export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
 @export var vary_pitch = 0
 @export var ammo_item: String
+@export var primary = true
+@export var weapon_name: String = "Plasma"
 
 # @export var dmg_factor: float = 1
 @export var damage: int

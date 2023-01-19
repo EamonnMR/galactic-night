@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c3q3cv3jeiqm2" path="res://component/controllers/Controller.tscn" id="1_rwhqd"]
 [ext_resource type="Script" path="res://component/controllers/ai/AIController.gd" id="2_esu1u"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_r5wgs"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7i3pb"]
 radius = 5.0
 
 [node name="Controller" instance=ExtResource("1_rwhqd")]
@@ -25,7 +25,7 @@ collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EngagementRange" index="0"]
-shape = SubResource("CylinderShape3D_r5wgs")
+shape = SubResource("CylinderShape3D_7i3pb")
 
 [connection signal="timeout" from="Rethink" to="." method="_on_Rethink_timeout"]
 [connection signal="body_entered" from="EngagementRange" to="." method="_on_EngagementRange_body_entered"]

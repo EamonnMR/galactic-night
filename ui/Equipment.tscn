@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmy8sexrww2l8"]
+
+[ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="5"]
+[ext_resource type="Script" path="res://ui/Equipment.gd" id="9"]
+
+[node name="Equipment" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("9")
+
+[node name="Background" parent="." instance=ExtResource("5")]
+offset_right = 264.0
+offset_bottom = 197.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer"]
+offset_right = 264.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer"]
+offset_top = 4.0
+offset_right = 264.0
+offset_bottom = 189.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
+offset_bottom = 185.0
+
+[node name="LeftEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 185.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/LeftEquip"]
+
+[node name="Middle" type="Control" parent="Background/VBoxContainer/HBoxContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 256.0
+offset_bottom = 185.0
+size_flags_horizontal = 3
+
+[node name="Name" type="RichTextLabel" parent="Background/VBoxContainer/HBoxContainer/Middle"]
+clip_contents = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.708
+anchor_bottom = 0.116
+offset_left = -75.0
+offset_top = 19.0
+offset_right = -126.584
+offset_bottom = -2.46
+grow_horizontal = 2
+text = "UNS Ring Of Glory"
+scroll_active = false
+
+[node name="ShipPreview" type="TextureRect" parent="Background/VBoxContainer/HBoxContainer/Middle"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -172.5
+offset_right = -60.0
+offset_bottom = -172.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Type" type="RichTextLabel" parent="Background/VBoxContainer/HBoxContainer/Middle"]
+unique_name_in_owner = true
+offset_left = 73.0
+offset_top = 40.0
+offset_right = 161.0
+offset_bottom = 80.0
+text = "Nimbus
+"
+
+[node name="RightEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+offset_left = 260.0
+offset_right = 260.0
+offset_bottom = 185.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/RightEquip"]
+
+[node name="MarginContainer3" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
+offset_left = 264.0
+offset_right = 264.0
+offset_bottom = 185.0
+
+[node name="MiddleEquip" type="HBoxContainer" parent="Background/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 193.0
+offset_right = 264.0
+offset_bottom = 193.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer/MiddleEquip"]
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer"]
+offset_top = 197.0
+offset_right = 264.0
+offset_bottom = 197.0

@@ -5,11 +5,17 @@ var player
 var camera
 signal system_selection_updated
 signal camera_updated
+signal player_ship_updated
 @onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
+
+func set_player(player):
+	self.player = player
+	emit_signal("player_ship_updated")
+	
 
 func set_camera(camera: Camera3D):
 	self.camera = camera

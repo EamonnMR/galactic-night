@@ -8,6 +8,12 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436)
 script = ExtResource("1_wor20")
 projectile_scene = ExtResource("2")
+burst_count = null
+dupe_count = null
+spread = null
+world_projectile = null
+vary_pitch = null
+primary = null
 damage = 1
 
 [node name="Cooldown" type="Timer" parent="."]

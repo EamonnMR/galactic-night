@@ -10,6 +10,9 @@ var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
+var primary_weapons = []
+var secondary_weapons = []
+
 
 signal destroyed
 
@@ -50,9 +53,11 @@ func _physics_process(delta):
 
 func handle_shooting():
 	if $Controller.shooting:
-		$Weapon.try_shoot()
-	if $Controller.shooting_secondary:
-		$SecondaryWeapon.try_shoot()
+		for weapon in primary_weapons:
+			weapon.try_shoot()
+
+	#if $Controller.shooting_secondary:
+	#	$SecondaryWeapon.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
