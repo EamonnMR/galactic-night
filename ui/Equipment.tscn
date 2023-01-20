@@ -20,46 +20,48 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
 offset_right = 264.0
+offset_bottom = 10.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer"]
-offset_top = 4.0
+offset_top = 14.0
 offset_right = 264.0
-offset_bottom = 189.0
+offset_bottom = 179.0
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
-offset_bottom = 185.0
+custom_minimum_size = Vector2(10, 0)
+offset_right = 10.0
+offset_bottom = 165.0
 
 [node name="LeftEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 4.0
-offset_right = 4.0
-offset_bottom = 185.0
+offset_left = 14.0
+offset_right = 14.0
+offset_bottom = 165.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/LeftEquip"]
 
 [node name="Middle" type="Control" parent="Background/VBoxContainer/HBoxContainer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 8.0
-offset_right = 256.0
-offset_bottom = 185.0
+offset_left = 18.0
+offset_right = 236.0
+offset_bottom = 165.0
 size_flags_horizontal = 3
 
-[node name="Name" type="RichTextLabel" parent="Background/VBoxContainer/HBoxContainer/Middle"]
-clip_contents = false
+[node name="Name" type="Label" parent="Background/VBoxContainer/HBoxContainer/Middle"]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.708
 anchor_bottom = 0.116
-offset_left = -75.0
-offset_top = 19.0
-offset_right = -126.584
-offset_bottom = -2.46
+offset_left = -81.0
+offset_top = -4.0
+offset_right = 7.416
+offset_bottom = 2.86
 grow_horizontal = 2
 text = "UNS Ring Of Glory"
-scroll_active = false
 
 [node name="ShipPreview" type="TextureRect" parent="Background/VBoxContainer/HBoxContainer/Middle"]
 anchors_preset = 8
@@ -76,35 +78,41 @@ grow_vertical = 2
 
 [node name="Type" type="RichTextLabel" parent="Background/VBoxContainer/HBoxContainer/Middle"]
 unique_name_in_owner = true
-offset_left = 73.0
-offset_top = 40.0
-offset_right = 161.0
-offset_bottom = 80.0
+offset_left = 74.0
+offset_top = 22.0
+offset_right = 162.0
+offset_bottom = 62.0
 text = "Nimbus
 "
 
 [node name="RightEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 260.0
-offset_right = 260.0
-offset_bottom = 185.0
+offset_left = 240.0
+offset_right = 250.0
+offset_bottom = 165.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/RightEquip"]
+custom_minimum_size = Vector2(10, 0)
+offset_right = 10.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
-offset_left = 264.0
+custom_minimum_size = Vector2(10, 0)
+offset_left = 254.0
 offset_right = 264.0
-offset_bottom = 185.0
+offset_bottom = 165.0
 
 [node name="MiddleEquip" type="HBoxContainer" parent="Background/VBoxContainer"]
 unique_name_in_owner = true
-offset_top = 193.0
+offset_top = 183.0
 offset_right = 264.0
-offset_bottom = 193.0
+offset_bottom = 183.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer/MiddleEquip"]
+custom_minimum_size = Vector2(50, 0)
+offset_right = 50.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer"]
-offset_top = 197.0
+custom_minimum_size = Vector2(0, 10)
+offset_top = 187.0
 offset_right = 264.0
 offset_bottom = 197.0

@@ -1,4 +1,5 @@
 id,name,equip_category,consumable_effect,consumable_magnitude,icon,tooltip,stackable
 metal,Metal,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice",TRUE
-missile_launcher,Missile Launcher,weapon,,,res://assets/damnwing_cc_by/zipgun.png,Blow up your foes with extreme prejudace. Remember to build missiles too!,FALSE
+missile_launcher,Missile Launcher,weapon,,,res://assets/Master484_cc0/missile_launcher.png,Blow up your foes with extreme prejudace. Remember to build missiles too!,FALSE
 missile,Missile,,,,res://assets/Master484_cc0/missile.png,You can tell these things are old because they’re still using atmo-fins.,TRUE
+blaster,Blaster,weapon,,,res://assets/damnwing_cc_by/zipgun.png,,
