@@ -4,12 +4,18 @@ class_name WeaponSlot
 
 func inform_parent(weapon: Node):
 	# TODO: Secondary weapons also
-	get_parent().primary_weapons.push_back(weapon)
+	if weapon.primary:
+		get_parent().primary_weapons.push_back(weapon)
+	else:
+		get_parent().secondary_weapons.push_back(weapon)
 	
 func inform_parent_removed(weapon: Node):
 	# TODO: Secondary weapons also
-	get_parent().primary_weapons.erase(weapon) 
-
+	if weapon.primary:
+		get_parent().primary_weapons.erase(weapon) 
+	else:
+		get_parent().secondary_weapons.erase(weapon)
+		
 func _ready():
 	var children = get_children()
 	if children:

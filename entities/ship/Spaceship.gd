@@ -56,8 +56,9 @@ func handle_shooting():
 		for weapon in primary_weapons:
 			weapon.try_shoot()
 
-	#if $Controller.shooting_secondary:
-	#	$SecondaryWeapon.try_shoot()
+	if $Controller.shooting_secondary:
+		for weapon in secondary_weapons:
+			weapon.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:

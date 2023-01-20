@@ -18,16 +18,11 @@ script = ExtResource("1_v25r1")
 update_rotation = false
 update_scale = false
 
-[node name="Weapon" parent="." instance=ExtResource("2_p4ka6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952441, 0, 0)
-
 [node name="Inventory" parent="." instance=ExtResource("4_4rw1x")]
 default_contents = {
 "metal": 5,
 "missile": 2
 }
-
-[node name="SecondaryWeapon" parent="." instance=ExtResource("5_ehbj4")]
 
 [node name="Loot" parent="." instance=ExtResource("6_5xw71")]
 drop_chance = 1.0
@@ -41,6 +36,19 @@ explosion = ExtResource("2_1wg5t")
 
 [node name="Equipment" parent="." instance=ExtResource("8_vixut")]
 
+[node name="WeaponSlot2" parent="." instance=ExtResource("9_3pgi6")]
+
+[node name="SecondaryWeapon" parent="WeaponSlot2" instance=ExtResource("5_ehbj4")]
+
 [node name="WeaponSlot" parent="." instance=ExtResource("9_3pgi6")]
+
+[node name="Weapon" parent="WeaponSlot" instance=ExtResource("2_p4ka6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.952441, 0, 0)
+burst_count = 0
+dupe_count = 1
+spread = 0.0
+world_projectile = true
+vary_pitch = 0
+primary = true
 
 [connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]

@@ -8,13 +8,8 @@ data = PackedByteArray(73, 68, 51, 4, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0,
 
 [node name="Weapon" instance=ExtResource("1_i3fgp")]
 projectile_scene = ExtResource("2_fh0nm")
-burst_count = 0
-dupe_count = 1
-spread = 0.0
-world_projectile = true
-vary_pitch = 0
 ammo_item = "missile"
-primary = true
+primary = false
 weapon_name = "Rockets"
 damage = 10
 

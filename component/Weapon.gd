@@ -9,7 +9,7 @@ var burst_counter: int = 0
 
 var iff: IffProfile
 
-@onready var parent = get_node("../")
+@onready var parent = get_node("../../")
 
 @export var projectile_scene: PackedScene
 @export var burst_count = 0
@@ -69,7 +69,7 @@ func _effects():
 	#$Emerge/MuzzleFlash.restart()
 	#$Emerge/MuzzleFlash.emitting = true
 	$AudioStreamPlayer3D.play()
-	get_node("../").flash_weapon()
+	parent.flash_weapon()
 
 func _on_Cooldown_timeout():
 	cooldown = false
