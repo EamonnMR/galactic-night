@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://ui/EquipBox.gd" id="2"]
 
 [node name="NinePatchRect" type="NinePatchRect"]
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 66.0
+offset_bottom = 64.0
 texture = ExtResource("1")
 region_rect = Rect2(0, 0, 27, 27)
 patch_margin_left = 14
@@ -15,6 +15,7 @@ patch_margin_bottom = 13
 script = ExtResource("2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

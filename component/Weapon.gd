@@ -6,9 +6,10 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
+
 var iff: IffProfile
 
-@onready var parent = get_node("../")
+@onready var parent = get_node("../../")
 
 @export var projectile_scene: PackedScene
 @export var burst_count = 0
@@ -17,6 +18,8 @@ var iff: IffProfile
 @export var world_projectile: bool = true  # Disable for beams or other things that should follow the player
 @export var vary_pitch = 0
 @export var ammo_item: String
+@export var primary = true
+@export var weapon_name: String = "Plasma"
 
 # @export var dmg_factor: float = 1
 @export var damage: int
@@ -66,7 +69,7 @@ func _effects():
 	#$Emerge/MuzzleFlash.restart()
 	#$Emerge/MuzzleFlash.emitting = true
 	$AudioStreamPlayer3D.play()
-	get_node("../").flash_weapon()
+	parent.flash_weapon()
 
 func _on_Cooldown_timeout():
 	cooldown = false

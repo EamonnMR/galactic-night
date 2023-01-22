@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var type: String
 var picked_up = false
-var initial_vel = 1.5
+var initial_vel = 0.5
 
 func initial_velocity():
 	rotate_y(randf_range(0, PI*2))

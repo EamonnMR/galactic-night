@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://bgvqg7wmqk5rx" path="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/photon_s.mp3" id="3_b5341"]
 
 [node name="Weapon" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.533066, 0, 0.41436)
 script = ExtResource("1_wor20")
 projectile_scene = ExtResource("2")
 damage = 1

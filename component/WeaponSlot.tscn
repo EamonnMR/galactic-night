@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnmj4441kjf80"]
+
+[ext_resource type="Script" path="res://component/WeaponSlot.gd" id="1"]
+
+[node name="WeaponSlot" type="Node3D"]
+script = ExtResource("1")

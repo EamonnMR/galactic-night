@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgtxo5vmdxx77"]
+[gd_scene load_steps=9 format=3 uid="uid://bgtxo5vmdxx77"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
+[ext_resource type="PackedScene" uid="uid://cmy8sexrww2l8" path="res://ui/Equipment.tscn" id="2_urnxu"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3_et15m"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="4_o6isj"]
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
@@ -12,6 +13,9 @@
 process_mode = 3
 layer = 10
 script = ExtResource("1_twatu")
+
+[node name="Equipment" parent="." instance=ExtResource("2_urnxu")]
+visible = false
 
 [node name="Crafting" parent="." instance=ExtResource("2_bfw8e")]
 visible = false
@@ -29,6 +33,7 @@ offset_left = 430.0
 offset_top = 105.0
 offset_right = -302.0
 offset_bottom = -196.0
+grow_vertical = 1
 
 [node name="Button" type="Button" parent="."]
 visible = false

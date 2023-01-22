@@ -10,6 +10,9 @@ var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
 
 var linear_velocity = Vector2()
+var primary_weapons = []
+var secondary_weapons = []
+
 
 signal destroyed
 
@@ -30,6 +33,16 @@ func _ready():
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
+		for weapon_slot in get_weapon_slots():
+			# TODO: Configure this in ship data class
+			weapon_slot.add_weapon(preload("res://component/Weapon.tscn").instantiate())
+		
+func get_weapon_slots() -> Array[WeaponSlot]:
+	var weapon_slots = []
+	for weapon_slot in get_children():
+		if weapon_slot is WeaponSlot:
+			weapon_slots.push_back(weapon_slot)
+	return weapon_slots
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
@@ -50,9 +63,12 @@ func _physics_process(delta):
 
 func handle_shooting():
 	if $Controller.shooting:
-		$Weapon.try_shoot()
+		for weapon in primary_weapons:
+			weapon.try_shoot()
+
 	if $Controller.shooting_secondary:
-		$SecondaryWeapon.try_shoot()
+		for weapon in secondary_weapons:
+			weapon.try_shoot()
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
