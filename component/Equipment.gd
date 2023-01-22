@@ -27,8 +27,7 @@ var slot_keys = {
 func _ready():
 	# Determine weapon slots by the ship
 	var parent = get_node("../")
-	for weapon_slot in parent.get_children():
-		if weapon_slot is WeaponSlot:
+	for weapon_slot in parent.get_weapon_slots():
 			if not weapon_slot.name in weapons:
 				weapons[weapon_slot.name] = null
 		

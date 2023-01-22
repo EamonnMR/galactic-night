@@ -33,6 +33,16 @@ func _ready():
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
+		for weapon_slot in get_weapon_slots():
+			# TODO: Configure this in ship data class
+			weapon_slot.add_weapon(preload("res://component/Weapon.tscn").instantiate())
+		
+func get_weapon_slots() -> Array[WeaponSlot]:
+	var weapon_slots = []
+	for weapon_slot in get_children():
+		if weapon_slot is WeaponSlot:
+			weapon_slots.push_back(weapon_slot)
+	return weapon_slots
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
