@@ -35,7 +35,7 @@ func toggle_map():
 		
 func toggle_inventory():
 	if Input.is_action_just_released("toggle_inventory"):
-		ui.toggle_inventory(["Inventory", "Crafting"])
+		ui.toggle_inventory(["Inventory", "Crafting", "Equipment"])
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):

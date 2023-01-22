@@ -15,6 +15,7 @@ layer = 10
 script = ExtResource("1_twatu")
 
 [node name="Equipment" parent="." instance=ExtResource("2_urnxu")]
+visible = false
 
 [node name="Crafting" parent="." instance=ExtResource("2_bfw8e")]
 visible = false

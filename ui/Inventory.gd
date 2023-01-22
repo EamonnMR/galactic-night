@@ -6,9 +6,6 @@ extends Control
 var inventory_slot = preload("res://ui/EquipBox.tscn")
 var item_icon = preload("res://ui/ItemIcon.tscn")
 
-@onready var grid_container = get_node("NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
-@onready var name_slot = get_node("NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer/RichTextLabel")
-
 func assign(bound_inventory: Inventory, new_name: String):
 	inventory = bound_inventory.get_path()
 	label = new_name
@@ -16,18 +13,18 @@ func assign(bound_inventory: Inventory, new_name: String):
 	call_deferred("rebuild")
 
 func _ready():
-	name_slot.text = label
+	%NameSlot.text = label
 	if inventory:
 		assign(get_node(inventory), label)
 func _clear():
-	for child in grid_container.get_children():
-		grid_container.remove_child(child)
+	for child in %GridContainer.get_children():
+		%GridContainer.remove_child(child)
 
 func _inventory():
 	return get_node(inventory)
 
 func rebuild():
-	name_slot.text = label
+	%NameSlot.text = label
 	_clear()
 	var inv: Inventory = _inventory()
 	if is_instance_valid(inv):
@@ -41,7 +38,7 @@ func rebuild():
 				var icon = item_icon.instantiate()
 				icon.init(item)
 				slot_container.add_child(icon)
-			grid_container.add_child(slot_container)
+			%GridContainer.add_child(slot_container)
 
 func _on_item_added(item, slot):
 	_inventory().add(item.type, item.count, slot)
