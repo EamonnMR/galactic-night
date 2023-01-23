@@ -11,6 +11,7 @@ var evergreen_spawns = []
 var evergreen_natural_spawns = []
 var evergreen_artificial_spawns = []
 var ships = {}
+var spob_types = {}
 
 # Game constants:
 const PLAY_AREA_RADIUS = 3000
@@ -26,7 +27,8 @@ func _init():
 		[BiomeData, "biomes"],
 		[FactionData, "factions"],
 		[SkinData, "skins"],
-		[ShipData, "ships"]
+		[ShipData, "ships"],
+		[SpobData, "spob_types"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]

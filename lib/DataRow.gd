@@ -51,6 +51,8 @@ func convert_column_value(string_val: String, type: int, type_class: String, ini
 		return parse_color(string_val)
 	elif type == TYPE_ARRAY:
 		return parse_array(string_val, initial_value)
+	elif type == TYPE_VECTOR2:
+		return parse_vector2(string_val)
 	elif type == TYPE_OBJECT:
 		if type_class in ["PackedScene", "Texture2D", "Resource"]:
 			return load(string_val)
@@ -64,6 +66,10 @@ func parse_color(color_text) -> Color:
 	"""
 	var color = Color(color_text)
 	return color
+	
+func parse_vector2(vec2_text) -> Vector2:
+	var vec = vec2_text.split(" ")
+	return Vector2(float(vec[0]), float(vec[1]))
 
 func parse_bool(caps_true_or_false: String) -> bool:
 	return caps_true_or_false == "TRUE"

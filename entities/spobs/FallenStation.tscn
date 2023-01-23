@@ -5,6 +5,7 @@
 
 [node name="Spob" instance=ExtResource("1_3ailm")]
 spob_prefix = "Outpost "
+is_planet = false
 
 [node name="FollowerSprite" parent="." index="0"]
 texture = ExtResource("2_rogri")

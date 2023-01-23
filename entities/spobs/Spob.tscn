@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0arcyowgbhj1"]
+[gd_scene load_steps=7 format=3 uid="uid://c0arcyowgbhj1"]
 
 [ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
-[ext_resource type="Texture2D" uid="uid://d2wcac08xu0fp" path="res://assets/eamonn/red_alpha.png" id="2_pd10b"]
+[ext_resource type="Shader" path="res://entities/spobs/Spob.gdshader" id="2_ryjfe"]
+[ext_resource type="Texture2D" uid="uid://dr05w1fp8yyka" path="res://assets/eamonn/lunarcell_planets/Untitled-5.png" id="3_imvle"]
 [ext_resource type="Script" path="res://component/FollowerSprite.gd" id="3_mu5to"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6h1x"]
+shader = ExtResource("2_ryjfe")
+shader_parameter/center = Vector2(6, -2)
+shader_parameter/radius = 63
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_q3qca"]
 height = 8.13
@@ -15,7 +21,8 @@ script = ExtResource("1_1liil")
 spob_prefix = "UBP-"
 
 [node name="FollowerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_pd10b")
+material = SubResource("ShaderMaterial_i6h1x")
+texture = ExtResource("3_imvle")
 script = ExtResource("3_mu5to")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
