@@ -348,6 +348,8 @@ func place_static_spawns(get_spawns: Callable):
 				for entity in entities:
 					if "spob_name" in entity:
 						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
+					if "is_planet" in entity and entity.is_planet:
+						entity.type = random_select(Data.spob_types.keys(), rng)
 					i += 1
 				if not (spawn.destination in system.entities):
 					system.entities[spawn.destination] = []
