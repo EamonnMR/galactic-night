@@ -10,10 +10,6 @@ var type: String
 func _ready():
 	add_to_group("radar-spobs")
 	add_to_group("spobs")
-	var sprite = $FollowerSprite
-	sprite.parent = self
-	remove_child(sprite)
-	get_tree().get_root().get_node("Main").add_spob_sprite(sprite)
 
 func serialize() -> Dictionary:
 	return Util.get_multiple(self, [

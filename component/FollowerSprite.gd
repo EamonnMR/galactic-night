@@ -3,7 +3,12 @@ extends Sprite2D
 @export var parent: Node3D
 
 func _ready():
-	if get_parent().type != null and get_parent().type != "":
+	
+	parent = get_parent()
+	parent.remove_child(self)
+	get_tree().get_root().get_node("Main").add_spob_sprite(self)
+	
+	if parent.type != null and parent.type != "":
 		var type_str = get_parent().type
 		var type: SpobData = Data.spob_types[type_str]
 		texture = type.texture
