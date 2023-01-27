@@ -20,7 +20,7 @@ func _relative_position(subject: Node3D, player_position: Vector2) -> Vector2:
 	relative_position = relative_position.rotated(radar_rotate)
 	return relative_position.limit_length((radar_offset.x - 5))
 	
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 
 func _get_color(node: Node):
@@ -41,7 +41,7 @@ func _get_ship_size(node: Node):
 	return 2
 
 func _draw():
-	if is_instance_valid(Client.player):
+	if is_instance_valid(Client.player) and Client.player.is_inside_tree():
 		var player_position = Util.flatten_25d(Client.player.global_transform.origin)
 		for spob_blip in get_tree().get_nodes_in_group("radar-spobs"):
 			draw_circle(_relative_position(spob_blip, player_position), 5, _get_color(spob_blip))

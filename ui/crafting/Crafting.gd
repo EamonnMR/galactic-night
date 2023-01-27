@@ -56,7 +56,7 @@ func _get_icon_node(item):
 	icon.texture_pressed = icon_texture
 	return icon
 
-func _get_icon_texture(blueprint):
+func _get_icon_texture(_blueprint):
 	# Return the icon representing this blueprint.
 	# For example if it makes an item, implement a function that returns that
 	# item's icon
@@ -91,11 +91,11 @@ func _update_blueprint_selection():
 		#var button: Button = get_node("CraftButton")
 		#button.disabled = false
 		
-func _get_product_name(blueprint):
+func _get_product_name(_blueprint):
 	# Get the name representing the blueprint
 	return ""
 
-func _get_product_description(blueprint):
+func _get_product_description(_blueprint):
 	# Get the text blurb for the blueprint
 	return ""
 

@@ -6,7 +6,7 @@ var damage: int
 func _ready():
 	call_deferred("initial_velocity")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	Util.wrap_to_play_radius(self)
 
 func initial_velocity():

@@ -4,6 +4,7 @@ var spob_name: String
 var type: String
 @export var spob_prefix: String
 @export var is_planet = true
+@export var center = true
 
 
 # Called when the node enters the scene tree for the first time.

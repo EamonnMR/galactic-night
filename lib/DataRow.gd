@@ -61,9 +61,7 @@ func convert_column_value(string_val: String, type: int, type_class: String, ini
 	return null
 	
 func parse_color(color_text) -> Color:
-	"""
-	Uses the default string constructor, ARGB or RBG
-	"""
+	# Uses the default string constructor, ARGB or RBG
 	var color = Color(color_text)
 	return color
 	
@@ -75,14 +73,14 @@ func parse_bool(caps_true_or_false: String) -> bool:
 	return caps_true_or_false == "TRUE"
 	
 func parse_x_dict(x_dict: String) -> Dictionary:
-	""" Looks like: '1x4 0x3' and translates to:
-		{
-			"1": 4,
-			"0": 3
-		}
-		
-		Useful if you want a compact dictionary representation
-	"""
+	#Looks like: '1x4 0x3' and translates to:
+	#	{
+	#		"1": 4,
+	#		"0": 3
+	#	}
+	#	
+	#	Useful if you want a compact dictionary representation
+
 	var dict = {}
 	for i in x_dict.split(" "):
 		var key_count = i.split("x")
@@ -90,12 +88,12 @@ func parse_x_dict(x_dict: String) -> Dictionary:
 	return dict
 	
 func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
-	""" Looks like 'key: 1; key2: 2' translates to:
-		{
-			"key": 1
-			"key2": 2
-		}
-	"""
+	#Looks like 'key: 1; key2: 2' translates to:
+	#	{
+	#		"key": 1
+	#		"key2": 2
+	#	}
+	#
 	var dict = {}
 	if colon_dict != "":
 		for kvp in colon_dict.split(";"):

@@ -56,7 +56,6 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
-	velocity
 	handle_shooting()
 	handle_jumping()
 	Util.wrap_to_play_radius(self)

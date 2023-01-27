@@ -75,7 +75,6 @@ func populate_biomes():
 	return start_sys
 	
 func place_special_biomes():
-	var always_biomes = []
 	var start_sys
 	
 	for biome_id in Data.biomes:
@@ -140,7 +139,7 @@ func fill_remaining_empty_biomes():
 		if system.biome == "":
 			system.biome = "empty"
 
-func grow_attribute(attribute):
+func grow_attribute(_attribute):
 	pass
 
 func generate_positions_and_links():
@@ -345,12 +344,17 @@ func place_static_spawns(get_spawns: Callable):
 				print(system_id)
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
+				var center_entities = []
 				for entity in entities:
 					if "spob_name" in entity:
 						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
 					if "is_planet" in entity and entity.is_planet:
 						entity.type = random_select(Data.spob_types.keys(), rng)
+					if "center_system" in entity and entity.center_system:
+						center_entities.append(entity)
 					i += 1
+				if center_entities.size() == 1:
+					center_entities.transform.origin = Vector3(0,0,0)
 				if not (spawn.destination in system.entities):
 					system.entities[spawn.destination] = []
 				for instance in entities:
@@ -369,7 +373,7 @@ func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vect
 	return radius * Vector2(sqrt(rng.randf()), 0).rotated(PI * 2 * rng.randf())
 
 func random_select(iterable, rng: RandomNumberGenerator):
-	""" Remember to seed the rng"""
+	#Remember to seed the rng
 	return iterable[rng.randi() % iterable.size()]
 
 

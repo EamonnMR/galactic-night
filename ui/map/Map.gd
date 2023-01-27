@@ -99,5 +99,5 @@ func _update_for_mode_switch():
 func _on_Recenter_pressed():
 	_set_initial_center()
 
-func _on_Mode_item_selected(index):
+func _on_Mode_item_selected(_index):
 	_update_for_mode_switch()

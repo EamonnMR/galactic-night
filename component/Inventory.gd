@@ -91,7 +91,6 @@ func deduct_ingredients(ingredients: Dictionary) -> bool:  # Output represents s
 		return false
 	else:
 		ingredients = ingredients.duplicate()
-		var erase_queue = []
 		for slot in range(max_items):
 			if slot in item_slots:
 				var item = item_slots[slot]

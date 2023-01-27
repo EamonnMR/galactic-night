@@ -18,7 +18,6 @@ func rebuild():
 	
 	var player = Client.player
 	var equipment = Client.player.get_node("Equipment")
-	var eq_path = equipment.get_path()
 	# TODO: 
 	var ship_type = Data.ships[Client.player.type]
 	# preview.texture = player.get_node("Sprite").texture

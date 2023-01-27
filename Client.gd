@@ -63,6 +63,8 @@ func switch_ship(new_type: String):
 	player.remove_child(player.get_node("Inventory"))
 	player.add_child(old_inventory)
 	
+	player.global_transform = position
+	
 	var parent = old_ship.get_node("../")
 	parent.remove_child(old_ship)
 	parent.add_child(player)

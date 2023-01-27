@@ -11,7 +11,6 @@ func _ready():
 	set_surface_override_material(0, material)
 	
 func _process(delta):
-	var small_delta = delta
 	var xform = \
 		Transform3D(global_transform.basis)\
 		.rotated(Vector3(0,1,0), offset)\

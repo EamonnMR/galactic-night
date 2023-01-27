@@ -53,7 +53,7 @@ func process_state_path(delta):
 	thrusting = _facing_within_margin(accel_margin)
 	braking = false
 
-func process_state_idle(delta):
+func process_state_idle(_delta):
 	pass
 
 func process_state_attack(delta):
@@ -164,7 +164,7 @@ func change_state_path(path_target):
 	state = STATES.PATH
 
 func _facing_within_margin(margin):
-	""" Relies checked 'ideal face' being populated """
+	# Relies checked 'ideal face' being populated
 	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
 # Somewhat questioning the need for a whole node setup for this.

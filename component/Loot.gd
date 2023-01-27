@@ -9,7 +9,7 @@ var initial_vel: float = 1.5
 func _ready():
 	get_node("../").connect("destroyed", self.drop)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	Util.wrap_to_play_radius(self)
 
 func drop():

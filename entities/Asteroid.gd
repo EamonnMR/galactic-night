@@ -13,7 +13,7 @@ func _ready():
 	rotate_y(randf_range(0, PI*2))
 	call_deferred("initial_velocity")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	Util.wrap_to_play_radius(self)
 
 func _on_health_destroyed():
