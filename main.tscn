@@ -18,7 +18,7 @@ script/source = "extends Label
 
 var move_scale_oom = 0.1
 
-func _process(delta):
+func _process(_delta):
 	#fewddmodify_move_scale()
 	if get_node(\"../\").has_node(\"Background\"):
 		text = \"Pos.x: \" + str(get_node(\"../Background\").pos.x) + \"\\n\" \\

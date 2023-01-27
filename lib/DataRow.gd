@@ -38,7 +38,7 @@ func _init(data: Dictionary):
 				prop
 			))
 
-func convert_column_value(string_val: String, type: int, type_class: String, initial_value, prop):
+func convert_column_value(string_val: String, type: int, type_class: String, initial_value, _prop):
 	if type == TYPE_INT:
 		return string_val.to_int()
 	elif type == TYPE_BOOL:
@@ -136,7 +136,7 @@ func parse_string_array(text: String) -> Array:
 
 static func load_csv(csv):
 	var file = FileAccess.open(csv, FileAccess.READ)
-	if not file.file_exists(csv):
+	if not FileAccess.file_exists(csv):
 		# Simlink *csv.txt this to your *.csv to dodge export badness
 		# Windows does not seem to correctly use simlinks, so for windows dev to work, we need to handle both
 		file = FileAccess.open(csv + ".txt", FileAccess.READ)

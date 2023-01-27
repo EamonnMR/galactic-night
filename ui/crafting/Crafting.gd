@@ -104,9 +104,12 @@ func clear(list):
 		list.remove_child(child)
 
 func _can_craft(blueprint):
-	var inventory = Client.player.get_node("Inventory")
-	var has_ingredients = inventory.has_ingredients(current_blueprint.ingredients)
-	return has_ingredients
+	if is_instance_valid(Client.player):
+		var inventory = Client.player.get_node("Inventory")
+		var has_ingredients = inventory.has_ingredients(current_blueprint.ingredients)
+		return has_ingredients
+	else:
+		return false
 
 func _on_CraftButton_pressed():
 	if _can_craft(current_blueprint):

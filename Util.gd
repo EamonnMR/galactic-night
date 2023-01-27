@@ -38,7 +38,7 @@ func wrap_to_play_radius(entity: Node3D) -> bool:
 	if position.length() > PLAY_AREA_RADIUS:
 		entity.global_transform.origin = raise_25d(
 			Vector2(
-				PLAY_AREA_RADIUS / 2, 0
+				PLAY_AREA_RADIUS / 2.0, 0
 			).rotated(
 				anglemod(position.angle() + PI)
 			)
