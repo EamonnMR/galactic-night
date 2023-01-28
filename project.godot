@@ -114,6 +114,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://component/Weapon.gd"
 }, {
+"base": "DataRow",
+"class": &"WeaponData",
+"language": &"GDScript",
+"path": "res://data/WeaponData.gd"
+}, {
 "base": "Node3D",
 "class": &"WeaponSlot",
 "language": &"GDScript",
@@ -141,6 +146,7 @@ _global_script_class_icons={
 "SpobData": "",
 "SystemData": "",
 "Weapon": "",
+"WeaponData": "",
 "WeaponSlot": ""
 }
 

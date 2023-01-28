@@ -7,6 +7,7 @@ var spawns = {}
 var biomes = {}
 var factions = {}
 var skins = {}
+var weapons = {}
 var evergreen_spawns = []
 var evergreen_natural_spawns = []
 var evergreen_artificial_spawns = []
@@ -28,7 +29,8 @@ func _init():
 		[FactionData, "factions"],
 		[SkinData, "skins"],
 		[ShipData, "ships"],
-		[SpobData, "spob_types"]
+		[SpobData, "spob_types"],
+		[WeaponData, "weapons"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]

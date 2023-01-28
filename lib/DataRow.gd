@@ -103,6 +103,23 @@ func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 				var value = key_value[1].strip_edges()
 				dict[key] = value.to_int()
 	return dict
+	
+func parse_colon_dict_string_values(colon_dict: String) -> Dictionary:
+	#Looks like 'key: val; key2: val2' translates to:
+	#	{
+	#		"key": "val"
+	#		"key2": "val2"
+	#	}
+	#
+	var dict = {}
+	if colon_dict != "":
+		for kvp in colon_dict.split(";"):
+			if kvp != "":
+				var key_value = kvp.split(":")
+				var key = key_value[0].strip_edges()
+				var value = key_value[1].strip_edges()
+				dict[key] = value
+	return dict
 
 func parse_array(string_val, array):
 	if not(array.is_typed()):
