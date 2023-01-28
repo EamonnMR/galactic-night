@@ -13,6 +13,7 @@ var vary_pitch: int
 var ammo_item: String
 var primary: bool
 var projectile_velocity: float
+var damage: int
 
 func apply_to_node(node):
 	super.apply_to_node(node)
