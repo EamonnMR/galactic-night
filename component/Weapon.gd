@@ -56,10 +56,6 @@ func _shoot():
 func _create_projectile():
 	var projectile = projectile_scene.instantiate()
 	# projectile.init()
-	if world_projectile:
-		Client.get_world().get_node("projectiles").add_child(projectile)
-	else:
-		get_node("../").add_child(projectile)
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
@@ -70,6 +66,11 @@ func _create_projectile():
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
+
+	if world_projectile:
+		Client.get_world().get_node("projectiles").add_child(projectile)
+	else:
+		get_node("../").add_child(projectile)
 
 func _effects():
 	#$Emerge/MuzzleFlash.restart()

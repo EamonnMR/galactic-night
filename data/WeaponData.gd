@@ -12,6 +12,7 @@ var world_projectile: bool  # Disable for beams or other things that should foll
 var vary_pitch: int
 var ammo_item: String
 var primary: bool
+var projectile_velocity: float
 
 func apply_to_node(node):
 	super.apply_to_node(node)
@@ -23,4 +24,5 @@ static func get_csv_path():
 static func instantiate(type):
 	var instance = Data.weapons[type].scene.instantiate()
 	instance.type = type
+	instance.primary = Data.weapons[type].primary
 	return instance
