@@ -1,18 +1,18 @@
-extends RigidBody3D
+extends CharacterBody3D
 
 var iff: IffProfile
 var damage: int
+var linear_velocity = Vector2()
+var initial_velocity = 10
 
 func _ready():
-	call_deferred("initial_velocity")
+	linear_velocity += Vector2(initial_velocity, 0).rotated(-rotation.y)
 
 func _physics_process(_delta):
+	set_velocity(Util.raise_25d(linear_velocity))
+	move_and_slide()
 	Util.wrap_to_play_radius(self)
 
-func initial_velocity():
-	apply_central_impulse(
-		10 * transform.basis.x
-	)
 
 func _on_Projectile_body_entered(body):
 	if not iff.should_exclude(body):

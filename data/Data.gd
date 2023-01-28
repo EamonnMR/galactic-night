@@ -42,6 +42,8 @@ func _init():
 	assert_ingredients_exist()
 	assert_spawns_exist()
 	assert_happy_markov()
+	assert_weapons_belonging_to_items_exist()
+	assert_weapon_ammo_types_exist()
 
 func load_text():
 	print("Crunching markov chains")
@@ -111,7 +113,7 @@ func assert_spawns_exist():
 func assert_spawns_have_scenes_or_types():
 	for spawn_id in spawns:
 		var spawn = spawns[spawn_id]
-		assert(not (
+		assert(not (	
 			spawn.scene == null and spawn.type == null
 		))
 
@@ -119,3 +121,15 @@ func assert_happy_markov():
 	for name_generator_id in name_generators:
 		var terminators = name_generators[name_generator_id].find_mandatory_terminal_letters()
 		assert(terminators == [])
+
+func assert_weapons_belonging_to_items_exist():
+	for item_id in items:
+		if items[item_id].equip_category == "weapon":
+			assert(item_id in weapons)
+
+func assert_weapon_ammo_types_exist():
+	for weapon_id in weapons:
+		var weapon = weapons[weapon_id]
+		if weapon.ammo_item != "":
+			assert(weapon.ammo_item in items)
+	

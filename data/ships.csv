@@ -1,5 +1,5 @@
 id,name,max_speed,accel,turn,max_bank,bank_speed,scene,weapon_config
-nimbus,Nimbus,10,0.03,1,15,2.5,res://entities/ship/ship_types/Nimbus.tscn,LeftGun: plasma; RightGun: Plasma
+nimbus,Nimbus,10,0.03,1,15,2.5,res://entities/ship/ship_types/Nimbus.tscn,LeftGun: plasma; RightGun: plasma
 burner,Burner,15,0.06,1,20,3,res://entities/ship/ship_types/Burner.tscn,LeftGun: plasma
-dragon,Dragon,8,0.02,0.8,15,1,res://entities/ship/ship_types/Dragon.tscn,LeftGun: plasma; RightGun: Plasma
-delivery,Delivery,7,0.05,1,15,1,res://entities/ship/ship_types/Delivery.tscn,LeftGun: plasma; RightGun: Plasma
+dragon,Dragon,8,0.02,0.8,15,1,res://entities/ship/ship_types/Dragon.tscn,LeftGun: plasma; RightGun: plasma
+delivery,Delivery,7,0.05,1,15,1,res://entities/ship/ship_types/Delivery.tscn,LeftGun: plasma; RightGun: plasma

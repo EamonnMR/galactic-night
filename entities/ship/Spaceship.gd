@@ -33,10 +33,9 @@ func _ready():
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
-		
-		for weapon_slot in Data.ships[type].weapon_config:
-			# TODO: Check which weapon is actually assigned
-			get_node(weapon_slot).add_weapon(preload("res://component/Weapon.tscn").instantiate())
+		var weapon_config = Data.ships[type].weapon_config
+		for weapon_slot in weapon_config:
+			get_node(weapon_slot).add_weapon(WeaponData.instantiate(weapon_config[weapon_slot]))
 		
 func get_weapon_slots() -> Array[WeaponSlot]:
 	var weapon_slots = []

@@ -9,6 +9,8 @@ var burst_counter: int = 0
 
 var iff: IffProfile
 
+var type: String
+
 @onready var parent = get_node("../../")
 
 @export var projectile_scene: PackedScene
@@ -20,11 +22,13 @@ var iff: IffProfile
 @export var ammo_item: String
 @export var primary = true
 @export var weapon_name: String = "Plasma"
+@export var projectile_velocity: float
 
 # @export var dmg_factor: float = 1
 @export var damage: int
 
 func _ready():
+	Data.weapons[type].apply_to_node(self)
 	iff = IffProfile.new(
 		parent,
 		parent.faction,
@@ -61,6 +65,8 @@ func _create_projectile():
 	# TODO: Also scale splash damage
 	projectile.global_transform = global_transform
 	projectile.damage = damage
+	projectile.initial_velocity = projectile_velocity
+	projectile.linear_velocity = parent.linear_velocity
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
