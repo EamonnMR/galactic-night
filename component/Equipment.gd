@@ -64,7 +64,7 @@ func remove_item(key: String, category: String) -> Inventory.InvItem:
 	
 func _add(item: Inventory.InvItem, key: String, category: String):
 	if category == "weapon":
-		get_parent().get_node(key).add_weapon(preload("res://component/Weapon.tscn").instantiate())
+		get_parent().get_node(key).add_weapon(WeaponData.instantiate(item.type))
 	if category == "armor":
 		_parent().get_node("Health").increase_max_health(item.data().consumable_magnitude)
 	if category == "shield":
@@ -72,7 +72,7 @@ func _add(item: Inventory.InvItem, key: String, category: String):
 
 func _remove(key: String, category: String, item: Inventory.InvItem):
 	if category == "weapon":
-		_parent().remove_weapon(key)
+		_parent().get_node(key).remove_weapon()
 	if category == "armor":
 		_parent().get_node("Health").decrease_max_health(item.data().consumable_magnitude)
 	if category == "shield":

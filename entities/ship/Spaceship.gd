@@ -17,7 +17,7 @@ var secondary_weapons = []
 signal destroyed
 
 func _ready():
-	# Data.ships[type].apply_to_node(self)
+	Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	add_to_group("radar")
 	add_to_group("ships")
@@ -33,9 +33,9 @@ func _ready():
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
-		for weapon_slot in get_weapon_slots():
-			# TODO: Configure this in ship data class
-			weapon_slot.add_weapon(preload("res://component/Weapon.tscn").instantiate())
+		var weapon_config = Data.ships[type].weapon_config
+		for weapon_slot in weapon_config:
+			get_node(weapon_slot).add_weapon(WeaponData.instantiate(weapon_config[weapon_slot]))
 		
 func get_weapon_slots() -> Array[WeaponSlot]:
 	var weapon_slots = []

@@ -1,17 +1,3 @@
 [remap]
 
-importer="csv_translation"
-type="Translation"
-uid="uid://dlwvh277qtwa7"
-
-[deps]
-
-files=["res://data/spobs.texture.translation", "res://data/spobs.radius.translation", "res://data/spobs.offset.translation", "res://data/spobs.type.translation"]
-
-source_file="res://data/spobs.csv"
-dest_files=["res://data/spobs.texture.translation", "res://data/spobs.radius.translation", "res://data/spobs.offset.translation", "res://data/spobs.type.translation"]
-
-[params]
-
-compress=true
-delimiter=0
+importer="keep"

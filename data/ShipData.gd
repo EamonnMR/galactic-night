@@ -9,6 +9,11 @@ var turn: float
 var max_bank: int
 var bank_speed: float
 var scene: PackedScene
+var weapon_config: Dictionary
+
+func _init(data):
+	super._init(data)
+	weapon_config = parse_colon_dict_string_values(data["weapon_config"])
 
 func apply_to_node(node):
 	super.apply_to_node(node)
