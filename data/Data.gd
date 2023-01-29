@@ -2,7 +2,7 @@ extends Node
 
 var items = {}
 var recipes = {}
-#var builds = {}
+var builds = {}
 var spawns = {}
 var biomes = {}
 var factions = {}
@@ -23,7 +23,7 @@ func _init():
 	for class_and_dest in [
 		[ItemData, "items"],
 		[RecipeData, "recipes"],
-#		[BuildData, builds],
+		[BuildData, "builds"],
 		[SpawnData, "spawns"],
 		[BiomeData, "biomes"],
 		[FactionData, "factions"],
@@ -44,6 +44,7 @@ func _init():
 	assert_happy_markov()
 	assert_weapons_belonging_to_items_exist()
 	assert_weapon_ammo_types_exist()
+	verify_destination_field()
 
 func load_text():
 	print("Crunching markov chains")
@@ -84,8 +85,8 @@ func cache_evergreen_preset_spawns():
 func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
 	for craftable_type in [
-		recipes
-#		builds,
+		recipes,
+		builds
 #		ships
 	]:
 		for blueprint_id in craftable_type:
@@ -133,3 +134,15 @@ func assert_weapon_ammo_types_exist():
 		if weapon.ammo_item != "":
 			assert(weapon.ammo_item in items)
 	
+func verify_destination_field():
+	# "Destination" means "where in World3D do we stick this thing"
+	# Verify that it only ever goes to a valid place
+	var dummy_world = preload("res://World3D.tscn").instantiate()
+	for type_id in [
+		"builds",
+		"spawns"
+	]:
+		var type = get(type_id)
+		for blueprint_id in type:
+			var row = type[blueprint_id]
+			assert(dummy_world.has_node(row.destination))

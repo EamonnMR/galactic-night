@@ -1,0 +1,3 @@
+id,name,scene,destination,require_level,ingredients,icon,text
+workbench,Workbench Station,res://entities/constructed/Workbench.tscn,spobs,0,metal: 1,res://assets/eamonn/station_icon.png,Orbital construction yard. Craft larger and more advanced items.
+turret_station,Turret Sation,res://entities/constructed/TurretStation.tscn,spobs,0,metal: 3,res://assets/eamonn/station_icon_turret.png,Defensive station

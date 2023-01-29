@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3kp70760k1mb"
+path="res://.godot/imported/turret_station.obj-eca74410e9c10402a6da26b9553389be.mesh"
+
+[deps]
+
+files=["res://.godot/imported/turret_station.obj-eca74410e9c10402a6da26b9553389be.mesh"]
+
+source_file="res://asset_sources/turret_station.obj"
+dest_files=["res://.godot/imported/turret_station.obj-eca74410e9c10402a6da26b9553389be.mesh", "res://.godot/imported/turret_station.obj-eca74410e9c10402a6da26b9553389be.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
