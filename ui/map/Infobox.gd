@@ -21,7 +21,8 @@ func _update():
 		if "spobs" in sysdat.entities:
 			var spob_names: PackedStringArray = []
 			for spob in sysdat.entities.spobs:
-				spob_names.push_back(spob.spob_name)
+				if "spob_name" in spob:
+					spob_names.push_back(spob.spob_name)
 			spobs.text = "Spobs: " + ("\n".join(spob_names))
 		else:
 			spobs.text = ""
