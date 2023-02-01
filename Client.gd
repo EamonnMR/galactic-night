@@ -82,3 +82,6 @@ func deserialize_entity(destination_path, serial_data):
 	entity.deserialize(serial_data)
 	# object.name = serial_data["name"] # TODO: We want to deal with names/IDs for networked play
 	destination.add_child(entity)
+
+func update_player_target_ship(new_target):
+	self.target_ship = new_target

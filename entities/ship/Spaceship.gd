@@ -17,6 +17,7 @@ var secondary_weapons = []
 signal destroyed
 
 func _ready():
+	input_event.connect(_on_input_event_npc)
 	Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	add_to_group("radar")
@@ -115,3 +116,12 @@ func handle_jumping():
 func _on_health_destroyed():
 	call_deferred("queue_free")
 	emit_signal("destroyed")
+
+func _on_input_event_npc(_camera, event, _click_position, _camera_normal, _shape):
+	#https://stackoverflow.com/questions/58628154/detecting-click-touchscreen-input-on-a-3d-object-inside-godot
+	var mouse_click = event as InputEventMouseButton
+	if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
+		Client.update_player_target_ship(self)
+	else:
+		pass
+		# TODO: Show 'click on me' outline to hint to player that they can click

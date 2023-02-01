@@ -5,3 +5,24 @@
 
 [node name="Build" instance=ExtResource("1")]
 script = ExtResource("2")
+
+[node name="HBoxContainer" parent="." index="0"]
+layout_mode = 1
+
+[node name="ScrollContainer" parent="HBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Recipes" parent="HBoxContainer/ScrollContainer" index="0"]
+layout_mode = 2
+
+[node name="Details" parent="HBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Name" parent="HBoxContainer/Details" index="0"]
+layout_mode = 0
+
+[node name="Description" parent="HBoxContainer/Details" index="1"]
+layout_mode = 0
+
+[node name="Ingredients" parent="HBoxContainer/Details" index="2"]
+layout_mode = 0
