@@ -25,7 +25,7 @@ func _process(_delta):
 
 func _get_color(node: Node):
 	# TODO: if IFF decoder type upgrade is installed
-	if node.is_in_group("players"):
+	if node.is_in_group("players") or node.is_in_group("player-assets"):
 		return DISPOSITION_COLORS["player"]
 	if "faction" in node:
 		if node.faction:

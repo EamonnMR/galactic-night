@@ -5,7 +5,6 @@
 
 [node name="Craft" instance=ExtResource("1")]
 process_mode = 3
-visible = true
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
@@ -31,7 +30,6 @@ offset_left = 5.0
 offset_top = 37.0
 offset_right = 198.0
 offset_bottom = 137.0
-autowrap_mode = 2
 
 [node name="Ingredients" parent="HBoxContainer/Details" index="2"]
 offset_left = 3.0

@@ -86,6 +86,7 @@ offset_right = 200.0
 offset_bottom = 185.0
 
 [node name="Name" type="Label" parent="MarginContainer/NinePatchPanel/MarginContainer2/Panel/Infobox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 offset_right = 200.0
 offset_bottom = 23.0
 
@@ -102,6 +103,7 @@ offset_right = 200.0
 offset_bottom = 77.0
 
 [node name="Spobs" type="Label" parent="MarginContainer/NinePatchPanel/MarginContainer2/Panel/Infobox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 offset_top = 81.0
 offset_right = 200.0
 offset_bottom = 104.0

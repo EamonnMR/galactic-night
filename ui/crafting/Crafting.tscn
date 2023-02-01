@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf46l4qga0grl"]
+[gd_scene load_steps=5 format=3 uid="uid://bf46l4qga0grl"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1"]
 [ext_resource type="Script" path="res://ui/crafting/CraftingMain.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ecaqh0syukcx" path="res://ui/crafting/ItemCraftSubmenu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bu7mccq5pm4fn" path="res://ui/crafting/Build.tscn" id="4_hyfkp"]
 
 [node name="Crafting" type="Control"]
 layout_mode = 3
@@ -44,3 +45,6 @@ offset_bottom = 287.0
 [node name="Craft" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4")]
 process_mode = 0
 offset_top = 31.0
+
+[node name="Build" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4_hyfkp")]
+visible = false

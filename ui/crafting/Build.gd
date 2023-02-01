@@ -16,6 +16,8 @@ func _do_craft():
 	var constructed = current_blueprint.scene.instantiate()
 	Client.player.get_node("Inventory").deduct_ingredients(current_blueprint.ingredients)
 	constructed.position = Client.player.position
-	get_tree().get_root().get_node("Game/Gameplay/" + current_blueprint.destination).add_child(
+	Client.get_world().get_node(
+		current_blueprint.destination
+	).add_child(
 		constructed
 	)

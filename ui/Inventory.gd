@@ -9,8 +9,8 @@ var item_icon = preload("res://ui/ItemIcon.tscn")
 func assign(bound_inventory: Inventory, new_name: String):
 	inventory = bound_inventory.get_path()
 	label = new_name
-	bound_inventory.connect("updated",Callable(self,"rebuild"))
-	call_deferred("rebuild")
+	bound_inventory.updated.connect(rebuild)
+	rebuild.call_deferred()
 
 func _ready():
 	%NameSlot.text = label
@@ -31,17 +31,17 @@ func rebuild():
 		var max_items = inv.max_items
 		for i in range(max_items):
 			var slot_container = inventory_slot.instantiate()
-			slot_container.connect("item_removed",Callable(self,"_on_item_removed").bind(i))
-			slot_container.connect("item_added",Callable(self,"_on_item_added").bind(i))
+			slot_container.item_removed.connect(
+				func _on_item_removed():
+					_inventory().remove_item_from_slot(i)
+			)
+			slot_container.item_added.connect(
+				func _on_item_added(item):
+					_inventory().add(item.type, item.count, i)
+			)
 			if i in inv.item_slots:
 				var item: Inventory.InvItem = inv.item_slots[i]
 				var icon = item_icon.instantiate()
 				icon.init(item)
 				slot_container.add_child(icon)
 			%GridContainer.add_child(slot_container)
-
-func _on_item_added(item, slot):
-	_inventory().add(item.type, item.count, slot)
-
-func _on_item_removed(slot):
-	_inventory().remove_item_from_slot(slot)

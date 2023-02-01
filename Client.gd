@@ -41,9 +41,10 @@ func sel_sys(system_id: String, node):
 	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump
 
 func change_system():
+	var old_system = current_system
 	current_system = selected_system
 	selected_system = null
-	get_main().change_system()
+	get_main().change_system(old_system, current_system)
 
 func get_world():
 	return get_main().get_node("World3D")

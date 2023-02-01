@@ -24,7 +24,7 @@ var state = STATES.IDLE
 
 func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
-	get_node("../Health").connect("damaged", self._on_damage_taken)
+	get_node("../Health").damaged.connect(_on_damage_taken)
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
