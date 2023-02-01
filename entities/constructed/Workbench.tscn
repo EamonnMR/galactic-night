@@ -45,7 +45,7 @@ collision_mask = 0
 script = ExtResource("1_8ob2n")
 
 [node name="Station" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4, -6, -4)
+transform = Transform3D(0.231966, 0.0446757, 0.0818289, -0.0751137, 0.219535, 0.0930712, -0.0552251, -0.110943, 0.217122, 4, -6, -4)
 mesh = SubResource("ArrayMesh_0s6ue")
 surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
 
