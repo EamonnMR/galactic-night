@@ -7,28 +7,13 @@
 script = ExtResource("2")
 
 [node name="HBoxContainer" parent="." index="0"]
-layout_mode = 3
+layout_mode = 1
 
 [node name="ScrollContainer" parent="HBoxContainer" index="0"]
-layout_mode = 3
-offset_right = 40.0
-offset_bottom = 612.0
+layout_mode = 2
 
 [node name="Recipes" parent="HBoxContainer/ScrollContainer" index="0"]
-layout_mode = 3
+layout_mode = 2
 
 [node name="Details" parent="HBoxContainer" index="1"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 44.0
-offset_right = 44.0
-offset_bottom = 612.0
-
-[node name="Name" parent="HBoxContainer/Details" index="0"]
-layout_mode = 3
-
-[node name="Description" parent="HBoxContainer/Details" index="1"]
-layout_mode = 3
-
-[node name="Ingredients" parent="HBoxContainer/Details" index="2"]
-layout_mode = 3
+layout_mode = 2

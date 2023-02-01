@@ -37,7 +37,4 @@ offset_top = 213.0
 offset_right = 256.0
 offset_bottom = 253.0
 
-[node name="Build" parent="NinePatchPanel/MarginContainer/TabContainer" index="2"]
-visible = false
-
 [editable path="NinePatchPanel/MarginContainer/TabContainer/Craft"]
