@@ -7,7 +7,7 @@ extends Node3D
 var initial_vel: float = 1.5
 
 func _ready():
-	get_node("../").connect("destroyed", self.drop)
+	get_parent().destroyed.connect(drop)
 
 func _physics_process(_delta):
 	Util.wrap_to_play_radius(self)

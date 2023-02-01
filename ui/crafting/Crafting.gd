@@ -42,7 +42,11 @@ func build_blueprint_list():
 		var blueprint = _blueprints()[blueprint_id]
 		if blueprint.require_level <= crafting_level:
 			var icon = _get_icon_node(blueprint)
-			icon.connect("pressed",Callable(self,"_blueprint_selected").bind(blueprint_id))
+			icon.pressed.connect(
+				func _blueprint_selected():
+					current_blueprint = _blueprints()[blueprint_id]
+					_update_blueprint_selection()
+			)
 			blueprint_list.add_child(icon)
 
 func _get_icon_node(item):
@@ -61,10 +65,6 @@ func _get_icon_texture(_blueprint):
 	# For example if it makes an item, implement a function that returns that
 	# item's icon
 	return null
-
-func _blueprint_selected(blueprint_id):
-	current_blueprint = _blueprints()[blueprint_id]
-	_update_blueprint_selection()
 	
 func _update_blueprint_selection():
 	var blueprint_id = current_blueprint.id

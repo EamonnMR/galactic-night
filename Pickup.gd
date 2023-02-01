@@ -13,7 +13,7 @@ func initial_velocity():
 func _ready():
 	# TODO: Set texture properly
 	$Sprite3D.texture = Data.items[type].icon
-	$AudioStreamPlayer3D.connect("finished", self.queue_free)
+	$AudioStreamPlayer3D.finished.connect(queue_free)
 	call_deferred("initial_velocity")
 
 func serialize() -> Dictionary:

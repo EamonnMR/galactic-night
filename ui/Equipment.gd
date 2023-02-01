@@ -4,7 +4,7 @@ var item_icon = preload("res://ui/ItemIcon.tscn")
 var EquipBox = preload("res://ui/EquipBox.tscn")
 
 func _ready():
-	Client.connect("player_ship_updated", self.rebuild)
+	Client.player_ship_updated.connect(rebuild)
 
 func clear():
 	for i in [%LeftEquip, %MiddleEquip, %RightEquip]:
