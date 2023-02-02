@@ -64,3 +64,10 @@ func _constrained_point(source_position: Vector2, current_rotation: float,
 		return [max_turn, ideal_face]
 	else:
 		return [ideal_turn, ideal_face]
+
+enum DISPOSITION {
+	FRIENDLY,
+	HOSTILE,
+	NEUTRAL,
+	ABANDONED
+}

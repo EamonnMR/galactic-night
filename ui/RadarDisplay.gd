@@ -8,11 +8,10 @@ var radar_scale = 2
 @onready var radar_rotate = PI + Util.flatten_25d(Client.camera.global_position).angle()
 
 var DISPOSITION_COLORS = {
-		"hostile": Color(1,0,0),
-		"neutral": Color(1,1,0),
-		"abandoned": Color(0.5, 0.5, 0.5),
-		"player": Color(1,1,1),
-		"asteroid": Color(0.5, 0.25, 0)
+		Util.DISPOSITION.HOSTILE: Color(1,0,0),
+		Util.DISPOSITION.NEUTRAL: Color(1,1,0),
+		Util.DISPOSITION.ABANDONED: Color(0.5, 0.5, 0.5),
+		Util.DISPOSITION.FRIENDLY: Color(1,1,1),
 }
 
 func _relative_position(subject: Node3D, player_position: Vector2) -> Vector2:
@@ -25,15 +24,7 @@ func _process(_delta):
 
 func _get_color(node: Node):
 	# TODO: if IFF decoder type upgrade is installed
-	if node.is_in_group("players") or node.is_in_group("player-assets"):
-		return DISPOSITION_COLORS["player"]
-	if "faction" in node:
-		if node.faction:
-			return DISPOSITION_COLORS[
-				Data.factions[node.faction].get_player_disposition()
-			]
-	else:
-		return DISPOSITION_COLORS["abandoned"]
+	return DISPOSITION_COLORS[Client.get_disposition(node)]
 
 func _get_ship_size(node: Node):
 	if node.name == "Spob":

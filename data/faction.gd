@@ -29,6 +29,6 @@ static func get_csv_path():
 
 func get_player_disposition():
 	if initial_disposition < 0:
-		return "hostile"
+		return Util.DISPOSITION.HOSTILE
 	else:
-		return "neutral"
+		return Util.DISPOSITION.NEUTRAL

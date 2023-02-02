@@ -1,6 +1,7 @@
 extends Control
 
 var target_ship: Spaceship
+var disposition: Util.DISPOSITION = Util.DISPOSITION.ABANDONED
 
 func _ready():
 	hide()
@@ -9,8 +10,8 @@ func _ready():
 			target_ship = Client.target_ship
 			show()
 			# TODO: Resize to target size
-			# TODO: Recolor for target status
-			Client.target_ship.destroyed.connect(_on_target_ship_exited)
+			$SelectionBox.set_disposition(Client.get_disposition(target_ship))
+			target_ship.destroyed.connect(_on_target_ship_exited)
 	)
 
 func _process(delta):

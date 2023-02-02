@@ -90,3 +90,12 @@ func deserialize_entity(destination_path, serial_data):
 func update_player_target_ship(new_target):
 	target_ship = new_target
 	ship_target_updated.emit()
+
+func get_disposition(node):
+	if node.is_in_group("players") or node.is_in_group("player-assets"):
+		return Util.DISPOSITION.FRIENDLY
+	if "faction" in node:
+		if node.faction:
+			return Data.factions[node.faction].get_player_disposition()
+	else:
+		return Util.DISPOSITION.ABANDONED
