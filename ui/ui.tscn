@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgtxo5vmdxx77"]
+[gd_scene load_steps=11 format=3 uid="uid://bgtxo5vmdxx77"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/RadarDisplay.gd" id="7_xo5ih"]
 [ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/target_follower.tscn" id="9_80m1b"]
+[ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/TargetInfo.tscn" id="10_doaoj"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -24,9 +25,6 @@ offset_left = -533.0
 offset_top = 79.0
 offset_right = -240.0
 offset_bottom = 400.0
-
-[node name="Map" parent="." instance=ExtResource("3_et15m")]
-visible = false
 
 [node name="Inventory" parent="." instance=ExtResource("4_o6isj")]
 visible = false
@@ -66,6 +64,15 @@ position = Vector2(119, 119)
 script = ExtResource("7_xo5ih")
 
 [node name="TargetFollower" parent="." instance=ExtResource("9_80m1b")]
+
+[node name="NinePatchPanel" parent="." instance=ExtResource("10_doaoj")]
+offset_left = 916.0
+offset_top = 398.0
+offset_right = 1151.0
+offset_bottom = 643.0
+
+[node name="Map" parent="." instance=ExtResource("3_et15m")]
+visible = false
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]

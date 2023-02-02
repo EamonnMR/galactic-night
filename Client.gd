@@ -7,6 +7,7 @@ signal system_selection_updated
 signal camera_updated
 signal player_ship_updated
 signal ship_target_updated
+signal exited_system
 @onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
@@ -48,6 +49,7 @@ func change_system():
 	var old_system = current_system
 	current_system = selected_system
 	selected_system = null
+	exited_system.emit()
 	get_main().change_system(old_system, current_system)
 
 func get_world():
