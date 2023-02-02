@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Spaceship
+
 var faction
 var type: String
 

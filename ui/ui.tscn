@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgtxo5vmdxx77"]
+[gd_scene load_steps=10 format=3 uid="uid://bgtxo5vmdxx77"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/RadarDisplay.gd" id="7_xo5ih"]
+[ext_resource type="Script" path="res://ui/TargetFollower.gd" id="9_i07bo"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -63,6 +64,20 @@ texture = ExtResource("6_ugv72")
 [node name="RadarDisplay" type="Node2D" parent="Radar"]
 position = Vector2(119, 119)
 script = ExtResource("7_xo5ih")
+
+[node name="TargetFollower" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_i07bo")
+
+[node name="Label" type="Label" parent="TargetFollower"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TARGET"
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]

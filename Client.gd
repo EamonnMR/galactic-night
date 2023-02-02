@@ -6,9 +6,13 @@ var camera
 signal system_selection_updated
 signal camera_updated
 signal player_ship_updated
+signal ship_target_updated
 @onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
+
+var target_ship: Spaceship
+
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 
@@ -84,4 +88,5 @@ func deserialize_entity(destination_path, serial_data):
 	destination.add_child(entity)
 
 func update_player_target_ship(new_target):
-	self.target_ship = new_target
+	target_ship = new_target
+	ship_target_updated.emit()
