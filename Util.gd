@@ -72,7 +72,7 @@ enum DISPOSITION {
 	ABANDONED
 }
 
-func closest(choices: Array[Node3D], position: Vector2) -> Node3D:
+func closest(choices, position: Vector2) -> Node3D:
 	# Warning: side effects
 	choices.sort_custom(
 		func distance_comparitor(lval: Node3D, rval: Node3D):

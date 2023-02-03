@@ -60,8 +60,18 @@ func check_jumped():
 		jumping = true
 
 func select_nearest_target():
-	pass
-	
+	if Input.is_action_just_pressed("target_nearest_hostile"):
+		var hostile_ships = get_tree().get_nodes_in_group("npcs-hostile")
+		if len(hostile_ships) == 0:
+			return
+		elif len(hostile_ships) == 1:
+			Client.update_player_target_ship(hostile_ships[0])
+		else:
+			Client.update_player_target_ship(Util.closest(
+				get_tree().get_nodes_in_group("npcs-hostile"),
+				Util.flatten_25d(parent.global_transform.origin)
+			))
+		
 func cycle_targets():
 	pass
 

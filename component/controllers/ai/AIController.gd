@@ -139,6 +139,7 @@ func change_state_idle():
 	thrusting = false
 	shooting = false
 	rotation_impulse = 0
+	parent.remove_from_group("npcs-hostile")
 	#print("New State: Idle")
 
 func change_state_persue(target):
@@ -157,6 +158,7 @@ func change_state_attack():
 func change_state_path(path_target):
 	self.path_target = path_target
 	state = STATES.PATH
+	parent.remove_from_group("npcs-hostile")
 
 func _facing_within_margin(margin):
 	# Relies checked 'ideal face' being populated
