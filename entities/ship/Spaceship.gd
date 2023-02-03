@@ -126,5 +126,4 @@ func _on_input_event_npc(_camera, event, _click_position, _camera_normal, _shape
 	if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
 		Client.update_player_target_ship(self)
 	else:
-		pass
-		# TODO: Show 'click on me' outline to hint to player that they can click
+		Client.mouseover_entered(self)
