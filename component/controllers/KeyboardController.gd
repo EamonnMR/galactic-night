@@ -68,12 +68,16 @@ func select_nearest_target():
 			Client.update_player_target_ship(hostile_ships[0])
 		else:
 			Client.update_player_target_ship(Util.closest(
-				get_tree().get_nodes_in_group("npcs-hostile"),
+				hostile_ships,
 				Util.flatten_25d(parent.global_transform.origin)
 			))
 		
 func cycle_targets():
-	pass
+	if Input.is_action_just_pressed("cycle_targets"):
+		var all_ships = get_tree().get_nodes_in_group("npcs")
+		var index = all_ships.find(Client.target_ship)
+		var next_index = (index + 1) % all_ships.size()
+		Client.update_player_target_ship(all_ships[next_index])
 
 
 #func _toggle_pause():

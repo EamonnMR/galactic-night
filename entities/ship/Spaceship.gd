@@ -33,6 +33,7 @@ func _ready():
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
 		add_to_group("faction-" + faction)
+		add_to_group("npcs")
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
