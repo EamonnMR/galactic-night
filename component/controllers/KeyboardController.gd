@@ -24,6 +24,8 @@ func _physics_process(delta):
 	toggle_map()
 	toggle_inventory()
 	check_jumped()
+	select_nearest_target()
+	cycle_targets()
 
 func _ready():
 	Client.set_player(parent)
@@ -56,6 +58,13 @@ func cycle_ships():
 func check_jumped():
 	if Input.is_action_just_released("jump"):
 		jumping = true
+
+func select_nearest_target():
+	pass
+	
+func cycle_targets():
+	pass
+
 
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")

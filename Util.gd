@@ -71,3 +71,15 @@ enum DISPOSITION {
 	NEUTRAL,
 	ABANDONED
 }
+
+func closest(choices: Array[Node3D], position: Vector2) -> Node3D:
+	# Warning: side effects
+	choices.sort_custom(
+		func distance_comparitor(lval: Node3D, rval: Node3D):
+			# For sorting other nodes by how close they are
+			
+			var ldist =  Util.flatten_25d(lval.global_transform.origin).distance_to(position)
+			var rdist = Util.flatten_25d(rval.global_transform.origin).distance_to(position)
+			return ldist < rdist
+	)
+	return choices[0]
