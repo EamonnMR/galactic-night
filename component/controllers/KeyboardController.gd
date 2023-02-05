@@ -24,6 +24,8 @@ func _physics_process(delta):
 	toggle_map()
 	toggle_inventory()
 	check_jumped()
+	select_nearest_target()
+	cycle_targets()
 
 func _ready():
 	Client.set_player(parent)
@@ -56,6 +58,27 @@ func cycle_ships():
 func check_jumped():
 	if Input.is_action_just_released("jump"):
 		jumping = true
+
+func select_nearest_target():
+	if Input.is_action_just_pressed("target_nearest_hostile"):
+		var hostile_ships = get_tree().get_nodes_in_group("npcs-hostile")
+		if len(hostile_ships) == 0:
+			return
+		elif len(hostile_ships) == 1:
+			Client.update_player_target_ship(hostile_ships[0])
+		else:
+			Client.update_player_target_ship(Util.closest(
+				hostile_ships,
+				Util.flatten_25d(parent.global_transform.origin)
+			))
+		
+func cycle_targets():
+	if Input.is_action_just_pressed("cycle_targets"):
+		var all_ships = get_tree().get_nodes_in_group("npcs")
+		var index = all_ships.find(Client.target_ship)
+		var next_index = (index + 1) % all_ships.size()
+		Client.update_player_target_ship(all_ships[next_index])
+
 
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")

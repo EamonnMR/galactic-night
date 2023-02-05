@@ -8,6 +8,7 @@
 
 [node name="Map" type="Control"]
 process_mode = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

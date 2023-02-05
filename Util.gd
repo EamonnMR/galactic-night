@@ -64,3 +64,30 @@ func _constrained_point(source_position: Vector2, current_rotation: float,
 		return [max_turn, ideal_face]
 	else:
 		return [ideal_turn, ideal_face]
+
+enum DISPOSITION {
+	FRIENDLY,
+	HOSTILE,
+	NEUTRAL,
+	ABANDONED
+}
+
+func closest(choices, position: Vector2) -> Node3D:
+	# Warning: side effects
+	choices.sort_custom(
+		func distance_comparitor(lval: Node3D, rval: Node3D):
+			# For sorting other nodes by how close they are
+			
+			var ldist =  Util.flatten_25d(lval.global_transform.origin).distance_to(position)
+			var rdist = Util.flatten_25d(rval.global_transform.origin).distance_to(position)
+			return ldist < rdist
+	)
+	return choices[0]
+
+func item_screen_box_side_length(object):
+	if object.has_method("screen_box_side_length"):
+		return object.screen_box_side_length()
+	elif "screen_box_side_length" in object:
+		return object.screen_box_side_length
+	else:
+		return 100

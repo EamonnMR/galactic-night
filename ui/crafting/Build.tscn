@@ -5,3 +5,18 @@
 
 [node name="Build" instance=ExtResource("1")]
 script = ExtResource("2")
+
+[node name="Name" parent="HBoxContainer/Details" index="0"]
+offset_bottom = 23.0
+
+[node name="Description" parent="HBoxContainer/Details" index="1"]
+offset_left = 1.0
+offset_top = 26.0
+offset_right = 194.0
+offset_bottom = 126.0
+
+[node name="Ingredients" parent="HBoxContainer/Details" index="2"]
+offset_left = -5.0
+offset_top = 137.0
+offset_right = 201.0
+offset_bottom = 177.0

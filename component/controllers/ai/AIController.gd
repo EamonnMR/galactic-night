@@ -97,16 +97,7 @@ func _find_target():
 	elif enemy_ships.size() == 1:
 		change_state_persue(enemy_ships[0])
 	else:
-		var parent_position: Vector2 = Util.flatten_25d(get_node("../").global_transform.origin)
-		enemy_ships.sort_custom(
-			func distance_comparitor(lval: Node3D, rval: Node3D):
-				# For sorting other nodes by how close they are
-				
-				var ldist =  Util.flatten_25d(lval.global_transform.origin).distance_to(parent_position)
-				var rdist = Util.flatten_25d(rval.global_transform.origin).distance_to(parent_position)
-				return ldist < rdist
-		)
-		change_state_persue(enemy_ships[0])
+		change_state_persue(Util.closest(enemy_ships, Util.flatten_25d(parent.global_transform.origin)))
 		
 func _find_spob():
 	var spobs = get_tree().get_nodes_in_group("spobs")
@@ -148,11 +139,16 @@ func change_state_idle():
 	thrusting = false
 	shooting = false
 	rotation_impulse = 0
+	parent.remove_from_group("npcs-hostile")
 	#print("New State: Idle")
 
 func change_state_persue(target):
 	state = STATES.PERSUE
 	self.target = target
+	if target == Client.player:
+		parent.add_to_group("npcs-hostile")
+	else:
+		parent.remove_from_group("npcs-hostile")
 	#print("New State: Persue")
 
 func change_state_attack():
@@ -162,6 +158,7 @@ func change_state_attack():
 func change_state_path(path_target):
 	self.path_target = path_target
 	state = STATES.PATH
+	parent.remove_from_group("npcs-hostile")
 
 func _facing_within_margin(margin):
 	# Relies checked 'ideal face' being populated

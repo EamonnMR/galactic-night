@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Spaceship
+
 var faction
 var type: String
 
@@ -8,6 +10,7 @@ var accel = 0.01
 var turn = 1
 var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
+var screen_box_side_length: int
 
 var linear_velocity = Vector2()
 var primary_weapons = []
@@ -29,7 +32,9 @@ func _ready():
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
+		input_event.connect(_on_input_event_npc)
 		add_to_group("faction-" + faction)
+		add_to_group("npcs")
 		# TODO: Select AI type?
 		add_child(preload("res://component/controllers/ai/AIController.tscn").instantiate())
 		$Graphics.set_skin_data(Data.skins[Data.factions[faction].skin])
@@ -115,3 +120,11 @@ func handle_jumping():
 func _on_health_destroyed():
 	call_deferred("queue_free")
 	emit_signal("destroyed")
+
+func _on_input_event_npc(_camera, event, _click_position, _camera_normal, _shape):
+	#https://stackoverflow.com/questions/58628154/detecting-click-touchscreen-input-on-a-3d-object-inside-godot
+	var mouse_click = event as InputEventMouseButton
+	if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
+		Client.update_player_target_ship(self)
+	else:
+		Client.mouseover_entered(self)

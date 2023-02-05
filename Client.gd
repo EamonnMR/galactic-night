@@ -6,9 +6,18 @@ var camera
 signal system_selection_updated
 signal camera_updated
 signal player_ship_updated
+signal ship_target_updated
+signal spob_target_updated
+signal mouseover_updated
+signal exited_system
 @onready var current_system = Procgen.generate_systems(seed)
 var selected_system = null
 var selected_system_circle_cache = []
+
+var target_ship: Spaceship
+var target_spob
+var mouseover
+
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 
@@ -44,6 +53,7 @@ func change_system():
 	var old_system = current_system
 	current_system = selected_system
 	selected_system = null
+	exited_system.emit()
 	get_main().change_system(old_system, current_system)
 
 func get_world():
@@ -82,3 +92,26 @@ func deserialize_entity(destination_path, serial_data):
 	entity.deserialize(serial_data)
 	# object.name = serial_data["name"] # TODO: We want to deal with names/IDs for networked play
 	destination.add_child(entity)
+
+func update_player_target_ship(new_target):
+	target_ship = new_target
+	ship_target_updated.emit()
+	
+func update_player_target_spob(new_target):
+	target_spob = new_target
+	spob_target_updated.emit()
+	
+	
+func mouseover_entered(target):
+	mouseover = target
+	mouseover_updated.emit()
+
+
+func get_disposition(node):
+	if node.is_in_group("players") or node.is_in_group("player-assets"):
+		return Util.DISPOSITION.FRIENDLY
+	if "faction" in node:
+		if node.faction:
+			return Data.factions[node.faction].get_player_disposition()
+	else:
+		return Util.DISPOSITION.ABANDONED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgtxo5vmdxx77"]
+[gd_scene load_steps=14 format=3 uid="uid://bgtxo5vmdxx77"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
@@ -8,6 +8,11 @@
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/RadarDisplay.gd" id="7_xo5ih"]
+[ext_resource type="PackedScene" uid="uid://byns18r0mni1t" path="res://ui/spob_follower.tscn" id="8_gv36w"]
+[ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/target_follower.tscn" id="9_80m1b"]
+[ext_resource type="PackedScene" uid="uid://bx3icp512g5ry" path="res://ui/mouseover.tscn" id="9_ra2c5"]
+[ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/TargetInfo.tscn" id="10_doaoj"]
+[ext_resource type="PackedScene" uid="uid://c2arxq68kap2e" path="res://ui/Hud/SpobPanel.tscn" id="13_n0dx3"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -24,11 +29,9 @@ offset_top = 79.0
 offset_right = -240.0
 offset_bottom = 400.0
 
-[node name="Map" parent="." instance=ExtResource("3_et15m")]
-visible = false
-
 [node name="Inventory" parent="." instance=ExtResource("4_o6isj")]
 visible = false
+z_index = 1
 offset_left = 39.0
 offset_top = 9.0
 offset_right = 39.0
@@ -63,6 +66,30 @@ texture = ExtResource("6_ugv72")
 [node name="RadarDisplay" type="Node2D" parent="Radar"]
 position = Vector2(119, 119)
 script = ExtResource("7_xo5ih")
+
+[node name="SpobFollower" parent="." instance=ExtResource("8_gv36w")]
+
+[node name="TargetFollower" parent="." instance=ExtResource("9_80m1b")]
+
+[node name="Mouseover" parent="." instance=ExtResource("9_ra2c5")]
+
+[node name="NinePatchPanel" parent="." instance=ExtResource("10_doaoj")]
+offset_left = 916.0
+offset_top = 398.0
+offset_right = 1151.0
+offset_bottom = 643.0
+
+[node name="Map" parent="." instance=ExtResource("3_et15m")]
+visible = false
+
+[node name="SpobPanel" parent="." instance=ExtResource("13_n0dx3")]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -178.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]
