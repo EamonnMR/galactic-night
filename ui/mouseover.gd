@@ -12,6 +12,7 @@ func _ready():
 				target = Client.mouseover
 				show()
 				# TODO: Resize to target size
+				$SelectionBox.set_radius(Util.item_screen_box_side_length(target))
 				$SelectionBox.set_disposition(Client.get_disposition(target))
 				if target.has_signal("destroyed"):
 					target.destroyed.connect(_on_target_ship_exited)

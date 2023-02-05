@@ -7,6 +7,7 @@ signal system_selection_updated
 signal camera_updated
 signal player_ship_updated
 signal ship_target_updated
+signal spob_target_updated
 signal mouseover_updated
 signal exited_system
 @onready var current_system = Procgen.generate_systems(seed)
@@ -14,6 +15,7 @@ var selected_system = null
 var selected_system_circle_cache = []
 
 var target_ship: Spaceship
+var target_spob
 var mouseover
 
 
@@ -95,14 +97,15 @@ func update_player_target_ship(new_target):
 	target_ship = new_target
 	ship_target_updated.emit()
 	
+func update_player_target_spob(new_target):
+	target_spob = new_target
+	spob_target_updated.emit()
+	
+	
 func mouseover_entered(target):
 	mouseover = target
 	mouseover_updated.emit()
-	
-func mouseover_exited(target):
-	if mouseover == target:
-		mouseover = null
-		mouseover_updated.emit()
+
 
 func get_disposition(node):
 	if node.is_in_group("players") or node.is_in_group("player-assets"):

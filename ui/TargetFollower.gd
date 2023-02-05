@@ -9,7 +9,7 @@ func _ready():
 		func _on_target_changed():
 			target_ship = Client.target_ship
 			show()
-			# TODO: Resize to target size
+			$SelectionBox.set_radius(Util.item_screen_box_side_length(target_ship))
 			$SelectionBox.set_disposition(Client.get_disposition(target_ship))
 			target_ship.destroyed.connect(_on_target_ship_exited)
 			Client.exited_system.connect(_on_target_ship_exited)

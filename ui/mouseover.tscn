@@ -11,8 +11,7 @@ offset_bottom = 40.0
 script = ExtResource("1_rb42p")
 
 [node name="SelectionBox" parent="." instance=ExtResource("2_kuvne")]
-modulate = Color(1, 1, 1, 0.47451)
-layout_mode = 0
+modulate = Color(1, 1, 1, 0.686275)
 offset_left = -20.0
 offset_top = -18.0
 offset_right = 20.0

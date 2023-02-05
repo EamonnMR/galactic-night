@@ -9,6 +9,7 @@ var accel: float
 var turn: float
 var max_bank: int
 var bank_speed: float
+var screen_box_side_length: int
 var scene: PackedScene
 var weapon_config: Dictionary
 

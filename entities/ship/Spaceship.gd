@@ -10,6 +10,7 @@ var accel = 0.01
 var turn = 1
 var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
+var screen_box_side_length: int
 
 var linear_velocity = Vector2()
 var primary_weapons = []
@@ -19,7 +20,6 @@ var secondary_weapons = []
 signal destroyed
 
 func _ready():
-	input_event.connect(_on_input_event_npc)
 	Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	add_to_group("radar")
@@ -32,6 +32,7 @@ func _ready():
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 	else:
+		input_event.connect(_on_input_event_npc)
 		add_to_group("faction-" + faction)
 		add_to_group("npcs")
 		# TODO: Select AI type?

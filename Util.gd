@@ -83,3 +83,11 @@ func closest(choices, position: Vector2) -> Node3D:
 			return ldist < rdist
 	)
 	return choices[0]
+
+func item_screen_box_side_length(object):
+	if object.has_method("screen_box_side_length"):
+		return object.screen_box_side_length()
+	elif "screen_box_side_length" in object:
+		return object.screen_box_side_length
+	else:
+		return 100
