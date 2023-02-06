@@ -46,7 +46,7 @@ func wrap_to_play_radius(entity: Node3D) -> bool:
 		return true
 	return false
 
-func _constrained_point(source_position: Vector2, current_rotation: float,
+func constrained_point(source_position: Vector2, current_rotation: float,
 		max_turn: float, target_position: Vector2) -> Array:
 	# For finding the right direction and amount to turn when your rotation speed is limited
 	var ideal_face = (target_position - source_position).angle()
@@ -91,3 +91,10 @@ func item_screen_box_side_length(object):
 		return object.screen_box_side_length
 	else:
 		return 100
+
+func lead_correct_position(projectile_velocity: float, origin_position: Vector2, origin_velocity: Vector2, target_velocity: Vector2, target_position: Vector2) -> Vector2:
+	# Simplified 'first order' leading via https://www.gamedev.net/tutorials/programming/math-and-physics/leading-the-target-r4223/
+	var relative_vel = target_velocity - origin_velocity
+	var travel_time = target_position.distance_to(origin_position) / projectile_velocity
+	return relative_vel * travel_time + target_position
+	

@@ -17,7 +17,7 @@ enum STATES {
 var target
 var path_target
 var ideal_face
-
+var lead_velocity: float
 var state = STATES.IDLE
 
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
@@ -25,6 +25,7 @@ var state = STATES.IDLE
 func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
 	get_node("../Health").damaged.connect(_on_damage_taken)
+	_compute_weapon_velocity.call_deferred()
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
@@ -34,6 +35,7 @@ func _verify_target():
 	return true
 
 func _physics_process(delta):
+	#$LeadIndicator.hide()
 	#$Label.text = STATES.keys()[state] + "\n" \
 	#	+ "My faction: " + Data.factions[parent.faction].name + "\n" \
 	#	+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
@@ -48,7 +50,10 @@ func _physics_process(delta):
 			process_state_path(delta)
 
 func process_state_path(delta):
-	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(path_target.global_transform.origin), delta)
+	populate_rotation_impulse_and_ideal_face(
+		Util.flatten_25d(path_target.global_transform.origin),
+		delta
+	)
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
 	braking = false
@@ -60,7 +65,8 @@ func process_state_attack(delta):
 	if not _verify_target():
 		return
 	
-	populate_rotation_impulse_and_ideal_face(Util.flatten_25d(target.global_transform.origin), delta)
+	populate_rotation_impulse_and_ideal_face(
+		_get_target_lead_position(), delta)
 	shooting = _facing_within_margin(shoot_margin)
 	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
 	braking = true
@@ -78,7 +84,7 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	var rot_2d = Util.flatten_rotation(parent)
 	var max_move = parent.turn * delta
 	
-	var impulse = Util._constrained_point(
+	var impulse = Util.constrained_point(
 		origin_2d,
 		rot_2d,
 		max_move,
@@ -164,6 +170,22 @@ func _facing_within_margin(margin):
 	# Relies checked 'ideal face' being populated
 	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
+func _compute_weapon_velocity():
+	lead_velocity = 6 # Plasma. TODO: actually compute this from weapons
+
+func _get_target_lead_position():
+	var lead_position = Util.lead_correct_position(
+		lead_velocity,
+		Util.flatten_25d(get_parent().global_transform.origin),
+		get_parent().linear_velocity,
+		target.linear_velocity,
+		Util.flatten_25d(target.global_transform.origin)
+		
+	)
+	#$LeadIndicator.global_transform.origin = Util.raise_25d(lead_position)
+	#$LeadIndicator.show()
+	return lead_position
+
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
 	if body == target and state == STATES.PERSUE:
@@ -180,3 +202,4 @@ func _on_EngagementRange_body_exited(body):
 
 func _on_damage_taken(source):
 	change_state_persue(source)
+	
