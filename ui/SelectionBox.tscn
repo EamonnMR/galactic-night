@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqaep4a5vunmp"]
+[gd_scene load_steps=2 format=3 uid="uid://bqaep4a5vunmp"]
 
-[ext_resource type="Texture2D" uid="uid://d0wss7fp33yej" path="res://assets/danc_cc_by/selection_green.png" id="1_7o0pb"]
 [ext_resource type="Script" path="res://ui/SelectionBox.gd" id="2_8s040"]
 
 [node name="SelectionBox" type="NinePatchRect"]
 texture_filter = 1
-texture = ExtResource("1_7o0pb")
 region_rect = Rect2(0, 1, 40, 39)
 patch_margin_left = 19
 patch_margin_top = 18
