@@ -32,5 +32,5 @@ func serialize() -> Dictionary:
 func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
 
-func spob_interaction():
+func spob_interact():
 	breakpoint

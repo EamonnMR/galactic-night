@@ -26,6 +26,7 @@ func _physics_process(delta):
 	check_jumped()
 	select_nearest_target()
 	cycle_targets()
+	interact()
 
 func _ready():
 	Client.set_player(parent)
@@ -79,6 +80,9 @@ func cycle_targets():
 		var next_index = (index + 1) % all_ships.size()
 		Client.update_player_target_ship(all_ships[next_index])
 
+func interact():
+	if Input.is_action_just_pressed("interact") and is_instance_valid(Client.player):
+		Client.player.get_node("InteractionRange").interact()
 
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")
@@ -88,16 +92,4 @@ func cycle_targets():
 #  else:
 #    pause_menu.show()
 #    get_tree().paused = true
-
-#func _interact():
-#  var entity = Client.player.get_node("InteractRange").top
-#  if is_instance_valid(Client.player.get_node("InteractRange").top):
-#    var interaction_modes = []
-#    if entity.has_node("Inventory"):
-#      Client.get_ui().get_node("OtherInventory").assign(entity.get_node("Inventory"), entity.name)
-#      interaction_modes += ["Inventory", "OtherInventory"]
-#    if entity.has_node("CraftingLevel"):
-#      Client.get_ui().get_node("Crafting").assign(entity.get_node("CraftingLevel"))
-#      interaction_modes += ["Crafting"]
-#    _toggle_inventory(interaction_modes)
 
