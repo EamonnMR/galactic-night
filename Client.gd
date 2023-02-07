@@ -17,6 +17,7 @@ var selected_system_circle_cache = []
 var target_ship: Spaceship
 var target_spob
 var mouseover
+var mouseover_via_mouse = false
 
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
@@ -102,9 +103,10 @@ func update_player_target_spob(new_target):
 	spob_target_updated.emit()
 	
 	
-func mouseover_entered(target):
+func mouseover_entered(target, mouse=true):
 	mouseover = target
 	mouseover_updated.emit()
+	mouseover_via_mouse = mouse
 
 
 func get_disposition(node):

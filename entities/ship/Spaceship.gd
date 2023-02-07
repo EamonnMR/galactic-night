@@ -31,6 +31,7 @@ func _ready():
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
+		add_child(preload("res://component/InteractionRange.tscn").instantiate())
 	else:
 		input_event.connect(_on_input_event_npc)
 		add_to_group("faction-" + faction)

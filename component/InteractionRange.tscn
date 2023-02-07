@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8mc31spw1ysi"]
+
+[ext_resource type="Script" path="res://component/InteractionRange.gd" id="1_44lu3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_183hj"]
+radius = 4.59892
+
+[node name="InteractionRange" type="Area3D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_44lu3")
+
+[node name="InteractionRadius" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_183hj")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
