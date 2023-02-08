@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://component/InteractionRange.gd" id="1_44lu3"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_183hj"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_qgq8w"]
 radius = 4.59892
 
 [node name="InteractionRange" type="Area3D"]
@@ -11,7 +11,7 @@ collision_mask = 8
 script = ExtResource("1_44lu3")
 
 [node name="InteractionRadius" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_183hj")
+shape = SubResource("SphereShape3D_qgq8w")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

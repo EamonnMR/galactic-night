@@ -33,4 +33,8 @@ func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
 
 func spob_interact():
-	breakpoint
+	get_tree().get_root().get_node("Main/UI/Crafting").assign(self)
+	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "Crafting"])
+
+func crafting_level() -> int:
+	return 2

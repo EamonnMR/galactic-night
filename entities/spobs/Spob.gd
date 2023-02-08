@@ -45,4 +45,4 @@ func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
 
 func spob_interact():
-	breakpoint
+	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory"])
