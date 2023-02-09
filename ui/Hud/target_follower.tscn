@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc46go81y5xit"]
+
+[ext_resource type="Script" path="res://ui/Hud/TargetFollower.gd" id="1_1msgb"]
+[ext_resource type="PackedScene" uid="uid://bqaep4a5vunmp" path="res://ui/SelectionBox.tscn" id="2_d1ign"]
+
+[node name="TargetFollower" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1msgb")
+
+[node name="SelectionBox" parent="." instance=ExtResource("2_d1ign")]
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 20.0
+offset_bottom = 21.0

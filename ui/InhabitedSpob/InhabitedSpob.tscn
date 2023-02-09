@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjyh6bml6dk1e"]
+
+[ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_yvbsd"]
+
+[node name="NinePatchPanel" instance=ExtResource("1_yvbsd")]
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+offset_left = 13.0
+offset_top = 9.0
+offset_right = 154.0
+offset_bottom = 102.0
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" index="0"]

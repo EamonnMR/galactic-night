@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://byns18r0mni1t"]
+
+[ext_resource type="Script" path="res://ui/Hud/spob_follower.gd" id="1_jphwd"]
+[ext_resource type="PackedScene" uid="uid://bqaep4a5vunmp" path="res://ui/SelectionBox.tscn" id="2_brbsv"]
+
+[node name="SpobFollower" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jphwd")
+
+[node name="SelectionBox" parent="." instance=ExtResource("2_brbsv")]
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 20.0
+offset_bottom = 21.0

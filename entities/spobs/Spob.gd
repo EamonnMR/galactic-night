@@ -45,4 +45,4 @@ func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
 
 func spob_interact():
-	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory"])
+	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "InhabitedSpob"])

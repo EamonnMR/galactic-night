@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://starfield.gdshader" id="2_0a4pk"]
 [ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="4_to02v"]
-[ext_resource type="PackedScene" uid="uid://bgtxo5vmdxx77" path="res://ui/ui.tscn" id="5_qu37x"]
+[ext_resource type="PackedScene" uid="uid://cw2nt0g5sx0tb" path="res://ui/ui.tscn" id="5_qu37x"]
 [ext_resource type="Script" path="res://Background.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
 

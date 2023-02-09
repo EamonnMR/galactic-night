@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgtxo5vmdxx77"]
+[gd_scene load_steps=14 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="4_o6isj"]
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
-[ext_resource type="Script" path="res://ui/RadarDisplay.gd" id="7_xo5ih"]
-[ext_resource type="PackedScene" uid="uid://byns18r0mni1t" path="res://ui/spob_follower.tscn" id="8_gv36w"]
-[ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/target_follower.tscn" id="9_80m1b"]
-[ext_resource type="PackedScene" uid="uid://bx3icp512g5ry" path="res://ui/mouseover.tscn" id="9_ra2c5"]
-[ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/TargetInfo.tscn" id="10_doaoj"]
+[ext_resource type="Script" path="res://ui/Hud/RadarDisplay.gd" id="7_787sc"]
+[ext_resource type="PackedScene" uid="uid://byns18r0mni1t" path="res://ui/Hud/spob_follower.tscn" id="8_gv36w"]
+[ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/Hud/target_follower.tscn" id="9_80m1b"]
+[ext_resource type="PackedScene" uid="uid://bx3icp512g5ry" path="res://ui/Hud/mouseover.tscn" id="9_ra2c5"]
+[ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/Hud/TargetInfo.tscn" id="10_doaoj"]
 [ext_resource type="PackedScene" uid="uid://c2arxq68kap2e" path="res://ui/Hud/SpobPanel.tscn" id="13_n0dx3"]
 
 [node name="UI" type="CanvasLayer"]
@@ -65,7 +65,7 @@ texture = ExtResource("6_ugv72")
 
 [node name="RadarDisplay" type="Node2D" parent="Radar"]
 position = Vector2(119, 119)
-script = ExtResource("7_xo5ih")
+script = ExtResource("7_787sc")
 
 [node name="SpobFollower" parent="." instance=ExtResource("8_gv36w")]
 

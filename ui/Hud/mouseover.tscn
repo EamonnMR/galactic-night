@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx3icp512g5ry"]
+[gd_scene load_steps=3 format=3 uid="uid://dfyqr57b04l3e"]
 
-[ext_resource type="Script" path="res://ui/mouseover.gd" id="1_rb42p"]
-[ext_resource type="PackedScene" uid="uid://bqaep4a5vunmp" path="res://ui/SelectionBox.tscn" id="2_kuvne"]
+[ext_resource type="Script" path="res://ui/Hud/mouseover.gd" id="1_2vhey"]
+[ext_resource type="PackedScene" uid="uid://bqaep4a5vunmp" path="res://ui/SelectionBox.tscn" id="2_yhwgc"]
 
 [node name="Mouseover" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_rb42p")
+script = ExtResource("1_2vhey")
 
-[node name="SelectionBox" parent="." instance=ExtResource("2_kuvne")]
+[node name="SelectionBox" parent="." instance=ExtResource("2_yhwgc")]
 modulate = Color(1, 1, 1, 0.686275)
 offset_left = -20.0
 offset_top = -18.0

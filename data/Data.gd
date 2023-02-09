@@ -45,6 +45,7 @@ func _init():
 	assert_weapons_belonging_to_items_exist()
 	assert_weapon_ammo_types_exist()
 	verify_destination_field()
+	identify_farming_opportunities()
 
 func load_text():
 	print("Crunching markov chains")
@@ -133,7 +134,18 @@ func assert_weapon_ammo_types_exist():
 		var weapon = weapons[weapon_id]
 		if weapon.ammo_item != "":
 			assert(weapon.ammo_item in items)
-	
+
+func identify_farming_opportunities():
+	for recipe_id in recipes:
+		var recipe: RecipeData = recipes[recipe_id]
+		var cost = 0
+		for item_id in recipe.ingredients:
+			var item: ItemData = items[item_id]
+			cost += recipe.ingredients[item_id] * item.price
+		var item = items[recipe.prod_item]
+		var value = item.price * recipe.prod_count
+		assert(cost >= value)
+
 func verify_destination_field():
 	# "Destination" means "where in World3D do we stick this thing"
 	# Verify that it only ever goes to a valid place

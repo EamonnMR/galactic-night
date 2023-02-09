@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://btexoeba36vo4"]
+
+[ext_resource type="Script" path="res://ui/InhabitedSpob/Trade.gd" id="1_eonfh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7oc5"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Trade" type="GridContainer"]
+offset_right = 204.0
+offset_bottom = 32.0
+columns = 6
+script = ExtResource("1_eonfh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+
+[node name="Label" type="Label" parent="."]
+text = "Title"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="Label2" type="Label" parent="."]
+text = "Price"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="relative" type="Label" parent="."]
+text = "Rel"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="relative2" type="Label" parent="."]
+text = "buy"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="relative3" type="Label" parent="."]
+text = "sell"
+label_settings = SubResource("LabelSettings_e7oc5")
