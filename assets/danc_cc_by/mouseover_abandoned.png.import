@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcsw2pvb0cmdn"
-path.s3tc="res://.godot/imported/selection_friendly.png-f1975e69605321ee7179c1c18d7f1552.s3tc.ctex"
-path.etc2="res://.godot/imported/selection_friendly.png-f1975e69605321ee7179c1c18d7f1552.etc2.ctex"
+uid="uid://cyfv6kfxtgk2m"
+path.s3tc="res://.godot/imported/mouseover_abandoned.png-0981264ac625e0ba13622130f59f9ffb.s3tc.ctex"
+path.etc2="res://.godot/imported/mouseover_abandoned.png-0981264ac625e0ba13622130f59f9ffb.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/danc_cc_by/selection_friendly.png"
-dest_files=["res://.godot/imported/selection_friendly.png-f1975e69605321ee7179c1c18d7f1552.s3tc.ctex", "res://.godot/imported/selection_friendly.png-f1975e69605321ee7179c1c18d7f1552.etc2.ctex"]
+source_file="res://assets/danc_cc_by/mouseover_abandoned.png"
+dest_files=["res://.godot/imported/mouseover_abandoned.png-0981264ac625e0ba13622130f59f9ffb.s3tc.ctex", "res://.godot/imported/mouseover_abandoned.png-0981264ac625e0ba13622130f59f9ffb.etc2.ctex"]
 
 [params]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfyqr57b04l3e"]
+[gd_scene load_steps=4 format=3 uid="uid://dfyqr57b04l3e"]
 
 [ext_resource type="Script" path="res://ui/Hud/mouseover.gd" id="1_2vhey"]
 [ext_resource type="PackedScene" uid="uid://bqaep4a5vunmp" path="res://ui/SelectionBox.tscn" id="2_yhwgc"]
+[ext_resource type="Texture2D" uid="uid://cyfv6kfxtgk2m" path="res://assets/danc_cc_by/mouseover_abandoned.png" id="3_vh5m8"]
 
 [node name="Mouseover" type="Control"]
 layout_mode = 3
@@ -12,10 +13,12 @@ script = ExtResource("1_2vhey")
 
 [node name="SelectionBox" parent="." instance=ExtResource("2_yhwgc")]
 modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
 offset_left = -20.0
 offset_top = -18.0
 offset_right = 20.0
 offset_bottom = 21.0
+texture = ExtResource("3_vh5m8")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

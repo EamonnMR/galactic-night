@@ -8,6 +8,12 @@ enum CommodityPrice {
 	HIGH
 }
 
+const PRICE_NAMES = {
+	CommodityPrice.LOW: "Low",
+	CommodityPrice.MEDIUM: "Medium",
+	CommodityPrice.HIGH: "High"
+}
+
 var id: String
 var name: String
 var equip_category: String
@@ -25,6 +31,8 @@ func price_at(factor: CommodityPrice) -> int:
 		CommodityPrice.MEDIUM: 1,
 		CommodityPrice.LOW: 0.75
 	}[factor]
+
+
 
 static func get_csv_path():
 	return "res://data/items.csv"

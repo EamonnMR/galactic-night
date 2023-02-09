@@ -5,15 +5,16 @@ var initial_position
 func _ready():
 	set_radius(100)
 
-var textures = {
-	Util.DISPOSITION.FRIENDLY: preload("res://assets/danc_cc_by/selection_friendly.png"),
-	Util.DISPOSITION.HOSTILE: preload("res://assets/danc_cc_by/selection_hostile.png"),
-	Util.DISPOSITION.NEUTRAL: preload("res://assets/danc_cc_by/selection_friendly.png"),
-	Util.DISPOSITION.ABANDONED: preload("res://assets/danc_cc_by/selection_abandoned.png"),
+var mods = {
+	Util.DISPOSITION.FRIENDLY: Color(0,1,0),
+	Util.DISPOSITION.HOSTILE: Color(1,0,0),
+	Util.DISPOSITION.NEUTRAL: Color(1,1,0),
+	Util.DISPOSITION.ABANDONED: Color(0.5,0.5,0.5)
 }
 
 func set_disposition(new_disposition: Util.DISPOSITION):
-	texture = textures[new_disposition]
+	#texture = textures[new_disposition]
+	modulate = mods[new_disposition]
 
 func set_radius(size: int):
 	custom_minimum_size.x = size
