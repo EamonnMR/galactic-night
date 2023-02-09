@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqxj30hj1u5pe"]
-
-[ext_resource type="Script" path="res://component/TradeProperties.gd" id="1_ua3af"]
-
-[node name="TradeProperties" type="Node"]
-script = ExtResource("1_ua3af")
