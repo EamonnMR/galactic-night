@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://uc7oyjsn3215" path="res://entities/ship/Spaceship.tscn" id="1_gxu0q"]
 [ext_resource type="PackedScene" uid="uid://ddvo3iily4q32" path="res://entities/ship/ship_types/NimbusGraphics.tscn" id="2_tiees"]
 [ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="3_5vsfn"]
-[ext_resource type="Material" path="res://entities/ship/ship_types/NimbusMaterial.tres" id="3_jws3s"]
+[ext_resource type="Material" uid="uid://deji4buaakyt5" path="res://entities/ship/ship_types/NimbusMaterial.tres" id="3_jws3s"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yr4iw"]
 _surfaces = [{

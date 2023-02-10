@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddvo3iily4q32"]
 
 [ext_resource type="Shader" path="res://entities/ship/Ship.gdshader" id="1_w1fyw"]
-[ext_resource type="Material" path="res://entities/ship/ship_types/NimbusMaterial.tres" id="2_p75md"]
+[ext_resource type="Material" uid="uid://deji4buaakyt5" path="res://entities/ship/ship_types/NimbusMaterial.tres" id="2_p75md"]
 [ext_resource type="Script" path="res://component/MeshInstance.gd" id="9_jncog"]
 [ext_resource type="Script" path="res://DirectionalLight.gd" id="10_brlgk"]
 

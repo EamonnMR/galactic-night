@@ -314,7 +314,8 @@ func place_natural_static_spawns():
 	# TODO: This is causing an issue.
 	print("Place natural static spawns")
 	place_static_spawns(
-		func(system): return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
+		func(system):
+			return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
 	)
 
 func place_artificial_static_spawns():
@@ -334,11 +335,9 @@ func place_artificial_static_spawns():
 
 func place_static_spawns(get_spawns: Callable):
 	for system_id in systems:
-		#if int(system_id) > 60:
-		#	return
-		# This will avoid the crash
 		var system = systems[system_id]
-		for spawn_id in (get_spawns.call(system)):
+		var spawns = get_spawns.call(system)
+		for spawn_id in spawns:
 			var spawn = Data.spawns[spawn_id]
 			if spawn.preset:
 				print(system_id)
