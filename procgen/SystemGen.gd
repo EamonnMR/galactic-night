@@ -2,7 +2,7 @@ extends Node
 
 # For incidental randomness in systems
 
-func get_faction_spawns(system: SystemData) -> Array[String]:
+func get_faction_spawns(system: SystemData):
 	if system.faction == "":
 		return []
 	var faction = Data.factions[system.faction]
@@ -10,11 +10,14 @@ func get_faction_spawns(system: SystemData) -> Array[String]:
 
 func get_adjacent_spawns(system: SystemData) -> Array[String]:
 	# TODO: Adjacency Radius
-	var adjacent_spawns = []
+	var adjacent_spawns: Array[String] = []
 	for other_system_id in system.links_cache:
 		var other_system = Procgen.systems[other_system_id]
 		if other_system.faction != "":
-			adjacent_spawns += Data.factions[other_system.faction].spawns_adjacent
+			var faction: FactionData = Data.factions[other_system.faction]
+			var adjacent_for_faction: Array[String] 
+			adjacent_for_faction.assign(faction.spawns_adjacent)
+			adjacent_spawns.append_array(adjacent_for_faction)
 	return adjacent_spawns
 
 func do_spawns(seed_value: int, system: SystemData, gameplay: Node):

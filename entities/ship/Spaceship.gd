@@ -44,7 +44,7 @@ func _ready():
 			get_node(weapon_slot).add_weapon(WeaponData.instantiate(weapon_config[weapon_slot]))
 		
 func get_weapon_slots() -> Array[WeaponSlot]:
-	var weapon_slots = []
+	var weapon_slots: Array[WeaponSlot] = []
 	for weapon_slot in get_children():
 		if weapon_slot is WeaponSlot:
 			weapon_slots.push_back(weapon_slot)

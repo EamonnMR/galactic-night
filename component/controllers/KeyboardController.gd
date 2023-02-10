@@ -51,7 +51,7 @@ func cycle_skins():
 		
 func cycle_ships():
 	if Input.is_action_just_pressed("switch_ship"):
-		var all_types: Array[String] = Data.ships.keys()
+		var all_types = Data.ships.keys()
 		var index = all_types.find(get_node("../").type)
 		var next_index = (index + 1) % all_types.size()
 		Client.switch_ship(all_types[next_index])

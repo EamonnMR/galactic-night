@@ -80,7 +80,7 @@ func get_random_name() -> String:
 	return new_name
 
 func find_mandatory_terminal_letters() -> Array[String]:
-	var all_terms = []
+	var all_terms: Array[String] = []
 	for letter in markov:
 		var all_terminal = true
 		for i in markov[letter]:

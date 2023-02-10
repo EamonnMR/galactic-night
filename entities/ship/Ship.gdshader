@@ -1,7 +1,7 @@
 shader_type spatial;
 
-#include "perspective.gdshaderinc"
-#include "colorshift.gdshaderinc"
+#include "res://perspective.gdshaderinc"
+#include "res://colorshift.gdshaderinc"
 
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;

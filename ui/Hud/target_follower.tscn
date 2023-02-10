@@ -12,6 +12,7 @@ offset_bottom = 40.0
 script = ExtResource("1_1msgb")
 
 [node name="SelectionBox" parent="." instance=ExtResource("2_d1ign")]
+layout_mode = 0
 offset_left = -20.0
 offset_top = -18.0
 offset_right = 20.0
