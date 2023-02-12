@@ -9,6 +9,12 @@ var item_screen_box_side_length = 100
 @export var is_planet = true
 @export var center = true
 
+var available_items = {
+	"food": ItemData.CommodityPrice.MEDIUM,
+	"equip": ItemData.CommodityPrice.LOW,
+	"metal": ItemData.CommodityPrice.HIGH
+}
+
 
 func display_name():
 	return spob_name
@@ -45,4 +51,5 @@ func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
 
 func spob_interact():
-	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "InhabitedSpob"])
+	get_tree().get_root().get_node("Main/UI/InhabitedSpob").assign(self)
+	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "Money", "InhabitedSpob"])

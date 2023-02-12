@@ -32,18 +32,27 @@ func rebuild():
 		var price_factor = available_items[key]
 		var item: ItemData = Data.items[key]
 		var price = item.price_at(price_factor)
-		var money_price = item.get_price(price)
 		
 		var icon = TextureRect.new()
 		icon.texture = item.icon
 		
 		add_child(icon)
 		add_child(_get_label(name))
-		add_child(_get_label(price.to_string()))
+		add_child(_get_label(str(price)))
 		add_child(_get_label(ItemData.PRICE_NAMES[price_factor]))
+		
+		# TODO: This probably needs a binding system, otherwise there could be bugs
+		var player_inventory = Client.player.get_node("Inventory")
+		
 		add_child(_get_button("Buy", 
 			func buy_button_pressed():
 				if Client.has_money(price):
 					Client.deduct_money(price)
-					Client.player.get_node("inventory").add(key, 1)
+					Client.player.get_node("Inventory").add(key, 1)
+		))
+		add_child(_get_button("Sell", 
+			func buy_button_pressed():
+				if player_inventory.has_ingredients({key: 1}):
+					player_inventory.deduct_ingredients({key: 1})
+					Client.add_money(price)
 		))

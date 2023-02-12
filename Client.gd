@@ -10,7 +10,9 @@ signal ship_target_updated
 signal spob_target_updated
 signal mouseover_updated
 signal exited_system
+signal money_updated
 @onready var current_system = Procgen.generate_systems(seed)
+
 var selected_system = null
 var selected_system_circle_cache = []
 
@@ -19,6 +21,18 @@ var target_spob
 var mouseover
 var mouseover_via_mouse = false
 
+var money = 100
+
+func has_money(price):
+	return money >= price
+	
+func deduct_money(price):
+	money -= price
+	money_updated.emit()
+
+func add_money(amount):
+	money += amount
+	money_updated.emit()
 
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 

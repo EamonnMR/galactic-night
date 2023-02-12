@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=16 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
+[ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
+[ext_resource type="PackedScene" uid="uid://bjyh6bml6dk1e" path="res://ui/InhabitedSpob/InhabitedSpob.tscn" id="2_6mxij"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
 [ext_resource type="PackedScene" uid="uid://cmy8sexrww2l8" path="res://ui/Equipment.tscn" id="2_urnxu"]
 [ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3_et15m"]
@@ -18,6 +20,29 @@
 process_mode = 3
 layer = 10
 script = ExtResource("1_twatu")
+
+[node name="Money" parent="." instance=ExtResource("2_4wpjj")]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.5
+offset_right = 72.5
+grow_horizontal = 2
+
+[node name="InhabitedSpob" parent="." instance=ExtResource("2_6mxij")]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -168.0
+offset_right = -244.0
+offset_bottom = 160.0
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="Equipment" parent="." instance=ExtResource("2_urnxu")]
 visible = false
@@ -73,7 +98,7 @@ script = ExtResource("7_787sc")
 
 [node name="Mouseover" parent="." instance=ExtResource("9_ra2c5")]
 
-[node name="NinePatchPanel" parent="." instance=ExtResource("10_doaoj")]
+[node name="TargetInfo" parent="." instance=ExtResource("10_doaoj")]
 offset_left = 916.0
 offset_top = 398.0
 offset_right = 1151.0
@@ -82,7 +107,7 @@ offset_bottom = 643.0
 [node name="Map" parent="." instance=ExtResource("3_et15m")]
 visible = false
 
-[node name="SpobPanel" parent="." instance=ExtResource("13_n0dx3")]
+[node name="SpobInfoBox" parent="." instance=ExtResource("13_n0dx3")]
 visible = false
 anchors_preset = 2
 anchor_top = 1.0
