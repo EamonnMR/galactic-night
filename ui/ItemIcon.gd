@@ -11,6 +11,7 @@ func init(item):
 	anchor_right = 1
 	anchor_bottom = 1
 	texture = item.data().icon
+	tooltip_text = item.data().tooltip
 
 func _ready():
 	update_count()
