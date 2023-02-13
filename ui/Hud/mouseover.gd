@@ -27,8 +27,12 @@ func _ready():
 
 func _process(delta):
 	if target:
-		position = Client.camera.unproject_position(target.global_position)
+		if not is_instance_valid(target):
+			_on_target_ship_exited()
+		else:
+			position = Client.camera.unproject_position(target.global_position)
 
 func _on_target_ship_exited():
 	if target and Client.mouseover_via_mouse:
 		Client.mouseover_entered(null, false)
+		target = null

@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+var is_planet = false
+var is_populated = true
+
 func display_name():
 	return "Turret"
 	

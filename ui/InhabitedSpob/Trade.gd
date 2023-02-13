@@ -37,7 +37,7 @@ func rebuild():
 		icon.texture = item.icon
 		
 		add_child(icon)
-		add_child(_get_label(name))
+		add_child(_get_label(item.name))
 		add_child(_get_label(str(price)))
 		add_child(_get_label(ItemData.PRICE_NAMES[price_factor]))
 		

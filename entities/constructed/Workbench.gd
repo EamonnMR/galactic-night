@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+var is_planet = false
+var is_populated = true
+
 func screen_box_side_length():
 	return 400
 
