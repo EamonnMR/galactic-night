@@ -43,8 +43,20 @@ layout_mode = 2
 
 [node name="Craft" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4")]
 process_mode = 0
-layout_mode = 2
-
-[node name="Build" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4_hyfkp")]
 visible = false
 layout_mode = 2
+
+[node name="HBoxContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Craft" index="0"]
+custom_minimum_size = Vector2(0, 230)
+
+[node name="ScrollContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer" index="0"]
+horizontal_scroll_mode = 0
+
+[node name="Build" parent="NinePatchPanel/MarginContainer/TabContainer" instance=ExtResource("4_hyfkp")]
+layout_mode = 2
+
+[node name="ScrollContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Build/HBoxContainer" index="0"]
+custom_minimum_size = Vector2(40, 230)
+
+[editable path="NinePatchPanel/MarginContainer/TabContainer/Craft"]
+[editable path="NinePatchPanel/MarginContainer/TabContainer/Build"]
