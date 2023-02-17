@@ -1,5 +1,6 @@
 id,count,preset,natural,chance,scene,type,faction,destination,evergreen,data_type,distance
-asteroids,4,FALSE,FALSE,1,res://entities/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5
+asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5
+asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5
 ind_npcs,1,FALSE,FALSE,1,,burner,1,npcs,FALSE,ships,1
 trader_npcs,1,FALSE,FALSE,1,,burner,2,npcs,TRUE,ships,1
 compact_npcs,1,FALSE,FALSE,1,,dragon,3,npcs,FALSE,ships,1

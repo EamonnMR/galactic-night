@@ -1,7 +1,10 @@
 id,name,equip_category,consumable_effect,consumable_magnitude,icon,tooltip,stackable,commodity,price
 metal,Metal,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice",TRUE,TRUE,100
+green,Isomers,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Nuclear isomers,TRUE,TRUE,200
 missile_launcher,Missile Launcher,weapon,,,res://assets/Master484_cc0/missile_launcher.png,Blow up your foes with extreme prejudace. Remember to build missiles too!,FALSE,FALSE,500
 missile,Missile,,,,res://assets/Master484_cc0/missile.png,You can tell these things are old because they’re still using atmo-fins.,TRUE,FALSE,100
 plasma,Heater,weapon,,,res://assets/damnwing_cc_by/zipgun.png,What better way to damage something in space then to introduce a little entropy than the time honored method of red hot plasma?,FALSE,FALSE,100
-food,Food,,,,res://assets/FontAwesome/Food_font_awesome.png,"Commodity, only used for trade",TRUE,TRUE,500
+food,Food,,,,res://assets/FontAwesome/Food_font_awesome.png,"Commodity, only used for trade",TRUE,TRUE,70
 equip,Equipment,,,,res://assets/FontAwesome/32px-Cogs_font_awesome.png,"Commodity, only used for trade",TRUE,TRUE,100
+lux,Luxury Goods,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",TRUE,TRUE,200
+med,Medical Supplies,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",TRUE,TRUE,120

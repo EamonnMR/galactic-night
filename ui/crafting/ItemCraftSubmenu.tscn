@@ -13,8 +13,6 @@ mouse_filter = 1
 script = ExtResource("2")
 
 [node name="HBoxContainer" parent="." index="0"]
-layout_mode = 0
-anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
@@ -22,27 +20,17 @@ grow_vertical = 1
 
 [node name="ScrollContainer" parent="HBoxContainer" index="0"]
 custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="Recipes" parent="HBoxContainer/ScrollContainer" index="0"]
-layout_mode = 2
-
-[node name="Details" parent="HBoxContainer" index="1"]
-layout_mode = 2
 
 [node name="Name" parent="HBoxContainer/Details" index="0"]
-layout_mode = 0
 offset_bottom = 23.0
 
 [node name="Description" parent="HBoxContainer/Details" index="1"]
-layout_mode = 0
 offset_left = 5.0
 offset_top = 37.0
 offset_right = 198.0
 offset_bottom = 137.0
 
 [node name="Ingredients" parent="HBoxContainer/Details" index="2"]
-layout_mode = 0
 offset_left = 3.0
 offset_top = 123.0
 offset_right = 209.0

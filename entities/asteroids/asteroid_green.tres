@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://qbb6hf5ix2dp"]
+
+[ext_resource type="Texture2D" uid="uid://16alqgltougs" path="res://assets/asteroids/basic/asteroid_C.png" id="1_8k8mg"]
+[ext_resource type="Texture2D" uid="uid://6dkhwnbsv7kv" path="res://assets/asteroids/green/asteroid_lights.png" id="2_ivl6h"]
+[ext_resource type="Texture2D" uid="uid://f8n0j4xbofr0" path="res://assets/asteroids/basic/asteroid_RM.png" id="3_sy6bv"]
+[ext_resource type="Texture2D" uid="uid://bf6mjjqw01i3l" path="res://assets/asteroids/green/asteroid_N.png" id="4_7evgc"]
+
+[resource]
+no_depth_test = true
+albedo_texture = ExtResource("1_8k8mg")
+metallic = 1.0
+metallic_texture = ExtResource("3_sy6bv")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_sy6bv")
+emission_enabled = true
+emission_texture = ExtResource("2_ivl6h")
+normal_enabled = true
+normal_texture = ExtResource("4_7evgc")

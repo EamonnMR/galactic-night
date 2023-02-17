@@ -1,5 +1,5 @@
 id,name,spawns_old,spawns,map_color,ambient_color,starlight_color,do_seed,grow,always_do_one,background,startloc,fixed_name,auto_explore
-start,Deserted,asteroids adversary,asteroids planet,#C0C0C0,#262626,#FFFFFF,FALSE,FALSE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png,TRUE,Holdfast,TRUE
+start,Deserted,asteroids adversary asteroids_green,asteroids planet asteroids_green,#C0C0C0,#262626,#FFFFFF,FALSE,FALSE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png,TRUE,Holdfast,TRUE
 empty,Deserted,sleeper asteroids,planet,#C0C0C0,#262626,#FFFFFF,TRUE,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png,,,
 aliens,Hostile,aliens sleeper red_asteroids aliens,asteroids planet,#FF0000,#262626,#FFFFFF,TRUE,TRUE,FALSE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png,,,
 rich,Rich,blue_asteroids green_asteroids free_asteroids planet,planet,#A0A0A0,#262626,#FFFFFF,FALSE,TRUE,FALSE,res://assets/ScreamingBrain/Purple Nebula/1024x1024 Purple Nebula 1.png,,,

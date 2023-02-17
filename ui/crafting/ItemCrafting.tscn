@@ -4,6 +4,9 @@
 
 [node name="Crafting" instance=ExtResource("1")]
 
+[node name="Craft" parent="NinePatchPanel/MarginContainer/TabContainer" index="1"]
+visible = true
+
 [node name="HBoxContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Craft" index="0"]
 offset_right = 65.0
 offset_bottom = 249.0
@@ -11,7 +14,6 @@ offset_bottom = 249.0
 [node name="ScrollContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer" index="0"]
 clip_contents = false
 custom_minimum_size = Vector2(45, 0)
-horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="Recipes" parent="NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer/ScrollContainer" index="0"]
@@ -38,4 +40,14 @@ offset_top = 213.0
 offset_right = 256.0
 offset_bottom = 253.0
 
+[node name="Build" parent="NinePatchPanel/MarginContainer/TabContainer" index="2"]
+visible = false
+
+[node name="HBoxContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Build" index="0"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [editable path="NinePatchPanel/MarginContainer/TabContainer/Craft"]
+[editable path="NinePatchPanel/MarginContainer/TabContainer/Build"]
