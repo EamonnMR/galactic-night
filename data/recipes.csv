@@ -1,4 +1,4 @@
 id,prod_item,prod_count,require_level,ingredients
 missile,missile,3,0,metal: 5
-missile_launcher,missile_launcher,1,0,metal: 5
+missile_launcher,missile_launcher,1,2,metal: 5
 plasma,plasma,1,0,metal: 5

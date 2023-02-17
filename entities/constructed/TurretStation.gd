@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+var is_planet = false
+var is_populated = true
+
 func display_name():
 	return "Turret"
 	
@@ -28,3 +31,6 @@ func serialize() -> Dictionary:
 
 func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
+
+func spob_interact():
+	breakpoint

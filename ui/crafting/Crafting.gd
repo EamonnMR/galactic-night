@@ -9,7 +9,7 @@ class_name Crafting
 @onready var BlueprintIcon = preload("res://ui/EquipBox.tscn")
 
 var current_blueprint = null
-var crafting_level: int = 3
+var crafting_level: int = 1
 
 func _ready():
 	current_blueprint = _blueprints().values()[0]
@@ -25,17 +25,16 @@ func rebuild():
 
 func assign(crafting_level_object):
 	# Assign a crafting station as our "current" station and use its level
-	var bench_level = crafting_level_object.level
-	var player_level = Client.player.crafting_level
+	var bench_level = crafting_level_object.crafting_level()
+	var player_level = 1 #Client.player.crafting_level
 	crafting_level =  max(bench_level, player_level)
 	current_blueprint = _blueprints().values()[0]
 	
 func unassign():
-	pass
 	# Return to a state of using the player's crafting level
 	# used to undo any upping of these vars for a workbench
-	#crafting_level = Client.player.crafting_level
-	#current_blueprint = _blueprints().values()[0]
+	crafting_level = 1#Client.player.crafting_level
+	current_blueprint = _blueprints().values()[0]
 
 func build_blueprint_list():
 	for blueprint_id in _blueprints():

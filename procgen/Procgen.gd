@@ -64,6 +64,7 @@ func generate_systems(seed_value: int) -> String:
 	populate_factions()
 	name_systems()
 	place_artificial_static_spawns()
+	setup_trade()
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
 
@@ -220,6 +221,7 @@ func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
+	
 
 
 func assign_faction_core_worlds() -> Array:
@@ -314,7 +316,8 @@ func place_natural_static_spawns():
 	# TODO: This is causing an issue.
 	print("Place natural static spawns")
 	place_static_spawns(
-		func(system): return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
+		func(system):
+			return Data.biomes[system.biome].spawns +  Data.evergreen_natural_spawns
 	)
 
 func place_artificial_static_spawns():
@@ -334,11 +337,9 @@ func place_artificial_static_spawns():
 
 func place_static_spawns(get_spawns: Callable):
 	for system_id in systems:
-		#if int(system_id) > 60:
-		#	return
-		# This will avoid the crash
 		var system = systems[system_id]
-		for spawn_id in (get_spawns.call(system)):
+		var spawns = get_spawns.call(system)
+		for spawn_id in spawns:
 			var spawn = Data.spawns[spawn_id]
 			if spawn.preset:
 				print(system_id)
@@ -410,3 +411,21 @@ func systems_sorted_by_distance() -> Array:
 	var system_ids = systems.keys()
 	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids
+
+func setup_trade():
+	# Setup commodities
+	var commodities = []
+	for item in Data.items.values():
+		if item.commodity:
+			commodities.push_back(item.id)
+	for system in systems.values():
+		var system_wide_commodity_prices = {}
+		for item in Data.items.values():
+			if item.commodity:
+				system_wide_commodity_prices[item.id] = random_select(ItemData.CommodityPrice.keys(), rng)
+		if "spobs" in system.entities:
+			for entity in system.entities.spobs:
+				if "available_items" in entity and entity.inhabited:
+					for commodity in system_wide_commodity_prices:
+						if random_select([true, false], rng):
+							entity.available_items[commodity] = system_wide_commodity_prices[commodity]

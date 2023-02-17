@@ -7,8 +7,9 @@ var item_screen_box_side_length = 100
 
 @export var spob_prefix: String
 @export var is_planet = true
+@export var inhabited = true
 @export var center = true
-
+@export var available_items = {}
 
 func display_name():
 	return spob_name
@@ -38,9 +39,16 @@ func serialize() -> Dictionary:
 		"spob_name",
 		"type",
 		"transform",
-		"scene_file_path"
+		"scene_file_path",
+		"available_items",
+		"inhabited"
 	])
 
 func deserialize(data: Dictionary):
 	Util.set_multiple(self, data)
+	for key in available_items.keys():
+		available_items[key] = ItemData.CommodityPrice.get(available_items[key])
 
+func spob_interact():
+	get_tree().get_root().get_node("Main/UI/InhabitedSpob").assign(self)
+	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "Money", "InhabitedSpob"])

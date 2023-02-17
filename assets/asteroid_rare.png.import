@@ -4,23 +4,22 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbu6s6ev8p40d"
 path.s3tc="res://.godot/imported/asteroid_rare.png-8945e4fb3fea7c8f5fca25a9fe370ea0.s3tc.ctex"
-path.etc2="res://.godot/imported/asteroid_rare.png-8945e4fb3fea7c8f5fca25a9fe370ea0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc", "etc2"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/asteroid_rare.png"
-dest_files=["res://.godot/imported/asteroid_rare.png-8945e4fb3fea7c8f5fca25a9fe370ea0.s3tc.ctex", "res://.godot/imported/asteroid_rare.png-8945e4fb3fea7c8f5fca25a9fe370ea0.etc2.ctex"]
+dest_files=["res://.godot/imported/asteroid_rare.png-8945e4fb3fea7c8f5fca25a9fe370ea0.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=false

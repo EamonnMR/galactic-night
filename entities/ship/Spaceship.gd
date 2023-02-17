@@ -31,6 +31,7 @@ func _ready():
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
+		add_child(preload("res://component/InteractionRange.tscn").instantiate())
 	else:
 		input_event.connect(_on_input_event_npc)
 		add_to_group("faction-" + faction)
@@ -43,7 +44,7 @@ func _ready():
 			get_node(weapon_slot).add_weapon(WeaponData.instantiate(weapon_config[weapon_slot]))
 		
 func get_weapon_slots() -> Array[WeaponSlot]:
-	var weapon_slots = []
+	var weapon_slots: Array[WeaponSlot] = []
 	for weapon_slot in get_children():
 		if weapon_slot is WeaponSlot:
 			weapon_slots.push_back(weapon_slot)

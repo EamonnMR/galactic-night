@@ -4,23 +4,22 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://doyi0ng7eb3b7"
 path.s3tc="res://.godot/imported/rc-25.png-e10af7e518895221831786a0d04e5846.s3tc.ctex"
-path.etc2="res://.godot/imported/rc-25.png-e10af7e518895221831786a0d04e5846.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc", "etc2"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/eamonn/lunarcell_planets/rc-25.png"
-dest_files=["res://.godot/imported/rc-25.png-e10af7e518895221831786a0d04e5846.s3tc.ctex", "res://.godot/imported/rc-25.png-e10af7e518895221831786a0d04e5846.etc2.ctex"]
+dest_files=["res://.godot/imported/rc-25.png-e10af7e518895221831786a0d04e5846.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

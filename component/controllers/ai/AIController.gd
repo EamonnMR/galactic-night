@@ -94,7 +94,7 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	ideal_face = impulse[1]
 
 func _find_target():
-	var enemy_ships: Array[Node3D] = [Client.player] if faction.initial_disposition < 0 and is_instance_valid(Client.player) else []
+	var enemy_ships = [Client.player] if faction.initial_disposition < 0 and is_instance_valid(Client.player) else []
 	for faction_id in faction.enemies:
 		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
 

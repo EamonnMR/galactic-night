@@ -4,15 +4,13 @@ func get_default_children():
 	return [
 		$Equipment,
 		$Crafting,
-		$Inventory
+		$Inventory,
+		$Money
 	]
 
 func get_all_inventory_children():
-	return [
-		$Equipment,
-		$Crafting,
-		$Inventory
-#		$OtherInventory
+	return get_default_children() + [
+		$InhabitedSpob
 	]
 
 func toggle_map():
