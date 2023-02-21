@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://c4i38hsd0evoy"]
+
+[ext_resource type="Shader" path="res://entities/ship/Ship.gdshader" id="1_vl2ll"]
+[ext_resource type="Texture2D" uid="uid://dcsk3ibvrn3od" path="res://assets/eamonn/cargo/cargo_base.png" id="2_64vuw"]
+[ext_resource type="Texture2D" uid="uid://bl1wb46ie3wft" path="res://assets/eamonn/cargo/cargo_lights.png" id="3_cykmu"]
+[ext_resource type="Texture2D" uid="uid://cgpiyx01o4656" path="res://assets/eamonn/cargo/cargo_engine.png" id="4_gu8be"]
+[ext_resource type="Texture2D" uid="uid://b2fypcd7jradj" path="res://assets/burner/burner_RM.png" id="5_6b1yr"]
+[ext_resource type="Texture2D" uid="uid://crmfivrxyu55e" path="res://assets/eamonn/cargo/cargo_N.png" id="6_s1c5q"]
+[ext_resource type="Texture2D" uid="uid://b7v20ow0vnjs1" path="res://assets/eamonn/cargo/cargo_paint.png" id="7_p8u1w"]
+[ext_resource type="Texture2D" uid="uid://dlvnn6pwpx2ev" path="res://assets/eamonn/cargo/cargo_weapon.png" id="8_t6y4d"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vl2ll")
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/normal_scale = null
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/xform = Transform3D(-0.707107, 0, -0.707107, -0.5, 0.707107, 0.5, 0.5, 0.707107, -0.5, 0, 0, 0)
+shader_parameter/inv_xform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 0, 0)
+shader_parameter/perspective_correct = 0.5
+shader_parameter/emission_energy = 6.0
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/paint_hue = null
+shader_parameter/paint_saturation = null
+shader_parameter/paint_brightness = null
+shader_parameter/base_brightness = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_saturation = null
+shader_parameter/lights_brightness = null
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_saturation = null
+shader_parameter/texture_albedo = ExtResource("2_64vuw")
+shader_parameter/texture_metallic = ExtResource("5_6b1yr")
+shader_parameter/texture_roughness = ExtResource("5_6b1yr")
+shader_parameter/texture_normal = ExtResource("6_s1c5q")
+shader_parameter/texture_base_emission = ExtResource("3_cykmu")
+shader_parameter/texture_engine_emission = ExtResource("4_gu8be")
+shader_parameter/texture_weapon_emission = ExtResource("8_t6y4d")
+shader_parameter/texture_paint = ExtResource("7_p8u1w")

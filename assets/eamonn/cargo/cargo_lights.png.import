@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce4a4kepws7a2"
-path.s3tc="res://.godot/imported/burner_wep.png-b6c525438ca048ed0e77dd1518cc5c56.s3tc.ctex"
+uid="uid://bl1wb46ie3wft"
+path.s3tc="res://.godot/imported/cargo_lights.png-14f0682f381f75f10c7d53fbe1f882bf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/burner/burner_wep.png"
-dest_files=["res://.godot/imported/burner_wep.png-b6c525438ca048ed0e77dd1518cc5c56.s3tc.ctex"]
+source_file="res://assets/eamonn/cargo/cargo_lights.png"
+dest_files=["res://.godot/imported/cargo_lights.png-14f0682f381f75f10c7d53fbe1f882bf.s3tc.ctex"]
 
 [params]
 

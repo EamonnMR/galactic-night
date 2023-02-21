@@ -55,12 +55,6 @@ horizontal_scroll_mode = 0
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Build" index="0"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="ScrollContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Build/HBoxContainer" index="0"]
 custom_minimum_size = Vector2(40, 230)
 
