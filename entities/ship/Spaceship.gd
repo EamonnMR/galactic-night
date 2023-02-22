@@ -10,6 +10,8 @@ var accel = 0.01
 var turn = 1
 var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
+@export var bank_factor = 1
+@export var bank_axis = "x"
 var screen_box_side_length: int
 
 var linear_velocity = Vector2()
@@ -92,19 +94,19 @@ func flash_weapon():
 	$Graphics.flash_weapon()
 
 func increase_bank(rotation_impulse):
-	$Graphics.rotation.x += rotation_impulse * bank_speed
-	$Graphics.rotation.x = clamp(
-		$Graphics.rotation.x,
+	$Graphics.rotation[bank_axis] += rotation_impulse * bank_speed
+	$Graphics.rotation[bank_axis] = clamp(
+		$Graphics.rotation[bank_axis],
 		-max_bank,
 		max_bank
 	)
 
 func decrease_bank(delta):
-	if $Graphics.rotation.x != 0.0:
-		var sgn = sign($Graphics.rotation.x)
-		$Graphics.rotation.x -= sgn * bank_speed * delta
-		if sign($Graphics.rotation.x) != sgn:
-			$Graphics.rotation.x = 0
+	if $Graphics.rotation[bank_axis] != 0.0:
+		var sgn = sign($Graphics.rotation[bank_axis])
+		$Graphics.rotation[bank_axis] -= sgn * bank_speed * delta
+		if sign($Graphics.rotation[bank_axis]) != sgn:
+			$Graphics.rotation[bank_axis] = 0
 	
 func handle_jumping():
 	if $Controller.jumping:
