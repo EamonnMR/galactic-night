@@ -46,6 +46,7 @@ func _init():
 	assert_weapon_ammo_types_exist()
 	verify_destination_field()
 	identify_farming_opportunities()
+	verify_spawns_have_scene_or_type()
 
 func load_text():
 	print("Crunching markov chains")
@@ -158,3 +159,10 @@ func verify_destination_field():
 		for blueprint_id in type:
 			var row = type[blueprint_id]
 			assert(dummy_world.has_node(row.destination))
+
+func verify_spawns_have_scene_or_type():
+	for name in spawns:
+		var i = spawns[name]
+		if i.scene == null:
+			if i.type == "":
+				assert(false)

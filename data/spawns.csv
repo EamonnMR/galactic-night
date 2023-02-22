@@ -1,11 +1,12 @@
 id,count,preset,natural,chance,scene,type,faction,destination,evergreen,data_type,distance
-asteroids,4,FALSE,FALSE,1,res://entities/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5
+asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5
+asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5
 ind_npcs,1,FALSE,FALSE,1,,burner,1,npcs,FALSE,ships,1
-trader_npcs,1,FALSE,FALSE,1,,burner,2,npcs,TRUE,ships,1
+trader_npcs,1,FALSE,FALSE,1,,cargo,2,npcs,TRUE,ships,1
 compact_npcs,1,FALSE,FALSE,1,,dragon,3,npcs,FALSE,ships,1
 pirate_npcs,2,FALSE,FALSE,1,,nimbus,4,npcs,FALSE,ships,1
 warpcorp_npcs,1,FALSE,FALSE,1,,delivery,5,npcs,FALSE,ships,1
-society_npcs,1,FALSE,FALSE,0.3,,nimbus,6,npcs,FALSE,ships,1
+twilight_npcs,1,FALSE,FALSE,0.3,,melchior,6,npcs,FALSE,ships,1
 planet,3,TRUE,TRUE,0.5,res://entities/spobs/Spob.tscn,,,spobs,FALSE,,0.0001
 fallen_station,1,TRUE,TRUE,0.1,res://entities/spobs/FallenStation.tscn,,,spobs,TRUE,,0.0002
 compact_station,1,TRUE,FALSE,0.8,res://entities/spobs/CompactStation.tscn,,,spobs,FALSE,,0.0002

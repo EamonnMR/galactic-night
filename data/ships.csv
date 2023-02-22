@@ -3,3 +3,5 @@ nimbus,Nimbus,Vintage Fighter,10,0.03,1,15,2.5,res://entities/ship/ship_types/Ni
 burner,Burner,Minimalism,15,0.06,1,20,3,res://entities/ship/ship_types/Burner.tscn,100,LeftGun: plasma
 dragon,Dragon,Light Gunship,8,0.02,0.8,15,1,res://entities/ship/ship_types/Dragon.tscn,200,LeftGun: plasma; RightGun: plasma
 delivery,Delivery,On Schedule,7,0.05,1,15,1,res://entities/ship/ship_types/Delivery.tscn,150,LeftGun: plasma
+cargo,Heighliner,Bulk Cargo,5,0.02,0.5,5,0.5,res://entities/ship/ship_types/Cargo.tscn,200,LeftGun: plasma
+melchior,Melchior,Self Driving,6,0.4,0.5,10,0.5,res://entities/ship/ship_types/Melchior.tscn,200,LeftFrontGun: plasma; RightFrontGun: plasma

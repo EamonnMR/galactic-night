@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cfohpj47nga4q"
+path="res://.godot/imported/oxana.obj-462903b9167b71232303d9d05507da77.mesh"
+
+[deps]
+
+files=["res://.godot/imported/oxana.obj-462903b9167b71232303d9d05507da77.mesh"]
+
+source_file="res://asset_sources/oxana.obj"
+dest_files=["res://.godot/imported/oxana.obj-462903b9167b71232303d9d05507da77.mesh", "res://.godot/imported/oxana.obj-462903b9167b71232303d9d05507da77.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

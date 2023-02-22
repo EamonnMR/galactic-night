@@ -11,7 +11,6 @@ offset_bottom = 249.0
 [node name="ScrollContainer" parent="NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer" index="0"]
 clip_contents = false
 custom_minimum_size = Vector2(45, 0)
-horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="Recipes" parent="NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer/ScrollContainer" index="0"]
@@ -39,3 +38,4 @@ offset_right = 256.0
 offset_bottom = 253.0
 
 [editable path="NinePatchPanel/MarginContainer/TabContainer/Craft"]
+[editable path="NinePatchPanel/MarginContainer/TabContainer/Build"]

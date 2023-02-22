@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dnxgj6jncyjj2"
+path="res://.godot/imported/melchior.obj-da5b73f37afe9e544be6ac7221de6d96.mesh"
+
+[deps]
+
+files=["res://.godot/imported/melchior.obj-da5b73f37afe9e544be6ac7221de6d96.mesh"]
+
+source_file="res://asset_sources/melchior.obj"
+dest_files=["res://.godot/imported/melchior.obj-da5b73f37afe9e544be6ac7221de6d96.mesh", "res://.godot/imported/melchior.obj-da5b73f37afe9e544be6ac7221de6d96.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

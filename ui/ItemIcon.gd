@@ -5,13 +5,14 @@ class_name ItemIcon
 var item: Inventory.InvItem
 
 func init(item):
+	var data: ItemData = item.data()
 	self.item = item
 	name = "ItemIcon"
 	stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	anchor_right = 1
 	anchor_bottom = 1
-	texture = item.data().icon
-	tooltip_text = item.data().tooltip
+	texture = data.icon
+	tooltip_text = data.name + ": " + data.tooltip
 
 func _ready():
 	update_count()
