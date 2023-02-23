@@ -65,7 +65,6 @@ func _physics_process(delta):
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	handle_shooting()
-	handle_jumping()
 	Util.wrap_to_play_radius(self)
 
 func handle_shooting():
@@ -108,18 +107,6 @@ func decrease_bank(delta):
 		if sign($Graphics.rotation[bank_axis]) != sgn:
 			$Graphics.rotation[bank_axis] = 0
 	
-func handle_jumping():
-	if $Controller.jumping:
-		$Controller.jumping = false
-		if Client.selected_system:
-			Client.change_system()
-			#_jump_effects()
-			#queue_free()
-		else:
-			pass
-			# TODO: Print some sort of reminder to select a destination
-
-
 func _on_health_destroyed():
 	call_deferred("queue_free")
 	emit_signal("destroyed")

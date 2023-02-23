@@ -84,6 +84,9 @@ func interact():
 	if Input.is_action_just_pressed("interact") and is_instance_valid(Client.player):
 		Client.player.get_node("InteractionRange").interact()
 
+func hyperspace():
+	$HyperspaceManager.start_hyperjump()
+
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")
 #  if get_tree().paused:

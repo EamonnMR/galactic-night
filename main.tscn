@@ -11,6 +11,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61vo"]
 shader = ExtResource("2_0a4pk")
 shader_parameter/position = null
+shader_parameter/warp_factor = 0.0
+shader_parameter/warp_vector = Vector2(1, 1)
 shader_parameter/nebula = ExtResource("9")
 
 [sub_resource type="GDScript" id="15"]
