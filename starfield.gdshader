@@ -6,7 +6,8 @@ const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
 
-uniform float warp_factor = 1;
+uniform float warp_factor = 0;
+uniform float warp_factor_scale = 10;
 uniform vec2 warp_vector = vec2(1,1);
 
 void fragment(){
@@ -15,8 +16,8 @@ void fragment(){
 		
 		// Offset stars by player position
 		vec2 shifted_uv = vec2(
-			UV.x * warp_vector.x * warp_factor,
-			UV.y * warp_vector.y * warp_factor
+			UV.x * (1.0 + warp_factor),
+			UV.y * (1.0 + warp_factor)
 		);
 		shifted_uv.x += (
 			position.x / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR) * TEXTURE_PIXEL_SIZE.x
@@ -46,5 +47,5 @@ void fragment(){
 		}
 	}
 	
-	COLOR *= warp_factor;
+	COLOR *= (1.0 + (warp_factor * warp_factor_scale));
 }

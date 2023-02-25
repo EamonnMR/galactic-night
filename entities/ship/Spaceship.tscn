@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://uc7oyjsn3215"]
+[gd_scene load_steps=8 format=3 uid="uid://uc7oyjsn3215"]
 
 [ext_resource type="Script" path="res://entities/ship/Spaceship.gd" id="1_v25r1"]
 [ext_resource type="PackedScene" uid="uid://nt7stcr8sbj1" path="res://effects/GenericExplosion.tscn" id="2_1wg5t"]
 [ext_resource type="PackedScene" uid="uid://da271thfaabmi" path="res://component/Inventory.tscn" id="4_4rw1x"]
 [ext_resource type="PackedScene" uid="uid://bjmll63x6x8c2" path="res://component/Loot.tscn" id="6_5xw71"]
+[ext_resource type="PackedScene" uid="uid://dbronia1bfybm" path="res://component/HyperspaceManager.tscn" id="7_87kaa"]
 [ext_resource type="PackedScene" uid="uid://r6jv80byk5dl" path="res://component/Health.tscn" id="7_rsi77"]
 [ext_resource type="PackedScene" uid="uid://cy0lfe0feyd5r" path="res://component/Equipment.tscn" id="8_vixut"]
 
@@ -34,5 +35,7 @@ max_health = 3
 explosion = ExtResource("2_1wg5t")
 
 [node name="Equipment" parent="." instance=ExtResource("8_vixut")]
+
+[node name="HyperspaceManager" parent="." instance=ExtResource("7_87kaa")]
 
 [connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]

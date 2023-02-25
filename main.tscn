@@ -12,6 +12,7 @@
 shader = ExtResource("2_0a4pk")
 shader_parameter/position = null
 shader_parameter/warp_factor = 0.0
+shader_parameter/warp_factor_scale = 10.0
 shader_parameter/warp_vector = Vector2(1, 1)
 shader_parameter/nebula = ExtResource("9")
 

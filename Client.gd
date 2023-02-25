@@ -77,6 +77,9 @@ func get_world():
 func get_main():
 	return get_tree().get_root().get_node("Main")
 
+func get_background():
+	return get_main().get_node("background/Background")
+
 func switch_ship(new_type: String):
 	var old_ship = player
 	var old_inventory = player.get_node("Inventory")
