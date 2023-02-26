@@ -93,7 +93,7 @@ func flash_weapon():
 	$Graphics.flash_weapon()
 
 func increase_bank(rotation_impulse):
-	$Graphics.rotation[bank_axis] += rotation_impulse * bank_speed
+	$Graphics.rotation[bank_axis] += rotation_impulse * bank_speed * bank_factor
 	$Graphics.rotation[bank_axis] = clamp(
 		$Graphics.rotation[bank_axis],
 		-max_bank,
@@ -102,8 +102,8 @@ func increase_bank(rotation_impulse):
 
 func decrease_bank(delta):
 	if $Graphics.rotation[bank_axis] != 0.0:
-		var sgn = sign($Graphics.rotation[bank_axis])
-		$Graphics.rotation[bank_axis] -= sgn * bank_speed * delta
+		var sgn = sign($Graphics.rotation[bank_axis]) * bank_factor
+		$Graphics.rotation[bank_axis] -= sgn * bank_speed * delta * bank_factor
 		if sign($Graphics.rotation[bank_axis]) != sgn:
 			$Graphics.rotation[bank_axis] = 0
 	
