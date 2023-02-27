@@ -10,21 +10,32 @@ uniform float warp_factor = 0;
 uniform float warp_factor_scale = 10;
 uniform vec2 warp_vector = vec2(1,1);
 
+vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){
+	mat2 rotation_matrix=mat2(
+		vec2(sin(rotation),-cos(rotation)),
+		vec2(cos(rotation),sin(rotation))
+	);
+	uv -= pivot;
+	uv= uv*rotation_matrix;
+	uv += pivot;
+	return uv;
+}
+
 void fragment(){
 	COLOR = vec4(0,0,0,0);
 	for (int i = 1; i <= LAYERS; i ++){
 		
 		// Offset stars by player position
-		vec2 shifted_uv = vec2(
-			UV.x * (1.0 + warp_factor),
-			UV.y * (1.0 + warp_factor)
-		);
+		vec2 shifted_uv = UV;
 		shifted_uv.x += (
 			position.x / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR) * TEXTURE_PIXEL_SIZE.x
 		);
 		shifted_uv.y += (
 			position.y / (DEPTH_OFFSET + float(i) / DEPTH_FACTOR) * TEXTURE_PIXEL_SIZE.y
 		);
+		
+		// Warping
+		shifted_uv = warp_uv(shifted_uv)
 
 		// Extra offset to avoid stacking
 		shifted_uv += (TEXTURE_PIXEL_SIZE * float(i) * 250.0);
@@ -37,10 +48,11 @@ void fragment(){
 			shifted_uv.x = 1.0 - shifted_uv.x;
 			shifted_uv.y = 1.0 - shifted_uv.y;
 		}
+		
 		if(bool(i % 3)){
-			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
-				//COLOR = vec4(1,1,1,1)
-			}
+			//if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
+			//	//COLOR = vec4(1,1,1,1)
+			//}
 			COLOR += texture(nebula, shifted_uv) / (float(i) + 0.5);
 		} else {
 			COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5);
