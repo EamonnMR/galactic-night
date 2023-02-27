@@ -11,6 +11,7 @@ uniform float warp_factor_scale = 10;
 uniform float warp_angle;
 
 vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){
+	// https://godotengine.org/qa/41400/simple-texture-rotation-shader
 	mat2 rotation_matrix=mat2(
 		vec2(sin(rotation),-cos(rotation)),
 		vec2(cos(rotation),sin(rotation))
@@ -22,10 +23,12 @@ vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){
 }
 
 vec2 warp_uv(vec2 uv, float factor, float angle){
-	return vec2(
+	uv = rotateUVmatrinx(uv, vec2(0.5,0.5), angle);
+	vec2 scaled_uv = vec2(
 		uv.x * (1.0 + factor),
-		uv.y * (1.0 + factor)
+		uv.y
 	);
+	return rotateUVmatrinx(scaled_uv, vec2(0.5, 0.5), -angle);
 }
 
 void fragment(){
