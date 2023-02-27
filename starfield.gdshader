@@ -8,7 +8,7 @@ const float DEPTH_OFFSET = 0.0;
 
 uniform float warp_factor = 0;
 uniform float warp_factor_scale = 10;
-uniform vec2 warp_vector = vec2(1,1);
+uniform float warp_angle;
 
 vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){
 	mat2 rotation_matrix=mat2(
@@ -19,6 +19,13 @@ vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){
 	uv= uv*rotation_matrix;
 	uv += pivot;
 	return uv;
+}
+
+vec2 warp_uv(vec2 uv, float factor, float angle){
+	return vec2(
+		uv.x * (1.0 + factor),
+		uv.y * (1.0 + factor)
+	);
 }
 
 void fragment(){
@@ -35,7 +42,7 @@ void fragment(){
 		);
 		
 		// Warping
-		shifted_uv = warp_uv(shifted_uv)
+		shifted_uv = warp_uv(shifted_uv, warp_factor, warp_angle);
 
 		// Extra offset to avoid stacking
 		shifted_uv += (TEXTURE_PIXEL_SIZE * float(i) * 250.0);
