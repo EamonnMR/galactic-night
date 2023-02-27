@@ -11,4 +11,4 @@ func _process(delta):
 	pos = -1 * Client.camera.unproject_position(Vector3(0,0,0))
 	get_material().set_shader_parameter("position", pos)
 	get_material().set_shader_parameter("warp_factor", warp_factor)
-	get_material().set_shader_parameter("warp_vector", Vector2(1,0).rotated(1.5 * PI))
+	get_material().set_shader_parameter("warp_angle", (PI / 2) -(warp_angle + (PI / 4.0)))
