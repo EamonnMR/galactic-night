@@ -15,12 +15,13 @@ func start_hyperjump():
 	if state == STATES.POWERED_DOWN:
 		state = STATES.WARPING_OUT
 		Client.get_background().warp_angle = Util.flatten_rotation(get_node("../"))
+		Client.get_foreground().warp_angle = Util.flatten_rotation(get_node("../"))
 		return true
 	else:
 		return false
 
 func _process(delta):
-	Client.get_background().warp_angle = Util.flatten_rotation(get_node("../"))
+	# Client.get_background().warp_angle = Util.flatten_rotation(get_node("../"))
 	if state == STATES.POWERED_DOWN:
 		return
 	
@@ -40,3 +41,4 @@ func _process(delta):
 			warp_factor = 0
 
 	Client.get_background().warp_factor = warp_factor
+	Client.get_foreground().warp_factor = warp_factor

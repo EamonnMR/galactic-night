@@ -79,6 +79,9 @@ func get_main():
 
 func get_background():
 	return get_main().get_node("background/Background")
+	
+func get_foreground():
+	return get_main().get_node("foreground/Foreground")
 
 func switch_ship(new_type: String):
 	var old_ship = player
