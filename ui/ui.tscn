@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=17 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dfyqr57b04l3e" path="res://ui/Hud/mouseover.tscn" id="9_ra2c5"]
 [ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/Hud/TargetInfo.tscn" id="10_doaoj"]
 [ext_resource type="PackedScene" uid="uid://c2arxq68kap2e" path="res://ui/Hud/SpobPanel.tscn" id="13_n0dx3"]
+[ext_resource type="Script" path="res://ui/MessageBox.gd" id="16_4ixx8"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -116,5 +117,23 @@ offset_top = -178.0
 offset_bottom = 0.0
 grow_vertical = 0
 
+[node name="MessageBox" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -162.0
+offset_top = -52.0
+offset_right = 163.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("16_4ixx8")
+
+[node name="Timer" type="Timer" parent="MessageBox"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]
+[connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]

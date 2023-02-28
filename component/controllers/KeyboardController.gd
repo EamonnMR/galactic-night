@@ -86,9 +86,12 @@ func interact():
 		Client.player.get_node("InteractionRange").interact()
 
 func hyperspace():
-	if Input.is_action_just_pressed("jump") and is_instance_valid(Client.player):
-		get_node("../HyperspaceManager").start_hyperjump()
-
+	if Input.is_action_just_pressed("jump"):
+		if Client.selected_system:
+			if is_instance_valid(Client.player):
+				get_node("../HyperspaceManager").start_hyperjump()
+		else:
+			Client.display_message("No system selected - press 'm' and select a destination")
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")
 #  if get_tree().paused:

@@ -11,6 +11,7 @@ signal spob_target_updated
 signal mouseover_updated
 signal exited_system
 signal money_updated
+signal message(message)
 @onready var current_system = Procgen.generate_systems(seed)
 
 var selected_system = null
@@ -70,6 +71,7 @@ func change_system():
 	selected_system = null
 	exited_system.emit()
 	get_main().change_system(old_system, current_system)
+	display_message("Entering the %s system" % Procgen.systems[current_system].name)
 
 func get_world():
 	return get_main().get_node("World3D")
@@ -137,3 +139,6 @@ func get_disposition(node):
 			return Data.factions[node.faction].get_player_disposition()
 	else:
 		return Util.DISPOSITION.ABANDONED
+
+func display_message(msg: String):
+	message.emit(msg)

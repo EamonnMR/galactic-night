@@ -40,3 +40,4 @@ func toggle_inventory(elements: Array = []):
 			i.rebuild()
 			i.show()
 		get_tree().paused = true
+
