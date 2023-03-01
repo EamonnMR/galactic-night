@@ -18,6 +18,8 @@ var linear_velocity = Vector2()
 var primary_weapons = []
 var secondary_weapons = []
 
+var warping = false
+var warp_speed_factor = 10
 
 signal destroyed
 
@@ -65,7 +67,8 @@ func _physics_process(delta):
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	handle_shooting()
-	Util.wrap_to_play_radius(self)
+	if not warping:
+		Util.wrap_to_play_radius(self)
 
 func handle_shooting():
 	if $Controller.shooting:
@@ -84,11 +87,17 @@ func get_limited_velocity_with_thrust(delta):
 		$Graphics.thrusting = false
 	if $Controller.braking:
 		linear_velocity = Vector2(linear_velocity.length() - (accel * delta * 100), 0).rotated(linear_velocity.angle())
-	if linear_velocity.length() > max_speed:
-		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
+	
+	if not warping:
+		if linear_velocity.length() > max_speed:
+			return Vector2(max_speed, 0).rotated(linear_velocity.angle())
+		else:
+			return linear_velocity
 	else:
-		return linear_velocity
-
+		if linear_velocity.length() > max_speed * warp_speed_factor:
+			return Vector2(max_speed * warp_speed_factor, 0).rotated(linear_velocity.angle())
+		else:
+			return linear_velocity
 func flash_weapon():
 	$Graphics.flash_weapon()
 

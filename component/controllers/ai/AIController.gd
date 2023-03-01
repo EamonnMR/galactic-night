@@ -16,11 +16,13 @@ enum STATES {
 
 var target
 var path_target
-var ideal_face
 var lead_velocity: float
 var state = STATES.IDLE
 
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
+
+func complete_warp():
+	parent.queue_free()
 
 func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
@@ -78,20 +80,6 @@ func process_state_persue(delta):
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
 	braking = false
-	
-func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
-	var origin_2d = Util.flatten_25d(parent.global_transform.origin)
-	var rot_2d = Util.flatten_rotation(parent)
-	var max_move = parent.turn * delta
-	
-	var impulse = Util.constrained_point(
-		origin_2d,
-		rot_2d,
-		max_move,
-		at
-	)
-	rotation_impulse = impulse[0]
-	ideal_face = impulse[1]
 
 func _find_target():
 	var enemy_ships = [Client.player] if faction.initial_disposition < 0 and is_instance_valid(Client.player) else []
@@ -165,10 +153,6 @@ func change_state_path(path_target):
 	self.path_target = path_target
 	state = STATES.PATH
 	parent.remove_from_group("npcs-hostile")
-
-func _facing_within_margin(margin):
-	# Relies checked 'ideal face' being populated
-	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
 func _compute_weapon_velocity():
 	lead_velocity = 6 # Plasma. TODO: actually compute this from weapons

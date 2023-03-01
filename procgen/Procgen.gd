@@ -48,7 +48,7 @@ func deserialize(data: Dictionary):
 
 
 func random_location_in_system(rng: RandomNumberGenerator):
-	return random_circular_coordinate(rng.randf() * Util.PLAY_AREA_RADIUS, rng)
+	return random_circular_coordinate(rng.randf() * Util.PLAY_AREA_RADIUS / 2.0, rng)
 
 func generate_systems(seed_value: int) -> String:
 	# Returns the id of the system that "start" gets put in
