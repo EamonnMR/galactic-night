@@ -20,20 +20,27 @@ func start_hyperjump():
 	else:
 		return false
 
+func warp_transition():
+	Client.change_system()
+	# Play warping down SFX
+	get_node("../").global_transform.origin = Util.raise_25d(
+		Vector2(Util.PLAY_AREA_RADIUS * 1.5, 0).rotated(-Util.flatten_rotation(get_node("../")))
+	)
+	state = STATES.WARPING_IN
+
 func _process(delta):
 	# Client.get_background().warp_angle = Util.flatten_rotation(get_node("../"))
 	if state == STATES.POWERED_DOWN:
 		return
 	
 	if state == STATES.WARPING_OUT:
+		Client.display_message("WARPING OUT")
 		warp_factor += warp_rate * delta
 		if warp_factor >= 1:
-			Client.change_system()
-			# Play warping down SFX
-			# Invert ship position
-			state = STATES.WARPING_IN
+			warp_transition()
 	
 	elif state == STATES.WARPING_IN:
+		Client.display_message("WARPING IN")
 		warp_factor -= warp_rate * delta
 		
 		if warp_factor <= 0:

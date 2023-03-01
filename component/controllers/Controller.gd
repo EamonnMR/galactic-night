@@ -18,14 +18,21 @@ var braking: bool
 
 var jumping: bool
 
+var warp_aligned = false
+
+var WARP_MARGIN = 0.1
+
+var WARP_MAX_SPEED = 0.1
+
 func complete_jump():
 	pass
 	
 func complete_warp_conditions_met() -> bool:
-	return Util.flatten_25d(parent.position).length() >= Util.WARP_OUT_DISTANCE
+	return Util.out_of_system_radius(parent, Util.JUMP_DISTANCE) \
+		and parent.linear_velocity.length() >= parent.max_speed * 0.9
 
 func warp_conditions_met() -> bool:
-	return Util.flatten_25d(parent.position).length() >= Util.JUMP_DISTANCE
+	return Util.out_of_system_radius(parent, Util.JUMP_DISTANCE)
 
 func _facing_within_margin(margin):
 	# Relies on 'ideal face' being populated
@@ -34,16 +41,25 @@ func _facing_within_margin(margin):
 func get_target_position() -> Vector2:
 	return (Procgen.systems[Client.selected_system].position
 	- Procgen.systems[Client.current_system].position) \
-	+ Util.flatten_25d(get_node("../").transform.origin)
+	+ Util.flatten_25d(parent.transform.origin)
 
 func process_warping_out(delta):
-	populate_rotation_impulse_and_ideal_face(get_target_position(), delta)
 	shooting = false
-	thrusting = _facing_within_margin(0.1)
-	braking = not thrusting
-	Client.display_message("Distance: %s, Jump at: %s" % [Util.flatten_25d(parent.position).length(), Util.WARP_OUT_DISTANCE])
-	if complete_warp_conditions_met():
-		complete_jump()
+	if not warp_aligned:
+		braking = true
+		populate_rotation_impulse_and_ideal_face(get_target_position(), delta)
+		
+		thrusting = false
+		braking = not thrusting
+		
+		if _facing_within_margin(WARP_MARGIN) and parent.linear_velocity.length() <= WARP_MAX_SPEED:
+			warp_aligned = true
+	else:
+		rotation_impulse = 0
+		thrusting = true
+		braking = false
+		if complete_warp_conditions_met():
+			complete_jump()
 
 func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	var origin_2d = Util.flatten_25d(parent.global_transform.origin)

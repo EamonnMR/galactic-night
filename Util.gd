@@ -2,9 +2,7 @@ extends Node
 
 var PLAY_AREA_RADIUS = 200
 
-var JUMP_DISTANCE = PLAY_AREA_RADIUS * 0.5
-
-var WARP_OUT_DISTANCE = PLAY_AREA_RADIUS * 1.5
+var JUMP_DISTANCE = PLAY_AREA_RADIUS * 0.35
 
 func get_multiple(object: Object, attributes: Array[String]) -> Dictionary:
 	var attrs = {}
@@ -104,4 +102,7 @@ func lead_correct_position(projectile_velocity: float, origin_position: Vector2,
 	var relative_vel = target_velocity - origin_velocity
 	var travel_time = target_position.distance_to(origin_position) / projectile_velocity
 	return relative_vel * travel_time + target_position
+
+func out_of_system_radius(node: Node3D, radius: float) -> bool:
+	return flatten_25d(node.global_position).length() >= radius
 	

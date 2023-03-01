@@ -19,6 +19,7 @@ var primary_weapons = []
 var secondary_weapons = []
 
 var warping = false
+var warping_in = false
 var warp_speed_factor = 10
 
 signal destroyed
@@ -68,7 +69,11 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_shooting()
 	if not warping:
-		Util.wrap_to_play_radius(self)
+		if warping_in:
+			if Util.out_of_system_radius(self, Util.PLAY_AREA_RADIUS / 2):
+				warping_in = false
+		else:
+			Util.wrap_to_play_radius(self)
 
 func handle_shooting():
 	if $Controller.shooting:
