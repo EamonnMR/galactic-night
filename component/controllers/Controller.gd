@@ -38,16 +38,15 @@ func _facing_within_margin(margin):
 	# Relies on 'ideal face' being populated
 	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
-func get_target_position() -> Vector2:
+func get_imagionary_position_of_other_system() -> Vector2:
 	return (Procgen.systems[Client.selected_system].position
-	- Procgen.systems[Client.current_system].position) \
-	+ Util.flatten_25d(parent.transform.origin)
+	- Procgen.systems[Client.current_system].position) * 100000
 
 func process_warping_out(delta):
 	shooting = false
 	if not warp_aligned:
 		braking = true
-		populate_rotation_impulse_and_ideal_face(get_target_position(), delta)
+		populate_rotation_impulse_and_ideal_face(get_imagionary_position_of_other_system(), delta)
 		
 		thrusting = false
 		braking = not thrusting

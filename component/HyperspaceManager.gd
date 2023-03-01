@@ -24,8 +24,8 @@ func warp_transition():
 	Client.change_system()
 	# Play warping down SFX
 	get_node("../").global_transform.origin = Util.raise_25d(
-		Vector2(Util.PLAY_AREA_RADIUS * 1.5, 0).rotated(-Util.flatten_rotation(get_node("../")))
-	)
+		Vector2(Util.PLAY_AREA_RADIUS * 0.75, 0).rotated(Util.flatten_rotation(get_node("../")))
+	) * -1
 	state = STATES.WARPING_IN
 
 func _process(delta):
