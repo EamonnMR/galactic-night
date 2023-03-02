@@ -24,6 +24,8 @@ var WARP_MARGIN = 0.1
 
 var WARP_MAX_SPEED = 0.1
 
+var warp_dest_system
+
 func complete_jump():
 	pass
 	
@@ -39,7 +41,7 @@ func _facing_within_margin(margin):
 	return ideal_face and abs(Util.anglemod(ideal_face - Util.flatten_rotation(parent))) < margin
 
 func get_imagionary_position_of_other_system() -> Vector2:
-	return (Procgen.systems[Client.selected_system].position
+	return (Procgen.systems[warp_dest_system].position
 	- Procgen.systems[Client.current_system].position) * 100000
 
 func process_warping_out(delta):

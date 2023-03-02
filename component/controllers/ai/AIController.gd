@@ -4,7 +4,9 @@ enum STATES {
 	IDLE,
 	ATTACK,
 	PERSUE,
-	PATH
+	PATH,
+	LEAVE,
+	WARP
 }
 
 @export var accel_margin = PI / 4
@@ -19,15 +21,20 @@ var path_target
 var lead_velocity: float
 var state = STATES.IDLE
 
+var unvisited_spobs: Array
+
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
 
 func complete_warp():
+	breakpoint
 	parent.queue_free()
 
 func _ready():
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
 	get_node("../Health").damaged.connect(_on_damage_taken)
 	_compute_weapon_velocity.call_deferred()
+	unvisited_spobs = get_tree().get_nodes_in_group("spobs")
+	
 
 func _verify_target():
 	if target == null or not is_instance_valid(target):
@@ -50,6 +57,10 @@ func _physics_process(delta):
 			process_state_persue(delta)
 		STATES.PATH:
 			process_state_path(delta)
+		STATES.LEAVE:
+			process_state_leave(delta)
+		STATES.WARP:
+			process_warping_out(delta)
 
 func process_state_path(delta):
 	populate_rotation_impulse_and_ideal_face(
@@ -80,6 +91,16 @@ func process_state_persue(delta):
 	shooting = false
 	thrusting = _facing_within_margin(accel_margin)
 	braking = false
+	
+func process_state_leave(delta):
+	
+	populate_rotation_impulse_and_ideal_face(
+		Procgen.systems[warp_dest_system].position * 10000,
+		delta
+	)
+	shooting = false # Take shots of opportunity
+	thrusting = _facing_within_margin(accel_margin)
+	braking = false
 
 func _find_target():
 	var enemy_ships = [Client.player] if faction.initial_disposition < 0 and is_instance_valid(Client.player) else []
@@ -94,14 +115,14 @@ func _find_target():
 		change_state_persue(Util.closest(enemy_ships, Util.flatten_25d(parent.global_transform.origin)))
 		
 func _find_spob():
-	var spobs = get_tree().get_nodes_in_group("spobs")
-	if spobs.size() == 0:
-		change_state_idle()
+	if unvisited_spobs.size() == 0:
+		change_state_leave()
 	else:
 		var rng  = RandomNumberGenerator.new()
 		rng.randomize()
-		path_target = Procgen.random_select(spobs, rng)
-		change_state_path(Procgen.random_select(spobs, rng))
+		var picked_spob = Procgen.random_select(unvisited_spobs, rng)
+		unvisited_spobs.erase(picked_spob)
+		change_state_path(picked_spob)
 
 func _on_Rethink_timeout():
 	match state:
@@ -113,6 +134,10 @@ func _on_Rethink_timeout():
 			rethink_state_persue()
 		STATES.PATH:
 			rethink_state_path()
+		STATES.LEAVE:
+			rethink_state_leave()
+		STATES.WARP:
+			pass
 
 func rethink_state_idle():
 	_find_target()
@@ -123,6 +148,10 @@ func rethink_state_path():
 func rethink_state_persue():
 	#_find_target()
 	pass
+	
+func rethink_state_leave():
+	if warp_conditions_met():
+		state = STATES.WARP
 
 func rethink_state_attack():
 	pass
@@ -153,6 +182,15 @@ func change_state_path(path_target):
 	self.path_target = path_target
 	state = STATES.PATH
 	parent.remove_from_group("npcs-hostile")
+
+func change_state_leave():
+	state = STATES.LEAVE
+	var rng  = RandomNumberGenerator.new()
+	rng.randomize()
+	warp_dest_system = Procgen.random_select(Procgen.systems[Client.current_system].links_cache, rng)
+
+func complete_jump():
+	parent.queue_free()
 
 func _compute_weapon_velocity():
 	lead_velocity = 6 # Plasma. TODO: actually compute this from weapons
@@ -186,4 +224,3 @@ func _on_EngagementRange_body_exited(body):
 
 func _on_damage_taken(source):
 	change_state_persue(source)
-	

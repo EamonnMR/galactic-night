@@ -96,6 +96,7 @@ func hyperspace():
 		if warp_conditions_met():
 			if Client.selected_system:
 				if is_instance_valid(Client.player):
+					warp_dest_system = Client.selected_system
 					warp_autopilot = true
 					parent.warping = true
 			else:
