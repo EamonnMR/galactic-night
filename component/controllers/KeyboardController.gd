@@ -1,4 +1,4 @@
-extends Controller
+extends JumpAutopilotController
 
 var skin_id = "0"
 

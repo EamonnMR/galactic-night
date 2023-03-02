@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dhd6dnh6yer3g" path="res://icon.png" id="3_mhoc7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s1ejk"]
-radius = 5.0
+radius = 9.0
 
 [node name="Controller" instance=ExtResource("1_rwhqd")]
 script = ExtResource("2_esu1u")
@@ -15,7 +15,8 @@ max_target_distance = 1000
 destination_margin = 100
 
 [node name="Label" type="Label3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38364, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.38364, 0)
+visible = false
 billboard = 1
 
 [node name="Rethink" type="Timer" parent="." index="1"]

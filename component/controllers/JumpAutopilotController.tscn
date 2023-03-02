@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://rsrkkw3yyiuk"]
+
+[ext_resource type="PackedScene" uid="uid://c3q3cv3jeiqm2" path="res://component/controllers/Controller.tscn" id="1_b02k2"]
+[ext_resource type="Script" path="res://component/controllers/JumpAutopilotController.gd" id="2_75h0n"]
+
+[node name="Controller" instance=ExtResource("1_b02k2")]
+script = ExtResource("2_75h0n")

@@ -1,4 +1,4 @@
-extends Controller
+extends JumpAutopilotController
 
 enum STATES {
 	IDLE,
@@ -10,7 +10,7 @@ enum STATES {
 }
 
 @export var accel_margin = PI / 4
-@export var shoot_margin = PI / 2
+@export var shoot_margin = PI * 0.75
 @export var max_target_distance = 1000
 @export var destination_margin = 100
 
@@ -30,6 +30,8 @@ func complete_warp():
 	parent.queue_free()
 
 func _ready():
+	if get_tree().debug_collisions_hint:
+		$Label.show()
 	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
 	get_node("../Health").damaged.connect(_on_damage_taken)
 	_compute_weapon_velocity.call_deferred()
@@ -44,8 +46,9 @@ func _verify_target():
 	return true
 
 func _physics_process(delta):
-	#$LeadIndicator.hide()
-	#$Label.text = STATES.keys()[state] + "\n" \
+	if get_tree().debug_collisions_hint:
+		$LeadIndicator.hide()
+		$Label.text = STATES.keys()[state] + "\n"
 	#	+ "My faction: " + Data.factions[parent.faction].name + "\n" \
 	#	+ str(target) + " (" + Data.factions[target.faction].name + ")" if is_instance_valid(target) else "" + "\n"
 	match state:
@@ -193,7 +196,7 @@ func complete_jump():
 	parent.queue_free()
 
 func _compute_weapon_velocity():
-	lead_velocity = 6 # Plasma. TODO: actually compute this from weapons
+	lead_velocity = 12 # TODO: actually compute this from weapons
 
 func _get_target_lead_position():
 	var lead_position = Util.lead_correct_position(
@@ -204,8 +207,9 @@ func _get_target_lead_position():
 		Util.flatten_25d(target.global_transform.origin)
 		
 	)
-	#$LeadIndicator.global_transform.origin = Util.raise_25d(lead_position)
-	#$LeadIndicator.show()
+	if get_tree().debug_collisions_hint:
+		$LeadIndicator.global_transform.origin = Util.raise_25d(lead_position)
+		$LeadIndicator.show()
 	return lead_position
 
 # Somewhat questioning the need for a whole node setup for this.
