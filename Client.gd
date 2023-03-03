@@ -12,6 +12,7 @@ signal mouseover_updated
 signal exited_system
 signal money_updated
 signal message(message)
+signal selected_system_updated
 @onready var current_system = Procgen.generate_systems(seed)
 
 var selected_system = null
@@ -22,7 +23,7 @@ var target_spob
 var mouseover
 var mouseover_via_mouse = false
 
-var money = 100
+var money = 10
 
 func has_money(price):
 	return money >= price
@@ -58,17 +59,24 @@ func map_select_system(system_id, system_node):
 	sel_sys(system_id, system_node)
 	emit_signal("system_selection_updated")
 
-func sel_sys(system_id: String, node):
+func sel_sys(system_id, node):
 	selected_system = system_id
 	for old_node in selected_system_circle_cache:
 		old_node.redraw()
-	selected_system_circle_cache = [node]
+	if system_id:
+		selected_system_circle_cache = [node]
+	else:
+		selected_system_circle_cache = []
+	selected_system_updated.emit()
 	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump
+
+func valid_jump_destination_selected():
+	return selected_system != current_system and selected_system != null
 
 func change_system():
 	var old_system = current_system
 	current_system = selected_system
-	selected_system = null
+	sel_sys(null, null)
 	exited_system.emit()
 	get_main().change_system(old_system, current_system)
 	display_message("Entering the %s system" % Procgen.systems[current_system].name)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1cjcpk0fqkan"]
+
+[ext_resource type="Script" path="res://ui/GalaxyNavIndicator.gd" id="1_dawuw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2kod"]
+font_size = 20
+font_color = Color(1, 1, 1, 0.513726)
+
+[node name="GalaxyNavIndicator" type="Label"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -166.0
+offset_top = 265.0
+offset_right = -61.0
+offset_bottom = 291.0
+grow_horizontal = 0
+text = "Bla"
+label_settings = SubResource("LabelSettings_y2kod")
+script = ExtResource("1_dawuw")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="update"]
