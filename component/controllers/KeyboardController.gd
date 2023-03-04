@@ -1,6 +1,8 @@
-extends Controller
+extends JumpAutopilotController
 
 var skin_id = "0"
+
+var warp_autopilot = false
 
 @onready var ui = get_tree().get_root().get_node("Main/UI/")
 	
@@ -13,6 +15,10 @@ func get_rotation_impulse() -> int:
 	return dc
 
 func _physics_process(delta):
+	if warp_autopilot:
+		process_warping_out(delta)
+		return
+	
 	thrusting = Input.is_action_pressed("thrust")
 	braking = Input.is_action_pressed("brake")
 	shooting = Input.is_action_pressed("shoot")
@@ -27,6 +33,7 @@ func _physics_process(delta):
 	select_nearest_target()
 	cycle_targets()
 	interact()
+	hyperspace()
 
 func _ready():
 	Client.set_player(parent)
@@ -83,6 +90,25 @@ func cycle_targets():
 func interact():
 	if Input.is_action_just_pressed("interact") and is_instance_valid(Client.player):
 		Client.player.get_node("InteractionRange").interact()
+
+func hyperspace():
+	if Input.is_action_just_pressed("jump"):
+		if warp_conditions_met():
+			if Client.selected_system:
+				if is_instance_valid(Client.player):
+					warp_dest_system = Client.selected_system
+					warp_autopilot = true
+					parent.warping = true
+			else:
+				Client.display_message("No system selected - press 'm' and select a destination")
+		else:
+			Client.display_message("Cannot warp to hyperspace - move further from system center\n"
+			+ "(Mass Lock: %s, Your distance: %s" % [Util.JUMP_DISTANCE, Util.flatten_25d(parent.position).length()])
+
+func complete_jump():
+	warp_autopilot = false
+	if is_instance_valid(parent):
+		parent.get_node("HyperspaceManager").start_hyperjump()
 
 #func _toggle_pause():
 #  var pause_menu = Client.get_ui().get_node("PauseMenu")

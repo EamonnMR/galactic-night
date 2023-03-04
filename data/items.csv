@@ -6,5 +6,5 @@ missile,Missile,,,,res://assets/Master484_cc0/missile.png,You can tell these thi
 plasma,Heater,weapon,,,res://assets/damnwing_cc_by/zipgun.png,What better way to damage something in space then to introduce a little entropy than the time honored method of red hot plasma?,FALSE,FALSE,100
 food,Food,,,,res://assets/FontAwesome/Food_font_awesome.png,"Commodity, only used for trade",TRUE,TRUE,70
 equip,Equipment,,,,res://assets/FontAwesome/32px-Cogs_font_awesome.png,"Commodity, only used for trade",TRUE,TRUE,100
-lux,Luxury Goods,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",TRUE,TRUE,200
-med,Medical Supplies,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",TRUE,TRUE,120
+lux,Luxury,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",TRUE,TRUE,200
+med,Medical,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",TRUE,TRUE,120

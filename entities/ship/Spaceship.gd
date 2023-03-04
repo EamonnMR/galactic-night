@@ -18,6 +18,9 @@ var linear_velocity = Vector2()
 var primary_weapons = []
 var secondary_weapons = []
 
+var warping = false
+var warping_in = false
+var warp_speed_factor = 10
 
 signal destroyed
 
@@ -65,8 +68,12 @@ func _physics_process(delta):
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	handle_shooting()
-	handle_jumping()
-	Util.wrap_to_play_radius(self)
+	if not warping:
+		if warping_in:
+			if Util.out_of_system_radius(self, Util.PLAY_AREA_RADIUS / 2):
+				warping_in = false
+		else:
+			Util.wrap_to_play_radius(self)
 
 func handle_shooting():
 	if $Controller.shooting:
@@ -85,16 +92,22 @@ func get_limited_velocity_with_thrust(delta):
 		$Graphics.thrusting = false
 	if $Controller.braking:
 		linear_velocity = Vector2(linear_velocity.length() - (accel * delta * 100), 0).rotated(linear_velocity.angle())
-	if linear_velocity.length() > max_speed:
-		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
+	
+	if not warping:
+		if linear_velocity.length() > max_speed:
+			return Vector2(max_speed, 0).rotated(linear_velocity.angle())
+		else:
+			return linear_velocity
 	else:
-		return linear_velocity
-
+		if linear_velocity.length() > max_speed * warp_speed_factor:
+			return Vector2(max_speed * warp_speed_factor, 0).rotated(linear_velocity.angle())
+		else:
+			return linear_velocity
 func flash_weapon():
 	$Graphics.flash_weapon()
 
 func increase_bank(rotation_impulse):
-	$Graphics.rotation[bank_axis] += rotation_impulse * bank_speed
+	$Graphics.rotation[bank_axis] += rotation_impulse * bank_speed * bank_factor
 	$Graphics.rotation[bank_axis] = clamp(
 		$Graphics.rotation[bank_axis],
 		-max_bank,
@@ -103,23 +116,11 @@ func increase_bank(rotation_impulse):
 
 func decrease_bank(delta):
 	if $Graphics.rotation[bank_axis] != 0.0:
-		var sgn = sign($Graphics.rotation[bank_axis])
-		$Graphics.rotation[bank_axis] -= sgn * bank_speed * delta
+		var sgn = sign($Graphics.rotation[bank_axis]) * bank_factor
+		$Graphics.rotation[bank_axis] -= sgn * bank_speed * delta * bank_factor
 		if sign($Graphics.rotation[bank_axis]) != sgn:
 			$Graphics.rotation[bank_axis] = 0
 	
-func handle_jumping():
-	if $Controller.jumping:
-		$Controller.jumping = false
-		if Client.selected_system:
-			Client.change_system()
-			#_jump_effects()
-			#queue_free()
-		else:
-			pass
-			# TODO: Print some sort of reminder to select a destination
-
-
 func _on_health_destroyed():
 	call_deferred("queue_free")
 	emit_signal("destroyed")

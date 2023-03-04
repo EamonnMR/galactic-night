@@ -1,6 +1,8 @@
 extends Node
 
-var PLAY_AREA_RADIUS = 100
+var PLAY_AREA_RADIUS = 200
+
+var JUMP_DISTANCE = PLAY_AREA_RADIUS * 0.35
 
 func get_multiple(object: Object, attributes: Array[String]) -> Dictionary:
 	var attrs = {}
@@ -37,14 +39,17 @@ func wrap_to_play_radius(entity: Node3D) -> bool:
 	var position = flatten_25d(entity.global_transform.origin)
 	if position.length() > PLAY_AREA_RADIUS:
 		entity.global_transform.origin = raise_25d(
-			Vector2(
-				PLAY_AREA_RADIUS / 2.0, 0
-			).rotated(
-				anglemod(position.angle() + PI)
-			)
+			invert_position(position, PLAY_AREA_RADIUS / 2.0)
 		)
 		return true
 	return false
+
+func invert_position(position: Vector2, distance) -> Vector2:
+	return Vector2(
+		distance, 0
+	).rotated(
+		anglemod(position.angle() + PI)
+	)
 
 func constrained_point(source_position: Vector2, current_rotation: float,
 		max_turn: float, target_position: Vector2) -> Array:
@@ -97,4 +102,7 @@ func lead_correct_position(projectile_velocity: float, origin_position: Vector2,
 	var relative_vel = target_velocity - origin_velocity
 	var travel_time = target_position.distance_to(origin_position) / projectile_velocity
 	return relative_vel * travel_time + target_position
+
+func out_of_system_radius(node: Node3D, radius: float) -> bool:
+	return flatten_25d(node.global_position).length() >= radius
 	

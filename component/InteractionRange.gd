@@ -7,10 +7,15 @@ func interact():
 	if Client.target_spob:
 		if Client.target_spob in in_range:
 			Client.target_spob.spob_interact()
+		Client.display_message("Cannot Land on %s- too far away" % Client.target_spob.spob_name)
 	else:
-		if Client.mouseover in in_range:
-			Client.update_player_target_spob(Client.mouseover)
-			Client.target_spob.spob_interact()
+		if Client.mouseover:
+			if Client.mouseover in in_range:
+				Client.update_player_target_spob(Client.mouseover)
+				Client.target_spob.spob_interact()
+			else:
+				Client.display_message("Cannot Land on %s- too far away" % Client.target_spob.spob_name)
+		Client.display_message("No spob selected - use the number keys to select spobs in system")
 
 func _on_timer_timeout():
 	if Client.mouseover_via_mouse == false:

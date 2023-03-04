@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbronia1bfybm"]
+
+[ext_resource type="Script" path="res://component/HyperspaceManager.gd" id="1_er02f"]
+
+[node name="HyperspaceManager" type="Node"]
+script = ExtResource("1_er02f")
