@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=17 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
 [ext_resource type="PackedScene" uid="uid://bjyh6bml6dk1e" path="res://ui/InhabitedSpob/InhabitedSpob.tscn" id="2_6mxij"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
 [ext_resource type="PackedScene" uid="uid://cmy8sexrww2l8" path="res://ui/Equipment.tscn" id="2_urnxu"]
-[ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3_et15m"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="4_o6isj"]
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
@@ -105,9 +104,6 @@ offset_left = 916.0
 offset_top = 398.0
 offset_right = 1151.0
 offset_bottom = 643.0
-
-[node name="Map" parent="." instance=ExtResource("3_et15m")]
-visible = false
 
 [node name="SpobInfoBox" parent="." instance=ExtResource("13_n0dx3")]
 visible = false

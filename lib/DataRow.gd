@@ -143,7 +143,7 @@ func parse_int_array(text: String) -> Array:
 func parse_string_array(text: String) -> Array[String]:
 	# This might be a bug in split()
 	var raw_array = Array(text.split(" "))
-	var processed_array: Array[String]
+	var processed_array: Array[String] = []
 	for item in raw_array:
 		if item != "":
 			processed_array.push_back(item)

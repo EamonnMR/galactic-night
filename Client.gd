@@ -13,7 +13,7 @@ signal exited_system
 signal money_updated
 signal message(message)
 signal selected_system_updated
-@onready var current_system = Procgen.generate_systems(seed)
+var current_system
 
 var selected_system = null
 var selected_system_circle_cache = []
@@ -47,10 +47,12 @@ func set_camera(camera: Camera3D):
 	self.camera = camera
 	emit_signal("camera_updated")
 
-func _ready():
+func enter_system():
 	var ship_type = "nimbus"
 	player = Data.ships[ship_type].scene.instantiate()
 	player.type = ship_type
+	
+	get_main().enter_system(current_system_id())
 
 func current_system_id():
 	return current_system
@@ -83,6 +85,9 @@ func change_system():
 
 func get_world():
 	return get_main().get_node("World3D")
+
+func get_ui():
+	return get_main().get_node("UI")
 
 func get_main():
 	return get_tree().get_root().get_node("Main")
@@ -150,3 +155,37 @@ func get_disposition(node):
 
 func display_message(msg: String):
 	message.emit(msg)
+
+const SAVE_FILE = "user://bla.json"
+
+func save_game():
+	var save_game = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	
+	save_game.store_line(JSON.stringify(Procgen.systems))
+	save_game.close()
+
+func load_game():
+	var file: FileAccess = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	var text = file.get_as_text()
+	var json = JSON.new()
+	var parse_result = json.parse(text)
+
+	if not parse_result == OK:
+		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
+		breakpoint
+	Procgen.systems = json.get_data()
+
+func new_game():
+	current_system = Procgen.generate_systems(seed)
+	
+func enter_game():
+	get_main().get_node("MainMenu").hide()
+	enter_system()
+	get_ui().show()
+	get_ui().new_map()
+	get_main().enter_system(current_system_id())
+	
+func leave_game():
+	get_main().get_node("MainMenu").show()
+	get_ui().hide()
+	

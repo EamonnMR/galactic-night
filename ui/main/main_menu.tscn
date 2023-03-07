@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://baufcdder5qrd"]
+
+[ext_resource type="Texture2D" uid="uid://fdo4s17i0u4s" path="res://assets/danc_cc_by/MainMenu.png" id="1_dk8wm"]
+[ext_resource type="Script" path="res://ui/main/MainMenu.gd" id="2_esajf"]
+
+[node name="MainMenu" type="CanvasLayer"]
+layer = 100
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="TextureRect" parent="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(364, 352)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -88.0
+offset_right = 91.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dk8wm")
+expand_mode = 2
+script = ExtResource("2_esajf")
+
+[node name="Label" type="Label" parent="Control/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -218.0
+offset_right = 48.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space Craft 22
+"
+
+[node name="New" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 12.0
+offset_right = 157.0
+offset_bottom = 43.0
+text = "New Game"
+
+[node name="Load" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 61.0
+offset_right = 157.0
+offset_bottom = 92.0
+text = "Load"
+
+[node name="Save" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 110.0
+offset_right = 160.0
+offset_bottom = 141.0
+text = "Save"
+
+[node name="Quit" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 313.0
+offset_right = 161.0
+offset_bottom = 344.0
+text = "Quit"
+
+[connection signal="pressed" from="Control/MainMenu/New" to="Control/MainMenu" method="_on_new_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Load" to="Control/MainMenu" method="_on_load_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Save" to="Control/MainMenu" method="_on_save_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Quit" to="Control/MainMenu" method="_on_quit_pressed"]
