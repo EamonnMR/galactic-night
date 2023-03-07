@@ -188,4 +188,10 @@ func enter_game():
 func leave_game():
 	get_main().get_node("MainMenu").show()
 	get_ui().hide()
-	
+
+func toggle_pause():
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		get_main().get_node("MainMenu").show()
+	else:
+		get_main().get_node("MainMenu").hide()
