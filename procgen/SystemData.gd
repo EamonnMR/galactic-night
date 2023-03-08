@@ -19,8 +19,8 @@ var distance: float
 var distance_normalized: float
 
 func serialize():
-	
 	var serialized = Util.default_serialize(self)
+	serialized["id"] = id
 	serialized["position"] = [position.x, position.y]
 	serialized["explored"] = int(explored)
 	serialized["ambient_color"] = ambient_color.to_html(false)
@@ -37,8 +37,8 @@ func deserialize(data: Dictionary):
 	long_links_cache = data["long_links_cache"]
 	state = data["state"]
 	explored = bool(data["explored"])
-	ambient_color = Color(data["color"])
-	generation = data["generation"].to_int()
+	ambient_color = Color(data["ambient_color"])
+	generation = int(data["generation"])
 	core = data["core"]
 	entities = data["entities"]
 

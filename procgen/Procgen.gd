@@ -27,6 +27,7 @@ func serialize() -> Dictionary:
 		serial_hyperlanes.append([jump.lsys, jump.rsys])
 	for jump in longjumps:
 		serial_longjumps.append([jump.lsys, jump.rsys])
+	breakpoint
 	return {
 		"systems": serial_systems,
 		"hyperlanes": serial_hyperlanes,

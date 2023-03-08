@@ -159,9 +159,9 @@ func display_message(msg: String):
 const SAVE_FILE = "user://bla.json"
 
 func save_game():
-	var save_game = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	var save_game = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	
-	save_game.store_line(JSON.stringify(Procgen.systems))
+	save_game.store_line(JSON.stringify(Procgen.serialize()))
 	save_game.close()
 
 func load_game():
@@ -173,7 +173,7 @@ func load_game():
 	if not parse_result == OK:
 		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
 		breakpoint
-	Procgen.systems = json.get_data()
+	Procgen.deserialize(json.get_data())
 
 func new_game():
 	current_system = Procgen.generate_systems(seed)
