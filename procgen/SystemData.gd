@@ -21,7 +21,7 @@ var distance_normalized: float
 func serialize():
 	var serialized = Util.default_serialize(self)
 	serialized["id"] = id
-	serialized["position"] = [position.x, position.y]
+	serialized["position"] = Util.serialize_vec(position)
 	serialized["explored"] = int(explored)
 	serialized["ambient_color"] = ambient_color.to_html(false)
 	serialized["starlight_color"] = starlight_color.to_html(false)
@@ -31,7 +31,7 @@ func serialize():
 func deserialize(data: Dictionary):
 	id = data["id"]
 	name = data["name"]
-	position = Vector2(data["position"][0], data["position"][1])
+	position = Util.deserialize_vec(data["position"])
 	biome = data["biome"]
 	links_cache = data["links_cache"]
 	long_links_cache = data["long_links_cache"]

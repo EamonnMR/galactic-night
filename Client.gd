@@ -161,7 +161,7 @@ const SAVE_FILE = "user://bla.json"
 func save_game():
 	var save_game = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	
-	save_game.store_line(JSON.stringify(Procgen.serialize()))
+	save_game.store_line(JSON.stringify(serialize()))
 	save_game.close()
 
 func load_game():
@@ -173,7 +173,7 @@ func load_game():
 	if not parse_result == OK:
 		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
 		breakpoint
-	Procgen.deserialize(json.get_data())
+	deserialize(json.get_data())
 
 func new_game():
 	current_system = Procgen.generate_systems(seed)
@@ -195,3 +195,20 @@ func toggle_pause():
 		get_main().get_node("MainMenu").show()
 	else:
 		get_main().get_node("MainMenu").hide()
+
+const CONSERVED_PROPS = [
+	"money",
+	"current_system"
+]
+
+func serialize():
+	var data = Util.get_multiple(self, CONSERVED_PROPS)
+	
+	data["procgen"] = Procgen.serialize()
+	
+	return data
+
+func deserialize(data):
+	Util.set_multiple_only(self, data, CONSERVED_PROPS)
+	
+	Procgen.deserialize(data["procgen"])

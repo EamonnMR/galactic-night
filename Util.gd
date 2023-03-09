@@ -14,6 +14,17 @@ func set_multiple(object: Object, attributes: Dictionary):
 	for key in attributes:
 		object.set(key, attributes[key])
 
+func set_multiple_only(object: Object, attributes: Dictionary, only):
+	for key in only:
+		object.set(key, attributes[key])
+
+func serialize_vec(vec: Vector2) -> String:
+	return "%s %s" % [vec.x, vec.y]
+
+func deserialize_vec(str: String) -> Vector2:
+	var split = str.split(" ")
+	return Vector2(float(split[0]), float(split[1]))
+
 func default_serialize(object: Object):
 	const NO_SERIAL_PROPS = [
 		"Script",
