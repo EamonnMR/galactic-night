@@ -1,7 +1,7 @@
 extends Control
 
 var item_icon = preload("res://ui/ItemIcon.tscn")
-var EquipBox = preload("res://ui/EquipBox.tscn")
+var equip_box = preload("res://ui/EquipBox.tscn")
 
 func _ready():
 	Client.player_ship_updated.connect(rebuild)
@@ -24,21 +24,19 @@ func rebuild():
 	%Type.text = ship_type.name
 	# Populate panels with slots for the ship
 	for i in [
-		["consumable", %MiddleEquip, preload("res://assets/FontAwesome/32px-charge.png")], # TODO: Better icon
-		["shield", %LeftEquip, preload("res://assets/FontAwesome/32px-play.png")],
-		["hyperdrive", %LeftEquip, preload("res://assets/FontAwesome/32px-star.png")],
-		["reactor", %LeftEquip, preload("res://assets/FontAwesome/32px-charge.png")],
-		["armor", %LeftEquip, preload("res://assets/FontAwesome/32px-shield.png")],
-		["weapon", %RightEquip, preload("res://assets/FontAwesome/32px-crosshairs.png")]
+		[Equipment.CATEGORY.CONSUMABLE, %MiddleEquip],
+		[Equipment.CATEGORY.SHIELD, %LeftEquip],
+		[Equipment.CATEGORY.HYPERDRIVE, %LeftEquip],
+		[Equipment.CATEGORY.REACTOR, %LeftEquip],
+		[Equipment.CATEGORY.ARMOR, %LeftEquip],
+		[Equipment.CATEGORY.WEAPON, %RightEquip]
 	]:
 		# I yearn for Tuples
 		var category = i[0]
 		var destination = i[1]
-		var background = i[2]
 		var equipment_slots = equipment.slot_keys[category]
 		for slot in equipment_slots:
-			var box = EquipBox.instantiate()
-			box.get_node("TextureRect").texture = background
+			var box = equip_box.instantiate()
 			box.category = category
 			
 			if equipment_slots[slot]:

@@ -16,7 +16,7 @@ const PRICE_NAMES = {
 
 var id: String
 var name: String
-var equip_category: String
+var equip_category
 var icon: Texture2D
 var tooltip: String
 var stackable: bool
@@ -31,8 +31,11 @@ func price_at(factor: CommodityPrice) -> int:
 		CommodityPrice.MEDIUM: 1,
 		CommodityPrice.LOW: 0.75
 	}[factor]
-
-
+	
+func _init(data):
+	super._init(data)
+	if data["equip_category"]:
+		equip_category = Equipment.CATEGORY.get(data["equip_category"].to_upper())
 
 static func get_csv_path():
 	return "res://data/items.csv"

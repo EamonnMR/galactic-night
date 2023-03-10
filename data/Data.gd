@@ -127,7 +127,7 @@ func assert_happy_markov():
 
 func assert_weapons_belonging_to_items_exist():
 	for item_id in items:
-		if items[item_id].equip_category == "weapon":
+		if items[item_id].equip_category == Equipment.CATEGORY.WEAPON:
 			assert(item_id in weapons)
 
 func assert_weapon_ammo_types_exist():

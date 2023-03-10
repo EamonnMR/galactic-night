@@ -2,6 +2,17 @@ extends Node
 
 class_name Equipment
 
+
+enum CATEGORY {
+	ANY,
+	CONSUMABLE,
+	SHIELD,
+	HYPERDRIVE,
+	REACTOR,
+	ARMOR,
+	WEAPON
+}
+
 # This is populated by the weapon slot nodes in ../Weapons/
 var weapons = {}
 
@@ -17,13 +28,14 @@ var max_consumables = 3
 var consumables = {}
 
 var slot_keys = {
-	"armor": armors,
-	"shield": shields,
-	"hyperdrive": hyperdrives,
-	"reactor": reactors,
-	"weapon": weapons,
-	"consumable": consumables
+	CATEGORY.ARMOR: armors,
+	CATEGORY.SHIELD: shields,
+	CATEGORY.HYPERDRIVE: hyperdrives,
+	CATEGORY.REACTOR: reactors,
+	CATEGORY.WEAPON: weapons,
+	CATEGORY.CONSUMABLE: consumables
 }
+
 func _ready():
 	# Determine weapon slots by the ship
 	var parent = get_node("../")
@@ -46,7 +58,7 @@ func _ready():
 			if not(key in slots):
 				slots[key] = null
 
-func equip_item(item: Inventory.InvItem, key: String, category: String):
+func equip_item(item: Inventory.InvItem, key: String, category: CATEGORY):
 	assert(item.data().equip_category == category)
 	assert(key in slot_keys[category])
 	assert(slot_keys[category][key] == null)
@@ -62,21 +74,23 @@ func remove_item(key: String, category: String) -> Inventory.InvItem:
 	_remove(key, category, item)
 	return item
 	
-func _add(item: Inventory.InvItem, key: String, category: String):
-	if category == "weapon":
-		get_parent().get_node(key).add_weapon(WeaponData.instantiate(item.type))
-	if category == "armor":
-		_parent().get_node("Health").increase_max_health(item.data().consumable_magnitude)
-	if category == "shield":
-		_parent().get_node("Health").increase_max_shields(item.data().consumable_magnitude)
+func _add(item: Inventory.InvItem, key: String, category: CATEGORY):
+	match category:
+		CATEGORY.WEAPON:
+			get_parent().get_node(key).add_weapon(WeaponData.instantiate(item.type))
+		CATEGORY.ARMOR:
+			_parent().get_node("Health").increase_max_health(item.data().consumable_magnitude)
+		CATEGORY.SHIELD:
+			_parent().get_node("Health").increase_max_shields(item.data().consumable_magnitude)
 
 func _remove(key: String, category: String, item: Inventory.InvItem):
-	if category == "weapon":
-		_parent().get_node(key).remove_weapon()
-	if category == "armor":
-		_parent().get_node("Health").decrease_max_health(item.data().consumable_magnitude)
-	if category == "shield":
-		_parent().get_node("Health").decrease_max_shields(item.data().consumable_magnitude)
+	match category:
+		CATEGORY.WEAPON:
+			_parent().get_node(key).remove_weapon()
+		CATEGORY.ARMOR:
+			_parent().get_node("Health").decrease_max_health(item.data().consumable_magnitude)
+		CATEGORY.SHIELD:
+			_parent().get_node("Health").decrease_max_shields(item.data().consumable_magnitude)
 
 func apply():
 	# Use this if the data has been instantiated but _add hasn't been called for all items yet.
