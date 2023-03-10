@@ -12,5 +12,4 @@ func _process(delta):
 
 
 func _on_pressed():
-	breakpoint
 	get_node("../")._on_craft_button_pressed()

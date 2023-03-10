@@ -18,11 +18,14 @@ const icons = {
 }
 
 func _ready():
-	if(has_node("ItemIcon")):
-		$TextureRect.hide()
 	
 	$TextureRect.texture = icons[category]
 	
+	if(has_node("ItemIcon")):
+		$TextureRect.hide()
+	match category:
+		Equipment.CATEGORY.WEAPON:
+			$TextureRect.tooltip_text = "Weapon slot - Drop a weapon item to equip a weapon"
 
 func _can_drop_data(_pos, data):
 	print(category)
@@ -36,7 +39,7 @@ func _drop_data(_pos, data):
 	var dropped_item = data["dragged_item"]
 	dropped_item.dropped()
 	attach_item_icon(dropped_item)
-	emit_signal("item_added", dropped_item.item)
+	item_added.emit(dropped_item.item)
 
 func attach_item_icon(item_icon):
 	add_child(item_icon)
@@ -45,7 +48,7 @@ func attach_item_icon(item_icon):
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
 	$TextureRect.show()
-	emit_signal("item_removed")
+	item_removed.emit()
 
 func clear():
 	remove_child($ItemIcon)

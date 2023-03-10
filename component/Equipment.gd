@@ -66,7 +66,7 @@ func equip_item(item: Inventory.InvItem, key: String, category: CATEGORY):
 	
 	_add(item, key, category)
 	
-func remove_item(key: String, category: String) -> Inventory.InvItem:
+func remove_item(key: String, category: CATEGORY) -> Inventory.InvItem:
 	var item = slot_keys[category][key]
 	assert(item)
 	slot_keys[category][key] = null
@@ -83,7 +83,7 @@ func _add(item: Inventory.InvItem, key: String, category: CATEGORY):
 		CATEGORY.SHIELD:
 			_parent().get_node("Health").increase_max_shields(item.data().consumable_magnitude)
 
-func _remove(key: String, category: String, item: Inventory.InvItem):
+func _remove(key: String, category: CATEGORY, item: Inventory.InvItem):
 	match category:
 		CATEGORY.WEAPON:
 			_parent().get_node(key).remove_weapon()
@@ -135,9 +135,8 @@ func use_consumable_by_slot(slot):
 	slot = str(slot)
 	print("use consumable by slot: ", slot)
 	if consumables[slot]:
-		var item = remove_item(slot, "consumable")
+		var item = remove_item(slot, CATEGORY.CONSUMABLE)
 		apply_consumable(item)
-		breakpoint
 
 # TODO: This could probably be its own class, esp. if it gets big
 func apply_consumable(item: Inventory.InvItem):
