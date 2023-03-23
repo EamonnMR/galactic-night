@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://baufcdder5qrd"]
+[gd_scene load_steps=9 format=3 uid="uid://baufcdder5qrd"]
 
 [ext_resource type="Texture2D" uid="uid://fdo4s17i0u4s" path="res://assets/danc_cc_by/MainMenu.png" id="1_dk8wm"]
+[ext_resource type="Script" path="res://ui/main/TopLevelMenu.gd" id="1_imla2"]
 [ext_resource type="Script" path="res://ui/main/MainMenu.gd" id="2_esajf"]
+[ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="2_p0qk4"]
+[ext_resource type="Script" path="res://ui/LoadGame.gd" id="3_lps7l"]
+[ext_resource type="Script" path="res://ui/NewGame.gd" id="4_hmn6f"]
+[ext_resource type="FontFile" uid="uid://bj5tedj4y2vvh" path="res://assets/svofski_pd/Glass_TTY_VT220.ttf" id="7_sn0h5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f2j5r"]
+font = ExtResource("7_sn0h5")
+font_size = 36
+outline_size = 5
+outline_color = Color(1, 1, 1, 0.380392)
 
 [node name="MainMenu" type="CanvasLayer"]
 layer = 100
+script = ExtResource("1_imla2")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -14,7 +26,49 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LoadGame" parent="Control" instance=ExtResource("2_p0qk4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -181.0
+offset_right = 242.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_lps7l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/LoadGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/LoadGame/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadGamesList" type="VBoxContainer" parent="Control/LoadGame/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/LoadGame/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NewGame" parent="Control" instance=ExtResource("2_p0qk4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+script = ExtResource("4_hmn6f")
+
 [node name="MainMenu" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
 process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(364, 352)
@@ -49,6 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Space Craft 22
 "
+label_settings = SubResource("LabelSettings_f2j5r")
 
 [node name="Continue" type="Button" parent="Control/MainMenu"]
 layout_mode = 0

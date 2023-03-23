@@ -23,7 +23,10 @@ var target_spob
 var mouseover
 var mouseover_via_mouse = false
 
-var money = 10
+var STARTING_MONEY = 10
+
+var money = STARTING_MONEY
+var player_name: String = "Shannon Merrol"
 
 func has_money(price):
 	return money >= price
@@ -156,16 +159,16 @@ func get_disposition(node):
 func display_message(msg: String):
 	message.emit(msg)
 
-const SAVE_FILE = "user://bla.json"
+const SAVE_FILE = "user://saves/"
 
 func save_game():
-	var save_game = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	var save_game = FileAccess.open(SAVE_FILE + player_name.replace(" ", "_"), FileAccess.WRITE)
 	
 	save_game.store_line(JSON.stringify(serialize()))
 	save_game.close()
 
-func load_game():
-	var file: FileAccess = FileAccess.open(SAVE_FILE, FileAccess.READ)
+func load_game(filename):
+	var file: FileAccess = FileAccess.open(SAVE_FILE + filename, FileAccess.READ)
 	var text = file.get_as_text()
 	var json = JSON.new()
 	var parse_result = json.parse(text)
@@ -174,9 +177,15 @@ func load_game():
 		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
 		breakpoint
 	deserialize(json.get_data())
+	
+func get_available_saved_games() -> PackedStringArray:
+	var dir_access = DirAccess.open(SAVE_FILE)
+	return dir_access.get_directories()
 
-func new_game():
+func new_game(new_seed: int, new_player_name: String):
 	current_system = Procgen.generate_systems(seed)
+	money = STARTING_MONEY
+	player_name = new_player_name
 	
 func enter_game():
 	get_main().get_node("MainMenu").hide()
@@ -198,7 +207,8 @@ func toggle_pause():
 
 const CONSERVED_PROPS = [
 	"money",
-	"current_system"
+	"current_system",
+	"player_name"
 ]
 
 func serialize():
