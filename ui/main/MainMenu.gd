@@ -7,6 +7,7 @@ func _on_new_pressed():
 	Client.enter_game()
 
 func _on_load_pressed():
+	%LoadGame.update()
 	top_menu_level.switch_to(%LoadGame)
 
 func _on_save_pressed():

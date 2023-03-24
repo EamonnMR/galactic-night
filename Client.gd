@@ -180,7 +180,7 @@ func load_game(filename):
 	
 func get_available_saved_games() -> PackedStringArray:
 	var dir_access = DirAccess.open(SAVE_FILE)
-	return dir_access.get_directories()
+	return dir_access.get_files()
 
 func new_game(new_seed: int, new_player_name: String):
 	current_system = Procgen.generate_systems(seed)

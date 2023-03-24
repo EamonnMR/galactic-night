@@ -10,3 +10,7 @@ func update():
 				Client.enter_game()
 		)
 		%LoadGamesList.add_child(button)
+
+
+func _on_open_save_game_folder_pressed():
+	OS.shell_open(ProjectSettings.globalize_path(Client.SAVE_FILE))
