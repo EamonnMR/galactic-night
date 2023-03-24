@@ -12,8 +12,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_f2j5r"]
 font = ExtResource("7_sn0h5")
 font_size = 36
+font_color = Color(0.933333, 0.596078, 0.501961, 1)
 outline_size = 5
 outline_color = Color(1, 1, 1, 0.380392)
+shadow_size = 5
+shadow_color = Color(1, 0, 0, 1)
 
 [node name="MainMenu" type="CanvasLayer"]
 layer = 100
@@ -120,7 +123,8 @@ max_value = 9.22337e+18
 [node name="SeedText" type="LineEdit" parent="Control/NewGame/Container/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Player Name"
+text = "0"
+placeholder_text = "Seed"
 
 [node name="NewGame" type="Button" parent="Control/NewGame/Container/VBoxContainer"]
 layout_mode = 2
