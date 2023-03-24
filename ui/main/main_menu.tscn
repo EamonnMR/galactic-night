@@ -76,11 +76,57 @@ layout_mode = 2
 [node name="NewGame" parent="Control" instance=ExtResource("2_p0qk4")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.0
+offset_top = -123.5
+offset_right = 131.0
+offset_bottom = 123.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_hmn6f")
 
-[node name="MainMenu" type="TextureRect" parent="Control"]
+[node name="Container" type="Container" parent="Control/NewGame"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 249.0
+offset_bottom = 235.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/NewGame/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Control/NewGame/Container/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+label_settings = ExtResource("4_qyk3p")
+horizontal_alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="Control/NewGame/Container/VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Player Name"
+
+[node name="SeedSlider" type="HSlider" parent="Control/NewGame/Container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 9.22337e+18
+
+[node name="SeedText" type="LineEdit" parent="Control/NewGame/Container/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Player Name"
+
+[node name="NewGame" type="Button" parent="Control/NewGame/Container/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="MainMenu" type="TextureRect" parent="Control"]
 process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(364, 352)
@@ -159,6 +205,9 @@ offset_bottom = 344.0
 text = "Quit"
 
 [connection signal="pressed" from="Control/LoadGame/Container/VBoxContainer/OpenSaveGameFolder" to="Control/LoadGame" method="_on_open_save_game_folder_pressed"]
+[connection signal="drag_ended" from="Control/NewGame/Container/VBoxContainer/SeedSlider" to="Control/NewGame" method="_on_seed_slider_drag_ended"]
+[connection signal="text_changed" from="Control/NewGame/Container/VBoxContainer/SeedText" to="Control/NewGame" method="_on_seed_text_changed"]
+[connection signal="pressed" from="Control/NewGame/Container/VBoxContainer/NewGame" to="Control/NewGame" method="_on_new_game_pressed"]
 [connection signal="visibility_changed" from="Control/MainMenu" to="Control/MainMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/MainMenu/Continue" to="Control/MainMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/MainMenu/New" to="Control/MainMenu" method="_on_new_pressed"]

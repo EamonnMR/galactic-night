@@ -1,11 +1,18 @@
 extends NinePatchRect
 
+var seed: int
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func set_seed(i: int):
+	%SeedSlider.value = i
+	%SeedText.text = str(i)
+	
+func _on_seed_text_changed(new_text):
+	set_seed(int(new_text))
 
+func _on_seed_slider_drag_ended(value_changed):
+	if value_changed:
+		set_seed(%SeedSlider.value)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_new_game_pressed():
+	Client.new_game(seed, %PlayerName.text)
+	Client.enter_game()

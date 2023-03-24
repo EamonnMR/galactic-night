@@ -3,8 +3,7 @@ extends TextureRect
 @onready var top_menu_level = get_node("../../")
 
 func _on_new_pressed():
-	Client.new_game(1, "Shannon Merrol")
-	Client.enter_game()
+	top_menu_level.switch_to(%NewGame)
 
 func _on_load_pressed():
 	%LoadGame.update()
