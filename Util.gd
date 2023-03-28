@@ -35,10 +35,11 @@ func default_serialize(object: Object):
 		"unique_name_in_owner",
 		"multiplayer",
 		"Node",
+		"RefCounted"
 	]
 	var keys = []
 	for prop in object.get_property_list():
-		if not (prop["name"] in NO_SERIAL_PROPS):
+		if not (prop["name"] in NO_SERIAL_PROPS) and not prop["name"].ends_with(".gd"):
 			keys.append(prop["name"])
 	return get_multiple(object, keys)
 

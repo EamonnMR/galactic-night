@@ -46,13 +46,12 @@ func serialize() -> Dictionary:
 	var data =  Util.get_multiple(self, SERIAL_FIELDS)
 	
 	data["transform"] = Util.serialize_vec(Util.flatten_25d(transform.origin))
-	
 	return data
 
 func deserialize(data: Dictionary):
 	Util.set_multiple_only(self, data, SERIAL_FIELDS)
-	for key in available_items.keys():
-		available_items[key] = ItemData.CommodityPrice.get(available_items[key])
+	#for key in data.available_items.keys():
+	#	available_items[key] = ItemData.CommodityPrice(available_items[key])
 	transform.origin = Util.raise_25d(Util.deserialize_vec(data["transform"]))
 
 func spob_interact():

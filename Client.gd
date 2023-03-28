@@ -162,6 +162,8 @@ func display_message(msg: String):
 const SAVE_FILE = "user://saves/"
 
 func save_game():
+	# Why the hell is the starting system, and only the starting system, getting its spob's available items keys overwritten to null
+	# sometime between procgen time and save time!?
 	var save_game = FileAccess.open(SAVE_FILE + player_name.replace(" ", "_"), FileAccess.WRITE)
 	
 	save_game.store_line(JSON.stringify(serialize()))

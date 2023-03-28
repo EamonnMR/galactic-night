@@ -1,5 +1,7 @@
 extends NinePatchRect
 
+@onready var top_menu_level = get_node("../../")
+
 var seed: int
 
 func set_seed(i: int):
@@ -16,3 +18,4 @@ func _on_seed_slider_drag_ended(value_changed):
 func _on_new_game_pressed():
 	Client.new_game(seed, %PlayerName.text)
 	Client.enter_game()
+	top_menu_level.switch_to(%MainMenu)
