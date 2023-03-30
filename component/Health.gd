@@ -16,6 +16,7 @@ func _ready():
 	if health == -1:
 		health = max_health
 
+
 func heal(amount):
 	if can_heal():
 		health += amount
@@ -27,6 +28,7 @@ func can_heal():
 	return health < max_health
 
 func take_damage(damage, source):
+	breakpoint
 	if health <= 0:  # Beating a dead horse
 		return
 
@@ -40,6 +42,13 @@ func take_damage(damage, source):
 	else:
 		emit_signal("damaged", source)
 
+func serialize():
+	return {
+		"health": health
+	}
+	
+func deserialize(data):
+	health = data.health
 
 static func do_damage(entity, damage, source):
 	if entity.has_node("Health"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://baufcdder5qrd"]
+[gd_scene load_steps=12 format=3 uid="uid://baufcdder5qrd"]
 
 [ext_resource type="Texture2D" uid="uid://fdo4s17i0u4s" path="res://assets/danc_cc_by/MainMenu.png" id="1_dk8wm"]
 [ext_resource type="Script" path="res://ui/main/TopLevelMenu.gd" id="1_imla2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://ui/NewGame.gd" id="4_hmn6f"]
 [ext_resource type="LabelSettings" uid="uid://bslkk24j3eyvp" path="res://ui/FancyTitle.tres" id="4_qyk3p"]
 [ext_resource type="FontFile" uid="uid://bj5tedj4y2vvh" path="res://assets/svofski_pd/Glass_TTY_VT220.ttf" id="7_sn0h5"]
+[ext_resource type="FontFile" path="res://assets/Kate_Willaert
+/GT40/GT40 2021 Mono.otf" id="9_pfoy2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f2j5r"]
 font = ExtResource("7_sn0h5")
@@ -17,6 +19,8 @@ outline_size = 5
 outline_color = Color(1, 1, 1, 0.380392)
 shadow_size = 5
 shadow_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_3rkjx"]
 
 [node name="MainMenu" type="CanvasLayer"]
 layer = 100
@@ -174,6 +178,8 @@ offset_left = 64.0
 offset_top = 12.0
 offset_right = 157.0
 offset_bottom = 43.0
+theme = SubResource("Theme_3rkjx")
+theme_override_fonts/font = ExtResource("9_pfoy2")
 disabled = true
 text = "Continue"
 

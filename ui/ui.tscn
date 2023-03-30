@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=19 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -14,8 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://dfyqr57b04l3e" path="res://ui/Hud/mouseover.tscn" id="9_ra2c5"]
 [ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/Hud/TargetInfo.tscn" id="10_doaoj"]
 [ext_resource type="PackedScene" uid="uid://c2arxq68kap2e" path="res://ui/Hud/SpobPanel.tscn" id="13_n0dx3"]
+[ext_resource type="FontFile" uid="uid://c76e2roii2265" path="res://assets/Kate_Willaert
+/GT40/GT40 2021 Mono.otf" id="15_lbbmr"]
 [ext_resource type="Script" path="res://ui/MessageBox.gd" id="16_4ixx8"]
 [ext_resource type="PackedScene" uid="uid://c1cjcpk0fqkan" path="res://ui/Hud/galaxy_nav_indicator.tscn" id="17_wqcqy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tkka7"]
+font = ExtResource("15_lbbmr")
+shadow_size = 3
+shadow_color = Color(1, 1, 1, 0.486275)
+shadow_offset = Vector2(0, 0)
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -125,6 +133,7 @@ offset_top = -52.0
 offset_right = 163.0
 grow_horizontal = 2
 grow_vertical = 0
+label_settings = SubResource("LabelSettings_tkka7")
 script = ExtResource("16_4ixx8")
 
 [node name="Timer" type="Timer" parent="MessageBox"]

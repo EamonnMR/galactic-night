@@ -50,12 +50,9 @@ func set_camera(camera: Camera3D):
 	self.camera = camera
 	emit_signal("camera_updated")
 
-func enter_system():
-	var ship_type = "nimbus"
+func spawn_player_starting_ship(ship_type):
 	player = Data.ships[ship_type].scene.instantiate()
 	player.type = ship_type
-	
-	get_main().enter_system(current_system_id())
 
 func current_system_id():
 	return current_system
@@ -191,7 +188,8 @@ func new_game(new_seed: int, new_player_name: String):
 	
 func enter_game():
 	get_main().get_node("MainMenu").hide()
-	enter_system()
+	if not (is_instance_valid(player)):
+		spawn_player_starting_ship("nimbus")
 	get_ui().show()
 	get_ui().new_map()
 	get_main().enter_system(current_system_id())
@@ -216,11 +214,15 @@ const CONSERVED_PROPS = [
 func serialize():
 	var data = Util.get_multiple(self, CONSERVED_PROPS)
 	
-	data["procgen"] = Procgen.serialize()
-	
+	data.procgen = Procgen.serialize()
+	data.player = player.serialize_player()
 	return data
 
 func deserialize(data):
 	Util.set_multiple_only(self, data, CONSERVED_PROPS)
 	
-	Procgen.deserialize(data["procgen"])
+	Procgen.deserialize(data.procgen)
+	
+	var ship_type = data.player.type
+	player = Data.ships[ship_type].scene.instantiate()
+	player.deserialize_player(data.player)

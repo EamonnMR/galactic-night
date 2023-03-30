@@ -132,3 +132,17 @@ func _on_input_event_npc(_camera, event, _click_position, _camera_normal, _shape
 		Client.update_player_target_ship(self)
 	else:
 		Client.mouseover_entered(self)
+
+func serialize_player():
+	return {
+		"type": type,
+		"health": $Health.serialize(),
+		"equipment": $Equipment.serialize(),
+		"inventory": $Inventory.serialize()
+	}
+
+func deserialize_player(data: Dictionary):
+	type = data.type
+	$Health.deserialize(data.health)
+	$Equipment.deserialize(data.equipment)
+	$Inventory.deserialize(data.inventory)

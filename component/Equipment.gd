@@ -120,8 +120,8 @@ func serialize() -> Dictionary:
 func deserialize(data):
 	for group_key in slot_keys:
 		var group = slot_keys[group_key]
-		for key in data[group_key]:
-			var item_data = data[group_key][key]
+		for key in data[str(group_key)]:
+			var item_data = data[str(group_key)][key]
 			group[key] = Inventory.InvItem.new(
 				item_data.type,
 				int(item_data.count)
