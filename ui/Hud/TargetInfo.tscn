@@ -50,11 +50,13 @@ label_settings = ExtResource("3_c5o2y")
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" index="0"]
+visible = false
 layout_mode = 2
 texture = ExtResource("3_vnc45")
 
 [node name="Shields" type="ProgressBar" parent="VBoxContainer/HBoxContainer" index="1"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 

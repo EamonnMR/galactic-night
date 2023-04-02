@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=21 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/Hud/RadarDisplay.gd" id="7_787sc"]
+[ext_resource type="PackedScene" uid="uid://d0yv2ve1kdri7" path="res://ui/health.tscn" id="8_aw567"]
 [ext_resource type="PackedScene" uid="uid://byns18r0mni1t" path="res://ui/Hud/spob_follower.tscn" id="8_gv36w"]
 [ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/Hud/target_follower.tscn" id="9_80m1b"]
 [ext_resource type="PackedScene" uid="uid://dfyqr57b04l3e" path="res://ui/Hud/mouseover.tscn" id="9_ra2c5"]
@@ -93,6 +94,8 @@ grow_vertical = 2
 text = "Build Recipe"
 script = ExtResource("5_2ggvy")
 
+[node name="Health" parent="." instance=ExtResource("8_aw567")]
+
 [node name="Radar" type="TextureRect" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -146,6 +149,11 @@ wait_time = 5.0
 one_shot = true
 
 [node name="GalaxyNavIndicator" parent="." instance=ExtResource("17_wqcqy")]
+visible = true
+offset_left = -229.0
+offset_top = 350.0
+offset_right = -124.0
+offset_bottom = 377.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
