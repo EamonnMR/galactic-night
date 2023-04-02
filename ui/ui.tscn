@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=20 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -24,6 +24,11 @@ font = ExtResource("15_lbbmr")
 shadow_size = 3
 shadow_color = Color(1, 1, 1, 0.486275)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvdfq"]
+font = ExtResource("15_lbbmr")
+font_size = 20
+font_color = Color(1, 1, 1, 0.513726)
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -141,6 +146,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="GalaxyNavIndicator" parent="." instance=ExtResource("17_wqcqy")]
+label_settings = SubResource("LabelSettings_rvdfq")
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]

@@ -1,15 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2arxq68kap2e"]
+[gd_scene load_steps=4 format=3 uid="uid://c2arxq68kap2e"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_ey5xi"]
 [ext_resource type="Script" path="res://ui/Hud/SpobPanel.gd" id="2_pjf2l"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ehec5"]
-font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_yo5qv"]
+[ext_resource type="LabelSettings" uid="uid://c8w6r4kv14qm6" path="res://ui/Hud/HudText.tres" id="3_k1iib"]
 
 [node name="SpobInfoBox" instance=ExtResource("1_ey5xi")]
-offset_right = 173.0
+offset_right = 291.0
 offset_bottom = 178.0
 script = ExtResource("2_pjf2l")
 
@@ -24,14 +20,14 @@ offset_bottom = 166.0
 unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
-label_settings = SubResource("LabelSettings_ehec5")
+label_settings = ExtResource("3_k1iib")
 
 [node name="Type" type="Label" parent="VBoxContainer" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Type
 "
-label_settings = SubResource("LabelSettings_ehec5")
+label_settings = ExtResource("3_k1iib")
 
 [node name="Image" type="TextureRect" parent="VBoxContainer" index="2"]
 custom_minimum_size = Vector2(128, 64)
@@ -42,4 +38,4 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Faction
 "
-label_settings = SubResource("LabelSettings_yo5qv")
+label_settings = ExtResource("3_k1iib")

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c8w6r4kv14qm6"]
+
+[ext_resource type="FontFile" uid="uid://c76e2roii2265" path="res://assets/Kate_Willaert
+/GT40/GT40 2021 Mono.otf" id="1_24cy4"]
+
+[resource]
+font = ExtResource("1_24cy4")
+font_size = 20

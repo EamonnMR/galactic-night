@@ -22,7 +22,7 @@ func apply_to_node(node):
 	super.apply_to_node(node)
 	node.max_bank = deg_to_rad(max_bank)
 	node.bank_speed = bank_speed / turn
-	node.get_node("Health").max_health = armor
+	node.get_node("Health").set_max_health(armor)
 
 static func get_csv_path():
 	return "res://data/ships.csv"

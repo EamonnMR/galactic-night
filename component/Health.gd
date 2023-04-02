@@ -13,10 +13,14 @@ signal destroyed
 @export var explosion: PackedScene
 
 func _ready():
-	if health == -1:
+	set_max_health(max_health)
+	
+func set_max_health(max):
+	var old_max = max_health
+	max_health = max
+	if health == -1 or health == old_max:
 		health = max_health
-
-
+  
 func heal(amount):
 	if can_heal():
 		health += amount
@@ -28,10 +32,8 @@ func can_heal():
 	return health < max_health
 
 func take_damage(damage, source):
-	breakpoint
 	if health <= 0:  # Beating a dead horse
 		return
-
 	health -= damage
 
 	if health <= 0 and not already_destroyed:
