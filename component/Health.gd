@@ -10,16 +10,22 @@ signal destroyed
 
 @export var max_health: int = 1
 @export var health: int = -1
+@export var max_shields: int = 10
+@export var shields: int = -1
 @export var explosion: PackedScene
 
 func _ready():
-	set_max_health(max_health)
+	set_max_health(max_health, max_shields)
 	
-func set_max_health(max):
+func set_max_health(max_h, max_s):
 	var old_max = max_health
-	max_health = max
+	max_health = max_h
 	if health == -1 or health == old_max:
 		health = max_health
+	max_shields = max_s
+	old_max = max_shields
+	if shields == -1 or shields == old_max:
+		shields = max_shields
   
 func heal(amount):
 	if can_heal():
@@ -32,6 +38,17 @@ func can_heal():
 	return health < max_health
 
 func take_damage(damage, source):
+	if shields > 0:
+		shields -= damage
+	
+		if shields > 0:
+			emit_signal("damaged", source)
+			return
+		else:
+			shields = 0
+	
+	# reset shield timers
+	
 	if health <= 0:  # Beating a dead horse
 		return
 	health -= damage

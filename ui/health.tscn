@@ -16,7 +16,6 @@ grow_horizontal = 0
 script = ExtResource("1_f4ywp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
