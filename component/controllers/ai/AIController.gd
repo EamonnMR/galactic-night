@@ -21,6 +21,8 @@ var path_target
 var lead_velocity: float
 var state = STATES.IDLE
 
+var bodies_in_engagement_range = []
+
 var unvisited_spobs: Array
 
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
@@ -168,6 +170,10 @@ func change_state_idle():
 	#print("New State: Idle")
 
 func change_state_persue(target):
+	if target in bodies_in_engagement_range:
+		change_state_attack()
+		return
+	
 	state = STATES.PERSUE
 	self.target = target
 	if target == Client.player:
@@ -213,6 +219,9 @@ func _get_target_lead_position():
 
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
+	
+	bodies_in_engagement_range.append(body)
+	
 	if body == target and state == STATES.PERSUE:
 		#print("Reached target")
 		change_state_attack()
@@ -221,9 +230,14 @@ func _on_EngagementRange_body_entered(body):
 		change_state_idle()
 
 func _on_EngagementRange_body_exited(body):
+	
+	bodies_in_engagement_range.erase(body)
+	
 	if body == target and state == STATES.ATTACK:
 		#print("Target left engagement range")
 		change_state_persue(target)
 
 func _on_damage_taken(source):
-	change_state_persue(source)
+	match state:
+		STATES.IDLE, STATES.PERSUE, STATES.PATH:
+			change_state_persue(source)
