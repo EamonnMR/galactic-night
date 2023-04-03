@@ -1,3 +1,3 @@
 id,scene,projectile_scene,burst_count,dupe_count,spread,world_projectile,vary_pitch,ammo_item,primary,projectile_velocity,damage
-plasma,res://component/Weapon.tscn,res://entities/Projectile.tscn,0,1,0,TRUE,0,,TRUE,6,10
-missile_launcher,res://component/RocketLauncher.tscn,res://entities/projectiles/Missile.tscn,0,1,0,TRUE,0,missile,FALSE,10,1
+plasma,res://component/Weapon.tscn,res://entities/Projectile.tscn,0,1,0.4,TRUE,0,,TRUE,6,1
+missile_launcher,res://component/RocketLauncher.tscn,res://entities/projectiles/Missile.tscn,0,1,0,TRUE,0,missile,FALSE,10,10

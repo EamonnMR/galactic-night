@@ -15,6 +15,9 @@ func get_rotation_impulse() -> int:
 	return dc
 
 func _physics_process(delta):
+	
+	toggle_pause()
+	
 	if warp_autopilot:
 		process_warping_out(delta)
 		return
@@ -110,12 +113,6 @@ func complete_jump():
 	if is_instance_valid(parent):
 		parent.get_node("HyperspaceManager").start_hyperjump()
 
-#func _toggle_pause():
-#  var pause_menu = Client.get_ui().get_node("PauseMenu")
-#  if get_tree().paused:
-#    pause_menu.hide()
-#    get_tree().paused = false
-#  else:
-#    pause_menu.show()
-#    get_tree().paused = true
-
+func toggle_pause():
+	if Input.is_action_just_pressed("pause"):
+		Client.toggle_pause()

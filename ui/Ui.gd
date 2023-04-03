@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+func new_map():
+	var map = preload("res://ui/map/Map.tscn").instantiate()
+	map.hide()
+	add_child(map)
+	
+
 func get_default_children():
 	return [
 		$Equipment,

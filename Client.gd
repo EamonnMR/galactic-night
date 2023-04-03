@@ -13,7 +13,7 @@ signal exited_system
 signal money_updated
 signal message(message)
 signal selected_system_updated
-@onready var current_system = Procgen.generate_systems(seed)
+var current_system
 
 var selected_system = null
 var selected_system_circle_cache = []
@@ -23,7 +23,10 @@ var target_spob
 var mouseover
 var mouseover_via_mouse = false
 
-var money = 10
+var STARTING_MONEY = 10
+
+var money = STARTING_MONEY
+var player_name: String = "Shannon Merrol"
 
 func has_money(price):
 	return money >= price
@@ -47,8 +50,7 @@ func set_camera(camera: Camera3D):
 	self.camera = camera
 	emit_signal("camera_updated")
 
-func _ready():
-	var ship_type = "nimbus"
+func spawn_player_starting_ship(ship_type):
 	player = Data.ships[ship_type].scene.instantiate()
 	player.type = ship_type
 
@@ -83,6 +85,9 @@ func change_system():
 
 func get_world():
 	return get_main().get_node("World3D")
+
+func get_ui():
+	return get_main().get_node("UI")
 
 func get_main():
 	return get_tree().get_root().get_node("Main")
@@ -150,3 +155,74 @@ func get_disposition(node):
 
 func display_message(msg: String):
 	message.emit(msg)
+
+const SAVE_FILE = "user://saves/"
+
+func save_game():
+	# Why the hell is the starting system, and only the starting system, getting its spob's available items keys overwritten to null
+	# sometime between procgen time and save time!?
+	var save_game = FileAccess.open(SAVE_FILE + player_name.replace(" ", "_"), FileAccess.WRITE)
+	
+	save_game.store_line(JSON.stringify(serialize()))
+	save_game.close()
+
+func load_game(filename):
+	var file: FileAccess = FileAccess.open(SAVE_FILE + filename, FileAccess.READ)
+	var text = file.get_as_text()
+	var json = JSON.new()
+	var parse_result = json.parse(text)
+
+	if not parse_result == OK:
+		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
+		breakpoint
+	deserialize(json.get_data())
+	
+func get_available_saved_games() -> PackedStringArray:
+	var dir_access = DirAccess.open(SAVE_FILE)
+	return dir_access.get_files()
+
+func new_game(new_seed: int, new_player_name: String):
+	current_system = Procgen.generate_systems(seed)
+	money = STARTING_MONEY
+	player_name = new_player_name
+	
+func enter_game():
+	get_main().get_node("MainMenu").hide()
+	if not (is_instance_valid(player)):
+		spawn_player_starting_ship("nimbus")
+	get_ui().show()
+	get_ui().new_map()
+	get_main().enter_system(current_system_id())
+	
+func leave_game():
+	get_main().get_node("MainMenu").show()
+	get_ui().hide()
+
+func toggle_pause():
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		get_main().get_node("MainMenu").show()
+	else:
+		get_main().get_node("MainMenu").hide()
+
+const CONSERVED_PROPS = [
+	"money",
+	"current_system",
+	"player_name"
+]
+
+func serialize():
+	var data = Util.get_multiple(self, CONSERVED_PROPS)
+	
+	data.procgen = Procgen.serialize()
+	data.player = player.serialize_player()
+	return data
+
+func deserialize(data):
+	Util.set_multiple_only(self, data, CONSERVED_PROPS)
+	
+	Procgen.deserialize(data.procgen)
+	
+	var ship_type = data.player.type
+	player = Data.ships[ship_type].scene.instantiate()
+	player.deserialize_player(data.player)

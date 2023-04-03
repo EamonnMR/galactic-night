@@ -29,7 +29,7 @@ func rebuild():
 		add_child(i)
 
 	for key in available_items:
-		var price_factor = available_items[key]
+		var price_factor = ItemData.CommodityPrice.values()[available_items[key]]
 		var item: ItemData = Data.items[key]
 		var price = item.price_at(price_factor)
 		

@@ -6,9 +6,6 @@ func enter_system(new_system):
 	system.deserialize_entities()  # Probably make this a method on World3D
 	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
 
-func _ready():
-	enter_system.call_deferred(Client.current_system_id())
-
 func leave_system(old_system):
 	# Don't free the player
 	Client.player.get_node("../").remove_child(Client.player)

@@ -26,7 +26,6 @@ var unvisited_spobs: Array
 @onready var faction: FactionData = Data.factions[get_node("../").faction]
 
 func complete_warp():
-	breakpoint
 	parent.queue_free()
 
 func _ready():

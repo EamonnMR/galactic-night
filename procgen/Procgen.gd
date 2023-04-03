@@ -422,7 +422,7 @@ func setup_trade():
 		var system_wide_commodity_prices = {}
 		for item in Data.items.values():
 			if item.commodity:
-				system_wide_commodity_prices[item.id] = random_select(ItemData.CommodityPrice.keys(), rng)
+				system_wide_commodity_prices[item.id] = random_select(ItemData.CommodityPrice.values(), rng)
 		if "spobs" in system.entities:
 			for entity in system.entities.spobs:
 				if "available_items" in entity and entity.inhabited:

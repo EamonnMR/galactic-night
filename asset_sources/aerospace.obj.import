@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgsu1i6wgk1ss"
+path="res://.godot/imported/aerospace.obj-ff16d87dc4a38b4e16cbc840aba8582e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/aerospace.obj-ff16d87dc4a38b4e16cbc840aba8582e.mesh"]
+
+source_file="res://asset_sources/aerospace.obj"
+dest_files=["res://.godot/imported/aerospace.obj-ff16d87dc4a38b4e16cbc840aba8582e.mesh", "res://.godot/imported/aerospace.obj-ff16d87dc4a38b4e16cbc840aba8582e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

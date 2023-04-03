@@ -1,13 +1,31 @@
 extends NinePatchRect
 
+class_name EquipBox
+
 signal item_removed
 signal item_added(item)
 
-@export var category: String
+@export var category: Equipment.CATEGORY = Equipment.CATEGORY.ANY
+
+const icons = {
+	Equipment.CATEGORY.ANY: null,
+	Equipment.CATEGORY.CONSUMABLE: preload("res://assets/FontAwesome/32px-charge.png"),
+	Equipment.CATEGORY.SHIELD: preload("res://assets/FontAwesome/32px-play.png"),
+	Equipment.CATEGORY.HYPERDRIVE: preload("res://assets/FontAwesome/32px-charge.png"),
+	Equipment.CATEGORY.REACTOR: preload("res://assets/FontAwesome/32px-charge.png"),
+	Equipment.CATEGORY.ARMOR: preload("res://assets/FontAwesome/32px-shield.png"),
+	Equipment.CATEGORY.WEAPON: preload("res://assets/FontAwesome/32px-crosshairs.png")
+}
 
 func _ready():
+	
+	$TextureRect.texture = icons[category]
+	
 	if(has_node("ItemIcon")):
 		$TextureRect.hide()
+	match category:
+		Equipment.CATEGORY.WEAPON:
+			$TextureRect.tooltip_text = "Weapon slot - Drop a weapon item to equip a weapon"
 
 func _can_drop_data(_pos, data):
 	print(category)
@@ -15,13 +33,13 @@ func _can_drop_data(_pos, data):
 	if has_node("ItemIcon"):
 		return (data["dragged_item"].item.type == $ItemIcon.item.type) and (Data.items[$ItemIcon.item.type].stackable)
 	else:
-		return category == "" or data["equip_category"] == category
+		return category == Equipment.CATEGORY.ANY or data["equip_category"] == category
 
 func _drop_data(_pos, data):
 	var dropped_item = data["dragged_item"]
 	dropped_item.dropped()
 	attach_item_icon(dropped_item)
-	emit_signal("item_added", dropped_item.item)
+	item_added.emit(dropped_item.item)
 
 func attach_item_icon(item_icon):
 	add_child(item_icon)
@@ -30,7 +48,7 @@ func attach_item_icon(item_icon):
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
 	$TextureRect.show()
-	emit_signal("item_removed")
+	item_removed.emit()
 
 func clear():
 	remove_child($ItemIcon)

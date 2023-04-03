@@ -4,3 +4,13 @@
 
 [node name="Health" type="Node3D"]
 script = ExtResource("1_88h8n")
+
+[node name="ShieldRegen" type="Timer" parent="."]
+autostart = true
+
+[node name="RegenDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ShieldRegen" to="." method="_on_shield_regen_timeout"]
+[connection signal="timeout" from="RegenDelay" to="." method="_on_regen_delay_timeout"]

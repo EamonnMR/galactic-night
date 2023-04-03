@@ -1,57 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4tpyjes28vxu"]
+[gd_scene load_steps=13 format=3 uid="uid://0flwoytjpgff"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
-[ext_resource type="Shader" path="res://starfield.gdshader" id="2_0a4pk"]
+[ext_resource type="Shader" path="res://effects/starfield.gdshader" id="2_h0fwj"]
 [ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
 [ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="4_to02v"]
 [ext_resource type="PackedScene" uid="uid://cw2nt0g5sx0tb" path="res://ui/ui.tscn" id="5_qu37x"]
-[ext_resource type="Script" path="res://Background.gd" id="6"]
-[ext_resource type="Shader" path="res://overlay.gdshader" id="7_gwi1i"]
+[ext_resource type="Script" path="res://effects/Background.gd" id="5_ss6kf"]
+[ext_resource type="Shader" path="res://effects/overlay.gdshader" id="7_1t3x4"]
 [ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
+[ext_resource type="PackedScene" uid="uid://baufcdder5qrd" path="res://ui/main/main_menu.tscn" id="9_6pgxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61vo"]
-shader = ExtResource("2_0a4pk")
+shader = ExtResource("2_h0fwj")
 shader_parameter/position = null
 shader_parameter/warp_factor = 0.0
 shader_parameter/warp_factor_scale = 10.0
 shader_parameter/warp_angle = null
 shader_parameter/nebula = ExtResource("9")
 
-[sub_resource type="GDScript" id="15"]
-script/source = "extends Label
-
-var move_scale_oom = 0.1
-
-func _process(_delta):
-	#fewddmodify_move_scale()
-	if get_node(\"../\").has_node(\"Background\"):
-		text = \"Pos.x: \" + str(get_node(\"../Background\").pos.x) + \"\\n\" \\
-			+ \"Pos.y: \" + str(get_node(\"../Background\").pos.y) + \"\\n\" \\
-			+ \"Move Scale.x: \" + str(get_node(\"../Background\").MOVE_SCALE.x) + \"\\n\" \\
-			+ \"Move Scale.y: \" + str(get_node(\"../Background\").MOVE_SCALE.y) + \"\\n\" \\
-			+ \"Change by: \" + str(move_scale_oom) + \"\\n\" \\
-			+ \"J/L to change, I/K to change oom\"
-	
-func modify_move_scale():
-	# Tired of manually iterating checked this
-	if Input.is_action_just_pressed(\"bg_scale_plus\"):
-		get_node(\"../Background\").MOVE_SCALE.y += move_scale_oom
-	if Input.is_action_just_pressed(\"bg_scale_minus\"):
-		get_node(\"../Background\").MOVE_SCALE.y -= move_scale_oom
-	if Input.is_action_just_pressed(\"bg_scale_oom_plus\"):
-		move_scale_oom *= 10.0
-	if Input.is_action_just_pressed(\"bg_scale_oom_minus\"):
-		move_scale_oom /= 10.0
-	if move_scale_oom >= 0.1:
-		move_scale_oom = 0.1
-"
-
 [sub_resource type="Environment" id="Environment_7gyux"]
 background_mode = 3
 glow_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utsv7"]
-shader = ExtResource("7_gwi1i")
+shader = ExtResource("7_1t3x4")
 shader_parameter/warp_factor = 0.0
 shader_parameter/warp_factor_scale = 10.0
 shader_parameter/warp_angle = null
@@ -75,15 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_to02v")
 stretch_mode = 1
-script = ExtResource("6")
-
-[node name="MoveScaleLabel" type="Label" parent="background"]
-visible = false
-offset_left = 50.0
-offset_top = 87.0
-offset_right = 90.0
-offset_bottom = 110.0
-script = SubResource("15")
+script = ExtResource("5_ss6kf")
 
 [node name="SpobSprites" type="Control" parent="background"]
 layout_mode = 3
@@ -113,6 +77,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_to02v")
 stretch_mode = 1
-script = ExtResource("6")
+script = ExtResource("5_ss6kf")
 
 [node name="UI" parent="." instance=ExtResource("5_qu37x")]
+visible = false
+
+[node name="MainMenu" parent="." instance=ExtResource("9_6pgxu")]

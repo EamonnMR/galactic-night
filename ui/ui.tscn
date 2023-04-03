@@ -1,22 +1,35 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=21 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
 [ext_resource type="PackedScene" uid="uid://bjyh6bml6dk1e" path="res://ui/InhabitedSpob/InhabitedSpob.tscn" id="2_6mxij"]
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
 [ext_resource type="PackedScene" uid="uid://cmy8sexrww2l8" path="res://ui/Equipment.tscn" id="2_urnxu"]
-[ext_resource type="PackedScene" uid="uid://cijoe0ttuy6be" path="res://ui/map/Map.tscn" id="3_et15m"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="4_o6isj"]
 [ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/Hud/RadarDisplay.gd" id="7_787sc"]
+[ext_resource type="PackedScene" uid="uid://d0yv2ve1kdri7" path="res://ui/health.tscn" id="8_aw567"]
 [ext_resource type="PackedScene" uid="uid://byns18r0mni1t" path="res://ui/Hud/spob_follower.tscn" id="8_gv36w"]
 [ext_resource type="PackedScene" uid="uid://cc46go81y5xit" path="res://ui/Hud/target_follower.tscn" id="9_80m1b"]
 [ext_resource type="PackedScene" uid="uid://dfyqr57b04l3e" path="res://ui/Hud/mouseover.tscn" id="9_ra2c5"]
 [ext_resource type="PackedScene" uid="uid://cpfb1h06col5i" path="res://ui/Hud/TargetInfo.tscn" id="10_doaoj"]
 [ext_resource type="PackedScene" uid="uid://c2arxq68kap2e" path="res://ui/Hud/SpobPanel.tscn" id="13_n0dx3"]
+[ext_resource type="FontFile" uid="uid://c76e2roii2265" path="res://assets/Kate_Willaert
+/GT40/GT40 2021 Mono.otf" id="15_lbbmr"]
 [ext_resource type="Script" path="res://ui/MessageBox.gd" id="16_4ixx8"]
 [ext_resource type="PackedScene" uid="uid://c1cjcpk0fqkan" path="res://ui/Hud/galaxy_nav_indicator.tscn" id="17_wqcqy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tkka7"]
+font = ExtResource("15_lbbmr")
+shadow_size = 3
+shadow_color = Color(1, 1, 1, 0.486275)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvdfq"]
+font = ExtResource("15_lbbmr")
+font_size = 20
+font_color = Color(1, 1, 1, 0.513726)
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -81,6 +94,8 @@ grow_vertical = 2
 text = "Build Recipe"
 script = ExtResource("5_2ggvy")
 
+[node name="Health" parent="." instance=ExtResource("8_aw567")]
+
 [node name="Radar" type="TextureRect" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -106,9 +121,6 @@ offset_top = 398.0
 offset_right = 1151.0
 offset_bottom = 643.0
 
-[node name="Map" parent="." instance=ExtResource("3_et15m")]
-visible = false
-
 [node name="SpobInfoBox" parent="." instance=ExtResource("13_n0dx3")]
 visible = false
 anchors_preset = 2
@@ -129,6 +141,7 @@ offset_top = -52.0
 offset_right = 163.0
 grow_horizontal = 2
 grow_vertical = 0
+label_settings = SubResource("LabelSettings_tkka7")
 script = ExtResource("16_4ixx8")
 
 [node name="Timer" type="Timer" parent="MessageBox"]
@@ -136,6 +149,12 @@ wait_time = 5.0
 one_shot = true
 
 [node name="GalaxyNavIndicator" parent="." instance=ExtResource("17_wqcqy")]
+visible = true
+offset_left = -229.0
+offset_top = 350.0
+offset_right = -124.0
+offset_bottom = 377.0
+label_settings = SubResource("LabelSettings_rvdfq")
 
 [connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
 [connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]

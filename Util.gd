@@ -4,7 +4,7 @@ var PLAY_AREA_RADIUS = 200
 
 var JUMP_DISTANCE = PLAY_AREA_RADIUS * 0.35
 
-func get_multiple(object: Object, attributes: Array[String]) -> Dictionary:
+func get_multiple(object: Object, attributes: Array) -> Dictionary:
 	var attrs = {}
 	for i in attributes:
 		attrs[i] = object.get(i)
@@ -14,11 +14,32 @@ func set_multiple(object: Object, attributes: Dictionary):
 	for key in attributes:
 		object.set(key, attributes[key])
 
+func set_multiple_only(object: Object, attributes: Dictionary, only):
+	for key in only:
+		object.set(key, attributes[key])
+
+func serialize_vec(vec: Vector2) -> String:
+	return "%s %s" % [vec.x, vec.y]
+
+func deserialize_vec(str: String) -> Vector2:
+	var split = str.split(" ")
+	return Vector2(float(split[0]), float(split[1]))
+
 func default_serialize(object: Object):
-	const NO_SERIAL_PROPS = ["Script", "script", "Script Variables"]
+	const NO_SERIAL_PROPS = [
+		"Script",
+		"script",
+		"Script Variables",
+		"process_mode",
+		"process_priority",
+		"unique_name_in_owner",
+		"multiplayer",
+		"Node",
+		"RefCounted"
+	]
 	var keys = []
-	for prop in get_property_list():
-		if not (prop["name"] in NO_SERIAL_PROPS):
+	for prop in object.get_property_list():
+		if not (prop["name"] in NO_SERIAL_PROPS) and not prop["name"].ends_with(".gd"):
 			keys.append(prop["name"])
 	return get_multiple(object, keys)
 
