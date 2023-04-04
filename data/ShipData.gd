@@ -17,6 +17,7 @@ var armor: int
 var shields: int
 var shield_regen: float
 var shield_regen_delay: float
+var standoff: bool
 
 func _init(data):
 	super._init(data)

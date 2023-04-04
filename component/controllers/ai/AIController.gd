@@ -88,8 +88,8 @@ func process_state_attack(delta):
 	populate_rotation_impulse_and_ideal_face(
 		_get_target_lead_position(), delta)
 	shooting = _facing_within_margin(shoot_margin)
-	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
-	braking = true
+	thrusting = not parent.standoff and _facing_within_margin(accel_margin)
+	braking = parent.standoff
 
 func process_state_persue(delta):
 	if not _verify_target():

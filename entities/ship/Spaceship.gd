@@ -11,6 +11,7 @@ var turn = 1
 var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
 var engagement_range: float = 0
+var standoff: bool = false
 @export var bank_factor = 1
 @export var bank_axis = "x"
 var screen_box_side_length: int
