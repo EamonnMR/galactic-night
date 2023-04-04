@@ -10,7 +10,7 @@ enum STATES {
 }
 
 @export var accel_margin = PI / 4
-@export var shoot_margin = PI * 0.75
+@export var shoot_margin = PI * 1
 @export var max_target_distance = 1000
 @export var destination_margin = 100
 
@@ -33,7 +33,10 @@ func complete_warp():
 func _ready():
 	if get_tree().debug_collisions_hint:
 		$Label.show()
-	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
+	var shape = $EngagementRange/CollisionShape3D.shape
+	shape = shape.duplicate(true)
+	shape.radius = parent.engagement_range
+	$EngagementRange/CollisionShape3D.shape = shape
 	get_node("../Health").damaged.connect(_on_damage_taken)
 	_compute_weapon_velocity.call_deferred()
 	unvisited_spobs = get_tree().get_nodes_in_group("spobs")
