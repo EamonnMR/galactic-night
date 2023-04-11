@@ -51,7 +51,8 @@ func set_camera(camera: Camera3D):
 	emit_signal("camera_updated")
 
 func spawn_player_starting_ship(ship_type):
-	player = Data.ships[ship_type].scene.instantiate()
+	var player_ship_type = Data.ships[ship_type]
+	player = player_ship_type.scene.instantiate()
 	player.type = ship_type
 
 func current_system_id():
@@ -189,7 +190,7 @@ func new_game(new_seed: int, new_player_name: String):
 func enter_game():
 	get_main().get_node("MainMenu").hide()
 	if not (is_instance_valid(player)):
-		spawn_player_starting_ship("nimbus")
+		spawn_player_starting_ship("aerospace")
 	get_ui().show()
 	get_ui().new_map()
 	get_main().enter_system(current_system_id())

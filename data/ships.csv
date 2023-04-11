@@ -5,3 +5,4 @@ dragon,Dragon,Light Gunship,4,0.02,0.8,15,1,32,20,2,4,7,TRUE,res://entities/ship
 delivery,Delivery,On Schedule,3,0.05,1,15,1,12,10,2,6,5,FALSE,res://entities/ship/ship_types/Delivery.tscn,150,LeftGun: plasma
 cargo,Heighliner,Bulk Cargo,3,0.02,0.5,5,0.5,44,20,2,5,2,TRUE,res://entities/ship/ship_types/Cargo.tscn,200,LeftGun: plasma
 melchior,Melchior,Self Driving,3,0.4,0.5,10,0.5,64,64,1,4,6,TRUE,res://entities/ship/ship_types/Melchior.tscn,200,LeftFrontGun: plasma; RightFrontGun: plasma
+aerospace,Aerospace,Dropship,4,0.025,0.8,17,2.2,30,20,2,5,3,TRUE,res://entities/ship/ship_types/Aerospace.tscn,100,LeftGun: plasma;  RightGun: plasma
