@@ -15,6 +15,7 @@ var standoff: bool = false
 @export var bank_factor = 1
 @export var bank_axis = "x"
 var screen_box_side_length: int
+var chain_fire_mode = true
 
 var linear_velocity = Vector2()
 var primary_weapons = []
@@ -25,6 +26,7 @@ var warping_in = false
 var warp_speed_factor = 10
 
 signal destroyed
+signal weapons_changed
 
 func _ready():
 	Data.ships[type].apply_to_node(self)
@@ -79,8 +81,11 @@ func _physics_process(delta):
 
 func handle_shooting():
 	if $Controller.shooting:
-		for weapon in primary_weapons:
-			weapon.try_shoot()
+		if chain_fire_mode:
+			$ChainFireManager.shoot_primary()
+		else:
+			for weapon in primary_weapons:
+				weapon.try_shoot()
 
 	if $Controller.shooting_secondary:
 		for weapon in secondary_weapons:

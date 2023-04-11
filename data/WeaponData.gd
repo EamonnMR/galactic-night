@@ -14,10 +14,12 @@ var ammo_item: String
 var primary: bool
 var projectile_velocity: float
 var damage: int
+var cooldown: float
 
 func apply_to_node(node):
 	super.apply_to_node(node)
 	node.weapon_name = id
+	node.get_node("Cooldown").wait_time = cooldown
 
 static func get_csv_path():
 	return "res://data/weapons.csv"
