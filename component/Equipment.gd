@@ -36,8 +36,6 @@ var slot_keys = {
 	CATEGORY.CONSUMABLE: consumables
 }
 
-signal weapons_updated
-
 func _ready():
 	# Determine weapon slots by the ship
 	var parent = get_node("../")
@@ -79,7 +77,6 @@ func remove_item(key: String, category: CATEGORY) -> Inventory.InvItem:
 func _add(item: Inventory.InvItem, key: String, category: CATEGORY):
 	match category:
 		CATEGORY.WEAPON:
-			weapons_updated.emit()
 			get_parent().get_node(key).add_weapon(WeaponData.instantiate(item.type))
 		CATEGORY.ARMOR:
 			_parent().get_node("Health").increase_max_health(item.data().consumable_magnitude)
@@ -89,7 +86,6 @@ func _add(item: Inventory.InvItem, key: String, category: CATEGORY):
 func _remove(key: String, category: CATEGORY, item: Inventory.InvItem):
 	match category:
 		CATEGORY.WEAPON:
-			weapons_updated.emit()
 			_parent().get_node(key).remove_weapon()
 		CATEGORY.ARMOR:
 			_parent().get_node("Health").decrease_max_health(item.data().consumable_magnitude)

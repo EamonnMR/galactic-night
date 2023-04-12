@@ -42,5 +42,5 @@ explosion = ExtResource("2_1wg5t")
 [node name="ChainFireManager" type="Node" parent="."]
 script = ExtResource("8_rxkto")
 
+[connection signal="weapons_changed" from="." to="ChainFireManager" method="update_mapping"]
 [connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]
-[connection signal="weapons_updated" from="Equipment" to="ChainFireManager" method="update_mapping"]

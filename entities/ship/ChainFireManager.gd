@@ -14,13 +14,12 @@ func shoot_primary():
 		var current_weapon = type_cluster.weapons[
 			type_cluster.cycle_position
 		]
-		
+		#breakpoint
 		if current_weapon.try_shoot():
 			type_cluster.timer.start()
 		
 
 func update_mapping():
-	breakpoint
 	for child in get_children():
 		remove_child(child)
 	
@@ -49,3 +48,4 @@ func update_mapping():
 		
 		add_child(timer)
 		primary_weapon_types[type].timer = timer
+	

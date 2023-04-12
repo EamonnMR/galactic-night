@@ -153,3 +153,18 @@ func deserialize_player(data: Dictionary):
 	$Health.deserialize(data.health)
 	$Equipment.deserialize(data.equipment)
 	$Inventory.deserialize(data.inventory)
+
+func add_weapon(weapon: Node):
+	if weapon.primary:
+		primary_weapons.push_back(weapon)
+	else:
+		secondary_weapons.push_back(weapon)
+		
+	weapons_changed.emit()
+func remove_weapon(weapon: Node):
+	if weapon.primary:
+		get_parent().primary_weapons.erase(weapon) 
+	else:
+		get_parent().secondary_weapons.erase(weapon)
+	weapons_changed.emit()
+				

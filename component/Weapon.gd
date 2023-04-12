@@ -40,6 +40,8 @@ func try_shoot():
 		if _try_consume_ammo():
 			# TODO: Consume ammo
 			_shoot()
+			return true
+	return false
 
 func _shoot():
 	if burst_count:
