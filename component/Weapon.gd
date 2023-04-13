@@ -23,6 +23,7 @@ var type: String
 @export var primary = true
 @export var weapon_name: String = "Plasma"
 @export var projectile_velocity: float
+@export var projectile_lifetime: float
 
 # @export var dmg_factor: float = 1
 @export var damage: int
@@ -68,6 +69,7 @@ func _create_projectile():
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
+	projectile.set_lifetime(projectile_lifetime)
 
 	if world_projectile:
 		Client.get_world().get_node("projectiles").add_child(projectile)

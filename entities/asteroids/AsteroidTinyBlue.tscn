@@ -1,44 +1,51 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvdgfsv5v5af4"]
+[gd_scene load_steps=10 format=3 uid="uid://ds6330g5xyrvb"]
 
-[ext_resource type="PackedScene" uid="uid://bppujn186p4h0" path="res://entities/asteroids/Asteroid.tscn" id="1_5ujyg"]
-[ext_resource type="PackedScene" uid="uid://hmkl7a8iioet" path="res://entities/asteroids/AsteroidSmall.tscn" id="2_7g2gp"]
+[ext_resource type="PackedScene" uid="uid://bppujn186p4h0" path="res://entities/asteroids/Asteroid.tscn" id="1_a42p6"]
+[ext_resource type="Material" uid="uid://dwdiookacj14i" path="res://entities/asteroids/asteroid_blue.tres" id="2_7k7sn"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0d56"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7eqd4"]
 load_path = "res://.godot/imported/asteroid_C.png-0f322b871ac78a15789c788800c199e5.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fmn54"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2xj4f"]
 load_path = "res://.godot/imported/asteroid_E.png-aa3afc5007f1986f6e5040264323014a.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bns6p"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m5flf"]
 load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w4yax"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ma6q2"]
 load_path = "res://.godot/imported/asteroid_N.png-01c9465f23391080c81fb128fd262cdf.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ymrc3"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tpbd2"]
 load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6s7fk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxhpk"]
 no_depth_test = true
-albedo_texture = SubResource("CompressedTexture2D_s0d56")
+albedo_texture = SubResource("CompressedTexture2D_7eqd4")
 metallic = 1.0
-metallic_texture = SubResource("CompressedTexture2D_bns6p")
+metallic_texture = SubResource("CompressedTexture2D_m5flf")
 metallic_texture_channel = 2
-roughness_texture = SubResource("CompressedTexture2D_ymrc3")
+roughness_texture = SubResource("CompressedTexture2D_tpbd2")
 emission_enabled = true
-emission_texture = SubResource("CompressedTexture2D_fmn54")
+emission_texture = SubResource("CompressedTexture2D_2xj4f")
 normal_enabled = true
-normal_texture = SubResource("CompressedTexture2D_w4yax")
+normal_texture = SubResource("CompressedTexture2D_ma6q2")
 
 [sub_resource type="ConvexPolygonShape3D" id="1"]
 points = PackedVector3Array(0.390842, 0.917223, 0.76054, -0.0624351, -0.102361, -1.01993, -0.0622717, 0.087007, -1.01751, -1.13008, 0.0491825, 0.423911, 0.875619, -0.588049, 0.681154, 1.19373, 0.239579, -0.451477, -0.48017, 0.998416, -0.449978, -0.555685, -0.82319, -0.525887, -0.407459, -0.600945, 1.03815, 0.575117, -0.849486, -0.480038, -0.969831, 0.616598, 0.837835, -1.19618, 0.162571, -0.523455, 0.546621, 0.925076, -0.565877, 0.654225, 0.690105, 0.948333, -0.951119, -0.644618, 0.62108, -0.137131, -1.00545, 0.194251, 0.01345, -0.0645435, 1.22284, 0.930768, 0.737456, 0.692654, -0.0626764, 0.696752, -0.94693, 0.659482, 0.125245, -0.906688, 0.01345, -0.597015, -0.983628, -0.252329, 1.07468, 0.232963, 0.352887, -0.70467, 0.986097, 1.22465, -0.0261366, -0.221295, 1.07936, 0.391835, 0.690188, -1.00295, -0.628229, -0.0689209, 0.655286, 0.011601, 1.0252, -0.969537, 0.729819, 0.156824, -0.702351, 0.0118434, -0.860618, 0.769884, 0.919162, 0.00587894, 0.996045, -0.630923, -0.0695603, 0.354294, -0.934768, 0.194717, 0.165454, 0.999886, 0.765536, -0.555924, 0.998191, 0.422557, -0.818196, 0.124745, 0.950562, 0.582163, 0.693933, 0.991141, 0.01345, 1.08191, 0.0430615, 1.21063, -0.0254812, -0.367091, -0.367242, 0.772687, -0.794492, 0.960912, -0.51899, 0.611624, -0.0626657, 0.0116438, 1.22384, 0.0891087, -0.859089, -0.562021, -1.21104, 0.0875658, -0.263055, -0.100361, -1.01239, 0.00563059, -0.554138, -0.858763, -0.448125, 1.11841, -0.0646667, 0.423955, -0.251311, -0.934104, 0.383882, 0.500367, -0.849652, -0.554996, -1.1869, 0.0864411, -0.518672, -0.70714, 0.0870759, -0.867046, 0.127723, 0.0872909, -1.02291, 0.354752, -0.63299, 1.02884, 0.469183, 0.960958, -0.526318, 0.0890532, -0.593688, -0.977532, -0.779848, 0.842575, -0.145264, -1.05325, -0.521835, 0.0432649, -0.137025, 0.914949, 0.796462, 0.951975, -0.663984, 0.081607, -1.20393, 0.201305, -0.337186, -1.12819, -0.10267, 0.38557, -0.934739, 0.276776, 0.877755, 0.651624, 0.0491028, -0.89444, 0.0508769, 0.687677, -0.932664, 0.658839, 0.960593, 0.00551677)
 
-[node name="Asteroid" instance=ExtResource("1_5ujyg")]
-next_type = ExtResource("2_7g2gp")
-next_count = 2
+[node name="Asteroid" instance=ExtResource("1_a42p6")]
+initial_vel = 2.5
+surface_material_override = ExtResource("2_7k7sn")
 
 [node name="Mesh" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_6s7fk")
+transform = Transform3D(-0.16093, 0, -0.191315, 0, 0.25, 0, 0.191315, 0, -0.16093, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_nxhpk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("1")
+
+[node name="Loot" parent="." index="2"]
+loot_items = {
+"blue": 3
+}

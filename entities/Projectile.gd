@@ -22,3 +22,6 @@ func _on_Projectile_body_entered(body):
 
 func _on_Timer_timeout():
 	queue_free()
+
+func set_lifetime(lifetime: float):
+	$Timer.wait_time = lifetime
