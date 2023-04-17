@@ -32,11 +32,13 @@ func _physics_process(delta):
 	cycle_ships()
 	toggle_map()
 	toggle_inventory()
+	toggle_fire_mode()
 	check_jumped()
 	select_nearest_target()
 	cycle_targets()
 	interact()
 	hyperspace()
+	
 
 func _ready():
 	Client.set_player(parent)
@@ -116,3 +118,8 @@ func complete_jump():
 func toggle_pause():
 	if Input.is_action_just_pressed("pause"):
 		Client.toggle_pause()
+
+func toggle_fire_mode():
+	if Input.is_action_just_pressed("toggle_chain_fire"):
+		parent.chain_fire_mode = not parent.chain_fire_mode
+		Client.display_message("Fire Mode: " + ("chain fire" if parent.chain_fire_mode else "syncro"))

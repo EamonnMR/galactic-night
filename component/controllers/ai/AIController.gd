@@ -10,7 +10,7 @@ enum STATES {
 }
 
 @export var accel_margin = PI / 4
-@export var shoot_margin = PI * 0.75
+@export var shoot_margin = PI * 1
 @export var max_target_distance = 1000
 @export var destination_margin = 100
 
@@ -20,6 +20,8 @@ var target
 var path_target
 var lead_velocity: float
 var state = STATES.IDLE
+
+var bodies_in_engagement_range = []
 
 var unvisited_spobs: Array
 
@@ -31,7 +33,10 @@ func complete_warp():
 func _ready():
 	if get_tree().debug_collisions_hint:
 		$Label.show()
-	#$EngagementRange/CollisionShape3D.shape.radius = engagement_range_radius
+	var shape = $EngagementRange/CollisionShape3D.shape
+	shape = shape.duplicate(true)
+	shape.radius = parent.engagement_range
+	$EngagementRange/CollisionShape3D.shape = shape
 	get_node("../Health").damaged.connect(_on_damage_taken)
 	_compute_weapon_velocity.call_deferred()
 	unvisited_spobs = get_tree().get_nodes_in_group("spobs")
@@ -83,8 +88,8 @@ func process_state_attack(delta):
 	populate_rotation_impulse_and_ideal_face(
 		_get_target_lead_position(), delta)
 	shooting = _facing_within_margin(shoot_margin)
-	thrusting = false #parent.joust and _facing_within_margin(accel_margin)
-	braking = true
+	thrusting = not parent.standoff and _facing_within_margin(accel_margin)
+	braking = parent.standoff
 
 func process_state_persue(delta):
 	if not _verify_target():
@@ -168,6 +173,10 @@ func change_state_idle():
 	#print("New State: Idle")
 
 func change_state_persue(target):
+	if target in bodies_in_engagement_range:
+		change_state_attack()
+		return
+	
 	state = STATES.PERSUE
 	self.target = target
 	if target == Client.player:
@@ -213,6 +222,9 @@ func _get_target_lead_position():
 
 # Somewhat questioning the need for a whole node setup for this.
 func _on_EngagementRange_body_entered(body):
+	
+	bodies_in_engagement_range.append(body)
+	
 	if body == target and state == STATES.PERSUE:
 		#print("Reached target")
 		change_state_attack()
@@ -221,9 +233,14 @@ func _on_EngagementRange_body_entered(body):
 		change_state_idle()
 
 func _on_EngagementRange_body_exited(body):
+	
+	bodies_in_engagement_range.erase(body)
+	
 	if body == target and state == STATES.ATTACK:
 		#print("Target left engagement range")
 		change_state_persue(target)
 
 func _on_damage_taken(source):
-	change_state_persue(source)
+	match state:
+		STATES.IDLE, STATES.PERSUE, STATES.PATH:
+			change_state_persue(source)

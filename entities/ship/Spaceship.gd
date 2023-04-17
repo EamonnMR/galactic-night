@@ -10,9 +10,12 @@ var accel = 0.01
 var turn = 1
 var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
+var engagement_range: float = 0
+var standoff: bool = false
 @export var bank_factor = 1
 @export var bank_axis = "x"
 var screen_box_side_length: int
+var chain_fire_mode = true
 
 var linear_velocity = Vector2()
 var primary_weapons = []
@@ -23,6 +26,7 @@ var warping_in = false
 var warp_speed_factor = 10
 
 signal destroyed
+signal weapons_changed
 
 func _ready():
 	Data.ships[type].apply_to_node(self)
@@ -77,8 +81,11 @@ func _physics_process(delta):
 
 func handle_shooting():
 	if $Controller.shooting:
-		for weapon in primary_weapons:
-			weapon.try_shoot()
+		if chain_fire_mode:
+			$ChainFireManager.shoot_primary()
+		else:
+			for weapon in primary_weapons:
+				weapon.try_shoot()
 
 	if $Controller.shooting_secondary:
 		for weapon in secondary_weapons:
@@ -146,3 +153,18 @@ func deserialize_player(data: Dictionary):
 	$Health.deserialize(data.health)
 	$Equipment.deserialize(data.equipment)
 	$Inventory.deserialize(data.inventory)
+
+func add_weapon(weapon: Node):
+	if weapon.primary:
+		primary_weapons.push_back(weapon)
+	else:
+		secondary_weapons.push_back(weapon)
+		
+	weapons_changed.emit()
+func remove_weapon(weapon: Node):
+	if weapon.primary:
+		primary_weapons.erase(weapon) 
+	else:
+		secondary_weapons.erase(weapon)
+	weapons_changed.emit()
+				

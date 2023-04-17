@@ -12,6 +12,7 @@ damage = 1
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+autostart = true
 
 [node name="BurstCooldown" type="Timer" parent="."]
 wait_time = 3.0

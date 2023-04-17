@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://uc7oyjsn3215"]
+[gd_scene load_steps=9 format=3 uid="uid://uc7oyjsn3215"]
 
 [ext_resource type="Script" path="res://entities/ship/Spaceship.gd" id="1_v25r1"]
 [ext_resource type="PackedScene" uid="uid://nt7stcr8sbj1" path="res://effects/GenericExplosion.tscn" id="2_1wg5t"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjmll63x6x8c2" path="res://component/Loot.tscn" id="6_5xw71"]
 [ext_resource type="PackedScene" uid="uid://dbronia1bfybm" path="res://component/HyperspaceManager.tscn" id="7_87kaa"]
 [ext_resource type="PackedScene" uid="uid://r6jv80byk5dl" path="res://component/Health.tscn" id="7_rsi77"]
+[ext_resource type="Script" path="res://entities/ship/ChainFireManager.gd" id="8_rxkto"]
 [ext_resource type="PackedScene" uid="uid://cy0lfe0feyd5r" path="res://component/Equipment.tscn" id="8_vixut"]
 
 [node name="Spaceship" type="CharacterBody3D"]
@@ -38,4 +39,8 @@ explosion = ExtResource("2_1wg5t")
 
 [node name="HyperspaceManager" parent="." instance=ExtResource("7_87kaa")]
 
+[node name="ChainFireManager" type="Node" parent="."]
+script = ExtResource("8_rxkto")
+
+[connection signal="weapons_changed" from="." to="ChainFireManager" method="update_mapping"]
 [connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]

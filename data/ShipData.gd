@@ -9,6 +9,7 @@ var accel: float
 var turn: float
 var max_bank: int
 var bank_speed: float
+var engagement_range: float
 var screen_box_side_length: int
 var scene: PackedScene
 var weapon_config: Dictionary
@@ -16,6 +17,7 @@ var armor: int
 var shields: int
 var shield_regen: float
 var shield_regen_delay: float
+var standoff: bool
 
 func _init(data):
 	super._init(data)
