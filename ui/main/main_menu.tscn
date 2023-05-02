@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://ui/NewGame.gd" id="4_hmn6f"]
 [ext_resource type="LabelSettings" uid="uid://bslkk24j3eyvp" path="res://ui/FancyTitle.tres" id="4_qyk3p"]
 [ext_resource type="FontFile" uid="uid://bj5tedj4y2vvh" path="res://assets/svofski_pd/Glass_TTY_VT220.ttf" id="7_sn0h5"]
-[ext_resource type="FontFile" path="res://assets/Kate_Willaert
+[ext_resource type="FontFile" uid="uid://c76e2roii2265" path="res://assets/Kate_Willaert
 /GT40/GT40 2021 Mono.otf" id="9_pfoy2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f2j5r"]
@@ -50,6 +50,7 @@ offset_bottom = 181.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_lps7l")
+button_font = ExtResource("9_pfoy2")
 
 [node name="Container" type="Container" parent="Control/LoadGame"]
 layout_mode = 1
@@ -74,6 +75,7 @@ horizontal_alignment = 1
 
 [node name="OpenSaveGameFolder" type="Button" parent="Control/LoadGame/Container/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "Open Game Folder"
 
 [node name="LoadGamesList" type="VBoxContainer" parent="Control/LoadGame/Container/VBoxContainer"]
@@ -90,9 +92,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -131.0
-offset_top = -123.5
-offset_right = 131.0
-offset_bottom = 123.5
+offset_top = -123.0
+offset_right = 149.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_hmn6f")
@@ -108,7 +110,7 @@ offset_bottom = 235.0
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Control/NewGame/Container/VBoxContainer"]
+[node name="MenuLabel" type="Label" parent="Control/NewGame/Container/VBoxContainer"]
 layout_mode = 2
 text = "New Game"
 label_settings = ExtResource("4_qyk3p")
@@ -117,7 +119,13 @@ horizontal_alignment = 1
 [node name="PlayerName" type="LineEdit" parent="Control/NewGame/Container/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pfoy2")
 placeholder_text = "Player Name"
+
+[node name="SeedLabel" type="Label" parent="Control/NewGame/Container/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pfoy2")
+text = "Enter seed or use slider"
 
 [node name="SeedSlider" type="HSlider" parent="Control/NewGame/Container/VBoxContainer"]
 unique_name_in_owner = true
@@ -127,11 +135,15 @@ max_value = 9.22337e+18
 [node name="SeedText" type="LineEdit" parent="Control/NewGame/Container/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "0"
 placeholder_text = "Seed"
 
-[node name="NewGame" type="Button" parent="Control/NewGame/Container/VBoxContainer"]
+[node name="NewGameStart" type="Button" parent="Control/NewGame/Container/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pfoy2")
+disabled = true
 text = "Start"
 
 [node name="MainMenu" type="TextureRect" parent="Control"]
@@ -189,6 +201,7 @@ offset_left = 66.0
 offset_top = 61.0
 offset_right = 159.0
 offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "New Game"
 
 [node name="Load" type="Button" parent="Control/MainMenu"]
@@ -197,6 +210,7 @@ offset_left = 66.0
 offset_top = 110.0
 offset_right = 159.0
 offset_bottom = 141.0
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "Load"
 
 [node name="Save" type="Button" parent="Control/MainMenu"]
@@ -205,6 +219,7 @@ offset_left = 66.0
 offset_top = 159.0
 offset_right = 162.0
 offset_bottom = 190.0
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "Save"
 
 [node name="Quit" type="Button" parent="Control/MainMenu"]
@@ -213,12 +228,14 @@ offset_left = 68.0
 offset_top = 313.0
 offset_right = 164.0
 offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("9_pfoy2")
 text = "Quit"
 
 [connection signal="pressed" from="Control/LoadGame/Container/VBoxContainer/OpenSaveGameFolder" to="Control/LoadGame" method="_on_open_save_game_folder_pressed"]
+[connection signal="text_changed" from="Control/NewGame/Container/VBoxContainer/PlayerName" to="Control/NewGame" method="_on_player_name_text_changed"]
 [connection signal="drag_ended" from="Control/NewGame/Container/VBoxContainer/SeedSlider" to="Control/NewGame" method="_on_seed_slider_drag_ended"]
 [connection signal="text_changed" from="Control/NewGame/Container/VBoxContainer/SeedText" to="Control/NewGame" method="_on_seed_text_changed"]
-[connection signal="pressed" from="Control/NewGame/Container/VBoxContainer/NewGame" to="Control/NewGame" method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/NewGame/Container/VBoxContainer/NewGameStart" to="Control/NewGame" method="_on_new_game_pressed"]
 [connection signal="visibility_changed" from="Control/MainMenu" to="Control/MainMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/MainMenu/Continue" to="Control/MainMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/MainMenu/New" to="Control/MainMenu" method="_on_new_pressed"]

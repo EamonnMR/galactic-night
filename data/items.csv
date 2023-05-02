@@ -1,6 +1,6 @@
 id,name,equip_category,consumable_effect,consumable_magnitude,icon,tooltip,stackable,commodity,price
 metal,Metal,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice (commodity and crafting ingredient)",TRUE,TRUE,100
-green,Isomers,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Green rocks (crafting ingredient),TRUE,TRUE,200
+green,Isomers,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Intriguing Green rocks (crafting ingredient),TRUE,TRUE,200
 missile_launcher,Missile Launcher,weapon,,,res://assets/Master484_cc0/missile_launcher.png,Blow up your foes with extreme prejudace. Remember to build missiles too!,FALSE,FALSE,500
 missile,Missile,,,,res://assets/Master484_cc0/missile.png,You can tell these things are old because they’re still using atmo-fins.,TRUE,FALSE,100
 plasma,Heater,weapon,,,res://assets/damnwing_cc_by/zipgun.png,What better way to damage something in space then to introduce a little entropy than the time honored method of red hot plasma?,FALSE,FALSE,100

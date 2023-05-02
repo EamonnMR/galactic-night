@@ -19,3 +19,7 @@ func _on_new_game_pressed():
 	Client.new_game(seed, %PlayerName.text)
 	Client.enter_game()
 	top_menu_level.switch_to(%MainMenu)
+
+
+func _on_player_name_text_changed(new_text):
+	%NewGameStart.disabled = %PlayerName.text == ""
