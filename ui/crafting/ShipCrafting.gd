@@ -10,9 +10,7 @@ func _get_product_description(blueprint):
 	return blueprint.desc
 
 func _get_product_name(blueprint):
-	return blueprint.type_name
+	return blueprint.name
 
 func _do_craft():
-	var new_ship = current_blueprint.scene.instantiate()
-	new_ship.type = current_blueprint.id
-	Client.replace_player_ship(new_ship)
+	Client.switch_ship(current_blueprint.id)
