@@ -1,11 +1,11 @@
-id,name,paint_hue,paint_saturation,paint_brightness,base_brightness,lights_hue,lights_saturation,lights_brightness,weapon_hue,weapon_saturation
-0,Lothar,0,1,0,0,0.635,1.24,0.24,0.61,1.74
-1,McGowen,0,0,-0.46,-0.12,0.005,1.24,0.24,0.46,1.74
-2,Neutral,0,0,0.21,0.21,0.685,1.18,0.24,0.24,1
-3,Gifts Ungiven,0.35,1.12,0,0,1,0.96,0.64,0.67,0.4
-4,Invader,0,0,-0.4,0.5,0.365,1.74,1,0.365,1
-5,Defender,0.63,1.3,1.1,0.5,0.075,1.74,1,0.075,0.6
-6,Renegade,0,0,-0.4,-0.41,0.155,1.74,1,0,1.74
-7,Lilly,0.6,1,0.4,0.5,0.9,1,1,0.9,1
-8,Cadet,0.65,1,0.54,0.5,0.23,1,1,0.23,1
-9,Anchor,0.71,1,0.04,-0.12,0.32,1,1,0.075,1.74
+id,name,paint_hue,paint_saturation,paint_brightness,base_brightness,lights_hue,lights_saturation,lights_brightness,weapon_hue,weapon_saturation,desc,ingredients,icon,require_level
+0,Lothar,0,1,0,0,0.635,1.24,0.24,0.61,1.74,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+1,McGowen,0,0,-0.46,-0.12,0.005,1.24,0.24,0.46,1.74,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+2,Neutral,0,0,0.21,0.21,0.685,1.18,0.24,0.24,1,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+3,Gifts Ungiven,0.35,1.12,0,0,1,0.96,0.64,0.67,0.4,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+4,Invader,0,0,-0.4,0.5,0.365,1.74,1,0.365,1,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+5,Defender,0.63,1.3,1.1,0.5,0.075,1.74,1,0.075,0.6,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+6,Renegade,0,0,-0.4,-0.41,0.155,1.74,1,0,1.74,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+7,Lilly,0.6,1,0.4,0.5,0.9,1,1,0.9,1,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+8,Cadet,0.65,1,0.54,0.5,0.23,1,1,0.23,1,bla,metal: 1,res://assets/eamonn/station_icon.png,0
+9,Anchor,0.71,1,0.04,-0.12,0.32,1,1,0.075,1.74,bla,metal: 1,res://assets/eamonn/station_icon.png,0

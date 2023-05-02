@@ -1,7 +1,5 @@
 extends JumpAutopilotController
 
-var skin_id = "0"
-
 var warp_autopilot = false
 
 @onready var ui = get_tree().get_root().get_node("Main/UI/")
@@ -29,7 +27,6 @@ func _physics_process(delta):
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	
 	cycle_skins()
-	cycle_ships()
 	toggle_map()
 	toggle_inventory()
 	toggle_fire_mode()
@@ -54,19 +51,10 @@ func toggle_inventory():
 
 func cycle_skins():
 	if Input.is_action_just_pressed("switch_color"):
-		skin_id = str(
-			(skin_id.to_int() + 1) % Data.skins.size()
+		var new_skin_id = str(
+			(parent.skin.to_int() + 1) % Data.skins.size()
 		)
-		var skin = Data.skins[skin_id]
-		print(skin)
-		get_node("../Graphics").set_skin_data(skin)
-		
-func cycle_ships():
-	if Input.is_action_just_pressed("switch_ship"):
-		var all_types = Data.ships.keys()
-		var index = all_types.find(get_node("../").type)
-		var next_index = (index + 1) % all_types.size()
-		Client.switch_ship(all_types[next_index])
+		Client.switch_skin(new_skin_id)
 		
 func check_jumped():
 	if Input.is_action_just_released("jump"):
