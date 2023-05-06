@@ -116,10 +116,17 @@ script = ExtResource("7_787sc")
 [node name="Mouseover" parent="." instance=ExtResource("9_ra2c5")]
 
 [node name="TargetInfo" parent="." instance=ExtResource("10_doaoj")]
-offset_left = 916.0
-offset_top = 398.0
-offset_right = 1151.0
-offset_bottom = 643.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -245.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="SpobInfoBox" parent="." instance=ExtResource("13_n0dx3")]
 visible = false

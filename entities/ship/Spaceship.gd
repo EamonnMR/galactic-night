@@ -72,7 +72,7 @@ func _physics_process(delta):
 	else:
 		decrease_bank(delta)
 	
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	handle_shooting()
