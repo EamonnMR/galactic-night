@@ -26,7 +26,6 @@ func _physics_process(delta):
 	shooting_secondary = Input.is_action_pressed("shoot_secondary")
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
 	
-	cycle_skins()
 	toggle_map()
 	toggle_inventory()
 	toggle_fire_mode()
@@ -48,13 +47,6 @@ func toggle_map():
 func toggle_inventory():
 	if Input.is_action_just_released("toggle_inventory"):
 		ui.toggle_inventory(["Inventory", "Crafting", "Equipment"])
-
-func cycle_skins():
-	if Input.is_action_just_pressed("switch_color"):
-		var new_skin_id = str(
-			(parent.skin.to_int() + 1) % Data.skins.size()
-		)
-		Client.switch_skin(new_skin_id)
 		
 func check_jumped():
 	if Input.is_action_just_released("jump"):
