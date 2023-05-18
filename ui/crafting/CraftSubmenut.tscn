@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://jp0r11cthf4q"]
+[gd_scene load_steps=3 format=3 uid="uid://jp0r11cthf4q"]
 
 [ext_resource type="Script" path="res://ui/crafting/Crafting.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cje5gph3njtsq" path="res://ui/IngredientsDisplay.tscn" id="2_gk6v7"]
 
 [node name="Craft" type="Control"]
 process_mode = 2
@@ -48,9 +49,10 @@ offset_bottom = 121.0
 text = "Item Description"
 autowrap_mode = 2
 
-[node name="Ingredients" type="HBoxContainer" parent="HBoxContainer/Details"]
+[node name="Ingredients" parent="HBoxContainer/Details" instance=ExtResource("2_gk6v7")]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 0.561218
-offset_top = 182.4
-offset_right = 206.561
-offset_bottom = 222.4
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 206.0
+offset_bottom = 40.0

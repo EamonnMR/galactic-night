@@ -1,6 +1,5 @@
 extends Control
 
-var item_icon = preload("res://ui/ItemIcon.tscn")
 var equip_box = preload("res://ui/EquipBox.tscn")
 
 func _ready():
@@ -41,7 +40,7 @@ func rebuild():
 			
 			if equipment_slots[slot]:
 				var item = equipment_slots[slot]
-				var icon: ItemIcon = item_icon.instantiate()
+				var icon: ItemIcon = ItemIcon.instantiate()
 				icon.init(item)
 				box.attach_item_icon(icon)
 			destination.add_child(box)

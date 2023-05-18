@@ -5,6 +5,8 @@ class_name EquipBox
 signal item_removed
 signal item_added(item)
 
+@export var disabled: bool = false
+
 @export var category: Equipment.CATEGORY = Equipment.CATEGORY.ANY
 
 const icons = {
@@ -18,7 +20,6 @@ const icons = {
 }
 
 func _ready():
-	
 	$TextureRect.texture = icons[category]
 	
 	if(has_node("ItemIcon")):
@@ -28,8 +29,8 @@ func _ready():
 			$TextureRect.tooltip_text = "Weapon slot - Drop a weapon item to equip a weapon"
 
 func _can_drop_data(_pos, data):
-	print(category)
-	print(has_node("ItemIcon"))
+	if disabled:
+		return false
 	if has_node("ItemIcon"):
 		return (data["dragged_item"].item.type == $ItemIcon.item.type) and (Data.items[$ItemIcon.item.type].stackable)
 	else:

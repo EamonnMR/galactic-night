@@ -4,6 +4,8 @@ class_name ItemIcon
 
 var item: Inventory.InvItem
 
+var disabled: bool = false
+
 func init(item):
 	var data: ItemData = item.data()
 	self.item = item
@@ -13,6 +15,11 @@ func init(item):
 	anchor_bottom = 1
 	texture = data.icon
 	tooltip_text = data.name + ": " + data.tooltip
+	
+func init_fake(type, count):
+	disabled = true
+	var item = Inventory.InvItem.new(type, count)
+	init(item)
 
 func _ready():
 	update_count()
@@ -24,6 +31,8 @@ func update_count():
 		$Count.text = ""
 
 func _get_drag_data(_position):
+	if disabled:
+		return null
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
 	# drag_texture.expand = true

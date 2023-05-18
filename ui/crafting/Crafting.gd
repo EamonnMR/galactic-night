@@ -71,20 +71,8 @@ func _update_blueprint_selection():
 	blueprint_detail.get_node("Name").text = _get_product_name(blueprint)
 	blueprint_detail.get_node("Description").text = _get_product_description(blueprint)
 	
-	var ingredients = blueprint_detail.get_node("Ingredients")
-	clear(ingredients)
-	
-	# get_node("CraftButton").disabled = true
-	for ingredient_type in blueprint.ingredients:
-		var item_data = Data.items[ingredient_type]
-		var ingredient_quantity = blueprint.ingredients[ingredient_type]
-		var ingredient_icon = BlueprintIcon.instantiate()
-		ingredient_icon.get_node("TextureRect").texture = item_data.icon
-		ingredients.add_child(ingredient_icon)
-		if ingredient_quantity > 1:
-			var count_text = Label.new()
-			count_text.text = "X " + str(ingredient_quantity)
-			ingredients.add_child(count_text)
+	%Ingredients.assign(blueprint.ingredients)
+
 	if _can_craft(blueprint):
 		pass
 		#var button: Button = get_node("CraftButton")
