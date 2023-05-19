@@ -31,28 +31,19 @@ layout_mode = 2
 [node name="Recipes" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="Details" type="Control" parent="HBoxContainer"]
+[node name="Details" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 
 [node name="Name" type="Label" parent="HBoxContainer/Details"]
-layout_mode = 0
-offset_right = 85.0
-offset_bottom = 14.0
+layout_mode = 2
 text = "Recipe Name"
 
 [node name="Description" type="Label" parent="HBoxContainer/Details"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 21.0
-offset_right = 192.0
-offset_bottom = 121.0
+layout_mode = 2
 text = "Item Description"
 autowrap_mode = 2
 
 [node name="Ingredients" parent="HBoxContainer/Details" instance=ExtResource("2_gk6v7")]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 206.0
-offset_bottom = 40.0
+layout_mode = 2

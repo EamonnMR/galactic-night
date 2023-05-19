@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://ui/IngredientsDisplay.gd" id="1_u3r0f"]
 
 [node name="Ingredients" type="HBoxContainer"]
-offset_left = 0.561218
-offset_top = 182.4
-offset_right = 206.561
-offset_bottom = 222.4
+offset_right = 206.0
+offset_bottom = 40.0
 script = ExtResource("1_u3r0f")

@@ -9,6 +9,15 @@ signal item_added(item)
 
 @export var category: Equipment.CATEGORY = Equipment.CATEGORY.ANY
 
+enum FRAME_MODE {
+	NORMAL,
+	SUFFICIENT,
+	INSUFFICIENT,
+}
+
+@export var mode: FRAME_MODE = FRAME_MODE.NORMAL
+
+
 const icons = {
 	Equipment.CATEGORY.ANY: null,
 	Equipment.CATEGORY.CONSUMABLE: preload("res://assets/FontAwesome/32px-charge.png"),
@@ -27,6 +36,14 @@ func _ready():
 	match category:
 		Equipment.CATEGORY.WEAPON:
 			$TextureRect.tooltip_text = "Weapon slot - Drop a weapon item to equip a weapon"
+	
+	match mode:
+		FRAME_MODE.NORMAL:
+			modulate = Color(1, 1, 1)
+		FRAME_MODE.SUFFICIENT:
+			modulate = Color(0.7, 1, 0.7)
+		FRAME_MODE.INSUFFICIENT:
+			modulate = Color(1, 0.7, 0.7)
 
 func _can_drop_data(_pos, data):
 	if disabled:
