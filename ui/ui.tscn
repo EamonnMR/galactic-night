@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=20 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bf46l4qga0grl" path="res://ui/crafting/Crafting.tscn" id="2_bfw8e"]
 [ext_resource type="PackedScene" uid="uid://cmy8sexrww2l8" path="res://ui/Equipment.tscn" id="2_urnxu"]
 [ext_resource type="PackedScene" uid="uid://dwr464u5i34ca" path="res://ui/Inventory.tscn" id="4_o6isj"]
-[ext_resource type="Script" path="res://Button.gd" id="5_2ggvy"]
 [ext_resource type="Texture2D" uid="uid://3mosvv86mm4n" path="res://assets/danc_cc_by/radar.png" id="6_ugv72"]
 [ext_resource type="Script" path="res://ui/Hud/RadarDisplay.gd" id="7_787sc"]
 [ext_resource type="PackedScene" uid="uid://d0yv2ve1kdri7" path="res://ui/health.tscn" id="8_aw567"]
@@ -78,22 +77,6 @@ offset_right = 39.0
 offset_bottom = 9.0
 grow_vertical = 1
 
-[node name="Build Recipe Button" type="Button" parent="."]
-visible = false
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = 16.0
-offset_right = -265.0
-offset_bottom = 47.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Build Recipe"
-script = ExtResource("5_2ggvy")
-
 [node name="Health" parent="." instance=ExtResource("8_aw567")]
 
 [node name="Radar" type="TextureRect" parent="."]
@@ -163,6 +146,4 @@ offset_right = -124.0
 offset_bottom = 377.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
-[connection signal="visibility_changed" from="Crafting" to="Build Recipe Button" method="_on_crafting_visibility_changed"]
-[connection signal="pressed" from="Build Recipe Button" to="Crafting" method="_on_craft_button_pressed"]
 [connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]

@@ -29,6 +29,7 @@ func assign(crafting_level_object):
 	var player_level = 1 #Client.player.crafting_level
 	crafting_level =  max(bench_level, player_level)
 	current_blueprint = _blueprints().values()[0]
+	Client.player.get_node("Inventory").updated.connect(_update_blueprint_selection)
 	
 func unassign():
 	# Return to a state of using the player's crafting level
@@ -66,17 +67,12 @@ func _get_icon_texture(_blueprint):
 	return null
 	
 func _update_blueprint_selection():
-	var blueprint_id = current_blueprint.id
-	var blueprint = current_blueprint
-	blueprint_detail.get_node("Name").text = _get_product_name(blueprint)
-	blueprint_detail.get_node("Description").text = _get_product_description(blueprint)
+	blueprint_detail.get_node("Name").text = _get_product_name(current_blueprint)
+	blueprint_detail.get_node("Description").text = _get_product_description(current_blueprint)
 	
-	%Ingredients.assign(blueprint.ingredients)
+	%Ingredients.assign(current_blueprint.ingredients)
 
-	if _can_craft(blueprint):
-		pass
-		#var button: Button = get_node("CraftButton")
-		#button.disabled = false
+	%BuildButton.disabled = not _can_craft(current_blueprint)
 		
 func _get_product_name(_blueprint):
 	# Get the name representing the blueprint
@@ -98,7 +94,7 @@ func _can_craft(blueprint):
 	else:
 		return false
 
-func _on_CraftButton_pressed():
+func _on_build_button_pressed():
 	if _can_craft(current_blueprint):
 		Client.player.get_node("Inventory").deduct_ingredients(current_blueprint.ingredients)
 		_do_craft()

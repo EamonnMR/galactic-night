@@ -44,6 +44,16 @@ layout_mode = 2
 text = "Item Description"
 autowrap_mode = 2
 
-[node name="Ingredients" parent="HBoxContainer/Details" instance=ExtResource("2_gk6v7")]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Details"]
+layout_mode = 2
+
+[node name="Ingredients" parent="HBoxContainer/Details/HBoxContainer" instance=ExtResource("2_gk6v7")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="BuildButton" type="Button" parent="HBoxContainer/Details/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Build"
+
+[connection signal="pressed" from="HBoxContainer/Details/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
