@@ -59,7 +59,6 @@ func _init():
 
 func load_codex():
 	codex = load_directory("res://data/codex")
-	breakpoint
 
 func load_directory(path: String) -> Dictionary:
 	var directory = {}

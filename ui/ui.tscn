@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=22 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -18,6 +18,8 @@
 /GT40/GT40 2021 Mono.otf" id="15_lbbmr"]
 [ext_resource type="Script" path="res://ui/MessageBox.gd" id="16_4ixx8"]
 [ext_resource type="PackedScene" uid="uid://c1cjcpk0fqkan" path="res://ui/Hud/galaxy_nav_indicator.tscn" id="17_wqcqy"]
+[ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="18_6eupn"]
+[ext_resource type="Script" path="res://ui/Codex.gd" id="19_aythd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tkka7"]
 font = ExtResource("15_lbbmr")
@@ -146,4 +148,51 @@ offset_right = -124.0
 offset_bottom = 377.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
+[node name="Codex" parent="." instance=ExtResource("18_6eupn")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -230.0
+offset_right = 330.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_aythd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Codex"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -17.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Codex/VBoxContainer"]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="Codex/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Codex/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="CloseButton" type="Button" parent="Codex/VBoxContainer"]
+layout_mode = 2
+text = "close"
+
 [connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]
+[connection signal="button_clicked" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_button_clicked"]
+[connection signal="cell_selected" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_cell_selected"]
