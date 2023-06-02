@@ -41,9 +41,11 @@ func _ready():
 		FRAME_MODE.NORMAL:
 			modulate = Color(1, 1, 1)
 		FRAME_MODE.SUFFICIENT:
-			modulate = Color(0.7, 1, 0.7)
+			modulate = Color(0.5, 1.2, 0.5)
+			$ItemIcon.modulate = Color(1.6,0.6,1.6)
 		FRAME_MODE.INSUFFICIENT:
-			modulate = Color(1, 0.7, 0.7)
+			modulate = Color(1.2, 0.5, 0.5)
+			$ItemIcon.modulate = Color(0.6,1.6,1.6)
 
 func _can_drop_data(_pos, data):
 	if disabled:
@@ -61,6 +63,7 @@ func _drop_data(_pos, data):
 
 func attach_item_icon(item_icon):
 	add_child(item_icon)
+	item_icon.name = "ItemIcon"
 	$TextureRect.hide()
 
 func remove_item_icon(item_icon):
