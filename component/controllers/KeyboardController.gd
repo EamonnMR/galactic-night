@@ -28,6 +28,7 @@ func _physics_process(delta):
 	
 	toggle_map()
 	toggle_inventory()
+	toggle_codex()
 	toggle_fire_mode()
 	check_jumped()
 	select_nearest_target()
@@ -43,6 +44,10 @@ func _ready():
 func toggle_map():
 	if Input.is_action_just_released("toggle_map"):
 		ui.toggle_map()
+
+func toggle_codex():
+	if Input.is_action_just_released("toggle_codex"):
+		ui.toggle_codex()
 		
 func toggle_inventory():
 	if Input.is_action_just_released("toggle_inventory"):

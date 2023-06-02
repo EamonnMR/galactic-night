@@ -56,4 +56,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Build"
 
+[node name="CodexButton" type="Button" parent="HBoxContainer/Details/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Details"
+
 [connection signal="pressed" from="HBoxContainer/Details/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Details/HBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]

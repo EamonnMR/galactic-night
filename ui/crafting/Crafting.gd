@@ -73,6 +73,8 @@ func _update_blueprint_selection():
 	%Ingredients.assign(current_blueprint.ingredients)
 
 	%BuildButton.disabled = not _can_craft(current_blueprint)
+	
+	%CodexButton.visible = _has_codex_path(current_blueprint)
 		
 func _get_product_name(_blueprint):
 	# Get the name representing the blueprint
@@ -101,3 +103,12 @@ func _on_build_button_pressed():
 
 func _do_craft():
 	pass
+	
+func _get_codex_path(current_blueprint):
+	return ""
+	
+func _has_codex_path(current_blueprint):
+	return false
+
+func _on_codex_button_pressed():
+	Client.get_ui().toggle_codex(_get_codex_path(current_blueprint))

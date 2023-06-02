@@ -149,6 +149,7 @@ offset_bottom = 377.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
 [node name="Codex" parent="." instance=ExtResource("18_6eupn")]
+z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -196,3 +197,4 @@ text = "close"
 [connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]
 [connection signal="button_clicked" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_button_clicked"]
 [connection signal="cell_selected" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_cell_selected"]
+[connection signal="pressed" from="Codex/VBoxContainer/CloseButton" to="Codex" method="_on_close_button_pressed"]

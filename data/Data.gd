@@ -33,9 +33,9 @@ func _init():
 		[BiomeData, "biomes"],
 		[FactionData, "factions"],
 		[SkinData, "skins"],
-		[ShipData, "ships"],
 		[SpobData, "spob_types"],
-		[WeaponData, "weapons"]
+		[WeaponData, "weapons"],
+		[ShipData, "ships"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
@@ -59,6 +59,22 @@ func _init():
 
 func load_codex():
 	codex = load_directory("res://data/codex")
+
+func has_codex_entry(path: String):
+	var tree = codex
+	for i in path.split("/"):
+		if i in tree:
+			tree = tree[i]
+		else:
+			return false
+	return true
+	
+func codex_by_path(path: String):
+	var tree = codex
+	for i in path.split("/"):
+		tree = tree[i]
+	return tree
+
 
 func load_directory(path: String) -> Dictionary:
 	var directory = {}

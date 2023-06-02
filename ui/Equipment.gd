@@ -40,7 +40,7 @@ func rebuild():
 			
 			if equipment_slots[slot]:
 				var item = equipment_slots[slot]
-				var icon: ItemIcon = ItemIcon.instantiate()
+				var icon: ItemIcon = preload("res://ui/ItemIcon.tscn").instantiate()
 				icon.init(item)
 				box.attach_item_icon(icon)
 			destination.add_child(box)

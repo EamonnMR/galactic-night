@@ -12,8 +12,7 @@ func assign(ingredients: Dictionary):
 		
 		ingredient_icon.init_fake(ingredient_type, ingredient_quantity)
 		
-		ingredient_icon_box.add_child(ingredient_icon)
-
+		ingredient_icon_box.attach_item_icon(ingredient_icon)
 		ingredient_icon_box.mode = \
 			EquipBox.FRAME_MODE.SUFFICIENT if \
 			player_inventory.has_ingredients({ingredient_type: ingredient_quantity}) else \
