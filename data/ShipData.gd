@@ -23,9 +23,10 @@ var icon: Texture2D
 var desc: String
 var require_level: int
 var inherent_faction_id: int
+var make: String
 
 func derive_codex_path():
-	return "ships/" + Data.factions[str(inherent_faction_id)].name + "/" + id
+	return "ships/" + make + "/" + id
 
 func _init(data):
 	super._init(data)

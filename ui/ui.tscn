@@ -149,6 +149,7 @@ offset_bottom = 377.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
 [node name="Codex" parent="." instance=ExtResource("18_6eupn")]
+visible = false
 z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
