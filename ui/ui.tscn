@@ -198,4 +198,5 @@ text = "close"
 [connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]
 [connection signal="button_clicked" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_button_clicked"]
 [connection signal="cell_selected" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_cell_selected"]
+[connection signal="meta_clicked" from="Codex/VBoxContainer/HBoxContainer/Text" to="Codex" method="_on_text_link_clicked"]
 [connection signal="pressed" from="Codex/VBoxContainer/CloseButton" to="Codex" method="_on_close_button_pressed"]

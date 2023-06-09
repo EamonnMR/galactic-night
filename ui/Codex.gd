@@ -1,7 +1,5 @@
 extends NinePatchRect
 
-var entry: String = ""
-
 var index: Dictionary = {}
 
 func fill_out_directory(node: TreeItem, source_node: Dictionary, path: Array):
@@ -28,7 +26,6 @@ func select_entry_by_path(entry_path: String):
 	_select_entry(entry_path)
 
 func _select_entry(path: String):
-	self.entry = entry
 	%Text.text = Data.codex_by_path(path)
 
 #func _on_tree_button_clicked(item, column, id, mouse_button_index):
@@ -44,3 +41,9 @@ func _on_tree_cell_selected():
 
 func _on_close_button_pressed():
 	get_node("../").toggle_codex()
+
+
+func _on_text_link_clicked(meta: String):
+	if Data.has_codex_entry(meta):
+		# TODO: Also check if unlocked
+		_select_entry(meta)
