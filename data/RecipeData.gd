@@ -14,3 +14,6 @@ func _init(data: Dictionary):
 	
 static func get_csv_path():
 	return "res://data/recipes.csv"
+
+func derive_codex_path():
+	return Data.items[prod_item].derive_codex_path()

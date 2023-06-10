@@ -24,6 +24,7 @@ var consumable_effect: String
 var consumable_magnitude: int
 var commodity: bool
 var price: int
+var codex: String
 
 func price_at(factor: CommodityPrice) -> int:
 	return price * {
@@ -39,3 +40,7 @@ func _init(data):
 
 static func get_csv_path():
 	return "res://data/items.csv"
+
+func derive_codex_path():
+	# TODO: Maybe some sort of automatic organization
+	return codex
