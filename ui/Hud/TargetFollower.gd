@@ -15,7 +15,7 @@ func _ready():
 			Client.exited_system.connect(_on_target_ship_exited)
 	)
 
-func _process(delta):
+func _process(_delta):
 	if target_ship:
 		position = Client.camera.unproject_position(target_ship.global_position)
 

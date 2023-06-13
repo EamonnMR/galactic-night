@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://jp0r11cthf4q"]
+[gd_scene load_steps=3 format=3 uid="uid://jp0r11cthf4q"]
 
 [ext_resource type="Script" path="res://ui/crafting/Crafting.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cje5gph3njtsq" path="res://ui/IngredientsDisplay.tscn" id="2_gk6v7"]
 
 [node name="Craft" type="Control"]
 process_mode = 2
@@ -30,27 +31,35 @@ layout_mode = 2
 [node name="Recipes" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="Details" type="Control" parent="HBoxContainer"]
+[node name="Details" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 
 [node name="Name" type="Label" parent="HBoxContainer/Details"]
-layout_mode = 0
-offset_right = 85.0
-offset_bottom = 14.0
+layout_mode = 2
 text = "Recipe Name"
 
 [node name="Description" type="Label" parent="HBoxContainer/Details"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 21.0
-offset_right = 192.0
-offset_bottom = 121.0
+layout_mode = 2
 text = "Item Description"
 autowrap_mode = 2
 
-[node name="Ingredients" type="HBoxContainer" parent="HBoxContainer/Details"]
-layout_mode = 0
-offset_left = 0.561218
-offset_top = 182.4
-offset_right = 206.561
-offset_bottom = 222.4
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Details"]
+layout_mode = 2
+
+[node name="Ingredients" parent="HBoxContainer/Details/HBoxContainer" instance=ExtResource("2_gk6v7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BuildButton" type="Button" parent="HBoxContainer/Details/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Build"
+
+[node name="CodexButton" type="Button" parent="HBoxContainer/Details/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Details"
+
+[connection signal="pressed" from="HBoxContainer/Details/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Details/HBoxContainer/CodexButton" to="." method="_on_codex_button_pressed"]

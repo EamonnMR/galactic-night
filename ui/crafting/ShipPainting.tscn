@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq54d840by4hx"]
+
+[ext_resource type="PackedScene" uid="uid://jp0r11cthf4q" path="res://ui/crafting/CraftSubmenut.tscn" id="1_7yrut"]
+[ext_resource type="Script" path="res://ui/crafting/ShipCrafting.gd" id="2_xlmwo"]
+
+[node name="Skins" instance=ExtResource("1_7yrut")]
+script = ExtResource("2_xlmwo")
+
+[node name="Recipes" parent="HBoxContainer/ScrollContainer" index="0"]
+custom_minimum_size = Vector2(40, 100)

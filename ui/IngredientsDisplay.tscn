@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cje5gph3njtsq"]
+
+[ext_resource type="Script" path="res://ui/IngredientsDisplay.gd" id="1_u3r0f"]
+
+[node name="Ingredients" type="HBoxContainer"]
+offset_right = 206.0
+offset_bottom = 40.0
+script = ExtResource("1_u3r0f")

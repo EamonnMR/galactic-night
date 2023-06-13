@@ -10,9 +10,15 @@ func _get_product_description(blueprint):
 	return blueprint.desc
 
 func _get_product_name(blueprint):
-	return blueprint.type_name
+	return blueprint.name
 
 func _do_craft():
-	var new_ship = current_blueprint.scene.instantiate()
-	new_ship.type = current_blueprint.id
-	Client.replace_player_ship(new_ship)
+	Client.switch_ship(current_blueprint.id)
+
+func _get_codex_path(current_blueprint):
+	return current_blueprint.derive_codex_path()
+	
+func _has_codex_path(current_blueprint):
+	var path = _get_codex_path(current_blueprint)
+	var has_entry = Data.has_codex_entry(_get_codex_path(current_blueprint))
+	return has_entry

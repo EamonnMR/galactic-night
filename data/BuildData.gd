@@ -17,3 +17,6 @@ func _init(data: Dictionary):
 
 static func get_csv_path():
 	return "res://data/build.csv"
+
+func derive_codex_path():
+	return "stations/" + id

@@ -1,7 +1,7 @@
 extends DataRow
 
 class_name ShipData
-
+var id: String
 var name: String
 var subtitle: String
 var max_speed: float
@@ -18,10 +18,20 @@ var shields: int
 var shield_regen: float
 var shield_regen_delay: float
 var standoff: bool
+var ingredients: Dictionary
+var icon: Texture2D
+var desc: String
+var require_level: int
+var inherent_faction_id: int
+var make: String
+
+func derive_codex_path():
+	return "ships/" + make + "/" + id
 
 func _init(data):
 	super._init(data)
 	weapon_config = parse_colon_dict_string_values(data["weapon_config"])
+	ingredients = parse_colon_dict_int_values(data["ingredients"])
 
 func apply_to_node(node):
 	super.apply_to_node(node)

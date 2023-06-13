@@ -117,6 +117,10 @@ func switch_ship(new_type: String):
 	parent.remove_child(old_ship)
 	parent.add_child(player)
 	
+func switch_skin(new_skin):
+	player.skin = new_skin
+	player.get_node("Graphics").set_skin_data(Data.skins[new_skin])
+	
 func current_biome() -> BiomeData:
 	if current_system in Procgen.systems:
 		return Data.biomes[Procgen.systems[current_system].biome]

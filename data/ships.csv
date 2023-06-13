@@ -1,8 +1,8 @@
-id,name,subtitle,max_speed,accel,turn,max_bank,bank_speed,armor,shields,shield_regen,shield_regen_delay,engagement_range,standoff,scene,screen_box_side_length,weapon_config
-nimbus,Nimbus,Vintage Fighter,5,0.03,1,15,2.5,20,10,2,5,4,FALSE,res://entities/ship/ship_types/Nimbus.tscn,100,LeftGun: plasma;  RightGun: plasma
-burner,Burner,Minimalism,8,0.06,1,20,3,10,5,2,8,4,FALSE,res://entities/ship/ship_types/Burner.tscn,100,LeftGun: plasma
-dragon,Dragon,Light Gunship,4,0.02,0.8,15,1,32,20,2,4,7,TRUE,res://entities/ship/ship_types/Dragon.tscn,200,LeftGun: plasma; RightGun: plasma
-delivery,Delivery,On Schedule,3,0.05,1,15,1,12,10,2,6,5,FALSE,res://entities/ship/ship_types/Delivery.tscn,150,LeftGun: plasma
-cargo,Heighliner,Bulk Cargo,3,0.02,0.5,5,0.5,44,20,2,5,2,TRUE,res://entities/ship/ship_types/Cargo.tscn,200,LeftGun: plasma
-melchior,Melchior,Self Driving,3,0.4,0.5,10,0.5,64,64,1,4,6,TRUE,res://entities/ship/ship_types/Melchior.tscn,200,LeftFrontGun: plasma; RightFrontGun: plasma
-aerospace,Aerospace,Dropship,4,0.025,0.8,17,2.2,30,20,2,5,3,TRUE,res://entities/ship/ship_types/Aerospace.tscn,100,LeftGun: plasma;  RightGun: plasma
+id,name,subtitle,make,max_speed,accel,turn,max_bank,bank_speed,armor,shields,shield_regen,shield_regen_delay,engagement_range,standoff,scene,screen_box_side_length,weapon_config,require_level,ingredients,scrap_value,inherent_faction_id,icon,desc
+nimbus,Nimbus,Vintage Fighter,MIC,5,0.03,1,15,2.5,20,10,2,5,4,FALSE,res://entities/ship/ship_types/Nimbus.tscn,100,LeftGun: plasma;  RightGun: plasma,0,metal: 6,,7,res://assets/eamonn/icons/neutral.png,This lostech space fighter might as well be from another world. -- Syd
+burner,Burner,Minimalism,Perth Starworks,8,0.06,1,20,3,10,5,2,8,4,FALSE,res://entities/ship/ship_types/Burner.tscn,100,LeftGun: plasma,0,metal: 5,,4,res://assets/eamonn/icons/burner.png,"It’s fast. Ok, there, I listed all the good qualities. --Krish"
+dragon,Dragon,Light Gunship,iLisk,4,0.02,0.8,15,1,32,20,2,4,7,TRUE,res://entities/ship/ship_types/Dragon.tscn,200,LeftGun: plasma; RightGun: plasma,2,metal: 4,,3,res://assets/eamonn/icons/dragon.png,A contrarian gunship design if there ever was one. --Krish
+delivery,Delivery,On Schedule,Autofac Starships Division,3,0.05,1,15,1,12,10,2,6,5,FALSE,res://entities/ship/ship_types/Delivery.tscn,150,LeftGun: plasma,0,metal: 3,,5,res://assets/eamonn/icons/delivery.png,"Designed to make cargo runs, but mostly seen on the prowl –No 7"
+cargo,Heighliner,Bulk Cargo,Avon Aviation,3,0.02,0.5,5,0.5,44,20,2,5,2,TRUE,res://entities/ship/ship_types/Cargo.tscn,200,LeftGun: plasma,0,metal: 2,,2,res://assets/eamonn/icons/heighliner.png,"Big cargo capacity and, well, big cargo capacity. --Krish"
+melchior,Melchior,Self Driving,Twilight,3,0.4,0.5,10,0.5,64,64,1,4,6,TRUE,res://entities/ship/ship_types/Melchior.tscn,200,LeftFrontGun: plasma; RightFrontGun: plasma,0,metal: 1,,6,res://assets/eamonn/icons/melchior.png,I’m truly impressed by this design. It’s got Urizen’s hands all over it. --Syd
+aerospace,Aerospace,Dropship,MIC,4,0.025,0.8,17,2.2,30,20,2,5,3,TRUE,res://entities/ship/ship_types/Aerospace.tscn,100,LeftGun: plasma;  RightGun: plasma,0,metal: 7,,7,res://assets/eamonn/icons/gifts_ungiven.png,"Perfect for troop transport under fire in atmo. Out here in space, well, it’s airtight. --Syd"

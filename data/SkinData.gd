@@ -3,7 +3,17 @@ extends DataRow
 class_name SkinData
 
 var id: String
+# Item info
+
+
 var name: String
+var ingredients: Dictionary
+var icon: Texture2D
+var desc: String
+var require_level: int
+
+
+# The actial skin
 var paint_hue: float
 var paint_saturation: float
 var paint_brightness: float
@@ -14,6 +24,9 @@ var lights_brightness: float
 var weapon_hue: float
 var weapon_saturation: float
 
+func _init(data):
+	super._init(data)
+	ingredients = parse_colon_dict_int_values(data["ingredients"])
 
 static func get_csv_path():
 	return "res://data/skins.csv"

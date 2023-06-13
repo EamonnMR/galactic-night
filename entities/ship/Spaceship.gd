@@ -5,6 +5,8 @@ class_name Spaceship
 var faction
 var type: String
 
+var skin: String
+
 var max_speed = 100
 var accel = 0.01
 var turn = 1
@@ -41,6 +43,8 @@ func _ready():
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
 		Client.ui_inventory.assign($Inventory, "Your inventory")
 		add_child(preload("res://component/InteractionRange.tscn").instantiate())
+		if skin != "":
+			$Graphics.set_skin_data(Data.skins[skin])
 	else:
 		input_event.connect(_on_input_event_npc)
 		add_to_group("faction-" + faction)
@@ -68,7 +72,7 @@ func _physics_process(delta):
 	else:
 		decrease_bank(delta)
 	
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	set_velocity(Util.raise_25d(linear_velocity))
 	move_and_slide()
 	handle_shooting()
@@ -143,6 +147,7 @@ func _on_input_event_npc(_camera, event, _click_position, _camera_normal, _shape
 func serialize_player():
 	return {
 		"type": type,
+		"skin": skin,
 		"health": $Health.serialize(),
 		"equipment": $Equipment.serialize(),
 		"inventory": $Inventory.serialize()
@@ -150,6 +155,7 @@ func serialize_player():
 
 func deserialize_player(data: Dictionary):
 	type = data.type
+	skin = data.skin
 	$Health.deserialize(data.health)
 	$Equipment.deserialize(data.equipment)
 	$Inventory.deserialize(data.inventory)

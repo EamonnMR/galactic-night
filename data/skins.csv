@@ -1,11 +1,11 @@
-id,name,paint_hue,paint_saturation,paint_brightness,base_brightness,lights_hue,lights_saturation,lights_brightness,weapon_hue,weapon_saturation
-0,Lothar,0,1,0,0,0.635,1.24,0.24,0.61,1.74
-1,McGowen,0,0,-0.46,-0.12,0.005,1.24,0.24,0.46,1.74
-2,Neutral,0,0,0.21,0.21,0.685,1.18,0.24,0.24,1
-3,Gifts Ungiven,0.35,1.12,0,0,1,0.96,0.64,0.67,0.4
-4,Invader,0,0,-0.4,0.5,0.365,1.74,1,0.365,1
-5,Defender,0.63,1.3,1.1,0.5,0.075,1.74,1,0.075,0.6
-6,Renegade,0,0,-0.4,-0.41,0.155,1.74,1,0,1.74
-7,Lilly,0.6,1,0.4,0.5,0.9,1,1,0.9,1
-8,Cadet,0.65,1,0.54,0.5,0.23,1,1,0.23,1
-9,Anchor,0.71,1,0.04,-0.12,0.32,1,1,0.075,1.74
+id,name,paint_hue,paint_saturation,paint_brightness,base_brightness,lights_hue,lights_saturation,lights_brightness,weapon_hue,weapon_saturation,ingredients,icon,require_level,desc
+0,Lothar,0,1,0,0,0.635,1.24,0.24,0.61,1.74,metal: 1,res://assets/eamonn/icons/dragon.png,0,Meant to evoke the colors of civilizations long past.
+1,McGowen,0,0,-0.46,-0.12,0.005,1.24,0.24,0.46,1.74,metal: 1,res://assets/eamonn/icons/mcgowan.png,0,Might as well paint skulls on your hull at this point.
+2,Neutral,0,0,0.21,0.21,0.685,1.18,0.24,0.24,1,metal: 1,res://assets/eamonn/icons/neutral.png,0,Show your commitment to nothing in particular.
+3,Gifts Ungiven,0.35,1.12,0,0,1,0.96,0.64,0.67,0.4,metal: 1,res://assets/eamonn/icons/gifts_ungiven.png,0,Honor a fleet that never launched into space.
+4,Invader,0,0,-0.4,0.5,0.365,1.74,1,0.365,1,metal: 1,res://assets/eamonn/icons/invader.png,0,Challenge your opponents with this bold retro scheme.
+5,Defender,0.63,1.3,1.1,0.5,0.075,1.74,1,0.075,0.6,metal: 1,res://assets/eamonn/icons/melchior.png,0,Boldly stand out. No awards for stealth.
+6,Renegade,0,0,-0.4,-0.41,0.155,1.74,1,0,1.74,metal: 1,res://assets/eamonn/icons/renegade.png,0,"You can have any color you want, as long as it’s black."
+7,Lilly,0.6,1,0.4,0.5,0.9,1,1,0.9,1,metal: 1,res://assets/eamonn/icons/lilly.png,0,Show you fearlessness in the face of adversity.
+8,Cadet,0.65,1,0.54,0.5,0.23,1,1,0.23,1,metal: 1,res://assets/eamonn/icons/cadet.png,0,A classic scheme for classic spacers.
+9,Anchor,0.71,1,0.04,-0.12,0.32,1,1,0.075,1.74,metal: 1,res://assets/eamonn/icons/anchor.png,0,A reminder that the real challenge was always empathy.

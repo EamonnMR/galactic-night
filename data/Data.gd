@@ -14,12 +14,17 @@ var evergreen_artificial_spawns = []
 var ships = {}
 var spob_types = {}
 
+var codex = {}
+
 # Game constants:
 const PLAY_AREA_RADIUS = 3000
 # const JUMP_RADIUS = 2000
 var name_generators = {}
 
 func _init():
+	# We should merge: 
+	# https://github.com/godotengine/godot/compare/master...V-Sekai:godot:cmark
+
 	for class_and_dest in [
 		[ItemData, "items"],
 		[RecipeData, "recipes"],
@@ -28,14 +33,17 @@ func _init():
 		[BiomeData, "biomes"],
 		[FactionData, "factions"],
 		[SkinData, "skins"],
-		[ShipData, "ships"],
 		[SpobData, "spob_types"],
-		[WeaponData, "weapons"]
+		[WeaponData, "weapons"],
+		[ShipData, "ships"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
 	load_text()
+	
+	load_codex()
+
 	cache_evergreen_spawns()
 	cache_evergreen_preset_spawns()
 	# Tests
@@ -47,6 +55,43 @@ func _init():
 	verify_destination_field()
 	identify_farming_opportunities()
 	verify_spawns_have_scene_or_type()
+
+
+func load_codex():
+	codex = load_directory("res://data/codex")
+
+func has_codex_entry(path: String):
+	var tree = codex
+	for i in path.split("/"):
+		if i in tree:
+			tree = tree[i]
+		else:
+			return false
+	return true
+	
+func codex_by_path(path: String):
+	var tree = codex
+	for i in path.split("/"):
+		tree = tree[i]
+	return tree
+
+
+func load_directory(path: String) -> Dictionary:
+	var directory = {}
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				directory[file_name] = load_directory(path + "/" + file_name)
+			else:
+				if file_name.ends_with(".bbcode"):
+					directory[file_name.replace(".bbcode", "")] = "\n".join(load_lines(path + "/" + file_name))
+			file_name = dir.get_next()
+		return directory
+	else:
+		return {}
 
 func load_text():
 	print("Crunching markov chains")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnhcptx0uusnx"]
+
+[ext_resource type="PackedScene" uid="uid://ecaqh0syukcx" path="res://ui/crafting/ItemCraftSubmenu.tscn" id="1_kqmob"]
+[ext_resource type="Script" path="res://ui/crafting/Skins.gd" id="2_ppwde"]
+
+[node name="Skins" instance=ExtResource("1_kqmob")]
+script = ExtResource("2_ppwde")
+
+[node name="HBoxContainer" parent="." index="0"]
+custom_minimum_size = Vector2(40, 200)
+
+[node name="ScrollContainer" parent="HBoxContainer" index="0"]
+custom_minimum_size = Vector2(40, 60)

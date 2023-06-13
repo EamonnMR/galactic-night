@@ -21,3 +21,11 @@ func _do_craft():
 	).add_child(
 		constructed
 	)
+
+func _get_codex_path(current_blueprint):
+	return current_blueprint.derive_codex_path()
+	
+func _has_codex_path(current_blueprint):
+	var path = _get_codex_path(current_blueprint)
+	var has_entry = Data.has_codex_entry(_get_codex_path(current_blueprint))
+	return has_entry

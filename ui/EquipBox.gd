@@ -5,7 +5,18 @@ class_name EquipBox
 signal item_removed
 signal item_added(item)
 
+@export var disabled: bool = false
+
 @export var category: Equipment.CATEGORY = Equipment.CATEGORY.ANY
+
+enum FRAME_MODE {
+	NORMAL,
+	SUFFICIENT,
+	INSUFFICIENT,
+}
+
+@export var mode: FRAME_MODE = FRAME_MODE.NORMAL
+
 
 const icons = {
 	Equipment.CATEGORY.ANY: null,
@@ -18,7 +29,6 @@ const icons = {
 }
 
 func _ready():
-	
 	$TextureRect.texture = icons[category]
 	
 	if(has_node("ItemIcon")):
@@ -26,10 +36,20 @@ func _ready():
 	match category:
 		Equipment.CATEGORY.WEAPON:
 			$TextureRect.tooltip_text = "Weapon slot - Drop a weapon item to equip a weapon"
+	
+	match mode:
+		FRAME_MODE.NORMAL:
+			modulate = Color(1, 1, 1)
+		FRAME_MODE.SUFFICIENT:
+			modulate = Color(0.5, 1.2, 0.5)
+			$ItemIcon.modulate = Color(1.6,0.6,1.6)
+		FRAME_MODE.INSUFFICIENT:
+			modulate = Color(1.2, 0.5, 0.5)
+			$ItemIcon.modulate = Color(0.6,1.6,1.6)
 
 func _can_drop_data(_pos, data):
-	print(category)
-	print(has_node("ItemIcon"))
+	if disabled:
+		return false
 	if has_node("ItemIcon"):
 		return (data["dragged_item"].item.type == $ItemIcon.item.type) and (Data.items[$ItemIcon.item.type].stackable)
 	else:
@@ -43,6 +63,7 @@ func _drop_data(_pos, data):
 
 func attach_item_icon(item_icon):
 	add_child(item_icon)
+	item_icon.name = "ItemIcon"
 	$TextureRect.hide()
 
 func remove_item_icon(item_icon):
