@@ -28,6 +28,8 @@ var STARTING_MONEY = 10
 var money = STARTING_MONEY
 var player_name: String = "Shannon Merrol"
 
+var typing: bool = false
+
 func has_money(price):
 	return money >= price
 	

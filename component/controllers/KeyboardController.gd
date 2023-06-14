@@ -14,10 +14,15 @@ func get_rotation_impulse() -> int:
 
 func _physics_process(delta):
 	
-	toggle_pause()
+	
+	if not Client.typing:
+		toggle_pause()
 	
 	if warp_autopilot:
 		process_warping_out(delta)
+		return
+		
+	if Client.typing:
 		return
 	
 	thrusting = Input.is_action_pressed("thrust")
@@ -25,7 +30,6 @@ func _physics_process(delta):
 	shooting = Input.is_action_pressed("shoot")
 	shooting_secondary = Input.is_action_pressed("shoot_secondary")
 	rotation_impulse = get_rotation_impulse() * delta * parent.turn
-	
 	toggle_map()
 	toggle_inventory()
 	toggle_codex()
