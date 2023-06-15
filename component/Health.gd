@@ -4,6 +4,7 @@ class_name Health
 
 var already_destroyed: bool = false
 var shield_regen_cooldown: bool = false
+var invulnerable: bool = false
 
 signal damaged(source)
 signal healed
@@ -48,6 +49,9 @@ func can_heal():
 	return health < max_health
 
 func take_damage(damage, source):
+	
+	if invulnerable:
+		return
 	
 	reset_shield_regen()
 	
