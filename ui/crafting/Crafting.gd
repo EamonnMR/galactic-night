@@ -40,7 +40,7 @@ func unassign():
 func build_blueprint_list():
 	for blueprint_id in _blueprints():
 		var blueprint = _blueprints()[blueprint_id]
-		if blueprint.require_level <= crafting_level:
+		if (blueprint.require_level <= crafting_level) or Cheats.max_craft_level:
 			var icon = _get_icon_node(blueprint)
 			icon.pressed.connect(
 				func _blueprint_selected():

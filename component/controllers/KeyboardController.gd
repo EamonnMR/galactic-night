@@ -42,7 +42,6 @@ func _physics_process(delta):
 
 func _ready():
 	Client.set_player(parent)
-	# toggle_map_hack_what_happened_to_visibility()
 
 func toggle_map():
 	if Input.is_action_just_released("toggle_map"):

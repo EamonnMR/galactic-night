@@ -53,3 +53,4 @@ func attempt_cheat(input):
 				set(cheat.set_var, not get(cheat.set_var))
 			if "callback" in cheat:
 				cheat.callback.call(args)
+	Client.display_message("Cheat Enabled")
