@@ -4,19 +4,23 @@ var explore_all = false
 
 var CHEATS = [
 	{
-		"hash": "f966dcaf2dc376dbe2ff24e6d584b694",
+		"hash": "d10ba5f768ac9db04b8419a2590bce54",
 		"callback": explore_all_now
 	},
 	{
-		"hash": "ec87b985b46059efd0ffeb6cd4e515de",
+		"hash": "eba4a7a2f23a106e01e1380deac5190d",
 		"callback": free_resources
+	},
+	{
+		"hash": "8f1120f13067fb18ca2ee5bf7b57f9b8",
+		"set_var": "max_craft_level"
 	}
 ]
 
 func explore_all_now(args):
 	explore_all = true
 	for i in Procgen.systems:
-		
+		Client.get_ui().get_node("Map").update_for_explore(i)
 
 func free_resources(args):
 	var type = args[0]
@@ -48,4 +52,4 @@ func attempt_cheat(input):
 			if "set_var" in cheat:
 				set(cheat.set_var, not get(cheat.set_var))
 			if "callback" in cheat:
-				cheat.callback(args)
+				cheat.callback.call(args)

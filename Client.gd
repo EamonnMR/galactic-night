@@ -81,6 +81,8 @@ func valid_jump_destination_selected():
 func change_system():
 	var old_system = current_system
 	current_system = selected_system
+	get_ui().get_node("Map").update_for_explore(current_system)
+	Procgen.systems[current_system].explored = true
 	sel_sys(null, null)
 	exited_system.emit()
 	get_main().change_system(old_system, current_system)
