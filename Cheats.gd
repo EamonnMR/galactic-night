@@ -1,6 +1,7 @@
 extends Node
 
 var explore_all = false
+var max_craft_level = false
 
 var CHEATS = [
 	{
@@ -28,7 +29,7 @@ func free_resources(args):
 	if not (type in Data.items):
 		Client.display_message("Unknown item type: " + type)
 		return
-	Client.player.get_node("Inventory").add(args[0], args[1])
+	Client.player.get_node("Inventory").add(type, amount)
 
 func hash_code(code):
 	var ctx = HashingContext.new()
@@ -44,9 +45,8 @@ func attempt_cheat(input):
 	
 	var split = input.split(":")
 	var code = split[0].to_lower()
-	var args = split[1].split(" ") if split.size() > 1 else []
+	var args = split[1].trim_prefix(" ").split(" ") if split.size() > 1 else []
 	var hash = hash_code(code)
-	
 	for cheat in CHEATS:
 		if cheat.hash == hash:
 			if "set_var" in cheat:

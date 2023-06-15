@@ -13,8 +13,6 @@ func get_rotation_impulse() -> int:
 	return dc
 
 func _physics_process(delta):
-	
-	
 	if not Client.typing:
 		toggle_pause()
 	
@@ -39,6 +37,7 @@ func _physics_process(delta):
 	cycle_targets()
 	interact()
 	hyperspace()
+	handle_cheat_modal()
 	
 
 func _ready():
@@ -112,3 +111,9 @@ func toggle_fire_mode():
 	if Input.is_action_just_pressed("toggle_chain_fire"):
 		parent.chain_fire_mode = not parent.chain_fire_mode
 		Client.display_message("Fire Mode: " + ("chain fire" if parent.chain_fire_mode else "syncro"))
+
+func handle_cheat_modal():
+	if Input.is_action_just_pressed("open_cheat_dialogue"):
+		var dialogue = Client.get_ui().get_node("CheatInput")
+		if not dialogue.visible:
+			Client.get_ui().get_node("CheatInput").show()
