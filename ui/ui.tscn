@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cw2nt0g5sx0tb"]
+[gd_scene load_steps=23 format=3 uid="uid://cw2nt0g5sx0tb"]
 
 [ext_resource type="Script" path="res://ui/Ui.gd" id="1_twatu"]
 [ext_resource type="PackedScene" uid="uid://dqqjk32pvym87" path="res://ui/Money.tscn" id="2_4wpjj"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c1cjcpk0fqkan" path="res://ui/Hud/galaxy_nav_indicator.tscn" id="17_wqcqy"]
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="18_6eupn"]
 [ext_resource type="Script" path="res://ui/Codex.gd" id="19_aythd"]
+[ext_resource type="PackedScene" uid="uid://bff3c2g6wfevf" path="res://ui/CheatInput.tscn" id="20_l3b1l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tkka7"]
 font = ExtResource("15_lbbmr")
@@ -194,6 +195,18 @@ bbcode_enabled = true
 [node name="CloseButton" type="Button" parent="Codex/VBoxContainer"]
 layout_mode = 2
 text = "close"
+
+[node name="CheatInput" parent="." instance=ExtResource("20_l3b1l")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = -117.0
+offset_right = 116.0
+offset_bottom = -86.0
+grow_vertical = 0
 
 [connection signal="timeout" from="MessageBox/Timer" to="MessageBox" method="_on_timer_timeout"]
 [connection signal="button_clicked" from="Codex/VBoxContainer/HBoxContainer/Tree" to="Codex" method="_on_tree_button_clicked"]

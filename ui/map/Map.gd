@@ -51,7 +51,7 @@ func _generate_map_nodes():
 		movement.add_child(circle)
 	
 	for i in Procgen.systems:
-		if Procgen.systems[i].explored:
+		if Procgen.systems[i].explored or Cheats.explore_all:
 			update_for_explore(i)
 	
 	_set_initial_center()
