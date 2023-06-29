@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6y6bvt56q4k"
-path.s3tc="res://.godot/imported/1024x1024 Blue Nebula 1.png-899fe6d45f6aca3158370031aff5bad3.s3tc.ctex"
+uid="uid://ckigg26rrntrq"
+path="res://.godot/imported/1024x1024 Starfield 2.png-2e4679edf91a7bd5a8dba32a8b51a8a7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png"
-dest_files=["res://.godot/imported/1024x1024 Blue Nebula 1.png-899fe6d45f6aca3158370031aff5bad3.s3tc.ctex"]
+source_file="res://assets/ScreamingBrain/soft_neb/Starfields/1024x1024 Starfield 2.png"
+dest_files=["res://.godot/imported/1024x1024 Starfield 2.png-2e4679edf91a7bd5a8dba32a8b51a8a7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

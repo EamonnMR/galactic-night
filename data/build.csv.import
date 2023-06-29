@@ -1,17 +1,3 @@
 [remap]
 
-importer="csv_translation"
-type="Translation"
-uid="uid://b3mbf5qnq6le6"
-
-[deps]
-
-files=["res://data/build.name.translation", "res://data/build.scene.translation", "res://data/build.destination.translation", "res://data/build.require.translation", "res://data/build.ingredients.translation", "res://data/build.icon.translation", "res://data/build.text.translation"]
-
-source_file="res://data/build.csv"
-dest_files=["res://data/build.name.translation", "res://data/build.scene.translation", "res://data/build.destination.translation", "res://data/build.require.translation", "res://data/build.ingredients.translation", "res://data/build.icon.translation", "res://data/build.text.translation"]
-
-[params]
-
-compress=true
-delimiter=0
+importer="keep"
