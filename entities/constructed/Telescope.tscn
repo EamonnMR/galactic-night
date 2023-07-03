@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqs1r037coy0s"]
+
+[ext_resource type="Script" path="res://entities/constructed/Telescope.gd" id="1_ph3uk"]
+[ext_resource type="ArrayMesh" uid="uid://c1hqfo5t58fcw" path="res://assets/eamonn/telescope/new_array_mesh.tres" id="2_llmna"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2xwsw"]
+points = PackedVector3Array(-0.152969, -1.89642, 0.911948, -0.152969, -1.89642, -0.911948, 0.328387, -1.59588, -3.24876, 0.430019, 3.88557, -0.405777, 1.02237, -1.86742, 0.0898892, -0.483418, 2.15938, 3.04524, -0.483418, 2.15938, -3.04524, -0.866209, -1.84885, -0.179107, 0.632866, 0.536354, 3.24876, 0.632866, 0.536354, -3.24876, 0.328387, -1.59588, 3.24876, 0.574297, 3.5659, 0.363189, -0.576639, 2.14336, -0.173665, -0.4059, 0.141025, 2.62237, -0.4059, 0.141025, -2.62237, 0.6, -1.45243, -3.05742, -0.866209, -1.84885, 0.179107, 0.6, -1.45243, 3.05742, -0.178731, 2.15938, 3.04524, -0.178731, 2.15938, -3.04524, 0.430019, 3.88557, 0.405777, 0.574297, 3.5659, -0.363189, 1.02237, -1.86742, -0.0898892, -0.576639, 2.14336, 0.173665, 0.328387, 0.536354, -3.24876, 0.328387, 0.536354, 3.24876, -0.604484, -1.87859, 0.724918, -0.604484, -1.87859, -0.724918, 0.745756, -1.84431, 0.715775, 0.745756, -1.84431, -0.715775)
+
+[node name="Telescope" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_ph3uk")
+
+[node name="Station" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.463932, 0.0893515, 0.163657, -0.150227, 0.43907, 0.186142, -0.11045, -0.221886, 0.434243, 4, -6, -4)
+mesh = ExtResource("2_llmna")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.463932, 0.0893515, 0.163657, -0.150227, 0.43907, 0.186142, -0.11045, -0.221886, 0.434243, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2xwsw")
