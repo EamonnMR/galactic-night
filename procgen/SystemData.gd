@@ -13,6 +13,7 @@ var starlight_color: Color
 var faction: String
 var core: bool
 var generation: int
+var longjump_enabled: bool
 var entities: Dictionary
 
 var distance: float
@@ -41,6 +42,7 @@ func deserialize(data: Dictionary):
 	generation = int(data["generation"])
 	core = data["core"]
 	entities = data["entities"]
+	longjump_enabled = data["longjump_enabled"]
 
 func deserialize_entities():
 	for destination_str in entities:

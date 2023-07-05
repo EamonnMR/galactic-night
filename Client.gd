@@ -87,7 +87,11 @@ func valid_jump_destination_selected():
 	if selected_system in current_system_dat.links_cache:
 		return true
 		
-	if Client.longjump_enabled() and selected_system in current_system_dat.long_links_cache:
+	if (Cheats.longjump_enabled or (
+		current_system_dat.longjump_enabled
+		or
+		Procgen.systems[selected_system].longjump_enabled
+	)) and selected_system in current_system_dat.long_links_cache:
 		return true
 	
 	return false

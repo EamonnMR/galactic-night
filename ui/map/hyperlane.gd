@@ -21,7 +21,7 @@ func color():
 		TYPE.NORMAL:
 			return Color(0.7, 0.7, 0.7)
 		TYPE.LONG:
-			return Color(0.3, 0.15, 0.15)
+			return Color(0.8, 0.7, 0.7)
 		TYPE.WARPGATE:
 			return Color(0.7, 0.7, 1.0)
 
