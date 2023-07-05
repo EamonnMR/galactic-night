@@ -38,8 +38,10 @@ func _generate_map_nodes():
 	for i in Procgen.longjumps:
 		var long_lane = lane_class.instantiate()
 		long_lane.data = i
-		# Note that we omit adding it to the scene.
-		# TODO: Make a different sometimes-shown class for longjumps.
+		long_lane.type = Hyperlane.TYPE.LONG
+		if not (Cheats.explore_all and Cheats.longjump_enabled):
+			long_lane.hide()
+		movement.add_child(long_lane)
 		update_link_assoc_bucket(i.lsys, long_lane, long_link_assoc_buckets)
 		update_link_assoc_bucket(i.rsys, long_lane, long_link_assoc_buckets)
 	for i in Procgen.systems:
@@ -85,9 +87,11 @@ func update_for_explore(system_id):
 			link.show()
 			movement.get_node(link.data.lsys).show()
 			movement.get_node(link.data.rsys).show()
+	if not Client.longjump_enabled():
+		return
 	if system_id in long_link_assoc_buckets:
 		for link in long_link_assoc_buckets[system_id]:
-			# link.show() #Conditionally show these if the player has a good hyperdrive
+			link.show()
 			movement.get_node(link.data.lsys).show()
 			movement.get_node(link.data.rsys).show()
 

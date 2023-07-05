@@ -21,7 +21,8 @@ func update():
 		hide()
 		return
 	
-	text = "Hyperspace: %s" % Procgen.systems[Client.selected_system].name
+	var dest = Procgen.systems[Client.selected_system]
+	text = "Hyperspace: %s" % dest.name if dest.explored else "Unexplored System"
 	show()
 	
 	if not Client.player.get_node("Controller").warp_conditions_met():

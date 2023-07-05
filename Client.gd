@@ -76,7 +76,22 @@ func sel_sys(system_id, node):
 	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump
 
 func valid_jump_destination_selected():
-	return selected_system != current_system and selected_system != null
+	if not(selected_system != current_system and selected_system != null):
+		return false
+	
+	if Cheats.jump_anywhere:
+		return true
+	
+	var current_system_dat: SystemData = Procgen.systems[current_system]
+	
+	if selected_system in current_system_dat.links_cache:
+		return true
+		
+	if Client.longjump_enabled() and selected_system in current_system_dat.long_links_cache:
+		return true
+	
+	return false
+	
 
 func change_system():
 	var old_system = current_system
@@ -130,6 +145,9 @@ func current_biome() -> BiomeData:
 		return Data.biomes[Procgen.systems[current_system].biome]
 	else:
 		return BiomeData.new({})
+		
+func longjump_enabled():
+	return Cheats.longjump_enabled
 
 func deserialize_entity(destination_path, serial_data):
 	var destination = get_world().get_node(destination_path)
