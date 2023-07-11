@@ -18,6 +18,7 @@ var entities: Dictionary
 
 var distance: float
 var distance_normalized: float
+var quadrant: String
 
 func serialize():
 	var serialized = Util.default_serialize(self)

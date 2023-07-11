@@ -20,7 +20,8 @@ func _populate_mode_dropdown():
 		"Disposition",
 		"Distance from core",
 		"Faction",
-		"Faction Seeds"
+		"Faction Seeds",
+		"Quadrant"
 	]:
 		mode.add_item(item)
 	

@@ -60,6 +60,7 @@ func generate_systems(seed_value: int) -> String:
 	cache_links()
 	var start_sys = populate_biomes()
 	calculate_system_distances()
+	calculate_system_quadrants()
 	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
@@ -402,6 +403,25 @@ func calculate_system_distances():
 		var system = systems[system_id]
 		system.distance_normalized = system.distance / max_distance
 
+func calculate_system_quadrants():
+	for system_id in systems:
+		var system = systems[system_id]
+		system.quadrant = assign_quadrant(system.position)
+
+func assign_quadrant(position: Vector2) -> String:
+	var normalized_position = sign(position)
+	match normalized_position:
+		Vector2(1,1):
+			return "A"
+		Vector2(1,-1):
+			return "B"
+		Vector2(-1,-1):
+			return "C"
+		Vector2(-1,1):
+			return "D"
+		
+	return "A"
+			
 func system_distance_comparitor(l_id, r_id) -> bool:
 	var lval = systems[l_id]["distance"]
 	var rval = systems[r_id]["distance"]
