@@ -17,6 +17,7 @@ var fixed_name: String
 var auto_explore: bool
 var ambient_color: Color
 var starlight_color: Color
+var quadrants: Array[String]
 
 static func get_csv_path():
 	return "res://data/biomes.csv"

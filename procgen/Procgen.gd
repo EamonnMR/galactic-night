@@ -11,6 +11,9 @@ var MIN_DISTANCE = 50
 var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
+var quadrant_cache = {}
+
+var quadrant_permutations_cache = {}
 
 @onready var rng: RandomNumberGenerator
 
@@ -58,9 +61,9 @@ func generate_systems(seed_value: int) -> String:
 	
 	generate_positions_and_links()
 	cache_links()
-	var start_sys = populate_biomes()
 	calculate_system_distances()
 	calculate_system_quadrants()
+	var start_sys = populate_biomes()
 	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
@@ -75,7 +78,16 @@ func populate_biomes():
 	grow_biome_seeds()
 	fill_remaining_empty_biomes()
 	return start_sys
-	
+
+func get_system_set_by_quadrants(quadrants: Array) -> Array:
+	if quadrants in quadrant_permutations_cache:
+		return quadrant_permutations_cache[quadrants]
+	var set: Array = []
+	for i in quadrants:
+		set += quadrant_cache[i]
+	quadrant_permutations_cache[quadrants] = set
+	return set
+
 func place_special_biomes():
 	var start_sys
 	
@@ -83,7 +95,7 @@ func place_special_biomes():
 		var biome = Data.biomes[biome_id]
 		if biome.always_do_one:
 			while true:
-				var system_id = random_select(systems.keys(), rng)
+				var system_id = random_select(get_system_set_by_quadrants(biome.quadrants), rng)
 				var system = systems[system_id]
 				if systems[system_id].biome == "":
 					system.biome = biome_id
@@ -311,7 +323,8 @@ func grow_faction_influence_from_core_worlds():
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
-		system.name = random_name(system, "NGC-")
+		if not system.name:
+			system.name = random_name(system, "NGC-")
 		
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
@@ -404,10 +417,13 @@ func calculate_system_distances():
 		system.distance_normalized = system.distance / max_distance
 
 func calculate_system_quadrants():
+	for quadrant in ['A', 'B', 'C', 'D']:
+		var cache_member: Array = []
+		quadrant_cache[quadrant] = cache_member
 	for system_id in systems:
 		var system = systems[system_id]
 		system.quadrant = assign_quadrant(system.position)
-
+		quadrant_cache[system.quadrant].push_back(system_id)
 func assign_quadrant(position: Vector2) -> String:
 	var normalized_position = sign(position)
 	match normalized_position:
