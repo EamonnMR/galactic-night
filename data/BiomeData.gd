@@ -11,10 +11,6 @@ var grow: bool
 var background: Texture2D
 var foreground: Texture2D
 var bg_color_shift: float
-var always_do_one: bool
-var startloc: bool
-var fixed_name: String
-var auto_explore: bool
 var ambient_color: Color
 var starlight_color: Color
 var quadrants: Array[String]

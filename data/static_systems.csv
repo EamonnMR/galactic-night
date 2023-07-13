@@ -1,0 +1,3 @@
+id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id
+start,Providence,,A,TRUE,TRUE,empty,7
+boss,The Snake Eyes,,D,TRUE,FALSE,gold,3

@@ -63,7 +63,8 @@ func generate_systems(seed_value: int) -> String:
 	cache_links()
 	calculate_system_distances()
 	calculate_system_quadrants()
-	var start_sys = populate_biomes()
+	var start_sys = place_static_systems()
+	populate_biomes()
 	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
@@ -73,11 +74,9 @@ func generate_systems(seed_value: int) -> String:
 	return start_sys
 
 func populate_biomes():
-	var start_sys = place_special_biomes()
 	place_biome_seeds()
 	grow_biome_seeds()
 	fill_remaining_empty_biomes()
-	return start_sys
 
 func get_system_set_by_quadrants(quadrants: Array) -> Array:
 	if quadrants in quadrant_permutations_cache:
@@ -88,26 +87,25 @@ func get_system_set_by_quadrants(quadrants: Array) -> Array:
 	quadrant_permutations_cache[quadrants] = set
 	return set
 
-func place_special_biomes():
+func place_static_systems():
 	var start_sys
 	
-	for biome_id in Data.biomes:
-		var biome = Data.biomes[biome_id]
-		if biome.always_do_one:
-			while true:
-				var system_id = random_select(get_system_set_by_quadrants(biome.quadrants), rng)
-				var system = systems[system_id]
-				if systems[system_id].biome == "":
-					system.biome = biome_id
-					system.explored = biome.auto_explore
-					if biome.fixed_name:
-						system.name = biome.fixed_name
-					_set_light(system, biome)
-					if biome.startloc:
-						start_sys = system_id
-					break
-				else:
-					print("Cannot put always_do biome in an occupied system: ", system_id, ", biome: ", system.biome)
+	for static_system_id in Data.static_systems:
+		var static_system = Data.static_systems[static_system_id]
+		while true:
+			var system_id = random_select(get_system_set_by_quadrants(static_system.quadrants), rng)
+			var system = systems[system_id]
+			if systems[system_id].static_system_id == "":
+				system.biome = static_system.biome
+				system.explored = static_system.auto_explore
+				system.name = static_system.name
+				system.faction = static_system.faction_id
+				system.static_system_id = static_system_id
+				if static_system.startloc:
+					start_sys = system_id
+				break
+			else:
+				print("Cannot put special_system in an occupied system: ", system_id, " static system id ", static_system_id)
 	return start_sys
 	
 func place_biome_seeds():
@@ -323,7 +321,7 @@ func grow_faction_influence_from_core_worlds():
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
-		if not system.name:
+		if system.name == "":
 			system.name = random_name(system, "NGC-")
 		
 func place_natural_static_spawns():
@@ -347,6 +345,15 @@ func place_artificial_static_spawns():
 				+ Data.evergreen_artificial_spawns
 				+ (faction.spawns_core if system.core else [])
 			)
+	)
+	
+func place_preset_static_spawns():
+	print("Place static spawns for static systems")
+	place_static_spawns(
+		func(system):
+			if system.static_system_id == "":
+				return []
+			return Data.static_systems[system.static_system_id].spawns
 	)
 
 func place_static_spawns(get_spawns: Callable):
