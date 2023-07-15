@@ -16,6 +16,7 @@ func display_type():
 func _ready():
 	add_to_group("radar-spobs")
 	add_to_group("player-assets")
+	add_to_group("workbenches")
 	Util.clickable_spob(self)
 
 

@@ -29,3 +29,9 @@ func _has_codex_path(current_blueprint):
 	var path = _get_codex_path(current_blueprint)
 	var has_entry = Data.has_codex_entry(_get_codex_path(current_blueprint))
 	return has_entry
+
+func get_crafting_level():
+	var tmp_crafting_level = 0
+	for node in get_tree().get_nodes_in_group("workbenches"):
+		tmp_crafting_level = max(tmp_crafting_level, node.crafting_level())
+	return tmp_crafting_level
