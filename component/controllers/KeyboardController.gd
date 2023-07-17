@@ -38,6 +38,7 @@ func _physics_process(delta):
 	interact()
 	hyperspace()
 	handle_cheat_modal()
+	handle_zoom()
 	
 
 func _ready():
@@ -116,3 +117,10 @@ func handle_cheat_modal():
 		var dialogue = Client.get_ui().get_node("CheatInput")
 		if not dialogue.visible:
 			Client.get_ui().get_node("CheatInput").show()
+			Client.get_ui().get_node("CheatInput").grab_focus()
+func handle_zoom():
+	var ZOOM_FACTOR = 2.0
+	if Input.is_action_just_pressed("zoom_in"):
+		Client.camera.size /= ZOOM_FACTOR
+	elif Input.is_action_just_pressed("zoom_out"):
+		Client.camera.size *= ZOOM_FACTOR
