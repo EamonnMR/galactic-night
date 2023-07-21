@@ -30,6 +30,10 @@ var player_name: String = "Shannon Merrol"
 
 var typing: bool = false
 
+var DEFAULT_UNLOCKED_CODEX = []
+
+var unlocked_codex = []
+
 func has_money(price):
 	return money >= price
 	

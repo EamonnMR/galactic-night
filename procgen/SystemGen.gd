@@ -23,7 +23,8 @@ func get_adjacent_spawns(system: SystemData) -> Array[String]:
 func get_special_system_spawns(system):
 	if system.static_system_id != "":
 		return Data.static_systems[system.static_system_id].spawns
-
+	return []
+	
 func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 	var rng = RandomNumberGenerator.new()
 	print("Seed: ", (seed_value + 10) * system.id.to_int())

@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://b58ppjg8xv4kk"]
+
+[ext_resource type="Script" path="res://entities/spobs/TormentNexus.gd" id="1_foc72"]
+[ext_resource type="ArrayMesh" uid="uid://bkxgmeagt2phj" path="res://assets/eamonn/torment_nexus/torment_nexus.obj" id="2_koin6"]
+[ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="2_oba8n"]
+[ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="3_4kvt1"]
+[ext_resource type="Texture2D" uid="uid://b2lm643e7evd2" path="res://assets/eamonn/station/Station_RM.png" id="4_1atim"]
+[ext_resource type="Texture2D" uid="uid://c51a8tdglxqb7" path="res://assets/eamonn/station/Station_N.png" id="5_1pay4"]
+[ext_resource type="Script" path="res://component/Health.gd" id="7_oab27"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8go"]
+albedo_texture = ExtResource("2_oba8n")
+metallic = 1.0
+metallic_texture = ExtResource("4_1atim")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("4_1atim")
+emission_enabled = true
+emission_texture = ExtResource("3_4kvt1")
+normal_enabled = true
+normal_texture = ExtResource("5_1pay4")
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2quce"]
+points = PackedVector3Array(6.28368, 0.445391, 0.933927, -5.96265, -1.28598, -0.813835, -4.85807, -0.221997, -3.96746, -0.402594, 5.79427, 5.16828, 0.488013, -5.79427, 5.16828, 0.488013, -5.79427, -5.30521, 0.488013, 5.79427, -5.30521, -5.52755, 5.12548, 0.711581, -5.30521, -5.79427, 0.488013, -3.96746, -0.445391, 4.72359, 5.39185, -5.57087, -0.62494, 5.39185, 5.57087, -0.62494, 4.72237, -0.445391, -3.96746, 4.05411, 0.445391, 4.72359, 0.46964, -6.83718, 0.255309, 0.256475, 6.83699, 0.469629, 0.933927, -0.445391, 6.28368, 0.933927, 1.33617, -6.19703, -5.30521, 5.57087, -0.62494, -0.847286, -4.4567, -5.75112, -0.847286, 4.4567, -5.75112, 5.83776, -4.01131, 0.933927, 5.39185, 5.57087, 0.488013, -6.19703, -1.33617, 0.933927, -0.62494, -5.57087, 5.39185, 0.711581, 4.90209, 5.61419, -5.30521, -5.57087, -0.62494, -0.847286, 4.01131, 5.83776, 3.83176, 0.221997, -4.85807, -3.96746, 0.221997, -4.85807, -4.85807, 0.221997, 3.83176, -5.75112, 4.4567, -0.847286)
+
+[node name="Workbench" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_foc72")
+
+[node name="Station" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0139863, 0.0843514, 0.234924, -0.00545183, 0.235339, -0.0841763, -0.249549, -0.000413738, 0.0150055, 4, -6, -4)
+mesh = ExtResource("2_koin6")
+surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2quce")
+
+[node name="Health" type="Node3D" parent="."]
+script = ExtResource("7_oab27")
+max_health = 10
+shields = 10
+
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
+[connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]
