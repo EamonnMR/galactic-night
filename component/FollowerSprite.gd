@@ -18,9 +18,8 @@ func _deferred_ready():
 		material = material.duplicate(true)
 		material.set_shader_parameter("radius", type.radius)
 		material.set_shader_parameter("offset", type.offset)
-		
 		# Kind of a hack
-		parent.item_screen_box_side_length = 2 * type.radius + 25
+		parent.item_screen_box_side_length = 3 * type.radius + 25
 
 func _process(_delta):
 	if parent:

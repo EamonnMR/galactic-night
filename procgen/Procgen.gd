@@ -64,6 +64,7 @@ func generate_systems(seed_value: int) -> String:
 	calculate_system_distances()
 	calculate_system_quadrants()
 	var start_sys = place_static_systems()
+	place_preset_static_spawns()
 	populate_biomes()
 	place_natural_static_spawns()
 	populate_factions()
@@ -149,7 +150,7 @@ func fill_remaining_empty_biomes():
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if system.biome == "":
-			system.biome = "empty"
+			system.biome = Data.biomes.keys()[0]
 
 func grow_attribute(_attribute):
 	pass
@@ -256,7 +257,7 @@ func assign_faction_core_worlds() -> Array:
 				scaled_rnd_result = rng.randi_range(0, sorted.size())
 			# TODO: This code kinda baffles me, but it's happening a lot.
 			# Fix it and we can get a decent perf improvement
-			if scaled_rnd_result > sorted.size() or scaled_rnd_result < 0 - sorted.size():
+			if scaled_rnd_result >= sorted.size() or scaled_rnd_result <= - sorted.size():
 				# print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
 				continue
 			var system_id = sorted[scaled_rnd_result]

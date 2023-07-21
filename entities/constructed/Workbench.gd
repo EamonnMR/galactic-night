@@ -23,7 +23,8 @@ func _ready():
 func serialize() -> Dictionary:
 	return Util.get_multiple(self, [
 		"transform",
-		"scene_file_path"
+		"scene_file_path",
+		"spob_name"
 	])
 
 func deserialize(data: Dictionary):
