@@ -1,4 +1,8 @@
-id,scene,projectile_scene,burst_count,cooldown,dupe_count,spread,world_projectile,vary_pitch,ammo_item,primary,projectile_velocity,damage
-plasma,res://component/Weapon.tscn,res://entities/Projectile.tscn,0,0.5,1,0.4,TRUE,0,,TRUE,6,1
-missile_launcher,res://component/RocketLauncher.tscn,res://entities/projectiles/Missile.tscn,0,1,1,0,TRUE,0,missile,FALSE,10,10
-railgun,res://component/Weapon.tscn,res://entities/RailgunProjectile.tscn,0,0.8,1,0.2,TRUE,0,railgun_ammo,TRUE,15,1
+id,scene,projectile_scene,burst_count,cooldown,dupe_count,spread,world_projectile,vary_pitch,ammo_item,primary,projectile_velocity,damage,turreted
+plasma,res://component/Weapon.tscn,res://entities/Projectile.tscn,0,0.5,1,0.4,TRUE,0,,TRUE,6,1,FALSE
+missile_launcher,res://component/RocketLauncher.tscn,res://entities/projectiles/Missile.tscn,0,1,1,0,TRUE,0,missile,FALSE,10,10,FALSE
+railgun,res://component/Weapon.tscn,res://entities/projectiles/Railgun.tscn,0,0.8,1,0.2,TRUE,0,railgun_ammo,TRUE,15,1,FALSE
+flak,res://component/Weapon.tscn,,,,,,,,,,,,FALSE
+guided_launcher,res://component/Weapon.tscn,,,,,,,,,,,,FALSE
+jackknife,res://component/Weapon.tscn,,,,,,,,,,,,FALSE
+plasma_turret,,,,,,,,,,,,,TRUE
