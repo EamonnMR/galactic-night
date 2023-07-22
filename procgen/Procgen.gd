@@ -11,6 +11,9 @@ var MIN_DISTANCE = 50
 var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
+var quadrant_cache = {}
+
+var quadrant_permutations_cache = {}
 
 @onready var rng: RandomNumberGenerator
 
@@ -58,8 +61,11 @@ func generate_systems(seed_value: int) -> String:
 	
 	generate_positions_and_links()
 	cache_links()
-	var start_sys = populate_biomes()
 	calculate_system_distances()
+	calculate_system_quadrants()
+	var start_sys = place_static_systems()
+	place_preset_static_spawns()
+	populate_biomes()
 	place_natural_static_spawns()
 	populate_factions()
 	name_systems()
@@ -69,32 +75,38 @@ func generate_systems(seed_value: int) -> String:
 	return start_sys
 
 func populate_biomes():
-	var start_sys = place_special_biomes()
 	place_biome_seeds()
 	grow_biome_seeds()
 	fill_remaining_empty_biomes()
-	return start_sys
-	
-func place_special_biomes():
+
+func get_system_set_by_quadrants(quadrants: Array) -> Array:
+	if quadrants in quadrant_permutations_cache:
+		return quadrant_permutations_cache[quadrants]
+	var set: Array = []
+	for i in quadrants:
+		set += quadrant_cache[i]
+	quadrant_permutations_cache[quadrants] = set
+	return set
+
+func place_static_systems():
 	var start_sys
 	
-	for biome_id in Data.biomes:
-		var biome = Data.biomes[biome_id]
-		if biome.always_do_one:
-			while true:
-				var system_id = random_select(systems.keys(), rng)
-				var system = systems[system_id]
-				if systems[system_id].biome == "":
-					system.biome = biome_id
-					system.explored = biome.auto_explore
-					if biome.fixed_name:
-						system.name = biome.fixed_name
-					_set_light(system, biome)
-					if biome.startloc:
-						start_sys = system_id
-					break
-				else:
-					print("Cannot put always_do biome in an occupied system: ", system_id, ", biome: ", system.biome)
+	for static_system_id in Data.static_systems:
+		var static_system = Data.static_systems[static_system_id]
+		while true:
+			var system_id = random_select(get_system_set_by_quadrants(static_system.quadrants), rng)
+			var system = systems[system_id]
+			if systems[system_id].static_system_id == "":
+				system.biome = static_system.biome
+				system.explored = static_system.auto_explore
+				system.name = static_system.name
+				system.faction = static_system.faction_id
+				system.static_system_id = static_system_id
+				if static_system.startloc:
+					start_sys = system_id
+				break
+			else:
+				print("Cannot put special_system in an occupied system: ", system_id, " static system id ", static_system_id)
 	return start_sys
 	
 func place_biome_seeds():
@@ -138,7 +150,7 @@ func fill_remaining_empty_biomes():
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if system.biome == "":
-			system.biome = "empty"
+			system.biome = Data.biomes.keys()[0]
 
 func grow_attribute(_attribute):
 	pass
@@ -245,7 +257,7 @@ func assign_faction_core_worlds() -> Array:
 				scaled_rnd_result = rng.randi_range(0, sorted.size())
 			# TODO: This code kinda baffles me, but it's happening a lot.
 			# Fix it and we can get a decent perf improvement
-			if scaled_rnd_result > sorted.size() or scaled_rnd_result < 0 - sorted.size():
+			if scaled_rnd_result >= sorted.size() or scaled_rnd_result <= - sorted.size():
 				# print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
 				continue
 			var system_id = sorted[scaled_rnd_result]
@@ -310,7 +322,8 @@ func grow_faction_influence_from_core_worlds():
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
-		system.name = random_name(system, "NGC-")
+		if system.name == "":
+			system.name = random_name(system, "NGC-")
 		
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
@@ -333,6 +346,15 @@ func place_artificial_static_spawns():
 				+ Data.evergreen_artificial_spawns
 				+ (faction.spawns_core if system.core else [])
 			)
+	)
+	
+func place_preset_static_spawns():
+	print("Place static spawns for static systems")
+	place_static_spawns(
+		func(system):
+			if system.static_system_id == "":
+				return []
+			return Data.static_systems[system.static_system_id].spawns
 	)
 
 func place_static_spawns(get_spawns: Callable):
@@ -402,6 +424,28 @@ func calculate_system_distances():
 		var system = systems[system_id]
 		system.distance_normalized = system.distance / max_distance
 
+func calculate_system_quadrants():
+	for quadrant in ['A', 'B', 'C', 'D']:
+		var cache_member: Array = []
+		quadrant_cache[quadrant] = cache_member
+	for system_id in systems:
+		var system = systems[system_id]
+		system.quadrant = assign_quadrant(system.position)
+		quadrant_cache[system.quadrant].push_back(system_id)
+func assign_quadrant(position: Vector2) -> String:
+	var normalized_position = sign(position)
+	match normalized_position:
+		Vector2(1,1):
+			return "A"
+		Vector2(1,-1):
+			return "B"
+		Vector2(-1,-1):
+			return "C"
+		Vector2(-1,1):
+			return "D"
+		
+	return "A"
+			
 func system_distance_comparitor(l_id, r_id) -> bool:
 	var lval = systems[l_id]["distance"]
 	var rval = systems[r_id]["distance"]

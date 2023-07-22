@@ -27,10 +27,6 @@ var DISPOSITION_COLORS = {
 
 func get_color():
 	var mode = map.mode.selected
-	#"Biome",
-	#"Disposition",
-	#"Distance from core",
-	#"Political",
 	if mode == 0:
 		return Data.biomes[dat()["biome"]].map_color
 	if mode == 1:
@@ -65,5 +61,15 @@ func get_color():
 			return DISPOSITION_COLORS["friendly"]
 		else:
 			return DISPOSITION_COLORS["abandoned"]
-
+	if mode == 5:
+		match dat().quadrant:
+			"A":
+				return Color(1,0,0)
+			"B":
+				return Color(0,1,0)
+			"C":
+				return Color(0,0,1)
+			"D":
+				return Color(1,1,0)
+		
 	return DISPOSITION_COLORS["abandoned"]

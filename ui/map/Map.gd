@@ -20,7 +20,8 @@ func _populate_mode_dropdown():
 		"Disposition",
 		"Distance from core",
 		"Faction",
-		"Faction Seeds"
+		"Faction Seeds",
+		"Quadrant"
 	]:
 		mode.add_item(item)
 	
@@ -33,15 +34,15 @@ func _generate_map_nodes():
 		if not Cheats.explore_all:
 			lane.hide()
 		movement.add_child(lane)
-		update_link_assoc_bucket(i.lsys, lane, link_assoc_buckets)
-		update_link_assoc_bucket(i.rsys, lane, link_assoc_buckets)
+		update_link_assoc_bucket(lane, link_assoc_buckets)
 	for i in Procgen.longjumps:
 		var long_lane = lane_class.instantiate()
 		long_lane.data = i
-		# Note that we omit adding it to the scene.
-		# TODO: Make a different sometimes-shown class for longjumps.
-		update_link_assoc_bucket(i.lsys, long_lane, long_link_assoc_buckets)
-		update_link_assoc_bucket(i.rsys, long_lane, long_link_assoc_buckets)
+		long_lane.type = Hyperlane.TYPE.LONG
+		if not (Cheats.explore_all and Cheats.longjump_enabled):
+			long_lane.hide()
+		movement.add_child(long_lane)
+		update_link_assoc_bucket(long_lane, long_link_assoc_buckets)
 	for i in Procgen.systems:
 		var circle = circle_class.instantiate()
 		circle.system_id = i
@@ -68,13 +69,14 @@ func _input(event):
 	elif event is InputEventMouseMotion and dragging:
 		movement.position += event.relative
 
-func update_link_assoc_bucket(system_id: String, link: Node, buckets: Dictionary):
-	if system_id in buckets:
-		var bucket = buckets[system_id]
-		if not link in bucket:
-			bucket.push_back(link)
-	else:
-		buckets[system_id] = [link]
+func update_link_assoc_bucket(link: Hyperlane, buckets: Dictionary):
+	for system_id in [link.data.lsys, link.data.rsys]:
+		if system_id in buckets:
+			var bucket = buckets[system_id]
+			if not link in bucket:
+				bucket.push_back(link)
+		else:
+			buckets[system_id] = [link]
 
 func update_for_explore(system_id):
 	var sys_node = movement.get_node(system_id)
@@ -85,11 +87,17 @@ func update_for_explore(system_id):
 			link.show()
 			movement.get_node(link.data.lsys).show()
 			movement.get_node(link.data.rsys).show()
+	#if not Client.longjump_enabled():
+	#	return
 	if system_id in long_link_assoc_buckets:
 		for link in long_link_assoc_buckets[system_id]:
-			# link.show() #Conditionally show these if the player has a good hyperdrive
-			movement.get_node(link.data.lsys).show()
-			movement.get_node(link.data.rsys).show()
+			if (Cheats.longjump_enabled or
+				Procgen.systems[link.data.lsys].longjump_enabled or
+				Procgen.systems[link.data.rsys].longjump_enabled
+			):
+				link.show()
+				movement.get_node(link.data.lsys).show()
+				movement.get_node(link.data.rsys).show()
 
 func _update_for_mode_switch():
 	for node in movement.get_children():

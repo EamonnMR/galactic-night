@@ -33,14 +33,14 @@ func assign(crafting_level_object):
 	
 func unassign():
 	# Return to a state of using the player's crafting level
-	# used to undo any upping of these vars for a workbench
+	# used to undo any upping of these vars for a workbenchmax(bench_level, player_level)
 	crafting_level = 1#Client.player.crafting_level
 	current_blueprint = _blueprints().values()[0]
 
 func build_blueprint_list():
 	for blueprint_id in _blueprints():
 		var blueprint = _blueprints()[blueprint_id]
-		if (blueprint.require_level <= crafting_level) or Cheats.max_craft_level:
+		if (blueprint.require_level <= get_crafting_level()) or Cheats.max_craft_level:
 			var icon = _get_icon_node(blueprint)
 			icon.pressed.connect(
 				func _blueprint_selected():
@@ -112,3 +112,6 @@ func _has_codex_path(current_blueprint):
 
 func _on_codex_button_pressed():
 	Client.get_ui().toggle_codex(_get_codex_path(current_blueprint))
+
+func get_crafting_level():
+	return crafting_level

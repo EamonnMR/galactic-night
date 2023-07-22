@@ -127,3 +127,13 @@ func lead_correct_position(projectile_velocity: float, origin_position: Vector2,
 func out_of_system_radius(node: Node3D, radius: float) -> bool:
 	return flatten_25d(node.global_position).length() >= radius
 	
+func clickable_spob(spob):
+	spob.input_event.connect(
+		func _on_input_event(_camera, event, _click_position, _camera_normal, _shape):
+			#https://stackoverflow.com/questions/58628154/detecting-click-touchscreen-input-on-a-3d-object-inside-godot
+			var mouse_click = event as InputEventMouseButton
+			if mouse_click and mouse_click.button_index == 1 and mouse_click.pressed:
+				Client.update_player_target_spob(spob)
+			else:
+				Client.mouseover_entered(spob)
+	)

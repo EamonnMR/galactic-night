@@ -13,6 +13,7 @@ var evergreen_natural_spawns = []
 var evergreen_artificial_spawns = []
 var ships = {}
 var spob_types = {}
+var static_systems = {}
 
 var codex = {}
 
@@ -35,7 +36,8 @@ func _init():
 		[SkinData, "skins"],
 		[SpobData, "spob_types"],
 		[WeaponData, "weapons"],
-		[ShipData, "ships"]
+		[ShipData, "ships"],
+		[StaticSystem, "static_systems"]
 	]:
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
@@ -211,3 +213,15 @@ func verify_spawns_have_scene_or_type():
 		if i.scene == null:
 			if i.type == "":
 				assert(false)
+
+func verify_static_systems_reference_real_biomes():
+	for name in static_systems:
+		var i: StaticSystem = static_systems[name]
+		if i.biome != "":
+			assert(i.biome in biomes)
+
+func verify_static_systems_reference_real_factions():
+	for name in static_systems:
+		var i: StaticSystem = static_systems[name]
+		if i.faction_id:
+			assert(i.faction_id in factions)

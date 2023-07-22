@@ -11,3 +11,6 @@ equip,Equipment,,,,res://assets/FontAwesome/32px-Cogs_font_awesome.png,"Commodit
 lux,Luxury,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",,TRUE,TRUE,200
 med,Medical,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",,TRUE,TRUE,120
 blue,Lutetium,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon33.png,used for room temprature superconductors (crafting ingredient),,TRUE,FALSE,250
+flak,,,,,,,,,,
+guided_launcher,,,,,,,,,,
+beam,,,,,,,,,,

@@ -13,10 +13,13 @@ var starlight_color: Color
 var faction: String
 var core: bool
 var generation: int
+var longjump_enabled: bool
 var entities: Dictionary
 
 var distance: float
 var distance_normalized: float
+var quadrant: String
+var static_system_id: String
 
 func serialize():
 	var serialized = Util.default_serialize(self)
@@ -25,7 +28,6 @@ func serialize():
 	serialized["explored"] = int(explored)
 	serialized["ambient_color"] = ambient_color.to_html(false)
 	serialized["starlight_color"] = starlight_color.to_html(false)
-	
 	return serialized
 
 func deserialize(data: Dictionary):
@@ -41,6 +43,9 @@ func deserialize(data: Dictionary):
 	generation = int(data["generation"])
 	core = data["core"]
 	entities = data["entities"]
+	longjump_enabled = data["longjump_enabled"]
+	quadrant = data["quadrant"]
+	static_system_id = data["static_system_id"]
 
 func deserialize_entities():
 	for destination_str in entities:

@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://0flwoytjpgff"]
+[gd_scene load_steps=13 format=3 uid="uid://d1dj04ahybg0"]
 
 [ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
 [ext_resource type="Shader" path="res://effects/starfield.gdshader" id="2_h0fwj"]
+[ext_resource type="Texture2D" uid="uid://6bi8prtffeim" path="res://assets/ScreamingBrain/soft_neb/Green Nebula/1024x1024 Green Nebula 3.png" id="3_fqhby"]
 [ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
-[ext_resource type="Texture2D" uid="uid://ba6y6bvt56q4k" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 1.png" id="4_to02v"]
+[ext_resource type="Texture2D" uid="uid://drk6ug0kax648" path="res://assets/ScreamingBrain/soft_neb/Blue Nebula/1024x1024 Blue Nebula 4.png" id="4_to02v"]
 [ext_resource type="PackedScene" uid="uid://cw2nt0g5sx0tb" path="res://ui/ui.tscn" id="5_qu37x"]
 [ext_resource type="Script" path="res://effects/Background.gd" id="5_ss6kf"]
 [ext_resource type="Shader" path="res://effects/overlay.gdshader" id="7_1t3x4"]
-[ext_resource type="Texture2D" uid="uid://chrh53vm0rbdj" path="res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png" id="9"]
 [ext_resource type="PackedScene" uid="uid://baufcdder5qrd" path="res://ui/main/main_menu.tscn" id="9_6pgxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61vo"]
@@ -16,7 +16,7 @@ shader_parameter/position = null
 shader_parameter/warp_factor = 0.0
 shader_parameter/warp_factor_scale = 10.0
 shader_parameter/warp_angle = null
-shader_parameter/nebula = ExtResource("9")
+shader_parameter/nebula = ExtResource("3_fqhby")
 
 [sub_resource type="Environment" id="Environment_7gyux"]
 background_mode = 3

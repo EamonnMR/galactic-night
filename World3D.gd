@@ -5,7 +5,9 @@ func enter_system(new_system):
 	var system: SystemData = Procgen.systems[new_system]
 	system.deserialize_entities()  # Probably make this a method on World3D
 	SystemGen.do_spawns(Client.current_system_id().to_int() + Client.seed, system, $World3D)
-
+	var biome = Data.biomes[system.biome]
+	$background/Background.set_textures(biome.foreground, biome.background)
+	
 func leave_system(old_system):
 	# Don't free the player
 	Client.player.get_node("../").remove_child(Client.player)

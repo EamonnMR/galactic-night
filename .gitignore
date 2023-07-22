@@ -3,3 +3,4 @@
 .godot/editor/*
 .godot/*
 data/.~lock.*
+export/*

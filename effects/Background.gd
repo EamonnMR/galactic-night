@@ -12,3 +12,8 @@ func _process(delta):
 	get_material().set_shader_parameter("position", pos)
 	get_material().set_shader_parameter("warp_factor", warp_factor)
 	get_material().set_shader_parameter("warp_angle", (PI / 2) -(warp_angle + (PI / 4.0)))
+	
+func set_textures(foreground: Texture2D, background: Texture2D):
+	texture = background
+	get_material().set_shader_parameter("nebula", foreground)
+	

@@ -48,6 +48,13 @@ func _verify_target():
 		change_state_idle()
 		return false
 	return true
+	
+func _verify_path_target():
+	if path_target == null or not is_instance_valid(path_target):
+		#print("No target", target)
+		change_state_idle()
+		return false
+	return true
 
 func _physics_process(delta):
 	if get_tree().debug_collisions_hint:
@@ -70,6 +77,7 @@ func _physics_process(delta):
 			process_warping_out(delta)
 
 func process_state_path(delta):
+	_verify_path_target()
 	populate_rotation_impulse_and_ideal_face(
 		Util.flatten_25d(path_target.global_transform.origin),
 		delta

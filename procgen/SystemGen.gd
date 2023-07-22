@@ -20,6 +20,11 @@ func get_adjacent_spawns(system: SystemData) -> Array[String]:
 			adjacent_spawns.append_array(adjacent_for_faction)
 	return adjacent_spawns
 
+func get_special_system_spawns(system):
+	if system.static_system_id != "":
+		return Data.static_systems[system.static_system_id].spawns
+	return []
+	
 func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 	var rng = RandomNumberGenerator.new()
 	print("Seed: ", (seed_value + 10) * system.id.to_int())
@@ -27,6 +32,7 @@ func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 	var biome_data: BiomeData = Data.biomes[system.biome]
 	for spawn_id in (
 		biome_data.spawns +
+		get_special_system_spawns(system) +
 		get_faction_spawns(system) +
 		get_adjacent_spawns(system) +
 		Data.evergreen_spawns

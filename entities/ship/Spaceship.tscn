@@ -19,9 +19,6 @@ update_scale = false
 
 [node name="Inventory" parent="." instance=ExtResource("4_4rw1x")]
 default_contents = {
-"metal": 100,
-"missile": 2,
-"missile_launcher": 1,
 "plasma": 1
 }
 

@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
 [ext_resource type="Shader" path="res://entities/spobs/Spob.gdshader" id="2_ryjfe"]
-[ext_resource type="Texture2D" uid="uid://dr05w1fp8yyka" path="res://assets/eamonn/lunarcell_planets/Untitled-5.png" id="3_imvle"]
 [ext_resource type="Script" path="res://component/FollowerSprite.gd" id="3_mu5to"]
+[ext_resource type="Texture2D" uid="uid://doyi0ng7eb3b7" path="res://assets/eamonn/lunarcell_planets/rc-25.png" id="3_p27b8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6h1x"]
 shader = ExtResource("2_ryjfe")
-shader_parameter/center = Vector2(6, -2)
-shader_parameter/radius = 63
+shader_parameter/center = Vector2(-2, 0)
+shader_parameter/radius = 62
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gve3x"]
 radius = 2.5
@@ -21,7 +21,7 @@ spob_prefix = "UBP-"
 
 [node name="FollowerSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_i6h1x")
-texture = ExtResource("3_imvle")
+texture = ExtResource("3_p27b8")
 script = ExtResource("3_mu5to")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
