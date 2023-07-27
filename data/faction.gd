@@ -7,7 +7,6 @@ var name: String
 var short: String
 var color: Color
 var initial_disposition: float
-var is_default: bool
 var core_systems_per_hundred: int
 var systems_radius: int
 var favor_galactic_center: int

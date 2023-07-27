@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dl3k2h4jor0sy"
+path="res://.godot/imported/trefoil.obj-2fee60e99cd477e3d49d66a69dc8ba29.mesh"
+
+[deps]
+
+files=["res://.godot/imported/trefoil.obj-2fee60e99cd477e3d49d66a69dc8ba29.mesh"]
+
+source_file="res://assets/eamonn/trefoil/trefoil.obj"
+dest_files=["res://.godot/imported/trefoil.obj-2fee60e99cd477e3d49d66a69dc8ba29.mesh", "res://.godot/imported/trefoil.obj-2fee60e99cd477e3d49d66a69dc8ba29.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

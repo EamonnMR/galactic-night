@@ -11,6 +11,10 @@ equip,Equipment,,,,res://assets/FontAwesome/32px-Cogs_font_awesome.png,"Commodit
 lux,Luxury,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",,TRUE,TRUE,200
 med,Medical,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",,TRUE,TRUE,120
 blue,Lutetium,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon33.png,used for room temprature superconductors (crafting ingredient),,TRUE,FALSE,250
-flak,,,,,,,,,,
-guided_launcher,,,,,,,,,,
-beam,,,,,,,,,,
+flak,Flak Cannon,weapon,,,,Short range splash weapon,,FALSE,FALSE,150
+guided_launcher,Guided Launcher,weapon,,,,long range weapon,,FALSE,FALSE,500
+jackknife,Jackknife,weapon,,,,short range beam weapon,,FALSE,FALSE,300
+flak_ammo,Flak Ammo,,,,,Ammo for flak cannon,,TRUE,FALSE,100
+guided_ammo,Guided Missile,,,,,Guided missile ammo,,TRUE,FALSE,100
+missile_battery,Missile Battery,,,,,Fires a swarm of guided missiles,,FALSE,FALSE,600
+plasma_turret,Heater Turret,weapon,,,,Turreted heater,,TRUE,FALSE,300
