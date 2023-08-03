@@ -11,10 +11,16 @@ equip,Equipment,,,,res://assets/FontAwesome/32px-Cogs_font_awesome.png,"Commodit
 lux,Luxury,,,,res://assets//FontAwesome/Gift-solid.svg.png,"Commodity, only used for trade",,TRUE,TRUE,200
 med,Medical,,,,res://assets/FontAwesome/Font_Awesome_5_solid_syringe.svg.png,"Commodity, only used for trade",,TRUE,TRUE,120
 blue,Lutetium,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon33.png,used for room temprature superconductors (crafting ingredient),,TRUE,FALSE,250
-flak,Flak Cannon,weapon,,,,Short range splash weapon,,FALSE,FALSE,150
-guided_launcher,Guided Launcher,weapon,,,,long range weapon,,FALSE,FALSE,500
-jackknife,Jackknife,weapon,,,,short range beam weapon,,FALSE,FALSE,300
-flak_ammo,Flak Ammo,,,,,Ammo for flak cannon,,TRUE,FALSE,100
-guided_ammo,Guided Missile,,,,,Guided missile ammo,,TRUE,FALSE,100
-missile_battery,Missile Battery,,,,,Fires a swarm of guided missiles,,FALSE,FALSE,600
-plasma_turret,Heater Turret,weapon,,,,Turreted heater,,TRUE,FALSE,300
+flak,Flak Cannon,weapon,,,res://assets/danc_cc_by/icons/flak.png,Short range splash weapon,,FALSE,FALSE,150
+guided_launcher,Guided Launcher,weapon,,,res://assets/danc_cc_by/icons/missile_launcher.png,long range weapon,,FALSE,FALSE,500
+jackknife,Jackknife,weapon,,,res://assets/danc_cc_by/icons/laser.png,short range beam weapon,,FALSE,FALSE,300
+flak_ammo,Flak Ammo,,,,res://assets/danc_cc_by/icons/flak_ammo.png,Ammo for flak cannon,,TRUE,FALSE,100
+guided_ammo,Guided Missile,,,,res://assets/danc_cc_by/icons/missile_ammo.png,Guided missile ammo,,TRUE,FALSE,100
+missile_battery,Missile Battery,,,,res://assets/danc_cc_by/icons/missile_battery.png,Fires a swarm of guided missiles,,FALSE,FALSE,600
+plasma_turret,Heater Turret,weapon,,,res://assets/damnwing_cc_by/zipgun_turret.png,Turreted heater,,TRUE,FALSE,300
+panopticon,Panopticon,,,,res://assets/danc_cc_by/icons/panopticon_icon.png,Lostech Core Component I,,FALSE,FALSE,300
+nanoforge,Nanoforge,,,,res://assets/danc_cc_by/icons/nanoforge.png,Lostech Core Component II,,FALSE,FALSE,300
+crucible,Crucible,,,,res://assets/danc_cc_by/icons/crucible.png,Lostech Core Component III,,FALSE,FALSE,300
+hypersolenoid,Hyper-Solenoid,,,,res://assets/danc_cc_by/icons/hypersolenoid.png,Lostech Core Component IV,,FALSE,FALSE,300
+bomb_launcher,Bomb Bay,weapon,,,res://assets/danc_cc_by/icons/bomb_launcher.png,Short range high damage weapon,,FALSE,FALSE,100
+bomb_ammo,Freefall Bomb,,,,res://assets/danc_cc_by/icons/bomb_ammo.png,Ammo for bomb bay,,TRUE,FALSE,100
