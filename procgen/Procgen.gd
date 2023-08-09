@@ -7,11 +7,14 @@ var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
 var hyperlanes = []
 var longjumps = []
+var hypergate_links = []
+
 var MIN_DISTANCE = 50
 var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 var quadrant_cache = {}
+
 
 var quadrant_permutations_cache = {}
 
@@ -169,29 +172,44 @@ func generate_positions_and_links():
 			systems_by_position[position] = system_id
 	var points = PackedVector2Array(systems_by_position.keys())
 	var link_mesh = Geometry2D.triangulate_delaunay(points)
+	
+	# TODO: https://stackoverflow.com/questions/10265749/find-border-boundary-edges-of-planar-graph-geometric-shape
+	# Index edges, count how many triangles each edge is part of
+	# Remove any edges only in one triangle.
+	
+	var edge_counts = {}
+	
 	for i in range(0, link_mesh.size(), 3):
+		var tri = [
+			link_mesh[i],
+			link_mesh[i+1],
+			link_mesh[i+2]
+		]
+		for edge in [
+			[tri[0], tri[1]],
+			[tri[1], tri[2]],
+			[tri[0], tri[2]],
+		]:
+			edge.sort()
+			if edge in edge_counts:
+				edge_counts[edge] += 1
+			else:
+				edge_counts[edge] = 1
+	for edge in edge_counts:
+		if edge_counts[edge] < 2:
+			continue
 		
-		var first_pos = points[link_mesh[i]]
-		var second_pos = points[link_mesh[i+1]]
-		var third_pos = points[link_mesh[i+2]]
+		var first_pos = points[edge[0]]
+		var second_pos = points[edge[1]]
 		
 		var first = systems_by_position[first_pos]
 		var second = systems_by_position[second_pos]
-		var third = systems_by_position[third_pos]
 		
 		if Vector2(first_pos).distance_to(second_pos) < MAX_LANE_LENGTH:
 			hyperlanes.append(HyperlaneData.new(first, second))
 		else:
 			longjumps.append(HyperlaneData.new(first, second))
-		if Vector2(first_pos).distance_to(third_pos) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(first, third))
-		else:
-			longjumps.append(HyperlaneData.new(first, third))
-		if Vector2(second_pos).distance_to(third_pos) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(second, third))
-		else:
-			longjumps.append(HyperlaneData.new(second, third))
-	
+
 
 func cache_links():
 	for lane in hyperlanes:
