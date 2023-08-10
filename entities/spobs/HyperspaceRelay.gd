@@ -42,6 +42,5 @@ func deserialize(data: Dictionary):
 
 
 func spob_interact():
-	pass
-	#get_tree().get_root().get_node("Main/UI/Map").assign_hypergate(self)
-	#get_tree().get_root().get_node("Main/UI/").toggle_map()
+	get_tree().get_root().get_node("Main/UI/Map").assign_hypergate(hypergate_links)
+	get_tree().get_root().get_node("Main/UI/").toggle_map()

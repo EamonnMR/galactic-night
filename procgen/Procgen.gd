@@ -17,7 +17,7 @@ var quadrant_cache = {}
 
 
 var quadrant_permutations_cache = {}
-
+var systems_by_position = {}
 @onready var rng: RandomNumberGenerator
 
 
@@ -159,7 +159,6 @@ func grow_attribute(_attribute):
 	pass
 
 func generate_positions_and_links():
-	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
 		var system = SystemData.new()
@@ -170,42 +169,12 @@ func generate_positions_and_links():
 			system.position = position
 			systems[system_id] = system
 			systems_by_position[position] = system_id
-	var points = PackedVector2Array(systems_by_position.keys())
-	var link_mesh = Geometry2D.triangulate_delaunay(points)
 	
-	# TODO: https://stackoverflow.com/questions/10265749/find-border-boundary-edges-of-planar-graph-geometric-shape
-	# Index edges, count how many triangles each edge is part of
-	# Remove any edges only in one triangle.
-	
-	var edge_counts = {}
-	
-	for i in range(0, link_mesh.size(), 3):
-		var tri = [
-			link_mesh[i],
-			link_mesh[i+1],
-			link_mesh[i+2]
-		]
-		for edge in [
-			[tri[0], tri[1]],
-			[tri[1], tri[2]],
-			[tri[0], tri[2]],
-		]:
-			edge.sort()
-			if edge in edge_counts:
-				edge_counts[edge] += 1
-			else:
-				edge_counts[edge] = 1
-	for edge in edge_counts:
-		if edge_counts[edge] < 2:
-			continue
+	for edge in get_linkmesh_edges_from_points(systems_by_position.keys()):
+		var first = systems_by_position[edge[0]]
+		var second = systems_by_position[edge[1]]
 		
-		var first_pos = points[edge[0]]
-		var second_pos = points[edge[1]]
-		
-		var first = systems_by_position[first_pos]
-		var second = systems_by_position[second_pos]
-		
-		if Vector2(first_pos).distance_to(second_pos) < MAX_LANE_LENGTH:
+		if Vector2(edge[0]).distance_to(edge[1]) < MAX_LANE_LENGTH:
 			hyperlanes.append(HyperlaneData.new(first, second))
 		else:
 			longjumps.append(HyperlaneData.new(first, second))
@@ -491,3 +460,35 @@ func setup_trade():
 					for commodity in system_wide_commodity_prices:
 						if random_select([true, false], rng):
 							entity.available_items[commodity] = system_wide_commodity_prices[commodity]
+
+func get_linkmesh_edges_from_points(source_points):
+	# This mostly deals with the slightly odd format expected by triangulate_delaunay
+	
+	var points = PackedVector2Array(source_points)
+	var link_mesh = Geometry2D.triangulate_delaunay(points)
+	
+	var edge_counts = {}
+	
+	for i in range(0, link_mesh.size(), 3):
+		var tri = [
+			link_mesh[i],
+			link_mesh[i+1],
+			link_mesh[i+2]
+		]
+		for edge in [
+			[tri[0], tri[1]],
+			[tri[1], tri[2]],
+			[tri[0], tri[2]],
+		]:
+			edge.sort()
+			if edge in edge_counts:
+				edge_counts[edge] += 1
+			else:
+				edge_counts[edge] = 1
+	var linkmesh_edges = []
+	for edge in edge_counts:
+		if edge_counts[edge] >= 2:
+			linkmesh_edges.append(
+				[points[edge[0]], points[edge[1]]]
+			)
+	return linkmesh_edges

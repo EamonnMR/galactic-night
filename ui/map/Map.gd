@@ -10,6 +10,8 @@ var long_link_assoc_buckets = {}
 
 @onready var mode = $MarginContainer/NinePatchPanel/MarginContainer2/Panel/VBoxContainer/Mode
 
+var temp_nodes = []
+
 func _ready():
 	_populate_mode_dropdown()
 	_generate_map_nodes()
@@ -109,3 +111,21 @@ func _on_Recenter_pressed():
 
 func _on_Mode_item_selected(_index):
 	_update_for_mode_switch()
+
+func assign_hypergate(links):
+	for link in links:
+		var lane = lane_class.instantiate()
+		var data = HyperlaneData.new(Client.current_system_id(), link)
+
+		lane.data = data
+		lane.name = "temp_" + data.lsys + "_to_" + data.rsys
+		lane.type = Hyperlane.TYPE.WARPGATE
+		movement.add_child(lane)
+		movement.get_node(link).show()
+		
+func unassign():
+	for node in temp_nodes:
+		movement.remove_child(node)
+	temp_nodes = []
+	
+	# TODO: Rehide systems
