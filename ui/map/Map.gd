@@ -45,6 +45,14 @@ func _generate_map_nodes():
 			long_lane.hide()
 		movement.add_child(long_lane)
 		update_link_assoc_bucket(long_lane, long_link_assoc_buckets)
+	for i in Procgen.hypergate_links:
+		var long_lane = lane_class.instantiate()
+		long_lane.data = i
+		long_lane.type = Hyperlane.TYPE.WARPGATE
+		#if not (Cheats.explore_all and Cheats.longjump_enabled):
+		#	long_lane.hide()
+		movement.add_child(long_lane)
+		update_link_assoc_bucket(long_lane, long_link_assoc_buckets)
 	for i in Procgen.systems:
 		var circle = circle_class.instantiate()
 		circle.system_id = i
@@ -52,6 +60,7 @@ func _generate_map_nodes():
 		if not Cheats.explore_all:
 			circle.hide()
 		movement.add_child(circle)
+
 	
 	for i in Procgen.systems:
 		if Procgen.systems[i].explored or Cheats.explore_all:

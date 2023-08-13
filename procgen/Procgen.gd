@@ -73,6 +73,7 @@ func generate_systems(seed_value: int) -> String:
 	populate_factions()
 	name_systems()
 	place_artificial_static_spawns()
+	connect_hyperspace_relays()
 	setup_trade()
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
@@ -443,6 +444,34 @@ func systems_sorted_by_distance() -> Array:
 	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids
 
+func connect_hyperspace_relays():
+	var systems_with_hypergates = {}
+	var positions_of_systems_with_hypergates = []
+	for system_id in systems:
+		var system = systems[system_id]
+		if "spobs" in system.entities:
+			for entity in system.entities.spobs:
+				if "hypergate_links" in entity:
+					systems_with_hypergates[system_id] = entity.spob_name
+					positions_of_systems_with_hypergates.append(system.position)
+
+	for edge in get_linkmesh_edges_from_points(positions_of_systems_with_hypergates):
+		var first = systems_by_position[edge[0]]
+		var second = systems_by_position[edge[1]]
+		
+		var first_gate_id = systems_with_hypergates[first]
+		var second_gate_id = systems_with_hypergates[second]
+		
+		for entity in systems[first].entities:
+			if "hypergate_links" in entity:
+				entity.hypergate_links.append(systems_with_hypergates[second])
+
+		for entity in systems[second].entities:
+			if "hypergate_links" in entity:
+				entity.hypergate_links.append(systems_with_hypergates[first])
+	
+		hypergate_links.append(HyperlaneData.new(first, second))
+	
 func setup_trade():
 	# Setup commodities
 	var commodities = []
