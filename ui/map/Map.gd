@@ -7,6 +7,8 @@ var link_assoc_buckets = {}
 var long_link_assoc_buckets = {}
 @onready var circle_class = preload("res://ui/map/system.tscn")
 @onready var lane_class = preload("res://ui/map/hyperlane.tscn")
+var all_hypegate_links = []
+var hypergate_links_visible: bool = false
 
 @onready var mode = $MarginContainer/NinePatchPanel/MarginContainer2/Panel/VBoxContainer/Mode
 
@@ -46,13 +48,13 @@ func _generate_map_nodes():
 		movement.add_child(long_lane)
 		update_link_assoc_bucket(long_lane, long_link_assoc_buckets)
 	for i in Procgen.hypergate_links:
-		var long_lane = lane_class.instantiate()
-		long_lane.data = i
-		long_lane.type = Hyperlane.TYPE.WARPGATE
-		#if not (Cheats.explore_all and Cheats.longjump_enabled):
-		#	long_lane.hide()
-		movement.add_child(long_lane)
-		update_link_assoc_bucket(long_lane, long_link_assoc_buckets)
+		var gate_lane = lane_class.instantiate()
+		gate_lane.data = i
+		gate_lane.type = Hyperlane.TYPE.WARPGATE
+		gate_lane.hide()
+		movement.add_child(gate_lane)
+		update_link_assoc_bucket(gate_lane, long_link_assoc_buckets)
+		all_hypegate_links.append(gate_lane)
 	for i in Procgen.systems:
 		var circle = circle_class.instantiate()
 		circle.system_id = i
@@ -138,3 +140,12 @@ func unassign():
 	temp_nodes = []
 	
 	# TODO: Rehide systems
+
+func toggle_show_all_hypergate_lanes():
+	for link in all_hypegate_links:
+		if hypergate_links_visible:
+			link.hide()
+		else:
+			link.show()
+	hypergate_links_visible = not hypergate_links_visible
+	return hypergate_links_visible

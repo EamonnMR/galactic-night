@@ -33,7 +33,10 @@ var CHEATS = {
 	"21a8297be0a2e4a39ec56a65015c0451": func make_player_invincible(args):
 		var health = Client.player.get_node("Health")
 		health.invulnerable = not health.invulnerable
-		return health.invulnerable
+		return health.invulnerable,
+	"1a8422b3ee8414b2f29e91b333a96004": func show_hypergate_lanes(args):
+		return Client.get_ui().get_node("Map").toggle_show_all_hypergate_lanes()
+
 }
 
 func toggle(variable_name):

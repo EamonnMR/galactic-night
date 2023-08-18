@@ -26,6 +26,7 @@ func serialize() -> Dictionary:
 	var serial_systems = {}
 	var serial_hyperlanes = []
 	var serial_longjumps = []
+	var serial_hypergate_links = []
 	
 	for system_id in systems:
 		serial_systems[system_id] = systems[system_id].serialize()
@@ -33,10 +34,14 @@ func serialize() -> Dictionary:
 		serial_hyperlanes.append([jump.lsys, jump.rsys])
 	for jump in longjumps:
 		serial_longjumps.append([jump.lsys, jump.rsys])
+	for jump in hypergate_links:
+		serial_hypergate_links.append([jump.lsys, jump.rsys])
+	
 	return {
 		"systems": serial_systems,
 		"hyperlanes": serial_hyperlanes,
-		"longjumps": serial_longjumps
+		"longjumps": serial_longjumps,
+		"hypergate_links": serial_hypergate_links
 	}
 	
 func deserialize(data: Dictionary):
@@ -50,6 +55,8 @@ func deserialize(data: Dictionary):
 	for lane in data["hyperlanes"]:
 		hyperlanes.append(HyperlaneData.new(lane[0], lane[1]))
 	for lane in data["longjumps"]:
+		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
+	for lane in data["hypergate_links"]:
 		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
 
 
