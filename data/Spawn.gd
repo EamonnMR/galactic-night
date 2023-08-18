@@ -12,12 +12,19 @@ var scene: PackedScene
 var destination: String
 var type: String
 var data_type: String
-var faction: int
+var faction: String
 var evergreen: bool
 var distance: float
 
+var quadrants: Array[String]
+
 static func get_csv_path():
 	return "res://data/spawns.csv"
+
+func valid_for_quadrant(quadrant: String):
+	if not quadrants or quadrants == []:
+		return true
+	return quadrant in quadrants
 
 func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
 	var instances: Array[Node] = []

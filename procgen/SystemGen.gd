@@ -40,6 +40,7 @@ func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 		var spawn: SpawnData = Data.spawns[spawn_id]
 		print(spawn.id)
 		if not spawn.preset:
-			var entities = spawn.do_spawns(rng)
-			for instance in entities:
-				gameplay.get_node(spawn.destination).add_child(instance)
+			if spawn.valid_for_quadrant(system.quadrant):
+				var entities = spawn.do_spawns(rng)
+				for instance in entities:
+					gameplay.get_node(spawn.destination).add_child(instance)

@@ -72,7 +72,6 @@ func generate_systems(seed_value: int) -> String:
 	generate_positions_and_links()
 	cache_links()
 	calculate_system_distances()
-	calculate_system_quadrants()
 	var start_sys = place_static_systems()
 	place_preset_static_spawns()
 	populate_biomes()
@@ -177,15 +176,17 @@ func generate_positions_and_links():
 			system.position = position
 			systems[system_id] = system
 			systems_by_position[position] = system_id
+			
+	calculate_system_quadrants()
 	
 	for edge in get_linkmesh_edges_from_points(systems_by_position.keys()):
 		var first = systems_by_position[edge[0]]
 		var second = systems_by_position[edge[1]]
 		
-		if Vector2(edge[0]).distance_to(edge[1]) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(first, second))
-		else:
+		if Vector2(edge[0]).distance_to(edge[1]) >= MAX_LANE_LENGTH or quadrant_based_longjump(first, second):
 			longjumps.append(HyperlaneData.new(first, second))
+		else:
+			hyperlanes.append(HyperlaneData.new(first, second))
 
 
 func cache_links():
@@ -358,7 +359,7 @@ func place_static_spawns(get_spawns: Callable):
 		var spawns = get_spawns.call(system)
 		for spawn_id in spawns:
 			var spawn = Data.spawns[spawn_id]
-			if spawn.preset:
+			if spawn.preset and spawn.valid_for_quadrant(system.quadrant):
 				print(system_id)
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
@@ -427,16 +428,17 @@ func calculate_system_quadrants():
 		var system = systems[system_id]
 		system.quadrant = assign_quadrant(system.position)
 		quadrant_cache[system.quadrant].push_back(system_id)
+
 func assign_quadrant(position: Vector2) -> String:
 	var normalized_position = sign(position)
 	match normalized_position:
 		Vector2(1,1):
 			return "A"
-		Vector2(1,-1):
+		Vector2(-1,1):
 			return "B"
 		Vector2(-1,-1):
 			return "C"
-		Vector2(-1,1):
+		Vector2(1,-1):
 			return "D"
 		
 	return "A"
@@ -528,3 +530,8 @@ func get_linkmesh_edges_from_points(source_points):
 				[points[edge[0]], points[edge[1]]]
 			)
 	return linkmesh_edges
+
+func quadrant_based_longjump(first_id, second_id):
+	var first = systems[first_id]
+	var second = systems[second_id]
+	return first.quadrant != second.quadrant and "D" in [first.quadrant, second.quadrant]
