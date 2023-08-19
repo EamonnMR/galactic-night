@@ -66,7 +66,7 @@ func current_system_id():
 
 func map_select_system(system_id, system_node):
 	sel_sys(system_id, system_node)
-	emit_signal("system_selection_updated")
+	system_selection_updated.emit()
 
 func sel_sys(system_id, node):
 	selected_system = system_id

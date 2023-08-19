@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kfkxmyb2xhb0"]
+[gd_scene load_steps=9 format=3 uid="uid://kfkxmyb2xhb0"]
 
 [ext_resource type="Script" path="res://entities/spobs/HyperspaceRelay.gd" id="1_50d0y"]
 [ext_resource type="ArrayMesh" uid="uid://cbwbnvhfd5sy1" path="res://assets/eamonn/hyperspace_relay/hyperspace_relay.obj" id="2_6n4gq"]
@@ -19,6 +19,9 @@ normal_enabled = true
 normal_texture = ExtResource("6_wg37e")
 texture_filter = 0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a8y1r"]
+radius = 1.42852
+
 [node name="HyperspaceRelay" type="StaticBody3D"]
 collision_layer = 9
 collision_mask = 0
@@ -28,3 +31,6 @@ script = ExtResource("1_50d0y")
 transform = Transform3D(0.249264, 0.0442186, 0.967425, 0.889937, 0.38352, -0.246829, -0.381941, 0.922474, 0.0562461, 4, -6, -3.77353)
 mesh = ExtResource("2_6n4gq")
 surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_a8y1r")

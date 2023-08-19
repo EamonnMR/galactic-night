@@ -2,7 +2,7 @@ extends StaticBody3D
 
 var type: String
 
-var item_screen_box_side_length = 200
+var item_screen_box_side_length = 1000
 
 var faction = "jumpstar"
 var spob_name: String
@@ -25,7 +25,8 @@ func _ready():
 const SERIAL_FIELDS = [
 		"spob_name",
 		"type",
-		"hypergate_links"
+		"hypergate_links",
+		"scene_file_path"
 	]
 
 func serialize() -> Dictionary:

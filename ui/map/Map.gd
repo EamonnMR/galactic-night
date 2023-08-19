@@ -5,6 +5,10 @@ var reveal = true
 var dragging = false
 var link_assoc_buckets = {}
 var long_link_assoc_buckets = {}
+var hyperlink_assoc_buckets = {}
+
+var hypergate_available_systems = []
+
 @onready var circle_class = preload("res://ui/map/system.tscn")
 @onready var lane_class = preload("res://ui/map/hyperlane.tscn")
 var all_hypegate_links = []
@@ -17,6 +21,7 @@ var temp_nodes = []
 func _ready():
 	_populate_mode_dropdown()
 	_generate_map_nodes()
+	Client.system_selection_updated.connect(self.hypergate_jump_selection)
 	
 func _populate_mode_dropdown():
 	for item in [
@@ -53,7 +58,7 @@ func _generate_map_nodes():
 		gate_lane.type = Hyperlane.TYPE.WARPGATE
 		gate_lane.hide()
 		movement.add_child(gate_lane)
-		update_link_assoc_bucket(gate_lane, long_link_assoc_buckets)
+		update_link_assoc_bucket(gate_lane, hyperlink_assoc_buckets)
 		all_hypegate_links.append(gate_lane)
 	for i in Procgen.systems:
 		var circle = circle_class.instantiate()
@@ -124,22 +129,31 @@ func _on_Mode_item_selected(_index):
 	_update_for_mode_switch()
 
 func assign_hypergate(links):
-	for link in links:
-		var lane = lane_class.instantiate()
-		var data = HyperlaneData.new(Client.current_system_id(), link)
-
-		lane.data = data
-		lane.name = "temp_" + data.lsys + "_to_" + data.rsys
-		lane.type = Hyperlane.TYPE.WARPGATE
-		movement.add_child(lane)
-		movement.get_node(link).show()
+	for link in hyperlink_assoc_buckets[Client.current_system_id()]:
+		link.show()
+		temp_nodes.append(link)
+		var other = link.data.lsys
+		if link.data.lsys == Client.current_system_id():
+			other = link.data.rsys
 		
+		if not Procgen.systems[other].explored:
+			var other_circle = movement.get_node(other)
+			other_circle.show()
+			temp_nodes.append(other_circle)
+		
+		hypergate_available_systems.append(other)
+	
 func unassign():
-	for node in temp_nodes:
-		movement.remove_child(node)
+	for link in temp_nodes:
+		link.hide()
 	temp_nodes = []
 	
-	# TODO: Rehide systems
+	hypergate_available_systems = []
+	
+func hypergate_jump_selection():
+	if Client.selected_system in hypergate_available_systems:
+		get_tree().get_root().get_node("Main/UI/").toggle_map()
+		Client.change_system()
 
 func toggle_show_all_hypergate_lanes():
 	for link in all_hypegate_links:
