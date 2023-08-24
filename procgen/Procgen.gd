@@ -79,6 +79,7 @@ func generate_systems(seed_value: int) -> String:
 	populate_factions()
 	name_systems()
 	place_artificial_static_spawns()
+	assign_factions_to_spobs()
 	connect_hyperspace_relays()
 	setup_trade()
 	# Remember, we had a return value. Client needs to know which system to start in.
@@ -229,7 +230,6 @@ func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
-	
 
 
 func assign_faction_core_worlds() -> Array:
@@ -319,7 +319,7 @@ func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
 		if system.name == "":
-			system.name = random_name(system, "NGC-")
+			system.name = random_name(system_id, system.faction, "NGC-")
 		
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
@@ -365,8 +365,6 @@ func place_static_spawns(get_spawns: Callable):
 				var i: int = 0
 				var center_entities = []
 				for entity in entities:
-					if "spob_name" in entity:
-						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
 					if "is_planet" in entity and entity.is_planet:
 						entity.type = random_select(Data.spob_types.keys(), rng)
 					if "center_system" in entity and entity.center_system:
@@ -380,13 +378,13 @@ func place_static_spawns(get_spawns: Callable):
 					system.entities.spobs += [instance.serialize()]
 
 					
-func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
-	if sys.faction != "" and sys.faction != "0":
-		var name_scheme = Data.factions[sys.faction].sys_name_scheme
+func random_name(sys_id: String, faction: String, default_prefix: String, default_postfix: String = ""):
+	if faction != "":
+		var name_scheme = Data.factions[faction].sys_name_scheme
 		print("Current name scheme", name_scheme)
 		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
-		return default_prefix + sys.id + default_postfix
+		return default_prefix + sys_id + default_postfix
 
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
 	return radius * Vector2(sqrt(rng.randf()), 0).rotated(PI * 2 * rng.randf())
@@ -452,7 +450,24 @@ func systems_sorted_by_distance() -> Array:
 	var system_ids = systems.keys()
 	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids
-
+	
+func assign_factions_to_spobs():
+	for system_id in systems:
+		var system = systems[system_id]
+		var i = 0
+		if "spobs" in system.entities:
+			for entity in system.entities.spobs:
+				#if "faction" in entity:
+				if ('faction' in entity) and entity.faction == "" and system.faction != "":
+					entity.faction = system.faction
+					if "inhabited" in entity and entity.inhabited == false:
+						entity.inhabited = true
+				if "spob_name" in entity and entity.spob_name == "":
+					var spob_prefix = "UDF-"
+					if "spawn_id" in entity:
+						spob_prefix = Data.spawns[entity.spawn_id].spob_prefix
+					entity.spob_name = random_name(system_id, entity.faction, spob_prefix, ['', '-B', '-C', '-D', '-E', '-H', '-I', '-J'][i])
+					i += 1
 func connect_hyperspace_relays():
 	var systems_with_hypergates = {}
 	var positions_of_systems_with_hypergates = []

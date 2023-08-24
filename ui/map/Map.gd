@@ -33,7 +33,7 @@ func _populate_mode_dropdown():
 		"Quadrant"
 	]:
 		mode.add_item(item)
-	
+
 func _generate_map_nodes():
 	print("Init Map")
 	for i in Procgen.hyperlanes:

@@ -7,7 +7,7 @@ var item_screen_box_side_length = 1000
 var faction = "jumpstar"
 var spob_name: String
 var hypergate_links: Array
-var spob_prefix = "HPG-"
+var spawn_id: String
 
 
 func display_name():
@@ -26,7 +26,9 @@ const SERIAL_FIELDS = [
 		"spob_name",
 		"type",
 		"hypergate_links",
-		"scene_file_path"
+		"scene_file_path",
+		"spawn_id",
+		"faction",
 	]
 
 func serialize() -> Dictionary:

@@ -7,9 +7,11 @@ var item_screen_box_side_length = 100
 
 @export var spob_prefix: String
 @export var is_planet = true
-@export var inhabited = true
+@export var inhabited = false
 @export var center = true
 @export var available_items = {}
+@export var faction: String
+var spawn_id: String
 
 func display_name():
 	return spob_name
@@ -27,11 +29,13 @@ func _ready():
 	Util.clickable_spob(self)
 
 const SERIAL_FIELDS = [
+		"faction",
 		"spob_name",
 		"type",
 		"scene_file_path",
 		"available_items",
-		"inhabited"
+		"inhabited",
+		"spawn_id",
 	]
 
 func serialize() -> Dictionary:
@@ -47,5 +51,6 @@ func deserialize(data: Dictionary):
 	transform.origin = Util.raise_25d(Util.deserialize_vec(data["transform"]))
 
 func spob_interact():
-	get_tree().get_root().get_node("Main/UI/InhabitedSpob").assign(self)
-	get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "Money", "InhabitedSpob"])
+	if inhabited:
+		get_tree().get_root().get_node("Main/UI/InhabitedSpob").assign(self)
+		get_tree().get_root().get_node("Main/UI/").toggle_inventory(["Inventory", "Money", "InhabitedSpob"])

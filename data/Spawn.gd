@@ -15,6 +15,8 @@ var data_type: String
 var faction: String
 var evergreen: bool
 var distance: float
+var spob_prefix: String
+var use_markov: bool
 
 var quadrants: Array[String]
 
@@ -40,6 +42,8 @@ func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
 				instance.type = type
 			if "faction" in instance:
 				instance.faction = str(faction)
+			if "spawn_id" in instance:
+				instance.spawn_id = id
 			instance.transform.origin = Util.raise_25d(position)
 			instances.push_back(instance)
 	return instances
