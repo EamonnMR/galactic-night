@@ -21,7 +21,8 @@ func get_all_inventory_children():
 	]
 
 func toggle_map():
-	toggle_modal($Map)
+	if not toggle_modal($Map):
+		$Map.unassign()
 
 func toggle_codex(entry=null):
 	if entry != null:
@@ -33,9 +34,11 @@ func toggle_modal(modal):
 		modal.visible = false
 		if not inventory_open:	
 			get_tree().paused = false
+		return false
 	else:
 		modal.visible = true
 		get_tree().paused = true
+		return true
 
 func toggle_inventory(elements: Array = []):
 	if inventory_open:

@@ -42,22 +42,22 @@ func _init():
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
-	load_text()
-	
+
+	load_text()	
 	load_codex()
 
 	cache_evergreen_spawns()
 	cache_evergreen_preset_spawns()
-	# Tests
-	assert_ingredients_exist()
-	assert_spawns_exist()
-	assert_happy_markov()
-	assert_weapons_belonging_to_items_exist()
-	assert_weapon_ammo_types_exist()
-	verify_destination_field()
-	identify_farming_opportunities()
-	verify_spawns_have_scene_or_type()
 
+	# Tests
+	for method in get_method_list():
+		for magic_name in [
+			"assert_",
+			"verify_",
+			"identify_"
+		]:
+			if method.name.begins_with(magic_name):
+				Callable(self, method.name).call()
 
 func load_codex():
 	codex = load_directory("res://data/codex")
@@ -90,6 +90,7 @@ func load_directory(path: String) -> Dictionary:
 			else:
 				if file_name.ends_with(".bbcode"):
 					directory[file_name.replace(".bbcode", "")] = "\n".join(load_lines(path + "/" + file_name))
+					
 			file_name = dir.get_next()
 		return directory
 	else:
@@ -135,12 +136,21 @@ func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
 	for craftable_type in [
 		recipes,
-		builds
-#		ships
+		builds,
+		ships
 	]:
 		for blueprint_id in craftable_type:
 			var blueprint = craftable_type[blueprint_id ]
 			for key in blueprint.ingredients:
+				assert(key in items)
+
+func assert_loot_exists():
+	for lootable_type in [
+		ships
+	]:
+		for lootable_id in lootable_type:
+			var lootable = lootable_type[lootable_id]
+			for key in lootable.loot:
 				assert(key in items)
 
 func assert_spawns_exist():

@@ -1,14 +1,17 @@
-id,count,preset,natural,chance,scene,type,faction,destination,evergreen,data_type,distance
-asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5
-asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5
-asteroids_blue,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeBlue.tscn,,,asteroids,FALSE,,0.5
-ind_npcs,1,FALSE,FALSE,1,,burner,1,npcs,FALSE,ships,1
-trader_npcs,1,FALSE,FALSE,1,,cargo,2,npcs,TRUE,ships,1
-ilisk_npcs,1,FALSE,FALSE,1,,dragon,3,npcs,FALSE,ships,1
-pirate_npcs,2,FALSE,FALSE,1,,nimbus,4,npcs,FALSE,ships,1
-warpcorp_npcs,1,FALSE,FALSE,1,,delivery,5,npcs,FALSE,ships,1
-twilight_npcs,1,FALSE,FALSE,0.3,,melchior,6,npcs,FALSE,ships,1
-planet,3,TRUE,TRUE,0.5,res://entities/spobs/Spob.tscn,,,spobs,FALSE,,0.0001
-fallen_station,1,TRUE,TRUE,0.1,res://entities/spobs/FallenStation.tscn,,,spobs,TRUE,,0.0002
-ilisk_station,1,TRUE,FALSE,0.8,res://entities/spobs/CompactStation.tscn,,,spobs,FALSE,,0.0002
-torment_nexus,1,TRUE,FALSE,1,res://entities/spobs/TormentNexus.tscn,,,spobs,FALSE,,0.1
+id,count,preset,natural,chance,scene,type,faction,destination,evergreen,data_type,distance,quadrants,spob_prefix,use_markov
+asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5,,,
+asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5,,,
+asteroids_blue,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeBlue.tscn,,,asteroids,FALSE,,0.5,,,
+ind_npcs,1,FALSE,FALSE,1,,burner,union,npcs,FALSE,ships,1,,,
+trader_npcs,1,FALSE,FALSE,1,,cargo,trader,npcs,TRUE,ships,1,A B,,
+pirate_npcs,2,FALSE,FALSE,1,,nimbus,pirate,npcs,FALSE,ships,1,A B C,,
+autofac_npcs_a,1,FALSE,FALSE,1,,delivery,autofac,npcs,FALSE,ships,1,A B C D,,
+autofac_npcs_b,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,B C D,,
+autofac_npcs_c,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,C D,,
+autofac_npcs_d,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,D,,
+twilight_npcs,1,FALSE,FALSE,0.3,,melchior,twilight,npcs,FALSE,ships,1,C D,,
+planet,3,TRUE,TRUE,0.5,res://entities/spobs/Spob.tscn,,,spobs,FALSE,,0.0001,,UBP-,TRUE
+fallen_station,1,TRUE,TRUE,0.1,res://entities/spobs/FallenStation.tscn,,,spobs,TRUE,,0.0002,,,FALSE
+torment_nexus,1,TRUE,FALSE,1,res://entities/spobs/TormentNexus.tscn,,autofac,spobs,FALSE,,0.1,,,
+hypergate,1,TRUE,TRUE,0.05,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,TRUE,,0.0002,A B C,HPG-,FALSE
+hypergate100,1,TRUE,TRUE,1,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,FALSE,,1,A B C,TST-,FALSE

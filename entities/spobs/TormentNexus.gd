@@ -4,7 +4,7 @@ var type: String
 
 var item_screen_box_side_length = 200
 
-var faction = "3"
+var faction = "autofac"
 
 func display_name():
 	return "The Torment Nexus"

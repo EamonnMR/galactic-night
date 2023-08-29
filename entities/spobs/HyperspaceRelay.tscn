@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://kfkxmyb2xhb0"]
+
+[ext_resource type="Script" path="res://entities/spobs/HyperspaceRelay.gd" id="1_50d0y"]
+[ext_resource type="ArrayMesh" uid="uid://cbwbnvhfd5sy1" path="res://assets/eamonn/hyperspace_relay/hyperspace_relay.obj" id="2_6n4gq"]
+[ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="3_y71q6"]
+[ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="4_en3t1"]
+[ext_resource type="Texture2D" uid="uid://b2lm643e7evd2" path="res://assets/eamonn/station/Station_RM.png" id="5_chh5i"]
+[ext_resource type="Texture2D" uid="uid://c51a8tdglxqb7" path="res://assets/eamonn/station/Station_N.png" id="6_wg37e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8go"]
+albedo_texture = ExtResource("3_y71q6")
+metallic = 1.0
+metallic_texture = ExtResource("5_chh5i")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("5_chh5i")
+emission_enabled = true
+emission_texture = ExtResource("4_en3t1")
+normal_enabled = true
+normal_texture = ExtResource("6_wg37e")
+texture_filter = 0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a8y1r"]
+radius = 1.42852
+
+[node name="HyperspaceRelay" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_50d0y")
+
+[node name="Station" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.249264, 0.0442186, 0.967425, 0.889937, 0.38352, -0.246829, -0.381941, 0.922474, 0.0562461, 4, -6, -3.77353)
+mesh = ExtResource("2_6n4gq")
+surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_a8y1r")

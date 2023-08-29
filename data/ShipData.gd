@@ -22,7 +22,8 @@ var ingredients: Dictionary
 var icon: Texture2D
 var desc: String
 var require_level: int
-var inherent_faction_id: int
+var inherent_faction_id: String
+var loot: Dictionary
 var make: String
 
 func derive_codex_path():
@@ -32,6 +33,7 @@ func _init(data):
 	super._init(data)
 	weapon_config = parse_colon_dict_string_values(data["weapon_config"])
 	ingredients = parse_colon_dict_int_values(data["ingredients"])
+	loot = parse_colon_dict_int_values(data["ingredients"])
 
 func apply_to_node(node):
 	super.apply_to_node(node)
@@ -39,6 +41,7 @@ func apply_to_node(node):
 	node.bank_speed = bank_speed / turn
 	node.get_node("Health").set_max_health(armor, shields)
 	node.get_node("Health").set_shield_regen(shield_regen, shield_regen_delay)
+	node.get_node("Loot").loot_items = loot
 
 static func get_csv_path():
 	return "res://data/ships.csv"

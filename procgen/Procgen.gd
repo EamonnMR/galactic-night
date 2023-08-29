@@ -7,14 +7,17 @@ var SYSTEMS_COUNT = int(RADIUS * RADIUS * DENSITY)
 var systems = {}
 var hyperlanes = []
 var longjumps = []
+var hypergate_links = []
+
 var MIN_DISTANCE = 50
 var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 var quadrant_cache = {}
 
-var quadrant_permutations_cache = {}
 
+var quadrant_permutations_cache = {}
+var systems_by_position = {}
 @onready var rng: RandomNumberGenerator
 
 
@@ -23,6 +26,7 @@ func serialize() -> Dictionary:
 	var serial_systems = {}
 	var serial_hyperlanes = []
 	var serial_longjumps = []
+	var serial_hypergate_links = []
 	
 	for system_id in systems:
 		serial_systems[system_id] = systems[system_id].serialize()
@@ -30,10 +34,14 @@ func serialize() -> Dictionary:
 		serial_hyperlanes.append([jump.lsys, jump.rsys])
 	for jump in longjumps:
 		serial_longjumps.append([jump.lsys, jump.rsys])
+	for jump in hypergate_links:
+		serial_hypergate_links.append([jump.lsys, jump.rsys])
+	
 	return {
 		"systems": serial_systems,
 		"hyperlanes": serial_hyperlanes,
-		"longjumps": serial_longjumps
+		"longjumps": serial_longjumps,
+		"hypergate_links": serial_hypergate_links
 	}
 	
 func deserialize(data: Dictionary):
@@ -47,6 +55,8 @@ func deserialize(data: Dictionary):
 	for lane in data["hyperlanes"]:
 		hyperlanes.append(HyperlaneData.new(lane[0], lane[1]))
 	for lane in data["longjumps"]:
+		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
+	for lane in data["hypergate_links"]:
 		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
 
 
@@ -62,7 +72,6 @@ func generate_systems(seed_value: int) -> String:
 	generate_positions_and_links()
 	cache_links()
 	calculate_system_distances()
-	calculate_system_quadrants()
 	var start_sys = place_static_systems()
 	place_preset_static_spawns()
 	populate_biomes()
@@ -70,6 +79,8 @@ func generate_systems(seed_value: int) -> String:
 	populate_factions()
 	name_systems()
 	place_artificial_static_spawns()
+	assign_factions_to_spobs()
+	connect_hyperspace_relays()
 	setup_trade()
 	# Remember, we had a return value. Client needs to know which system to start in.
 	return start_sys
@@ -156,7 +167,6 @@ func grow_attribute(_attribute):
 	pass
 
 func generate_positions_and_links():
-	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
 		var system = SystemData.new()
@@ -167,31 +177,18 @@ func generate_positions_and_links():
 			system.position = position
 			systems[system_id] = system
 			systems_by_position[position] = system_id
-	var points = PackedVector2Array(systems_by_position.keys())
-	var link_mesh = Geometry2D.triangulate_delaunay(points)
-	for i in range(0, link_mesh.size(), 3):
-		
-		var first_pos = points[link_mesh[i]]
-		var second_pos = points[link_mesh[i+1]]
-		var third_pos = points[link_mesh[i+2]]
-		
-		var first = systems_by_position[first_pos]
-		var second = systems_by_position[second_pos]
-		var third = systems_by_position[third_pos]
-		
-		if Vector2(first_pos).distance_to(second_pos) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(first, second))
-		else:
-			longjumps.append(HyperlaneData.new(first, second))
-		if Vector2(first_pos).distance_to(third_pos) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(first, third))
-		else:
-			longjumps.append(HyperlaneData.new(first, third))
-		if Vector2(second_pos).distance_to(third_pos) < MAX_LANE_LENGTH:
-			hyperlanes.append(HyperlaneData.new(second, third))
-		else:
-			longjumps.append(HyperlaneData.new(second, third))
+			
+	calculate_system_quadrants()
 	
+	for edge in get_linkmesh_edges_from_points(systems_by_position.keys()):
+		var first = systems_by_position[edge[0]]
+		var second = systems_by_position[edge[1]]
+		
+		if Vector2(edge[0]).distance_to(edge[1]) >= MAX_LANE_LENGTH or quadrant_based_longjump(first, second):
+			longjumps.append(HyperlaneData.new(first, second))
+		else:
+			hyperlanes.append(HyperlaneData.new(first, second))
+
 
 func cache_links():
 	for lane in hyperlanes:
@@ -233,7 +230,6 @@ func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
-	
 
 
 func assign_faction_core_worlds() -> Array:
@@ -323,7 +319,7 @@ func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
 		if system.name == "":
-			system.name = random_name(system, "NGC-")
+			system.name = random_name(system_id, system.faction, "NGC-")
 		
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
@@ -363,14 +359,12 @@ func place_static_spawns(get_spawns: Callable):
 		var spawns = get_spawns.call(system)
 		for spawn_id in spawns:
 			var spawn = Data.spawns[spawn_id]
-			if spawn.preset:
+			if spawn.preset and spawn.valid_for_quadrant(system.quadrant):
 				print(system_id)
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
 				var center_entities = []
 				for entity in entities:
-					if "spob_name" in entity:
-						entity.spob_name = random_name(system, entity.spob_prefix, "-" + ['A', 'B', 'C', 'D', 'E', 'H', 'I', 'J'][i])
 					if "is_planet" in entity and entity.is_planet:
 						entity.type = random_select(Data.spob_types.keys(), rng)
 					if "center_system" in entity and entity.center_system:
@@ -384,13 +378,13 @@ func place_static_spawns(get_spawns: Callable):
 					system.entities.spobs += [instance.serialize()]
 
 					
-func random_name(sys: SystemData, default_prefix: String, default_postfix: String = ""):
-	if sys.faction != "" and sys.faction != "0":
-		var name_scheme = Data.factions[sys.faction].sys_name_scheme
+func random_name(sys_id: String, faction: String, default_prefix: String, default_postfix: String = ""):
+	if faction != "":
+		var name_scheme = Data.factions[faction].sys_name_scheme
 		print("Current name scheme", name_scheme)
 		return Data.name_generators[ name_scheme ].get_random_name()
 	else:
-		return default_prefix + sys.id + default_postfix
+		return default_prefix + sys_id + default_postfix
 
 func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
 	return radius * Vector2(sqrt(rng.randf()), 0).rotated(PI * 2 * rng.randf())
@@ -432,16 +426,17 @@ func calculate_system_quadrants():
 		var system = systems[system_id]
 		system.quadrant = assign_quadrant(system.position)
 		quadrant_cache[system.quadrant].push_back(system_id)
+
 func assign_quadrant(position: Vector2) -> String:
 	var normalized_position = sign(position)
 	match normalized_position:
 		Vector2(1,1):
 			return "A"
-		Vector2(1,-1):
+		Vector2(-1,1):
 			return "B"
 		Vector2(-1,-1):
 			return "C"
-		Vector2(-1,1):
+		Vector2(1,-1):
 			return "D"
 		
 	return "A"
@@ -455,7 +450,52 @@ func systems_sorted_by_distance() -> Array:
 	var system_ids = systems.keys()
 	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
 	return system_ids
+	
+func assign_factions_to_spobs():
+	for system_id in systems:
+		var system = systems[system_id]
+		var i = 0
+		if "spobs" in system.entities:
+			for entity in system.entities.spobs:
+				#if "faction" in entity:
+				if ('faction' in entity) and entity.faction == "" and system.faction != "":
+					entity.faction = system.faction
+					if "inhabited" in entity and entity.inhabited == false:
+						entity.inhabited = true
+				if "spob_name" in entity and entity.spob_name == "":
+					var spob_prefix = "UDF-"
+					if "spawn_id" in entity:
+						spob_prefix = Data.spawns[entity.spawn_id].spob_prefix
+					entity.spob_name = random_name(system_id, entity.faction, spob_prefix, ['', '-B', '-C', '-D', '-E', '-H', '-I', '-J'][i])
+					i += 1
+func connect_hyperspace_relays():
+	var systems_with_hypergates = {}
+	var positions_of_systems_with_hypergates = []
+	for system_id in systems:
+		var system = systems[system_id]
+		if "spobs" in system.entities:
+			for entity in system.entities.spobs:
+				if "hypergate_links" in entity:
+					systems_with_hypergates[system_id] = entity.spob_name
+					positions_of_systems_with_hypergates.append(system.position)
 
+	for edge in get_linkmesh_edges_from_points(positions_of_systems_with_hypergates):
+		var first = systems_by_position[edge[0]]
+		var second = systems_by_position[edge[1]]
+		
+		var first_gate_id = systems_with_hypergates[first]
+		var second_gate_id = systems_with_hypergates[second]
+		
+		for entity in systems[first].entities:
+			if "hypergate_links" in entity:
+				entity.hypergate_links.append(systems_with_hypergates[second])
+
+		for entity in systems[second].entities:
+			if "hypergate_links" in entity:
+				entity.hypergate_links.append(systems_with_hypergates[first])
+	
+		hypergate_links.append(HyperlaneData.new(first, second))
+	
 func setup_trade():
 	# Setup commodities
 	var commodities = []
@@ -473,3 +513,40 @@ func setup_trade():
 					for commodity in system_wide_commodity_prices:
 						if random_select([true, false], rng):
 							entity.available_items[commodity] = system_wide_commodity_prices[commodity]
+
+func get_linkmesh_edges_from_points(source_points):
+	# This mostly deals with the slightly odd format expected by triangulate_delaunay
+	
+	var points = PackedVector2Array(source_points)
+	var link_mesh = Geometry2D.triangulate_delaunay(points)
+	
+	var edge_counts = {}
+	
+	for i in range(0, link_mesh.size(), 3):
+		var tri = [
+			link_mesh[i],
+			link_mesh[i+1],
+			link_mesh[i+2]
+		]
+		for edge in [
+			[tri[0], tri[1]],
+			[tri[1], tri[2]],
+			[tri[0], tri[2]],
+		]:
+			edge.sort()
+			if edge in edge_counts:
+				edge_counts[edge] += 1
+			else:
+				edge_counts[edge] = 1
+	var linkmesh_edges = []
+	for edge in edge_counts:
+		if edge_counts[edge] >= 2:
+			linkmesh_edges.append(
+				[points[edge[0]], points[edge[1]]]
+			)
+	return linkmesh_edges
+
+func quadrant_based_longjump(first_id, second_id):
+	var first = systems[first_id]
+	var second = systems[second_id]
+	return first.quadrant != second.quadrant and "D" in [first.quadrant, second.quadrant]

@@ -29,7 +29,7 @@ func _ready():
 func _get_spob_faction_text():
 	if spob.is_in_group("player-assets"):
 		return "Player" # TODO: Player faction name?
-	elif "faction" in spob:
+	elif "faction" in spob and spob.faction != "":
 		return Data.factions[spob.faction].name
 	else:
 		return "uninhabited"
