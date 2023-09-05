@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://i7bonkufv1y7"]
 
-[ext_resource type="Script" path="res://entities/spobs/TormentNexus.gd" id="1_1bsv8"]
+[ext_resource type="Script" path="res://entities/spobs/Fulfillment.gd" id="1_ka15m"]
 [ext_resource type="ArrayMesh" uid="uid://dg13q8b6bv01" path="res://assets/fullfillment.obj" id="2_b2gmv"]
 [ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="3_x0f8n"]
 [ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="4_7j6eh"]
@@ -25,10 +25,10 @@ texture_filter = 0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gp4e2"]
 points = PackedVector3Array(2.60281, 2.5394, 2.61348, -2.64068, -2.5394, -2.62915, -2.61982, -2.5192, 2.6305, 2.64068, -2.5394, -2.62915, -2.60281, 2.5394, -2.59128, 2.61983, -2.5192, 2.6305, 2.60281, 2.5394, -2.59128, -2.60281, 2.5394, 2.61348)
 
-[node name="TormentNexus" type="StaticBody3D"]
+[node name="FulfillmentCenter" type="StaticBody3D"]
 collision_layer = 9
 collision_mask = 0
-script = ExtResource("1_1bsv8")
+script = ExtResource("1_ka15m")
 
 [node name="Station" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.481912, 0.138498, 0.865204, -0.15151, 0.985727, -0.073401, -0.863021, -0.0957146, 0.496018, 4, -6, -4)
