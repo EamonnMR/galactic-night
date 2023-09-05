@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvfyguibojfxc"]
+
+[ext_resource type="Script" path="res://entities/constructed/Workbench.gd" id="1_imsiv"]
+[ext_resource type="ArrayMesh" uid="uid://cty7hmcy0x36j" path="res://assets/eamonn/shipyard/shipyard.obj" id="2_8shc3"]
+[ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="2_k10od"]
+[ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="3_0de56"]
+[ext_resource type="Texture2D" uid="uid://b2lm643e7evd2" path="res://assets/eamonn/station/Station_RM.png" id="4_eemwk"]
+[ext_resource type="Texture2D" uid="uid://c51a8tdglxqb7" path="res://assets/eamonn/station/Station_N.png" id="5_4m75r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8go"]
+albedo_texture = ExtResource("2_k10od")
+metallic = 1.0
+metallic_texture = ExtResource("4_eemwk")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("4_eemwk")
+emission_enabled = true
+emission_texture = ExtResource("3_0de56")
+normal_enabled = true
+normal_texture = ExtResource("5_4m75r")
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aaf0b"]
+points = PackedVector3Array(16.3411, 1.94923, 6.63731, -17.1373, -5.84631, -7.11426, -21.4437, 3.6558, -5.12898, -17.5233, -5.95658, 6.98962, 16.8128, -5.84631, -7.11426, 19.0172, 4.3969, -4.63636, -21.4437, 4.98811, 5.51058, 17.0885, -6.5428, 6.327, 21.1192, 4.98811, 5.51058, 16.7193, 1.41437, -7.07586, -17.0294, -6.4195, -6.46636, -17.0438, 1.41437, -7.07586, 21.1192, 3.6558, -5.12898, -17.413, -6.5428, 6.327, -19.3417, 4.3969, -4.63636, 16.7049, -6.4195, -6.46636, -16.6656, 1.94923, 6.63731, 17.1988, -5.95658, 6.98962, 21.1192, 3.6558, 5.51058, -21.4437, 3.6558, 5.51058)
+
+[node name="Shipyard" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_imsiv")
+set_crafting_level = 2
+screen_box = 400
+
+[node name="Station" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.231435, 0.0763816, 0.0557136, -0.0889844, 0.225755, 0.0601378, -0.0319366, -0.0755023, 0.236177, 4, -6, -4)
+mesh = ExtResource("2_8shc3")
+surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.231435, 0.0763816, 0.0557136, -0.0889844, 0.225755, 0.0601378, -0.0319366, -0.0755023, 0.236177, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_aaf0b")

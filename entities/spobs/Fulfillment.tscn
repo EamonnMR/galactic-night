@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://i7bonkufv1y7"]
+
+[ext_resource type="Script" path="res://entities/spobs/TormentNexus.gd" id="1_1bsv8"]
+[ext_resource type="ArrayMesh" uid="uid://dg13q8b6bv01" path="res://assets/fullfillment.obj" id="2_b2gmv"]
+[ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="3_x0f8n"]
+[ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="4_7j6eh"]
+[ext_resource type="Texture2D" uid="uid://b2lm643e7evd2" path="res://assets/eamonn/station/Station_RM.png" id="5_fo1uv"]
+[ext_resource type="Texture2D" uid="uid://c51a8tdglxqb7" path="res://assets/eamonn/station/Station_N.png" id="6_l2mrg"]
+[ext_resource type="PackedScene" uid="uid://r6jv80byk5dl" path="res://component/Health.tscn" id="7_c6bxa"]
+[ext_resource type="PackedScene" uid="uid://nt7stcr8sbj1" path="res://effects/GenericExplosion.tscn" id="8_jn215"]
+[ext_resource type="PackedScene" uid="uid://bjmll63x6x8c2" path="res://component/Loot.tscn" id="8_mbqyy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx8go"]
+albedo_texture = ExtResource("3_x0f8n")
+metallic = 1.0
+metallic_texture = ExtResource("5_fo1uv")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("5_fo1uv")
+emission_enabled = true
+emission_texture = ExtResource("4_7j6eh")
+normal_enabled = true
+normal_texture = ExtResource("6_l2mrg")
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gp4e2"]
+points = PackedVector3Array(2.60281, 2.5394, 2.61348, -2.64068, -2.5394, -2.62915, -2.61982, -2.5192, 2.6305, 2.64068, -2.5394, -2.62915, -2.60281, 2.5394, -2.59128, 2.61983, -2.5192, 2.6305, 2.60281, 2.5394, -2.59128, -2.60281, 2.5394, 2.61348)
+
+[node name="TormentNexus" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_1bsv8")
+
+[node name="Station" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.481912, 0.138498, 0.865204, -0.15151, 0.985727, -0.073401, -0.863021, -0.0957146, 0.496018, 4, -6, -4)
+mesh = ExtResource("2_b2gmv")
+surface_material_override/0 = SubResource("StandardMaterial3D_dx8go")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.481912, 0.138498, 0.865204, -0.15151, 0.985727, -0.073401, -0.863021, -0.0957146, 0.496018, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gp4e2")
+
+[node name="Health" parent="." instance=ExtResource("7_c6bxa")]
+max_health = 30
+explosion = ExtResource("8_jn215")
+shield_regen = 0.0
+shield_regen_delay = 0.0
+
+[node name="Loot" parent="." instance=ExtResource("8_mbqyy")]
+drop_chance = 1.0
+loot_items = {
+"metal": 10,
+"nanoforge": 1
+}
+
+[connection signal="destroyed" from="Health" to="." method="_on_health_destroyed"]

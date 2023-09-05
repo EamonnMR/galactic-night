@@ -7,11 +7,12 @@ trader_npcs,1,FALSE,FALSE,1,,cargo,trader,npcs,TRUE,ships,1,A B,,
 pirate_npcs,2,FALSE,FALSE,1,,nimbus,pirate,npcs,FALSE,ships,1,A B C,,
 autofac_npcs_a,1,FALSE,FALSE,1,,delivery,autofac,npcs,FALSE,ships,1,A B C D,,
 autofac_npcs_b,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,B C D,,
-autofac_npcs_c,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,C D,,
-autofac_npcs_d,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,D,,
+autofac_npcs_c,1,FALSE,FALSE,1,,harvester,autofac,npcs,FALSE,ships,1,C D,,
+autofac_npcs_d,1,FALSE,FALSE,1,,affiliate,autofac,npcs,FALSE,ships,1,D,,
 twilight_npcs,1,FALSE,FALSE,0.3,,melchior,twilight,npcs,FALSE,ships,1,C D,,
 planet,3,TRUE,TRUE,0.5,res://entities/spobs/Spob.tscn,,,spobs,FALSE,,0.0001,,UBP-,TRUE
 fallen_station,1,TRUE,TRUE,0.1,res://entities/spobs/FallenStation.tscn,,,spobs,TRUE,,0.0002,,,FALSE
 torment_nexus,1,TRUE,FALSE,1,res://entities/spobs/TormentNexus.tscn,,autofac,spobs,FALSE,,0.1,,,
 hypergate,1,TRUE,TRUE,0.05,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,TRUE,,0.0002,A B C,HPG-,FALSE
 hypergate100,1,TRUE,TRUE,1,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,FALSE,,1,A B C,TST-,FALSE
+fulfillment,1,TRUE,FALSE,1,res://entities/spobs/Fulfillment.tscn,,autofac,spobs,FALSE,,0.0002,B C,FC-,FALSE

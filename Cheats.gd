@@ -35,8 +35,27 @@ var CHEATS = {
 		health.invulnerable = not health.invulnerable
 		return health.invulnerable,
 	"1a8422b3ee8414b2f29e91b333a96004": func show_hypergate_lanes(args):
-		return Client.get_ui().get_node("Map").toggle_show_all_hypergate_lanes()
-
+		return Client.get_ui().get_node("Map").toggle_show_all_hypergate_lanes(),
+	"8e2c4b2051e48c796c0af883e3d09e62": func force_spawn(args):
+		if not(len(args) == 1):
+			Client.display_message("Please enter a spawn ID")
+			return false
+		var spawn_id = args[0]
+		if not spawn_id in Data.spawns:
+			Client.display_message("Invalid spawn id: " + spawn_id)
+			return false
+		
+		var spawn = Data.spawns[spawn_id]
+		
+		if spawn.preset:
+			Client.display_message("Please pick a dynamic spawn")
+			return false
+		
+		var entities = spawn.do_spawns(RandomNumberGenerator.new())
+		for instance in entities:
+			Client.get_world().get_node(spawn.destination).add_child(instance)
+		
+		return true
 }
 
 func toggle(variable_name):

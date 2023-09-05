@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://yoc6pqclo35u"]
+
+[ext_resource type="PackedScene" uid="uid://uc7oyjsn3215" path="res://entities/ship/Spaceship.tscn" id="1_n2acv"]
+[ext_resource type="ArrayMesh" uid="uid://cxoyga73hcux5" path="res://assets/eamonn/harvester/harvester.obj" id="2_hydot"]
+[ext_resource type="Script" path="res://component/MeshInstance.gd" id="3_s7q4a"]
+[ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="4_68phi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm4bi"]
+resource_name = "Material"
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+metallic = 0.5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_woyy6"]
+points = PackedVector3Array(3.55202, 0.0886683, 1.26322, -2.85949, -0.691608, -1.90062, -3.07289, -1.09792, -1.43205, -3.8953, 0.510386, 1.68494, -3.19194, 0.510386, -2.10846, -3.07411, -1.09829, 1.43081, 4.67616, -0.33243, -0.984016, -1.7861, 0.932103, -0.140994, 0.460415, -1.17566, 1.12292, 4.67616, 0.0886683, -0.843719, -4.31696, -0.613438, -0.422001, 0.460415, -1.17566, -1.12473, -3.19194, 0.510386, 2.10707, -0.31728, -0.557437, 1.86699, 4.39446, -0.472934, 0.841913, -4.03526, 0.650683, -0.281704, 0.319567, 0.510386, -1.68674, -0.316848, -0.557058, -1.86676, 0.319567, 0.510386, 1.68494, 4.67616, 0.0886683, 0.841913, -3.6217, -1.1049, 1.04748, -3.8953, 0.510386, -1.68674, -3.27538, -0.586756, 1.85922, 3.13036, 0.369676, 0.420195, -3.62028, -1.10453, -1.04886, -4.31696, -0.613438, 0.420195, 4.67616, -0.33243, 0.98221, 3.55202, 0.0886683, -1.26502, 3.13036, 0.369676, -0.422001, -1.7861, 0.932103, 0.139188, -3.66622, -0.585798, -1.59196, 4.39446, -0.472934, -0.703009)
+
+[node name="Spaceship" instance=ExtResource("1_n2acv")]
+bank_axis = "z"
+
+[node name="Graphics" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(-1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0, 0, 0)
+mesh = ExtResource("2_hydot")
+surface_material_override/0 = SubResource("StandardMaterial3D_jm4bi")
+script = ExtResource("3_s7q4a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(-1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_woyy6")
+
+[node name="LeftGun" parent="." index="7" instance=ExtResource("4_68phi")]
+transform = Transform3D(1.25415, 0, 0, 0, 1.00743, 0, 0, 0, 1.31188, 2.86277, 0, -0.699198)
+
+[node name="LeftMidGun" parent="." index="8" instance=ExtResource("4_68phi")]
+transform = Transform3D(1.25415, 0, 0, 0, 1.00743, 0, 0, 0, 1.31188, 2.34164, 0, -1.01413)
+
+[node name="RightGun" parent="." index="9" instance=ExtResource("4_68phi")]
+transform = Transform3D(1.25415, 0, 0, 0, 1.00743, 0, 0, 0, 1.31188, 2.96952, 0, 0.619228)
+
+[node name="RightMidGun" parent="." index="10" instance=ExtResource("4_68phi")]
+transform = Transform3D(1.25415, 0, 0, 0, 1.00743, 0, 0, 0, 1.31188, 2.37979, 0, 1.02277)
