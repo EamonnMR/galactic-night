@@ -261,6 +261,10 @@ func assign_faction_core_worlds() -> Array:
 				print("Collision: ", system_id)
 				continue
 			else:
+				var system = systems[system_id]
+				if not system.quadrant in faction.quadrants:
+					print("Cannot spawn faction " + faction_id + " in quadrant " + system.quadrant + " allowed: (" + ",".join(faction.quadrants) + ")")
+					continue
 				systems[system_id].faction = faction_id
 				systems[system_id].core = true
 				systems[system_id].generation = 0

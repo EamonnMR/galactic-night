@@ -10,7 +10,7 @@ func _update():
 		%Name.text = "Name: "+ sysdat.name
 		%Biome.text = "Biome: " + Data.biomes[sysdat.biome].name
 		if sysdat.faction != "":
-			%Faction.text = "Faction: " + Data.factions[sysdat.faction].name + " (" + sysdat.faction + ")"
+			%Faction.text = "Faction: " + Data.factions[sysdat.faction].name
 		else:
 			%Faction.text = "Faction: None"
 		if "spobs" in sysdat.entities:

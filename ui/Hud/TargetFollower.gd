@@ -16,7 +16,7 @@ func _ready():
 	)
 
 func _process(_delta):
-	if target_ship:
+	if target_ship and is_instance_valid(target_ship):
 		position = Client.camera.unproject_position(target_ship.global_position)
 
 func _on_target_ship_exited():

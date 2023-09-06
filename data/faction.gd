@@ -22,6 +22,7 @@ var skin: String
 var spawns_system: Array[String]
 var spawns_core: Array[String]
 var spawns_adjacent: Array[String]
+var quadrants: Array[String]
 
 static func get_csv_path():
 	return "res://data/factions.csv"

@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://h4ym14he1e1r"]
+[gd_scene load_steps=7 format=3 uid="uid://h4ym14he1e1r"]
 
 [ext_resource type="PackedScene" uid="uid://uc7oyjsn3215" path="res://entities/ship/Spaceship.tscn" id="1_xw05x"]
 [ext_resource type="ArrayMesh" uid="uid://4smcjcxvyxey" path="res://assets/eamonn/affiliate/affiliate.obj" id="2_85gmo"]
 [ext_resource type="Script" path="res://component/MeshInstance.gd" id="3_5u41f"]
 [ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="4_aae2e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrbi0"]
+resource_name = "Material"
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+metallic = 0.5
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qjdbn"]
 points = PackedVector3Array(-0.309552, 0.138714, 0.719885, -1.24152, -0.0409794, -0.68565, -1.24745, 0.185625, -0.688612, 2.05451, 0.32057, -0.310476, 2.05451, -0.346198, 0.295493, -1.76445, -0.527941, 0.174299, -1.76445, 0.563082, 0.113631, 0.0542669, -0.346198, -0.73501, 2.05451, 0.381113, 0.174299, -1.20213, -0.213012, 0.679522, 2.05451, -0.346198, -0.310476, -1.76445, -0.58871, -0.067946, -0.491461, 0.32057, -0.73501, -0.612608, 0.381113, 0.719885, 0.0542669, -0.346198, 0.719885, 1.5084, 0.0174011, 0.538023, -1.76445, 0.563082, -0.128614, -0.976426, 0.563082, -0.18914, 1.56955, 0.0174011, -0.492338, -1.26644, 0.188392, 0.682981, -0.976426, 0.563082, 0.174299, -1.04582, -0.316732, -0.670714, -1.46139, -0.58871, 0.0529629, -1.76445, -0.346198, -0.249808, 1.99375, 0.259801, 0.356161, -0.309552, -0.406742, 0.659217, -1.76445, -0.224773, 0.295493, -0.309552, -0.406742, -0.674342, 2.05451, 0.381113, -0.18914, -0.612608, 0.381113, -0.674342, -1.76445, 0.259801, 0.295493, 1.8726, -0.224773, 0.416687)
@@ -13,6 +18,7 @@ points = PackedVector3Array(-0.309552, 0.138714, 0.719885, -1.24152, -0.0409794,
 [node name="Graphics" type="MeshInstance3D" parent="." index="3"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 mesh = ExtResource("2_85gmo")
+surface_material_override/0 = SubResource("StandardMaterial3D_nrbi0")
 script = ExtResource("3_5u41f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]

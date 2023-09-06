@@ -1,8 +1,8 @@
-id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,host_spawn_anywhere,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme,skin,spawns_system,spawns_core,spawns_adjacent,adjacency_radius
-union,Union,Un,#0000FF,0,TRUE,3,2,2,TRUE,-1,TRUE,trader,autofac pirate,10,15,new_england,2,ind_npcs,ind_npcs,ind_npcs,1
-trader,Trader,Trd,#0000FF,20,FALSE,0,0,0,FALSE,0,FALSE,,,0,0,cornwall,2,trader_npcs,trader_npcs,trader_npcs,1
-pirate,Pirate,Pir,#060606,-30,TRUE,1,0,6,FALSE,-2,TRUE,,trader union autofac,0,0,illiad,1,pirate_npcs,pirate_npcs,pirate_npcs,4
-autofac,Autofac,Afk,#FF0000,-100,FALSE,4,1,3,TRUE,0,FALSE,,union,5,20,cali,2,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d fulfillment,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d fulfillment,2
-twilight,Twilight,Soc,#FFFF00,0,FALSE,2,1,2,FALSE,-2,TRUE,1,union pirate autofac,20,5,tain,5,twilight_npcs,twilight_npcs,twilight_npcs,2
-mic,MIC,Mic,#00FF00,100,FALSE,0,0,0,FALSE,0,FALSE,,,0,0,tain,6,,,,0
-jumpstar,JumpStar,JS,#5050A0,0,FALSE,0,0,0,FALSE,0,FALSE,trader,,100,0,tain,7,,,,0
+id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,host_spawn_anywhere,quadrants,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme,skin,spawns_system,spawns_core,spawns_adjacent,adjacency_radius
+union,Union,Un,#0000FF,0,TRUE,3,2,2,TRUE,A B,-1,FALSE,trader,autofac pirate,10,15,new_england,2,ind_npcs,ind_npcs,ind_npcs,1
+trader,Trader,Trd,#0000FF,20,FALSE,0,0,0,FALSE,,0,FALSE,,,0,0,cornwall,2,trader_npcs,trader_npcs,trader_npcs,1
+pirate,Pirate,Pir,#060606,-30,TRUE,2,0,6,FALSE,A B C,-2,TRUE,,trader union autofac,0,0,illiad,1,pirate_npcs,pirate_npcs,pirate_npcs,4
+autofac,Autofac,Afk,#FF0000,-100,FALSE,6,3,3,TRUE,A B C D,1,FALSE,,union,5,20,cali,2,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d fulfillment,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d,autofac_npcs_a autofac_npcs_b autofac_npcs_c autofac_npcs_d fulfillment,2
+twilight,Twilight,Soc,#FFFF00,0,FALSE,1,1,2,FALSE,D,-2,TRUE,1,union pirate autofac,20,5,tain,5,twilight_npcs,twilight_npcs,twilight_npcs,2
+mic,MIC,Mic,#00FF00,100,FALSE,0,0,0,FALSE,,0,FALSE,,,0,0,tain,6,,,,0
+jumpstar,JumpStar,JS,#5050A0,0,FALSE,0,0,0,FALSE,,0,FALSE,trader,,100,0,tain,7,,,,0
