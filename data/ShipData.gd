@@ -8,6 +8,7 @@ var max_speed: float
 var accel: float
 var turn: float
 var max_bank: int
+var inventory_max_items: int
 var bank_speed: float
 var engagement_range: float
 var screen_box_side_length: int
@@ -42,6 +43,7 @@ func apply_to_node(node):
 	node.get_node("Health").set_max_health(armor, shields)
 	node.get_node("Health").set_shield_regen(shield_regen, shield_regen_delay)
 	node.get_node("Loot").loot_items = loot
+	node.get_node("Inventory").max_items = inventory_max_items
 
 static func get_csv_path():
 	return "res://data/ships.csv"
