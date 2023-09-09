@@ -55,6 +55,14 @@ var CHEATS = {
 		for instance in entities:
 			Client.get_world().get_node(spawn.destination).add_child(instance)
 		
+		return true,
+	"c78a20092e04039fe42664fdc554ae9a": func switch_ships(args):
+		if not(len(args) == 1):
+			return false
+		if not args[0] in Data.ships:
+			return false
+		
+		Client.switch_ship(args[0])
 		return true
 }
 

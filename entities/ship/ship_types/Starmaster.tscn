@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://component/MeshInstance.gd" id="3_tdjaw"]
 [ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="4_rigge"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv6gg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdjiy"]
 resource_name = "Material"
 albedo_color = Color(0.8, 0.8, 0.8, 1)
 metallic = 0.5
@@ -19,7 +19,7 @@ bank_axis = "z"
 [node name="Graphics" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(-1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0, 0, 0)
 mesh = ExtResource("2_gk8fi")
-surface_material_override/0 = SubResource("StandardMaterial3D_lv6gg")
+surface_material_override/0 = SubResource("StandardMaterial3D_wdjiy")
 script = ExtResource("3_tdjaw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
