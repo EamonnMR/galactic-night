@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://component/MeshInstance.gd" id="3_s7q4a"]
 [ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="4_68phi"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1va0h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ld4v"]
 resource_name = "Material"
 albedo_color = Color(0.8, 0.8, 0.8, 1)
 metallic = 0.5
@@ -19,7 +19,7 @@ bank_axis = "z"
 [node name="Graphics" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(-1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0, 0, 0)
 mesh = ExtResource("2_hydot")
-surface_material_override/0 = SubResource("StandardMaterial3D_1va0h")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ld4v")
 script = ExtResource("3_s7q4a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]

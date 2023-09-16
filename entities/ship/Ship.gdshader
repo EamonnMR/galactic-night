@@ -12,7 +12,7 @@ uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_ena
 uniform float specular;
 uniform float metallic;
 uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
+uniform float normal_scale : hint_range(-16,16) = 1;
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 
