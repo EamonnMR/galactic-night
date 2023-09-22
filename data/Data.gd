@@ -43,12 +43,14 @@ func _init():
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
 
-	load_text()	
+	load_text()
 	load_codex()
+	for spawn in spawns.values():
+		spawn.denormalize_to_factions(self)
 
 	cache_evergreen_spawns()
 	cache_evergreen_preset_spawns()
-
+	
 	# Tests
 	for method in get_method_list():
 		for magic_name in [

@@ -50,3 +50,14 @@ func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
 			instance.transform.origin = Util.raise_25d(position)
 			instances.push_back(instance)
 	return instances
+
+func denormalize_to_factions(data):
+	for sources_destination in [
+		["factions_core", "spawns_core"],
+		["factions_system", "spawns_system"],
+		["factions_adjacent", "spawns_adjacent"]
+	]:
+		var sources = get(sources_destination[0])
+		var destination = sources_destination[1]
+		for faction in sources:
+			data.factions[faction][destination].append(id)

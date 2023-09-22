@@ -321,13 +321,35 @@ func grow_faction_influence_from_core_worlds():
 				system.adjacency = [faction_id]
 				system.generation = i
 	print("Factions grown")
+	
+
 
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
 		if system.name == "":
 			system.name = random_name(system_id, system.faction, "NGC-")
-		
+
+func grow_faction_adjacency():
+	# TODO: This is obviously not optimal
+	print("Growing faction influence")
+	for faction_id in Data.factions:
+		var faction = Data.factions[faction_id]
+		for i in range(faction.systems_radius):
+			print("Full iteration: ", faction["name"], ", iteration: ", i)
+			var marked_systems = []
+			for system_id in systems:
+				var system = systems[system_id]
+				for link_id in system.links_cache:
+					var link_system = systems[link_id]
+					if "adjacency" in link_system and faction_id in link_system.adjacency:
+						marked_systems.append(system_id)
+						break
+			for system_id in marked_systems:
+				var system = systems[system_id]
+				system.adjacency.append(faction_id)
+	print("Faction adjacency grown")
+
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
 	print("Place natural static spawns")

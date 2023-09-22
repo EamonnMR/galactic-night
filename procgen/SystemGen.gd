@@ -11,13 +11,8 @@ func get_faction_spawns(system: SystemData):
 func get_adjacent_spawns(system: SystemData) -> Array[String]:
 	# TODO: Adjacency Radius
 	var adjacent_spawns: Array[String] = []
-	for other_system_id in system.links_cache:
-		var other_system = Procgen.systems[other_system_id]
-		if other_system.faction != "":
-			var faction: FactionData = Data.factions[other_system.faction]
-			var adjacent_for_faction: Array[String] 
-			adjacent_for_faction.assign(faction.spawns_adjacent)
-			adjacent_spawns.append_array(adjacent_for_faction)
+	for faction_id in system.adjacency:
+		adjacent_spawns.append_array(Data.factions[faction_id].spawns_adjacent)
 	return adjacent_spawns
 
 func get_special_system_spawns(system):
