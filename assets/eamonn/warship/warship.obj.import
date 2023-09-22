@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c6mwfqs882y7d"
+path="res://.godot/imported/warship.obj-d90f30615d7e5e90b4e6dd799d9edc9d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/warship.obj-d90f30615d7e5e90b4e6dd799d9edc9d.mesh"]
+
+source_file="res://assets/eamonn/warship/warship.obj"
+dest_files=["res://.godot/imported/warship.obj-d90f30615d7e5e90b4e6dd799d9edc9d.mesh", "res://.godot/imported/warship.obj-d90f30615d7e5e90b4e6dd799d9edc9d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

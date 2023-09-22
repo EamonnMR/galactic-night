@@ -19,6 +19,9 @@ var spob_prefix: String
 var use_markov: bool
 
 var quadrants: Array[String]
+var factions_adjacent: Array[String]
+var factions_system: Array[String]
+var factions_core: Array[String]
 
 static func get_csv_path():
 	return "res://data/spawns.csv"
