@@ -10,7 +10,7 @@ var natural: bool
 var chance: float
 var scene: PackedScene
 var destination: String
-var type: String
+var types: Array[String]
 var data_type: String
 var faction: String
 var evergreen: bool
@@ -38,11 +38,11 @@ func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
 			var position = Procgen.random_location_in_system(rng)
 			var instance: Node
 			if data_type != "":
+				var type = Procgen.random_select(types, rng)
 				instance = Data.get(data_type)[type].scene.instantiate()
+				instance.type = type
 			else:
 				instance = scene.instantiate()
-			if type != null and type != "":
-				instance.type = type
 			if "faction" in instance:
 				instance.faction = str(faction)
 			if "spawn_id" in instance:

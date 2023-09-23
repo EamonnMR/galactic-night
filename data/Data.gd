@@ -176,7 +176,7 @@ func assert_spawns_have_scenes_or_types():
 	for spawn_id in spawns:
 		var spawn = spawns[spawn_id]
 		assert(not (	
-			spawn.scene == null and spawn.type == null
+			spawn.scene == null and spawn.data_type == ""
 		))
 
 func assert_happy_markov():
@@ -223,7 +223,7 @@ func verify_spawns_have_scene_or_type():
 	for name in spawns:
 		var i = spawns[name]
 		if i.scene == null:
-			if i.type == "":
+			if i.types == []:
 				assert(false)
 
 func verify_static_systems_reference_real_biomes():
