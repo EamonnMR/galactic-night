@@ -11,7 +11,7 @@ uniform vec4 metallic_texture_channel;
 uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
 uniform float specular;
 uniform float metallic;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_normal : filter_nearest,hint_roughness_normal,repeat_enable;
 uniform float normal_scale : hint_range(-16,16) = 1;
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
@@ -30,7 +30,7 @@ uniform float base_emission_factor = 1;
 uniform float engine_emission_factor = 1;
 uniform float weapon_emission_factor=  1;
 
-uniform sampler2D texture_paint : source_color;
+uniform sampler2D texture_paint : filter_nearest,source_color;
 
 uniform float paint_hue: hint_range(0,1);
 uniform float paint_saturation: hint_range(0,2);
