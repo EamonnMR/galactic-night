@@ -226,6 +226,11 @@ func verify_spawns_have_scene_or_type():
 			if i.types == []:
 				assert(false)
 
+func verify_ships_have_scene():
+	for name in ships:
+		var i = ships[name]
+		assert(ships[name] != null)
+
 func verify_static_systems_reference_real_biomes():
 	for name in static_systems:
 		var i: StaticSystem = static_systems[name]

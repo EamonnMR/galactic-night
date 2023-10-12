@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dkxlv4oh6job1"
+path="res://.godot/imported/scout.obj-2e44f7cfe241691149a8a95a4b20e390.mesh"
+
+[deps]
+
+files=["res://.godot/imported/scout.obj-2e44f7cfe241691149a8a95a4b20e390.mesh"]
+
+source_file="res://assets/eamonn/scout/scout.obj"
+dest_files=["res://.godot/imported/scout.obj-2e44f7cfe241691149a8a95a4b20e390.mesh", "res://.godot/imported/scout.obj-2e44f7cfe241691149a8a95a4b20e390.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

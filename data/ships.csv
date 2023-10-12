@@ -10,6 +10,6 @@ harvester,Harvester,Combine,Autofac Heavy Equipment,2,0.01,0.3,10,1,60,30,1,5,20
 starmaster,Starmaster,Retrofit,MIC,4,0.02,0.8,15,1,60,20,2,2,16,3,TRUE,res://entities/ship/ship_types/Starmaster.tscn,100,LeftGun: plasma;  RightGun: plasma,1,metal: 7,,metal: 6,mic,res://assets/eamonn/icons/gifts_ungiven.png,Venerable frigate
 affiliate,Affiliate,Business Value,Autofac Internal Competition,3,0.01,0.5,5,0.5,144,120,3,7,30,4,TRUE,res://entities/ship/ship_types/Affiliate.tscn,300,LeftGun: plasma; RightGun: plasma,0,metal: 2,,metal: 6 hypersolenoid: 1,autofac,res://assets/eamonn/icons/heighliner.png,Cybernetic executive with many important responsibilities
 warship,Erebus,Lostech Warship,MIC,3.5,0.02,0.7,8,1,100,70,4,2,20,3,TRUE,res://entities/ship/ship_types/Warship.tscn,100,,2,metal: 7,,metal: 6,mic,,Yesteryear's line warship.
-trefoil,Boomslang,Escort Bomber,MIC,5,0.025,0.8,15,2.5,20,10,2,5,8,4,TRUE,,100,,2,metal: 7,,metal: 6,mic,,Heavy fighter
-oathbreaker,Oathbreaker,Escort Carrier,Trieste,4,0.025,0.7,13,3,80,40,2,2,10,6,TRUE,,100,,3,metal: 7,,metal: 6,pirate,,Weapon of intimidation
-scout,Scout,Annular Drive,Igor,4,0.03,0.8,10,0.5,40,30,3,3,10,7,TRUE,,100,,2,metal: 7,,metal: 6,union,,Extended-range scout ship
+trefoil,Boomslang,Escort Bomber,MIC,5,0.025,0.8,15,2.5,20,10,2,5,8,4,TRUE,res://entities/ship/ship_types/Trefoil.tscn,100,,2,metal: 7,,metal: 6,mic,,Heavy fighter
+oathbreaker,Oathbreaker,Escort Carrier,Trieste,4,0.025,0.7,13,3,80,40,2,2,10,6,TRUE,res://entities/ship/ship_types/Trefoil.tscn,100,,3,metal: 7,,metal: 6,pirate,,Weapon of intimidation
+scout,Scout,Annular Drive,Igor,4,0.03,0.8,10,0.5,40,30,3,3,10,7,TRUE,res://entities/ship/ship_types/Trefoil.tscn,100,,2,metal: 7,,metal: 6,union,,Extended-range scout ship
