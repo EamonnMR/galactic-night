@@ -1,6 +1,14 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://cv22e1y7iss5f"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://b7rjc2vieyy0c"]
 
-[sub_resource type="Shader" id="Shader_65glp"]
+[ext_resource type="Texture2D" uid="uid://csakiwi15r3rf" path="res://assets/eamonn/oathbreaker/Oathbreaker_base.png" id="1_jgxjw"]
+[ext_resource type="Texture2D" uid="uid://b5l5dw4txlxsu" path="res://assets/eamonn/oathbreaker/Oathbreaker_lights.png" id="2_gosid"]
+[ext_resource type="Texture2D" uid="uid://bq3a75g8jccvb" path="res://assets/eamonn/oathbreaker/Oathbreaker_engine.png" id="3_a24sa"]
+[ext_resource type="Texture2D" uid="uid://c7y1qbwl41gfc" path="res://assets/eamonn/oathbreaker/Oathbreaker_rm.png" id="4_giybc"]
+[ext_resource type="Texture2D" uid="uid://mxv8ydb4gloq" path="res://assets/eamonn/oathbreaker/Oathbreaker_normal.png" id="5_k05dx"]
+[ext_resource type="Texture2D" uid="uid://cjsvltp4y2e2v" path="res://assets/eamonn/oathbreaker/Oathbreaker_paint.png" id="6_j0vkq"]
+[ext_resource type="Texture2D" uid="uid://c4wvno48b2x6t" path="res://assets/eamonn/oathbreaker/Oathbreaker_weapon.png" id="7_3y1fp"]
+
+[sub_resource type="Shader" id="Shader_54ho5"]
 code = "shader_type spatial;
 
 #include \"res://effects/perspective.gdshaderinc\"
@@ -98,33 +106,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_soj3n"]
-load_path = "res://.godot/imported/trefoil_base.png-9bdb2fd00de8614badd4854aae3b6852.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ir77"]
-load_path = "res://.godot/imported/trefoil_lights.png-0c01a945a19e996c86a06fb9dfa01840.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_assvq"]
-load_path = "res://.godot/imported/trefoil_engine.png-9576c78518ee50a9121d6f90417f0e74.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ysddj"]
-load_path = "res://.godot/imported/trefoil_rm.png-3070ddea12696bbf1301f5be0b0bc3fe.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gg2y4"]
-load_path = "res://.godot/imported/trefoil_normal.png-650545c12f8baa4b961499be17bff836.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4uuo2"]
-load_path = "res://.godot/imported/trefoil_paint.png-0bd599a5096c112b66fd282d94a132d9.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1wnrl"]
-load_path = "res://.godot/imported/trefoil_rm.png-3070ddea12696bbf1301f5be0b0bc3fe.s3tc.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n5h8c"]
-load_path = "res://.godot/imported/trefoil_weapons.png-e1e3cc421d893e478223109d6c03e6ff.s3tc.ctex"
-
 [resource]
 render_priority = 0
-shader = SubResource("Shader_65glp")
+shader = SubResource("Shader_54ho5")
 shader_parameter/roughness = null
 shader_parameter/metallic_texture_channel = null
 shader_parameter/specular = null
@@ -134,7 +118,7 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = null
 shader_parameter/xform = null
 shader_parameter/inv_xform = null
-shader_parameter/perspective_correct = 0.2
+shader_parameter/perspective_correct = 0.15
 shader_parameter/emission_energy = 6.0
 shader_parameter/base_emission_factor = 1.0
 shader_parameter/engine_emission_factor = 0.0
@@ -148,11 +132,11 @@ shader_parameter/lights_saturation = null
 shader_parameter/lights_brightness = null
 shader_parameter/weapon_hue = null
 shader_parameter/weapon_saturation = null
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_soj3n")
-shader_parameter/texture_metallic = SubResource("CompressedTexture2D_ysddj")
-shader_parameter/texture_roughness = SubResource("CompressedTexture2D_1wnrl")
-shader_parameter/texture_normal = SubResource("CompressedTexture2D_gg2y4")
-shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_8ir77")
-shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_assvq")
-shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_n5h8c")
-shader_parameter/texture_paint = SubResource("CompressedTexture2D_4uuo2")
+shader_parameter/texture_albedo = ExtResource("1_jgxjw")
+shader_parameter/texture_metallic = ExtResource("4_giybc")
+shader_parameter/texture_roughness = ExtResource("4_giybc")
+shader_parameter/texture_normal = ExtResource("5_k05dx")
+shader_parameter/texture_base_emission = ExtResource("2_gosid")
+shader_parameter/texture_engine_emission = ExtResource("3_a24sa")
+shader_parameter/texture_weapon_emission = ExtResource("7_3y1fp")
+shader_parameter/texture_paint = ExtResource("6_j0vkq")

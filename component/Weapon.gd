@@ -62,7 +62,11 @@ func _create_projectile():
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
+	
 	projectile.global_transform = global_transform
+	projectile.scale = Vector3(1,1,1)
+	#projectile.global_transform.origin = projectile.global_transform.origin
+	#projectile.global_transform.basis = Basis(projectile.global_transform.basis.get_rotation_quaternion())
 	projectile.damage = damage
 	projectile.initial_velocity = projectile_velocity
 	projectile.linear_velocity = parent.linear_velocity
