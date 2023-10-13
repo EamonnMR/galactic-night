@@ -56,6 +56,11 @@ var CHEATS = {
 			Client.get_world().get_node(spawn.destination).add_child(instance)
 		
 		return true,
+	# This seems to not work at all
+	#"0ac8689e3ae7b03644dfb140ede7455b": func toggle_collision_shapes(args):
+	#	var valence: bool = not get_tree().debug_collisions_hint
+	#	get_tree().set_debug_collisions_hint(valence)
+	#	return valence,
 	"c78a20092e04039fe42664fdc554ae9a": func switch_ships(args):
 		if not(len(args) == 1):
 			return false
