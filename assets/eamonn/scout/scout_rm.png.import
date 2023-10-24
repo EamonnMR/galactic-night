@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nuqwx786qyuv"
-path.s3tc="res://.godot/imported/Unnamed_paint.png-416dd41b4322c00c8e905dd5841672d2.s3tc.ctex"
+uid="uid://cvn45b3t3iyms"
+path.s3tc="res://.godot/imported/scout_rm.png-78f4f1f7bbc74b5a07615f88a96af035.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/eamonn/warship/Unnamed_paint.png"
-dest_files=["res://.godot/imported/Unnamed_paint.png-416dd41b4322c00c8e905dd5841672d2.s3tc.ctex"]
+source_file="res://assets/eamonn/scout/scout_rm.png"
+dest_files=["res://.godot/imported/scout_rm.png-78f4f1f7bbc74b5a07615f88a96af035.s3tc.ctex"]
 
 [params]
 
@@ -24,8 +24,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=-3
-roughness/src_normal="res://assets/eamonn/scout/scout_normal.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
