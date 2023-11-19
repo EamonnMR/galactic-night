@@ -4,3 +4,5 @@ missile_launcher,missile_launcher,1,2,metal: 5
 plasma,plasma,1,0,metal: 5
 railgun,railgun,1,0,metal: 2; blue: 2
 railgun_ammo,railgun_ammo,10,0,metal: 1
+flak,flak,1,0,metal: 2; blue: 2
+flak_ammo,flak_ammo,10,0,metal: 1

@@ -23,9 +23,9 @@ class_name Explosion
 #			Health.do_damage(body.collider, damage)
 
 func _ready():
-	$Particles.emitting = true
+	$Particles.set.call_deferred("emitting", true)
 	
-	set.call_deferred("emitting", true) # To fix explosions staritng at 0,0
+	#set.call_deferred("emitting", true) # To fix explosions staritng at 0,0
 	$AudioStreamPlayer3D.play
 	$Lifetime.wait_time = $Particles.lifetime * 10
 	$Lifetime.start()

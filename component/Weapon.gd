@@ -27,6 +27,8 @@ var type: String
 
 # @export var dmg_factor: float = 1
 @export var damage: int
+@export var splash_damage: int
+@export var splash_radius: float
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
@@ -68,6 +70,8 @@ func _create_projectile():
 	#projectile.global_transform.origin = projectile.global_transform.origin
 	#projectile.global_transform.basis = Basis(projectile.global_transform.basis.get_rotation_quaternion())
 	projectile.damage = damage
+	projectile.splash_damage = splash_damage
+	projectile.splash_radius = splash_radius
 	projectile.initial_velocity = projectile_velocity
 	projectile.linear_velocity = parent.linear_velocity
 	projectile.rotate_x(randf_range(-spread/2, spread/2))

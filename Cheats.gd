@@ -20,7 +20,8 @@ var CHEATS = {
 		if not (type in Data.items):
 			Client.display_message("Unknown item type: " + type)
 			return false
-		Client.player.get_node("Inventory").add(type, amount)
+		for i in range(amount):
+			Client.player.get_node("Inventory").add(type, 1)
 		return true,
 	"8f1120f13067fb18ca2ee5bf7b57f9b8": func(_args): return toggle("max_craft_level"),
 	"c7a90079bc623305b3e6382fb65774ad": func(_args): return toggle("jump_anywhere"),

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c4l6k2vh24tmp"
+path="res://.godot/imported/lightning.obj-46f787e437411b1bf7f558a3f24989d3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lightning.obj-46f787e437411b1bf7f558a3f24989d3.mesh"]
+
+source_file="res://assets/lightning/lightning.obj"
+dest_files=["res://.godot/imported/lightning.obj-46f787e437411b1bf7f558a3f24989d3.mesh", "res://.godot/imported/lightning.obj-46f787e437411b1bf7f558a3f24989d3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

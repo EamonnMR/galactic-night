@@ -137,3 +137,15 @@ func clickable_spob(spob):
 			else:
 				Client.mouseover_entered(spob)
 	)
+
+func sphere_query(world_3d: World3D, transform: Transform3D, radius: float, collision_mask: int, shape):
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.set_transform(transform)
+	# var shape = SphereShape3D.new()
+	shape.radius = radius
+	query.set_shape(shape)
+	query.collision_mask = collision_mask
+	var space_state= world_3d.get_direct_space_state()
+	var result = space_state.intersect_shape(query)
+	return result
+
