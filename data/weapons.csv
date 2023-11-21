@@ -2,7 +2,7 @@ id,scene,projectile_scene,burst_count,burst_cooldown,cooldown,dupe_count,spread,
 plasma,res://component/Weapon.tscn,res://entities/Projectile.tscn,0,0,0.5,1,0.4,TRUE,0,,TRUE,6,1,0,,,FALSE
 missile_launcher,res://component/RocketLauncher.tscn,res://entities/projectiles/Missile.tscn,0,0,1,1,0,TRUE,0,missile,FALSE,10,10,10,3,,FALSE
 railgun,res://component/Weapon.tscn,res://entities/projectiles/Railgun.tscn,0,0,0.8,1,0.2,TRUE,0,railgun_ammo,TRUE,15,1,0,,,FALSE
-flak,res://component/Weapon.tscn,res://entities/projectiles/Flak.tscn,3,1.5,0.3,1,0,TRUE,0,,,5,2,3,3,,FALSE
+flak,res://component/Weapon.tscn,res://entities/Flak.tscn,3,1,0.3,1,0,TRUE,0,,TRUE,5,1,3,1,,FALSE
 guided_launcher,res://component/Weapon.tscn,res://entities/projectiles/GuidedMissile.tscn,0,0,1,1,0,TRUE,0,,TRUE,8,5,0,,,FALSE
 jackknife,res://component/Weapon.tscn,res://entities/projectiles/Jackknife.tscn,0,0,0.1,1,0,FALSE,0,,TRUE,0,1,0,,,FALSE
 plasma_turret,res://component/Weapon.tscn,res://entities/projectiles/Projectile.tscn,0,0,0.5,2,0.4,TRUE,0,,TRUE,6,1,0,,,TRUE

@@ -14,7 +14,7 @@ blue,Lutetium,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon33.png
 flak,Flak Cannon,weapon,,,res://assets/danc_cc_by/icons/flak.png,Short range splash weapon,,FALSE,FALSE,150
 guided_launcher,Guided Launcher,weapon,,,res://assets/danc_cc_by/icons/missile_launcher.png,long range weapon,,FALSE,FALSE,500
 jackknife,Jackknife,weapon,,,res://assets/danc_cc_by/icons/laser.png,short range beam weapon,,FALSE,FALSE,300
-flak_ammo,Flak Ammo,,,,res://assets/danc_cc_by/icons/flak_ammo.png,Ammo for flak cannon,,TRUE,FALSE,100
+flak_ammo,Flak Ammo,,,,res://assets/danc_cc_by/icons/flak_ammo.png,Ammo for flak cannon,,TRUE,FALSE,10
 guided_ammo,Guided Missile,,,,res://assets/danc_cc_by/icons/missile_ammo.png,Guided missile ammo,,TRUE,FALSE,100
 missile_battery,Missile Battery,,,,res://assets/danc_cc_by/icons/missile_battery.png,Fires a swarm of guided missiles,,FALSE,FALSE,600
 plasma_turret,Heater Turret,weapon,,,res://assets/damnwing_cc_by/zipgun_turret.png,Turreted heater,,TRUE,FALSE,300
