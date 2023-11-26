@@ -18,6 +18,8 @@ var cooldown: float
 var projectile_lifetime: float
 var splash_damage: int
 var splash_radius: float
+var timeout: float
+var explode_on_timeout: bool
 
 func apply_to_node(node):
 	super.apply_to_node(node)

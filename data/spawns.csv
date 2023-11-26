@@ -2,8 +2,8 @@ id,count,preset,natural,chance,scene,types,faction,destination,evergreen,data_ty
 asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5,,,,,,
 asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5,,,,,,
 asteroids_blue,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeBlue.tscn,,,asteroids,FALSE,,0.5,,,,,,
-union_npcs,1,FALSE,FALSE,1,,nimbus starmaster,union,npcs,FALSE,ships,1,,,,union,union,union
-trader_npcs,1,FALSE,FALSE,1,,cargo,trader,npcs,TRUE,ships,1,A B,,,union,union,union
+union_npcs,1,FALSE,FALSE,1,,nimbus starmaster lightning,union,npcs,FALSE,ships,1,,,,union,union,union
+trader_npcs,1,FALSE,FALSE,1,,cargo lightning scout,trader,npcs,TRUE,ships,1,A B,,,union,union,union
 pirate_npcs,2,FALSE,FALSE,1,,nimbus burner,pirate,npcs,FALSE,ships,1,A B C,,,union pirate,pirate,pirate
 autofac_npcs_a,1,FALSE,FALSE,1,,delivery,autofac,npcs,FALSE,ships,1,A B C D,,,autofac,autofac,autofac
 autofac_npcs_b,1,FALSE,FALSE,1,,dragon,autofac,npcs,FALSE,ships,1,B C D,,,autofac,autofac,autofac

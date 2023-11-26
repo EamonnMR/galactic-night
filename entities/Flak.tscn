@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://by2f8d5y3ad05"]
+[gd_scene load_steps=7 format=3 uid="uid://by2f8d5y3ad05"]
 
 [ext_resource type="Script" path="res://entities/Projectile.gd" id="1_y5x5p"]
+[ext_resource type="PackedScene" uid="uid://c7el6b7rxmc8t" path="res://effects/FlakExplosion.tscn" id="2_bynit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7x5gk"]
 albedo_color = Color(0.603922, 0.501961, 0, 1)
@@ -16,8 +17,8 @@ top_radius = 0.01
 bottom_radius = 0.03
 height = 0.14
 
-[sub_resource type="BoxShape3D" id="3"]
-size = Vector3(0.301632, 0.110224, 0.117487)
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwb86"]
+radius = 1.01847
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l0eoe"]
 
@@ -25,6 +26,7 @@ size = Vector3(0.301632, 0.110224, 0.117487)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_y5x5p")
+explosion = ExtResource("2_bynit")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, 0, 0, 0)
@@ -34,7 +36,7 @@ mesh = SubResource("CylinderMesh_oamci")
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("3")
+shape = SubResource("SphereShape3D_nwb86")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

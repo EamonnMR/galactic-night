@@ -23,12 +23,14 @@ var type: String
 @export var primary = true
 @export var weapon_name: String = "Plasma"
 @export var projectile_velocity: float
-@export var projectile_lifetime: float
 
 # @export var dmg_factor: float = 1
 @export var damage: int
 @export var splash_damage: int
 @export var splash_radius: float
+
+@export var timeout: float
+@export var explode_on_timeout: bool
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
@@ -77,7 +79,8 @@ func _create_projectile():
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
-	projectile.set_lifetime(projectile_lifetime)
+	projectile.set_lifetime(timeout)
+	projectile.explode_on_timeout = explode_on_timeout
 
 	if world_projectile:
 		Client.get_world().get_node("projectiles").add_child(projectile)
