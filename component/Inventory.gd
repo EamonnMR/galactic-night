@@ -124,3 +124,7 @@ func deserialize(data):
 			int(slot_data.count)
 		)
 	fresh = false
+
+func player_has_access():
+	# TODO: Handle other player stuff
+	return get_node("../") == Client.player

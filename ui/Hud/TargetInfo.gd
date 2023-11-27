@@ -29,6 +29,7 @@ func _on_target_ship_exited():
 	target_ship = null
 
 func update():
-	var health: Health = target_ship.get_node("Health")
-	%Armor.value = (float(health.health) / float(health.max_health)) * %Armor.max_value
-	%Shields.value = (float(health.shields) / float(health.max_shields)) * %Shields.max_value
+	if target_ship:
+		var health: Health = target_ship.get_node("Health")
+		%Armor.value = (float(health.health) / float(health.max_health)) * %Armor.max_value
+		%Shields.value = (float(health.shields) / float(health.max_shields)) * %Shields.max_value

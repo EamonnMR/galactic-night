@@ -23,3 +23,5 @@ offset_top = -18.0
 offset_right = 40.0
 grow_vertical = 0
 text = "1"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
