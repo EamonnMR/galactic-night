@@ -31,6 +31,8 @@ var type: String
 
 @export var timeout: float
 @export var explode_on_timeout: bool
+@export var damage_falloff: bool
+@export var fade: bool
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
@@ -81,6 +83,8 @@ func _create_projectile():
 	projectile.iff = iff
 	projectile.set_lifetime(timeout)
 	projectile.explode_on_timeout = explode_on_timeout
+	projectile.damage_falloff = damage_falloff
+	projectile.fade = fade
 
 	if world_projectile:
 		Client.get_world().get_node("projectiles").add_child(projectile)

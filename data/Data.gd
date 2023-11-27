@@ -194,6 +194,13 @@ func assert_weapon_ammo_types_exist():
 		var weapon = weapons[weapon_id]
 		if weapon.ammo_item != "":
 			assert(weapon.ammo_item in items)
+			
+func assert_weapons_with_fade_have_sufficient_damage():
+	# If a weapon's projectile fades, it needs to have at least two damage, or the fade won't work
+	for weapon_id in weapons:
+		var weapon = weapons[weapon_id]
+		if weapon.fade:
+			assert(weapon.damage >= 2)
 
 func identify_farming_opportunities():
 	for recipe_id in recipes:
