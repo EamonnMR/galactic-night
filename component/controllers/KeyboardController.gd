@@ -139,3 +139,6 @@ func handle_spob_selection():
 			else:
 				Client.update_player_target_spob(spobs[i])
 			
+
+func get_target():
+	return Client.target_ship

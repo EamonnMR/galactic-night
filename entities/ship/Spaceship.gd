@@ -19,6 +19,7 @@ var standoff: bool = false
 var screen_box_side_length: int
 
 var chain_fire_mode = true
+var lock_turrets = false
 
 var linear_velocity = Vector2()
 var primary_weapons = []
