@@ -187,8 +187,7 @@ func get_disposition(node):
 	if "faction" in node:
 		if node.faction:
 			return Data.factions[node.faction].get_player_disposition()
-	else:
-		return Util.DISPOSITION.ABANDONED
+	return Util.DISPOSITION.ABANDONED
 
 func display_message(msg: String):
 	message.emit(msg)

@@ -33,6 +33,7 @@ var type: String
 @export var explode_on_timeout: bool
 @export var damage_falloff: bool
 @export var fade: bool
+@export var overpen: bool
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
