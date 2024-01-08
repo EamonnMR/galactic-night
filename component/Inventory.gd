@@ -6,7 +6,7 @@ class_name Inventory
 @export var default_contents: Dictionary
 
 var item_slots = {}
-var max_items: int
+var max_items: int = 16
 var fresh = true
 
 signal updated
@@ -23,10 +23,6 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	#if get_node("../") is Ship:
-	#	max_items = Data.ships[get_node("../").type].inventory_size
-	#else:
-	max_items = 16
 	if fresh:
 		for key in default_contents:
 			add(key, default_contents[key])
@@ -128,3 +124,7 @@ func deserialize(data):
 			int(slot_data.count)
 		)
 	fresh = false
+
+func player_has_access():
+	# TODO: Handle other player stuff
+	return get_node("../") == Client.player

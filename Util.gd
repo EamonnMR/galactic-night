@@ -120,6 +120,7 @@ func item_screen_box_side_length(object):
 
 func lead_correct_position(projectile_velocity: float, origin_position: Vector2, origin_velocity: Vector2, target_velocity: Vector2, target_position: Vector2) -> Vector2:
 	# Simplified 'first order' leading via https://www.gamedev.net/tutorials/programming/math-and-physics/leading-the-target-r4223/
+	# TODO: This could be better
 	var relative_vel = target_velocity - origin_velocity
 	var travel_time = target_position.distance_to(origin_position) / projectile_velocity
 	return relative_vel * travel_time + target_position
@@ -137,3 +138,15 @@ func clickable_spob(spob):
 			else:
 				Client.mouseover_entered(spob)
 	)
+
+func sphere_query(world_3d: World3D, transform: Transform3D, radius: float, collision_mask: int, shape):
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.set_transform(transform)
+	# var shape = SphereShape3D.new()
+	shape.radius = radius
+	query.set_shape(shape)
+	query.collision_mask = collision_mask
+	var space_state= world_3d.get_direct_space_state()
+	var result = space_state.intersect_shape(query)
+	return result
+

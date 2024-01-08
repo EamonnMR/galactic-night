@@ -19,7 +19,7 @@ func _on_continue_pressed():
 	Client.toggle_pause()
 
 func _on_visibility_changed():
-	if is_instance_valid(Client.player):
+	if Client.ready_to_continue():
 		$Continue.disabled = false
 	else:
 		$Continue.disabled = true

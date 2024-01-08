@@ -20,6 +20,7 @@ var target
 var path_target
 var lead_velocity: float
 var state = STATES.IDLE
+var cache_lead_position
 
 var bodies_in_engagement_range = []
 
@@ -94,7 +95,7 @@ func process_state_attack(delta):
 		return
 	
 	populate_rotation_impulse_and_ideal_face(
-		_get_target_lead_position(), delta)
+		_get_target_lead_position(lead_velocity, target), delta)
 	shooting = _facing_within_margin(shoot_margin)
 	thrusting = not parent.standoff and _facing_within_margin(accel_margin)
 	braking = parent.standoff
@@ -214,15 +215,8 @@ func complete_jump():
 func _compute_weapon_velocity():
 	lead_velocity = 12 # TODO: actually compute this from weapons
 
-func _get_target_lead_position():
-	var lead_position = Util.lead_correct_position(
-		lead_velocity,
-		Util.flatten_25d(get_parent().global_transform.origin),
-		get_parent().linear_velocity,
-		target.linear_velocity,
-		Util.flatten_25d(target.global_transform.origin)
-		
-	)
+func _get_target_lead_position(lead_velocity, target):
+	var lead_position = super(lead_velocity, target)
 	if get_tree().debug_collisions_hint:
 		$LeadIndicator.global_transform.origin = Util.raise_25d(lead_position)
 		$LeadIndicator.show()
@@ -252,3 +246,6 @@ func _on_damage_taken(source):
 	match state:
 		STATES.IDLE, STATES.PERSUE, STATES.PATH:
 			change_state_persue(source)
+
+func get_target():
+	return target

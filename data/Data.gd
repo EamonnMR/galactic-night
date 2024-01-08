@@ -43,12 +43,14 @@ func _init():
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
 
-	load_text()	
+	load_text()
 	load_codex()
+	for spawn in spawns.values():
+		spawn.denormalize_to_factions(self)
 
 	cache_evergreen_spawns()
 	cache_evergreen_preset_spawns()
-
+	
 	# Tests
 	for method in get_method_list():
 		for magic_name in [
@@ -174,7 +176,7 @@ func assert_spawns_have_scenes_or_types():
 	for spawn_id in spawns:
 		var spawn = spawns[spawn_id]
 		assert(not (	
-			spawn.scene == null and spawn.type == null
+			spawn.scene == null and spawn.data_type == ""
 		))
 
 func assert_happy_markov():
@@ -192,6 +194,13 @@ func assert_weapon_ammo_types_exist():
 		var weapon = weapons[weapon_id]
 		if weapon.ammo_item != "":
 			assert(weapon.ammo_item in items)
+			
+func assert_weapons_with_fade_have_sufficient_damage():
+	# If a weapon's projectile fades, it needs to have at least two damage, or the fade won't work
+	for weapon_id in weapons:
+		var weapon = weapons[weapon_id]
+		if weapon.fade:
+			assert(weapon.damage >= 2)
 
 func identify_farming_opportunities():
 	for recipe_id in recipes:
@@ -221,8 +230,13 @@ func verify_spawns_have_scene_or_type():
 	for name in spawns:
 		var i = spawns[name]
 		if i.scene == null:
-			if i.type == "":
+			if i.types == []:
 				assert(false)
+
+func verify_ships_have_scene():
+	for name in ships:
+		var i = ships[name]
+		assert(ships[name] != null)
 
 func verify_static_systems_reference_real_biomes():
 	for name in static_systems:

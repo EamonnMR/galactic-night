@@ -5,7 +5,7 @@ var type: String
 
 var item_screen_box_side_length = 100
 
-@export var spob_prefix: String
+@export var s2pob_prefix: String
 @export var is_planet = true
 @export var inhabited = false
 @export var center = true

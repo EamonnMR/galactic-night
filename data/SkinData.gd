@@ -35,4 +35,6 @@ func apply_to_shader(shader):
 	# similar to apply_to_node, but different to merit a new func
 	for column in get_columns():
 		if column != "id" and column != "name":
-			shader.set_shader_parameter(column, get(column))
+			# TODO: Remove this if, ships shouldn't use any other shader types
+			if shader.has_method("set_shader_parameter"):
+				shader.set_shader_parameter(column, get(column))

@@ -15,6 +15,7 @@ var core: bool
 var generation: int
 var longjump_enabled: bool
 var entities: Dictionary
+var adjacency: Array
 
 var distance: float
 var distance_normalized: float
@@ -46,6 +47,7 @@ func deserialize(data: Dictionary):
 	longjump_enabled = data["longjump_enabled"]
 	quadrant = data["quadrant"]
 	static_system_id = data["static_system_id"]
+	
 
 func deserialize_entities():
 	for destination_str in entities:

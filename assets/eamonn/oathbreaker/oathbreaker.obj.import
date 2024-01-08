@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://k0bep8ljtkov"
+path="res://.godot/imported/oathbreaker.obj-f9a119b2b7397074c3f910a8c3083790.mesh"
+
+[deps]
+
+files=["res://.godot/imported/oathbreaker.obj-f9a119b2b7397074c3f910a8c3083790.mesh"]
+
+source_file="res://assets/eamonn/oathbreaker/oathbreaker.obj"
+dest_files=["res://.godot/imported/oathbreaker.obj-f9a119b2b7397074c3f910a8c3083790.mesh", "res://.godot/imported/oathbreaker.obj-f9a119b2b7397074c3f910a8c3083790.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

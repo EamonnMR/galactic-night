@@ -23,10 +23,18 @@ var type: String
 @export var primary = true
 @export var weapon_name: String = "Plasma"
 @export var projectile_velocity: float
-@export var projectile_lifetime: float
 
 # @export var dmg_factor: float = 1
 @export var damage: int
+@export var splash_damage: int
+@export var splash_radius: float
+
+@export var timeout: float
+@export var explode_on_timeout: bool
+@export var damage_falloff: bool
+@export var fade: bool
+@export var overpen: bool
+@export var impact: float
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
@@ -62,14 +70,24 @@ func _create_projectile():
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
+	
 	projectile.global_transform = global_transform
+	projectile.scale = Vector3(1,1,1)
+	#projectile.global_transform.origin = projectile.global_transform.origin
+	#projectile.global_transform.basis = Basis(projectile.global_transform.basis.get_rotation_quaternion())
 	projectile.damage = damage
+	projectile.splash_damage = splash_damage
+	projectile.splash_radius = splash_radius
 	projectile.initial_velocity = projectile_velocity
 	projectile.linear_velocity = parent.linear_velocity
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
-	projectile.set_lifetime(projectile_lifetime)
+	projectile.set_lifetime(timeout)
+	projectile.explode_on_timeout = explode_on_timeout
+	projectile.damage_falloff = damage_falloff
+	projectile.fade = fade
+	projectile.impact = impact
 
 	if world_projectile:
 		Client.get_world().get_node("projectiles").add_child(projectile)

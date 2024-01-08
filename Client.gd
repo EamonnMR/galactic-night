@@ -48,8 +48,10 @@ func add_money(amount):
 @onready var ui_inventory = get_tree().get_root().get_node("Main/UI/Inventory")
 
 func set_player(player):
+	self.player.destroyed.disconnect(self.on_player_destroyed)
 	self.player = player
 	emit_signal("player_ship_updated")
+	self.player.destroyed.connect(self.on_player_destroyed)
 	
 
 func set_camera(camera: Camera3D):
@@ -185,8 +187,7 @@ func get_disposition(node):
 	if "faction" in node:
 		if node.faction:
 			return Data.factions[node.faction].get_player_disposition()
-	else:
-		return Util.DISPOSITION.ABANDONED
+	return Util.DISPOSITION.ABANDONED
 
 func display_message(msg: String):
 	message.emit(msg)
@@ -261,3 +262,9 @@ func deserialize(data):
 	var ship_type = data.player.type
 	player = Data.ships[ship_type].scene.instantiate()
 	player.deserialize_player(data.player)
+
+func on_player_destroyed():
+	leave_game.call_deferred()
+	
+func ready_to_continue() -> bool:
+	return is_instance_valid(player) and not player.get_node("Health").already_destroyed

@@ -112,6 +112,7 @@ func place_static_systems():
 				system.explored = static_system.auto_explore
 				system.name = static_system.name
 				system.faction = static_system.faction_id
+				system.adjacency = [static_system.faction_id]
 				system.static_system_id = static_system_id
 				if static_system.startloc:
 					start_sys = system_id
@@ -230,6 +231,7 @@ func populate_factions():
 	assign_faction_core_worlds()
 	assign_peninsula_bonus_systems()
 	grow_faction_influence_from_core_worlds()
+	grow_faction_adjacency()
 
 
 func assign_faction_core_worlds() -> Array:
@@ -261,6 +263,10 @@ func assign_faction_core_worlds() -> Array:
 				print("Collision: ", system_id)
 				continue
 			else:
+				var system = systems[system_id]
+				if not system.quadrant in faction.quadrants:
+					print("Cannot spawn faction " + faction_id + " in quadrant " + system.quadrant + " allowed: (" + ",".join(faction.quadrants) + ")")
+					continue
 				systems[system_id].faction = faction_id
 				systems[system_id].core = true
 				systems[system_id].generation = 0
@@ -312,15 +318,38 @@ func grow_faction_influence_from_core_worlds():
 			for system_id in marked_systems:
 				var system = systems[system_id]
 				system.faction = faction_id
+				system.adjacency = [faction_id]
 				system.generation = i
 	print("Factions grown")
+	
+
 
 func name_systems():
 	for system_id in systems:
 		var system = systems[system_id]
 		if system.name == "":
 			system.name = random_name(system_id, system.faction, "NGC-")
-		
+
+func grow_faction_adjacency():
+	# TODO: This is obviously not optimal
+	print("Growing faction influence")
+	for faction_id in Data.factions:
+		var faction = Data.factions[faction_id]
+		for i in range(faction.systems_radius):
+			print("Full iteration: ", faction["name"], ", iteration: ", i)
+			var marked_systems = []
+			for system_id in systems:
+				var system = systems[system_id]
+				for link_id in system.links_cache:
+					var link_system = systems[link_id]
+					if "adjacency" in link_system and faction_id in link_system.adjacency:
+						marked_systems.append(system_id)
+						break
+			for system_id in marked_systems:
+				var system = systems[system_id]
+				system.adjacency.append(faction_id)
+	print("Faction adjacency grown")
+
 func place_natural_static_spawns():
 	# TODO: This is causing an issue.
 	print("Place natural static spawns")

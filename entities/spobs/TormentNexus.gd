@@ -6,6 +6,8 @@ var item_screen_box_side_length = 200
 
 var faction = "autofac"
 
+signal destroyed
+
 func display_name():
 	return "The Torment Nexus"
 	
@@ -31,4 +33,5 @@ func deserialize(data: Dictionary):
 
 func _on_health_destroyed():
 	Client.display_message("Congradulations! You have destroyed the torment nexus and defeated iLisk")
+	destroyed.emit()
 	queue_free()

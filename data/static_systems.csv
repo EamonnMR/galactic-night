@@ -1,3 +1,4 @@
 id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id
-start,Providence,hypergate100,A,TRUE,TRUE,empty,mic
+start,Providence,asteroids,A,TRUE,TRUE,empty,union
 boss,The Snake Eyes,torment_nexus,D,TRUE,FALSE,gold,autofac
+help_player_find_autofac,Stanford,asteroids,A,TRUE,FALSE,empty,autofac

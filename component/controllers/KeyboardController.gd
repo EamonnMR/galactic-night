@@ -78,8 +78,9 @@ func cycle_targets():
 	if Input.is_action_just_pressed("cycle_targets"):
 		var all_ships = get_tree().get_nodes_in_group("npcs")
 		var index = all_ships.find(Client.target_ship)
-		var next_index = (index + 1) % all_ships.size()
-		Client.update_player_target_ship(all_ships[next_index])
+		if all_ships.size():
+			var next_index = (index + 1) % all_ships.size()
+			Client.update_player_target_ship(all_ships[next_index])
 
 func interact():
 	if Input.is_action_just_pressed("interact") and is_instance_valid(Client.player):
@@ -138,3 +139,6 @@ func handle_spob_selection():
 			else:
 				Client.update_player_target_spob(spobs[i])
 			
+
+func get_target():
+	return Client.target_ship
