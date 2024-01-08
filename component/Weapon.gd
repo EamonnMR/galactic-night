@@ -34,6 +34,7 @@ var type: String
 @export var damage_falloff: bool
 @export var fade: bool
 @export var overpen: bool
+@export var impact: float
 
 func _ready():
 	Data.weapons[type].apply_to_node(self)
@@ -86,6 +87,7 @@ func _create_projectile():
 	projectile.explode_on_timeout = explode_on_timeout
 	projectile.damage_falloff = damage_falloff
 	projectile.fade = fade
+	projectile.impact = impact
 
 	if world_projectile:
 		Client.get_world().get_node("projectiles").add_child(projectile)

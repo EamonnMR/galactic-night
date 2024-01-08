@@ -9,6 +9,7 @@ var initial_velocity = 10
 var explode_on_timeout: bool = true
 var damage_falloff: bool = false
 var fade: bool = false
+var impact: float
 var material: StandardMaterial3D# = $MeshInstance3D.surface_get_material(0)
 @export var explosion: PackedScene
 
@@ -33,6 +34,8 @@ func _physics_process(_delta):
 func _on_Projectile_body_entered(body):
 	if not iff.should_exclude(body):
 		Health.do_damage(body, get_falloff_damage(damage), iff.owner)
+		if impact > 0 and body.has_method("receive_impact"):
+			body.receive_impact(linear_velocity.normalized(), impact)
 		detonate()
 		queue_free()
 

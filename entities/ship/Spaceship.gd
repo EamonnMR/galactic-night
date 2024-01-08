@@ -14,6 +14,7 @@ var max_bank = deg_to_rad(15)
 var bank_speed = 2.5 / turn
 var engagement_range: float = 0
 var standoff: bool = false
+var mass: float
 @export var bank_factor = 1
 @export var bank_axis = "x"
 var screen_box_side_length: int
@@ -176,3 +177,5 @@ func remove_weapon(weapon: Node):
 		secondary_weapons.erase(weapon)
 	weapons_changed.emit()
 				
+func receive_impact(direction, force):
+	linear_velocity += direction * (force / mass) 

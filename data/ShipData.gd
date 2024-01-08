@@ -26,6 +26,7 @@ var require_level: int
 var inherent_faction_id: String
 var loot: Dictionary
 var make: String
+var mass: float
 
 func derive_codex_path():
 	return "ships/" + make + "/" + id
