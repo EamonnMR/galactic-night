@@ -35,7 +35,7 @@ func _on_Projectile_body_entered(body):
 	if not iff.should_exclude(body):
 		Health.do_damage(body, get_falloff_damage(damage), iff.owner)
 		if impact > 0 and body.has_method("receive_impact"):
-			body.receive_impact(linear_velocity.normalized(), impact)
+			body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
 		detonate()
 		queue_free()
 
@@ -44,6 +44,12 @@ func get_falloff_damage(damage) -> int:
 		return roundi(damage - 1 * _fade_factor()) + 1
 	else:
 		return damage
+
+func get_falloff_impact(impact) -> int:
+	if damage_falloff:
+		return impact * _fade_factor()
+	else:
+		return impact
 		
 func _fade_factor():
 	return $Timer.time_left / $Timer.wait_time
