@@ -3,6 +3,7 @@ extends StaticBody3D
 var is_planet = false
 var is_populated = true
 var spob_name = display_name()
+var engagement_range = 10
 
 func display_name():
 	return "Turret"
