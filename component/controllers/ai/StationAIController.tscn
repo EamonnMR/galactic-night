@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://3ywtc3khahph"]
 
 [ext_resource type="PackedScene" uid="uid://c3q3cv3jeiqm2" path="res://component/controllers/Controller.tscn" id="1_gqqxm"]
-[ext_resource type="Script" path="res://component/controllers/ai/AIController.gd" id="2_20gl2"]
+[ext_resource type="Script" path="res://component/controllers/ai/StationAIController.gd" id="2_nujxn"]
 [ext_resource type="Texture2D" uid="uid://dhd6dnh6yer3g" path="res://icon.png" id="3_sa132"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s1ejk"]
 radius = 9.0
 
 [node name="Controller" instance=ExtResource("1_gqqxm")]
-script = ExtResource("2_20gl2")
+script = ExtResource("2_nujxn")
 
 [node name="Label" type="Label3D" parent="." index="0"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.38364, 0)

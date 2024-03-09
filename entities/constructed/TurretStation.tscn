@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d024q70l5selx"]
+[gd_scene load_steps=12 format=3 uid="uid://d024q70l5selx"]
 
 [ext_resource type="Script" path="res://entities/constructed/TurretStation.gd" id="1_x1y8n"]
 [ext_resource type="Texture2D" uid="uid://b7vnar7sh6l0" path="res://assets/eamonn/turret_station/turret_station_base.png" id="2_8k5mt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://jesdh5wsh1ty" path="res://assets/eamonn/turret_station/turret_station_lights.png" id="3_efts1"]
 [ext_resource type="Texture2D" uid="uid://d16omar7mqh2d" path="res://assets/eamonn/turret_station/turret_station_RM.png" id="4_fnxiw"]
 [ext_resource type="Texture2D" uid="uid://dym2g4v8cg6v4" path="res://assets/eamonn/turret_station/turret_station_N.png" id="5_n2bs7"]
+[ext_resource type="PackedScene" uid="uid://3ywtc3khahph" path="res://component/controllers/ai/StationAIController.tscn" id="7_tenlu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4x54n"]
 resource_name = "None"
@@ -58,3 +59,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7drvx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_gs1kl")
+
+[node name="Controller" parent="." instance=ExtResource("7_tenlu")]
