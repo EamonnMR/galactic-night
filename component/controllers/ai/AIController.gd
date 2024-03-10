@@ -119,8 +119,8 @@ func process_state_leave(delta):
 	braking = false
 
 func _find_target():
-	var enemy_ships = [Client.player] if faction.initial_disposition < 0 and is_instance_valid(Client.player) else []
-	for faction_id in faction.enemies:
+	var enemy_ships = [Client.player] if faction.hostile_to_player() and is_instance_valid(Client.player) else []
+	for faction_id in faction.get_enemies():
 		enemy_ships += get_tree().get_nodes_in_group("faction-" + str(faction_id))
 
 	if enemy_ships.size() == 0:

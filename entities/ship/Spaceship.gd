@@ -41,6 +41,7 @@ func _ready():
 	
 	if self == Client.player:
 		add_to_group("players")
+		faction = "player_owned"
 		# TODO: Check client for proper controller type?
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()

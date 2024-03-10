@@ -15,7 +15,7 @@ func _ready():
 	if parent.get("faction"):
 		faction = Data.factions[get_node("../").faction]
 	else:
-		faction = null # Player-owned.
+		faction = null
 	if get_tree().debug_collisions_hint:
 		$Label.show()
 	var shape = $EngagementRange/CollisionShape3D.shape
@@ -42,7 +42,7 @@ func _physics_process(delta):
 			process_state_attack(delta)
 
 func process_state_idle(_delta):
-	pass
+	shooting = false
 
 func process_state_attack(delta):
 	if not _verify_target():
@@ -53,23 +53,21 @@ func process_state_attack(delta):
 func _find_target():
 	target = null
 	Util.distance_ordered(bodies_in_engagement_range, Util.flatten_25d(parent.global_transform.origin))
-	
-	var hostile_to_player = faction and faction.initial_disposition < 0
+	var hostile_to_player = faction and faction.hostile_to_player()
 	var hostile_groups = []
 	if hostile_to_player:
 		hostile_groups.append("player-assets")
 	if faction: 
-		for faction_id in faction.enemies:
+		for faction_id in faction.get_enemies():
 			hostile_groups.append("faction-" + str(faction_id))
-	else:
-		for faction_id in Data.factions:
-			if Data.factions[faction_id].initial_disposition < 0:
-				hostile_groups.append("faction-" + str(faction_id))
-
+		if faction.is_player_faction:
+			hostile_groups.append("npcs-hostile")
+	
 	for possible_target in bodies_in_engagement_range:
 		for group in hostile_groups:
 			if possible_target.is_in_group(group):
 				change_state_attack(possible_target)
+				return
 
 	change_state_idle()
 

@@ -27,3 +27,9 @@ func remove_weapon():
 func add_weapon(weapon: Node):
 	add_child(weapon)
 	get_node("../").add_weapon(weapon)
+
+func get_weapon():
+	return get_children()[0]
+	
+func has_weapon():
+	return len(get_children()) == 1

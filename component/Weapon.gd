@@ -41,7 +41,7 @@ func _ready():
 	iff = IffProfile.new(
 		parent,
 		parent.faction,
-		false
+		true
 	)
 
 func try_shoot():
