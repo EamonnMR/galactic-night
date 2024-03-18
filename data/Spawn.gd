@@ -17,6 +17,7 @@ var evergreen: bool
 var distance: float
 var spob_prefix: String
 var use_markov: bool
+var always_use_spob_prefix: bool
 
 var quadrants: Array[String]
 var factions_adjacent: Array[String]

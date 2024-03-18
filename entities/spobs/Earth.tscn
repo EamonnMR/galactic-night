@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://deesbms5g3aiq"]
+
+[ext_resource type="PackedScene" uid="uid://c0arcyowgbhj1" path="res://entities/spobs/Spob.tscn" id="1_uxmn4"]
+[ext_resource type="Texture2D" uid="uid://babdplcg1tkno" path="res://assets/nasa_pd/NASA-Apollo8-Dec24-Earthrise.png" id="2_xq3l1"]
+
+[node name="Spob" instance=ExtResource("1_uxmn4")]
+spob_name = "Earth"
+is_planet = false
+inhabited = true
+faction = "autofac"
+display_override = "Planet - Biosphere"
+
+[node name="FollowerSprite" parent="." index="0"]
+texture = ExtResource("2_xq3l1")

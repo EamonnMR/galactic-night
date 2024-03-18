@@ -47,9 +47,26 @@ func deserialize(data: Dictionary):
 	longjump_enabled = data["longjump_enabled"]
 	quadrant = data["quadrant"]
 	static_system_id = data["static_system_id"]
-	
+	faction = data["faction"]
 
 func deserialize_entities():
 	for destination_str in entities:
 		for serial_data in entities[destination_str]:
 			Client.deserialize_entity(destination_str, serial_data)
+
+func dynamic_faction() -> String:
+	# Rather than the designated faction, determine the faction based on the spobs in the system
+	var possible_factions = {}
+	if "spobs" in entities:
+		for entity in entities.spobs:
+			if "inhabited" in entity and "faction" in entity and entity.faction:
+				possible_factions[entity.faction] = Data.factions[entity.faction]
+			
+			if possible_factions.size():
+				var vals = possible_factions.values()
+				vals.sort_custom(
+					func faction_precedence_comparator(l, r):
+						return l.precedence < r.precedence
+				)
+				return vals[0].id
+	return ""

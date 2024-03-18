@@ -24,6 +24,7 @@ var spawns_core: Array[String]
 var spawns_adjacent: Array[String]
 var quadrants: Array[String]
 var is_player_faction: bool
+var precedence: int
 
 static func get_csv_path():
 	return "res://data/factions.csv"

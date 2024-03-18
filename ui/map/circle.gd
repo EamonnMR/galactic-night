@@ -57,11 +57,19 @@ func get_color():
 			return DISPOSITION_COLORS["abandoned"]
 	if mode == 4:
 		var data = dat()
+		var faction_id = data.dynamic_faction()
+		if faction_id:
+			return Data.factions[faction_id].color
+		else:
+			return DISPOSITION_COLORS["abandoned"]
+
+	if mode == 5:
+		var data = dat()
 		if data.core:
 			return DISPOSITION_COLORS["friendly"]
 		else:
 			return DISPOSITION_COLORS["abandoned"]
-	if mode == 5:
+	if mode == 6:
 		match dat().quadrant:
 			"A":
 				return Color(1,0,0)

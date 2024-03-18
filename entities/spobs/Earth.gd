@@ -1,26 +1,23 @@
 extends StaticBody3D
 
-@export var spob_name: String
+var spob_name: String
 var type: String
 
 var item_screen_box_side_length = 100
 
-@export var spob_prefix: String
+@export var s2pob_prefix: String
 @export var is_planet = true
 @export var inhabited = false
 @export var center = true
 @export var available_items = {}
 @export var faction: String
-@export var display_override: String
 var spawn_id: String
 
 func display_name():
 	return spob_name
 	
 func display_type():
-	if display_override:
-		return display_override
-	elif is_planet:
+	if is_planet:
 		return "Planet - " + type
 	else:
 		return "Station"

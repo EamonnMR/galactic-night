@@ -72,11 +72,13 @@ func generate_systems(seed_value: int) -> String:
 	generate_positions_and_links()
 	cache_links()
 	calculate_system_distances()
-	var start_sys = place_static_systems()
+	var start_sys_and_static_systems = place_static_systems()
+	var start_sys = start_sys_and_static_systems[0]
+	var static_systems = start_sys_and_static_systems[1]
 	place_preset_static_spawns()
 	populate_biomes()
 	place_natural_static_spawns()
-	populate_factions()
+	populate_factions(static_systems)
 	name_systems()
 	place_artificial_static_spawns()
 	assign_factions_to_spobs()
@@ -99,15 +101,23 @@ func get_system_set_by_quadrants(quadrants: Array) -> Array:
 	quadrant_permutations_cache[quadrants] = set
 	return set
 
-func place_static_systems():
+func place_static_systems() -> Array:
 	var start_sys
+	var placed_systems = []
 	
 	for static_system_id in Data.static_systems:
 		var static_system = Data.static_systems[static_system_id]
 		while true:
-			var system_id = random_select(get_system_set_by_quadrants(static_system.quadrants), rng)
+			
+			var system_id = weighted_random_select(
+				static_system.favor_galactic_center,
+				systems_sorted_by_distance(
+					get_system_set_by_quadrants(static_system.quadrants)
+				),
+				rng
+			)
 			var system = systems[system_id]
-			if systems[system_id].static_system_id == "":
+			if system.static_system_id == "":
 				system.biome = static_system.biome
 				system.explored = static_system.auto_explore
 				system.name = static_system.name
@@ -116,10 +126,11 @@ func place_static_systems():
 				system.static_system_id = static_system_id
 				if static_system.startloc:
 					start_sys = system_id
+					placed_systems.append(system_id)
 				break
 			else:
 				print("Cannot put special_system in an occupied system: ", system_id, " static system id ", static_system_id)
-	return start_sys
+	return [start_sys, placed_systems]
 	
 func place_biome_seeds():
 	
@@ -226,57 +237,43 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 	print("Cannot find a suitable position for system in ", max_iter, " iterations")
 	return null
 
-func populate_factions():
+func populate_factions(static_systems: Array):
 	print("Populate factions")
-	assign_faction_core_worlds()
-	assign_peninsula_bonus_systems()
+	var assigned_core_systems = assign_faction_core_worlds(static_systems)
+	assign_peninsula_bonus_systems(static_systems + assigned_core_systems)
 	grow_faction_influence_from_core_worlds()
 	grow_faction_adjacency()
 
 
-func assign_faction_core_worlds() -> Array:
+func assign_faction_core_worlds(excluded_systems: Array) -> Array:
 	print("Randomly Assigning core worlds ")
 	var sorted = systems_sorted_by_distance()
-	var sorted_reverse = sorted.duplicate()
-	sorted_reverse.reverse()
+	for system in excluded_systems:
+		sorted.erase(system)
 	var already_selected = []
 	for faction_id in Data.factions:
 		var faction = Data.factions[faction_id]
 		var i = 0
 		var system_count = int(int(faction.core_systems_per_hundred) * (systems.size() / 100))
 		while i < system_count:
-			var rnd_result = abs(rng.randfn(0.0))
 			var scale = int(faction.favor_galactic_center)
-			var scaled_rnd_result = 0
-			if scale:
-				scaled_rnd_result = int(rnd_result * (sorted.size() / scale))
-			else:
-				print(0, sorted.size())
-				scaled_rnd_result = rng.randi_range(0, sorted.size())
-			# TODO: This code kinda baffles me, but it's happening a lot.
-			# Fix it and we can get a decent perf improvement
-			if scaled_rnd_result >= sorted.size() or scaled_rnd_result <= - sorted.size():
-				# print("Long tail too long: ", rnd_result, " (", scaled_rnd_result, ")")
+			
+			var system_id = weighted_random_select(faction.favor_galactic_center, sorted, rng)
+			var system = systems[system_id]
+			if not system.quadrant in faction.quadrants:
+				print("Cannot spawn faction " + faction_id + " in quadrant " + system.quadrant + " allowed: (" + ",".join(faction.quadrants) + ")")
 				continue
-			var system_id = sorted[scaled_rnd_result]
-			if system_id in already_selected:
-				print("Collision: ", system_id)
-				continue
-			else:
-				var system = systems[system_id]
-				if not system.quadrant in faction.quadrants:
-					print("Cannot spawn faction " + faction_id + " in quadrant " + system.quadrant + " allowed: (" + ",".join(faction.quadrants) + ")")
-					continue
-				systems[system_id].faction = faction_id
-				systems[system_id].core = true
-				systems[system_id].generation = 0
-				# add_npc_spawn(Game.systems[system_id], faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]))
-				already_selected.append(system_id)
-				i += 1
+			systems[system_id].faction = faction_id
+			systems[system_id].core = true
+			systems[system_id].generation = 0
+			# add_npc_spawn(Game.systems[system_id], faction_id, int(faction["npc_radius"]) + int(faction["systems_radius"]))
+			already_selected.append(system_id)
+			sorted.erase(system_id)
+			i += 1
 	print("Core worlds assigned: ", already_selected.size())
 	return already_selected
 
-func assign_peninsula_bonus_systems() -> Array:
+func assign_peninsula_bonus_systems(excluded_systems) -> Array:
 	# The 'peninsula bonus' field lets you add core worlds to systems with only one link.
 	# This adds a little flavor.
 	var peninsula_factions = []
@@ -289,8 +286,10 @@ func assign_peninsula_bonus_systems() -> Array:
 	if peninsula_factions.size():
 		print("Assigning factions to systems with only one connection")
 		for system_id in systems:
+			if system_id in excluded_systems:
+				continue
 			var system = systems[system_id]
-			if system.links_cache.size() == 1 and system.faction == "":
+			if system.links_cache.size() <= 1 and system.faction == "":
 				# TODO: Randomize, don't just iterate through
 				system["faction"] = peninsula_factions[i]
 				# add_npc_spawn(system, peninsula_factions[i], 10)
@@ -407,11 +406,14 @@ func place_static_spawns(get_spawns: Callable):
 					system.entities.spobs += [instance.serialize()]
 
 					
-func random_name(sys_id: String, faction: String, default_prefix: String, default_postfix: String = ""):
+func random_name(sys_id: String, faction: String, default_prefix: String, always_use_prefix=false, use_markov=true, sys_name="", default_postfix: String = ""):
 	if faction != "":
 		var name_scheme = Data.factions[faction].sys_name_scheme
 		print("Current name scheme", name_scheme)
-		return Data.name_generators[ name_scheme ].get_random_name()
+		var name_infix = sys_name
+		if use_markov:
+			name_infix = Data.name_generators[ name_scheme ].get_random_name()
+		return (default_prefix if always_use_prefix else "") + name_infix
 	else:
 		return default_prefix + sys_id + default_postfix
 
@@ -421,7 +423,11 @@ func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vect
 func random_select(iterable, rng: RandomNumberGenerator):
 	#Remember to seed the rng
 	return iterable[rng.randi() % iterable.size()]
-
+	
+func weighted_random_select(bias: int, sorted: Array, rng: RandomNumberGenerator):
+	var rnd_result = abs(rng.randfn(0.0))
+	var scaled_rnd_result = clamp(int(rnd_result * (sorted.size() / bias)), -1 * (sorted.size()-1), sorted.size()-1)
+	return sorted[scaled_rnd_result]
 
 func _set_light(system: SystemData, biome: BiomeData):
 	system.ambient_color = biome.ambient_color
@@ -469,15 +475,15 @@ func assign_quadrant(position: Vector2) -> String:
 			return "D"
 		
 	return "A"
-			
-func system_distance_comparitor(l_id, r_id) -> bool:
-	var lval = systems[l_id]["distance"]
-	var rval = systems[r_id]["distance"]
-	return lval < rval
 
-func systems_sorted_by_distance() -> Array:
-	var system_ids = systems.keys()
-	system_ids.sort_custom(Callable(self,"system_distance_comparitor"))
+
+func systems_sorted_by_distance(system_ids=systems.keys()) -> Array:
+	system_ids.sort_custom(
+		func system_distance_comparitor(l_id, r_id) -> bool:
+			var lval = systems[l_id]["distance"]
+			var rval = systems[r_id]["distance"]
+			return lval < rval
+	)
 	return system_ids
 	
 func assign_factions_to_spobs():
@@ -493,9 +499,14 @@ func assign_factions_to_spobs():
 						entity.inhabited = true
 				if "spob_name" in entity and entity.spob_name == "":
 					var spob_prefix = "UDF-"
+					var always_use_prefix = false
+					var use_markov
 					if "spawn_id" in entity:
-						spob_prefix = Data.spawns[entity.spawn_id].spob_prefix
-					entity.spob_name = random_name(system_id, entity.faction, spob_prefix, ['', '-B', '-C', '-D', '-E', '-H', '-I', '-J'][i])
+						var spawn =  Data.spawns[entity.spawn_id]
+						spob_prefix = spawn.spob_prefix
+						always_use_prefix = spawn.always_use_spob_prefix
+						use_markov = spawn.use_markov
+					entity.spob_name = random_name(system_id, entity.faction, spob_prefix, always_use_prefix, use_markov, system.name, ['', '-B', '-C', '-D', '-E', '-H', '-I', '-J'][i])
 					i += 1
 func connect_hyperspace_relays():
 	var systems_with_hypergates = {}
@@ -511,7 +522,7 @@ func connect_hyperspace_relays():
 	for edge in get_linkmesh_edges_from_points(positions_of_systems_with_hypergates):
 		var first = systems_by_position[edge[0]]
 		var second = systems_by_position[edge[1]]
-		
+			
 		var first_gate_id = systems_with_hypergates[first]
 		var second_gate_id = systems_with_hypergates[second]
 		

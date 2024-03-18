@@ -28,9 +28,11 @@ func _populate_mode_dropdown():
 		"Biome",
 		"Disposition",
 		"Distance from core",
-		"Faction",
+		"Faction Ownership",
+		"Faction (Populated)",
 		"Faction Seeds",
-		"Quadrant"
+		"Quadrant",
+		"Static Systems"
 	]:
 		mode.add_item(item)
 

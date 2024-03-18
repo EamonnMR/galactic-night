@@ -1,4 +1,4 @@
-id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id
-start,Providence,asteroids,A,TRUE,TRUE,empty,union
-boss,The Snake Eyes,torment_nexus,D,TRUE,FALSE,gold,autofac
-help_player_find_autofac,Stanford,asteroids,A,TRUE,FALSE,empty,autofac
+id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id,favor_galactic_center
+start,Providence,asteroids,A,TRUE,TRUE,empty,union,1
+boss,Sol,torment_nexus earth,D,TRUE,FALSE,gold,autofac,5
+help_player_find_autofac,Stanford,asteroids fulfillment,A,TRUE,FALSE,empty,autofac,1
