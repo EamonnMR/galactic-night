@@ -16,6 +16,7 @@ torment_nexus,1,TRUE,FALSE,1,res://entities/spobs/TormentNexus.tscn,,autofac,spo
 hypergate,1,TRUE,TRUE,0.05,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,TRUE,,0.0002,A B C,HPG-,TRUE,FALSE,,,
 hypergate100,1,TRUE,TRUE,1,res://entities/spobs/HyperspaceRelay.tscn,,jumpstar,spobs,FALSE,,1,A B C,TST-,TRUE,FALSE,,,
 fulfillment,1,TRUE,FALSE,1,res://entities/spobs/Fulfillment.tscn,,autofac,spobs,FALSE,,0.0002,B C,FC-,TRUE,FALSE,,autofac,
-earth,1,TRUE,TRUE,1,res://entities/spobs/Earth.tscn,,autofac,spobs,FALSE,,0,,,,FALSE,,,
+earth,1,TRUE,TRUE,1,res://entities/spobs/Earth.tscn,,autofac,spobs,FALSE,,0,,,FALSE,FALSE,,,
 twilight_station,1,TRUE,TRUE,1,res://entities/spobs/FallenStation.tscn,,twilight,spobs,FALSE,,0,A B C D,Locus: ,TRUE,FALSE,,twilight,
 pirate_freeport,1,TRUE,TRUE,1,res://entities/spobs/FallenStation.tscn,,pirate,spobs,FALSE,,0,A B C D,FP-,TRUE,FALSE,,pirate,
+atinoda_prime,1,TRUE,TRUE,1,res://entities/spobs/AtinodaPrime.tscn,,union,spobs,FALSE,,0,A,,FALSE,FALSE,,,

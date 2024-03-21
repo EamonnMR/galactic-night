@@ -1,7 +1,7 @@
 extends StaticBody3D
 
 @export var spob_name: String
-var type: String
+@export var type: String
 
 var item_screen_box_side_length = 100
 

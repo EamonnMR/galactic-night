@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdce38qlfauqc"]
+
+[ext_resource type="PackedScene" uid="uid://c0arcyowgbhj1" path="res://entities/spobs/Spob.tscn" id="1_0xi7q"]
+
+[node name="Spob" instance=ExtResource("1_0xi7q")]
+spob_name = "Atinoda Prime"
+type = "b-3"
+is_planet = false
+inhabited = true
+faction = "union"

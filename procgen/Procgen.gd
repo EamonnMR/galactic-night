@@ -124,9 +124,9 @@ func place_static_systems() -> Array:
 				system.faction = static_system.faction_id
 				system.adjacency = [static_system.faction_id]
 				system.static_system_id = static_system_id
+				placed_systems.append(system_id)
 				if static_system.startloc:
 					start_sys = system_id
-					placed_systems.append(system_id)
 				break
 			else:
 				print("Cannot put special_system in an occupied system: ", system_id, " static system id ", static_system_id)
@@ -291,6 +291,7 @@ func assign_peninsula_bonus_systems(excluded_systems) -> Array:
 			var system = systems[system_id]
 			if system.links_cache.size() <= 1 and system.faction == "":
 				# TODO: Randomize, don't just iterate through
+				# also, exclude by quadrant
 				system["faction"] = peninsula_factions[i]
 				# add_npc_spawn(system, peninsula_factions[i], 10)
 				core_systems.append(system_id)
@@ -379,15 +380,16 @@ func place_preset_static_spawns():
 			if system.static_system_id == "":
 				return []
 			return Data.static_systems[system.static_system_id].spawns
-	)
+	# Unfortunate but required indent level
+	, true)
 
-func place_static_spawns(get_spawns: Callable):
+func place_static_spawns(get_spawns: Callable, ignore_quad=false):
 	for system_id in systems:
 		var system = systems[system_id]
 		var spawns = get_spawns.call(system)
 		for spawn_id in spawns:
 			var spawn = Data.spawns[spawn_id]
-			if spawn.preset and spawn.valid_for_quadrant(system.quadrant):
+			if spawn.preset and (ignore_quad or spawn.valid_for_quadrant(system.quadrant)):
 				print(system_id)
 				var entities = spawn.do_spawns(rng)
 				var i: int = 0
