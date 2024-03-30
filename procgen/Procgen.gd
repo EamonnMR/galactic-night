@@ -431,6 +431,9 @@ func weighted_random_select(bias: int, sorted: Array, rng: RandomNumberGenerator
 	var scaled_rnd_result = clamp(int(rnd_result * (sorted.size() / bias)), -1 * (sorted.size()-1), sorted.size()-1)
 	return sorted[scaled_rnd_result]
 
+func random_choice(percent, rng) -> bool:
+	return rng.randf() < percent
+
 func _set_light(system: SystemData, biome: BiomeData):
 	system.ambient_color = biome.ambient_color
 	system.starlight_color = biome.starlight_color
@@ -496,9 +499,10 @@ func assign_factions_to_spobs():
 			for entity in system.entities.spobs:
 				#if "faction" in entity:
 				if ('faction' in entity) and entity.faction == "" and system.faction != "":
-					entity.faction = system.faction
-					if "inhabited" in entity and entity.inhabited == false:
-						entity.inhabited = true
+					if random_choice(Data.factions[system.faction].inhabited_chance, rng):
+						entity.faction = system.faction
+						if "inhabited" in entity and entity.inhabited == false:
+							entity.inhabited = true
 				if "spob_name" in entity and entity.spob_name == "":
 					var spob_prefix = "UDF-"
 					var always_use_prefix = false

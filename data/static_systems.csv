@@ -1,5 +1,5 @@
 id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id,favor_galactic_center
 start,Providence,asteroids,A,TRUE,TRUE,empty,union,1
 boss,Sol,torment_nexus earth,D,TRUE,FALSE,gold,autofac,5
-help_player_find_autofac,Stanford,fulfillment,A,TRUE,FALSE,empty,autofac,1
+help_player_find_autofac,Stanford,fulfillment100,A,TRUE,FALSE,empty,autofac,1
 atinoda,Atinoda,atinoda_prime,B,FALSE,FALSE,gold,union,1

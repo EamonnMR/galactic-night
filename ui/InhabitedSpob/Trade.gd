@@ -1,11 +1,13 @@
 extends GridContainer
 
+class_name TradeDialogue
+
 var headers = []
 
 var available_items = {}
 
 func assign(Spob):
-	available_items = Spob.available_items
+	pass
 
 func _ready():
 	for i in get_children():

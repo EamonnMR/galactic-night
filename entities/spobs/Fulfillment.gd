@@ -9,6 +9,8 @@ var item_screen_box_side_length = 200
 var faction = "autofac"
 var spawn_id: String
 
+var holds = true
+
 signal destroyed
 
 func display_name():
@@ -28,7 +30,8 @@ const SERIAL_FIELDS = [
 		"scene_file_path",
 		"spawn_id",
 		"position",
-		"faction"
+		"faction",
+		"hold",
 	]
 
 func serialize() -> Dictionary:

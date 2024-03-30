@@ -59,7 +59,7 @@ func dynamic_faction() -> String:
 	var possible_factions = {}
 	if "spobs" in entities:
 		for entity in entities.spobs:
-			if "inhabited" in entity and "faction" in entity and entity.faction:
+			if ("inhabited" in entity or "hold" in entity) and "faction" in entity and entity.faction:
 				possible_factions[entity.faction] = Data.factions[entity.faction]
 			
 			if possible_factions.size():

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpkaumfgnqnqi"]
+
+[ext_resource type="Script" path="res://ui/InhabitedSpob/ShipStore.gd" id="1_nns4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7oc5"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Shipyard" type="ScrollContainer"]
+offset_left = 195.0
+offset_right = 195.0
+offset_bottom = 32.0
+horizontal_scroll_mode = 0
+script = ExtResource("1_nns4h")
+
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 5
+
+[node name="Icon" type="TextureRect" parent="Grid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Grid"]
+layout_mode = 2
+text = "Name
+"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="Price" type="Label" parent="Grid"]
+layout_mode = 2
+text = "Price"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="Buy" type="Label" parent="Grid"]
+layout_mode = 2
+text = "sell"
+label_settings = SubResource("LabelSettings_e7oc5")
+
+[node name="info" type="Label" parent="Grid"]
+layout_mode = 2
+text = "info"
+label_settings = SubResource("LabelSettings_e7oc5")
