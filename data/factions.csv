@@ -1,9 +1,9 @@
-id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,host_spawn_anywhere,quadrants,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme,skin,adjacency_radius,is_player_faction,precedence,inhabited_chance
-union,Union,Un,#0000FF,0,TRUE,3,2,2,TRUE,A B,-2,FALSE,trader,autofac pirate,10,15,new_england,8,1,FALSE,2,0.9
-trader,Trader,Trd,#0000FF,20,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,cornwall,2,1,FALSE,1,0
-pirate,Pirate,Pir,#060606,-30,TRUE,2,0,6,FALSE,A B C,-2,TRUE,,trader union autofac,0,0,illiad,1,4,FALSE,3,0.8
-autofac,Autofac,Afk,#FF0000,-100,FALSE,6,3,3,TRUE,A B C D,2,FALSE,,union,5,20,cali,0,2,FALSE,4,0.8
-twilight,Twilight,Soc,#FFFF00,0,FALSE,1,1,2,FALSE,D,-2,TRUE,1,union pirate autofac,20,5,tain,5,2,FALSE,5,0.7
-mic,MIC,Mic,#00FF00,100,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,tain,6,0,FALSE,0,0
-jumpstar,GateBridge,Gb,#5050A0,0,FALSE,0,0,0,FALSE,,1,FALSE,trader,,100,0,tain,8,0,FALSE,1,0
-player_owned,Friendly,FR,#00FF00,100,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,tain,6,0,TRUE,10,0
+id,name,short,color,initial_disposition,is_default,core_systems_per_hundred,systems_radius,npc_radius,host_spawn_anywhere,quadrants,favor_galactic_center,peninsula_bonus,allies,enemies,destroy_penalty,destroy_foe_bonus,sys_name_scheme,skin,adjacency_radius,is_player_faction,precedence,inhabited_chance,shipyard_chance
+union,Union,Un,#0000FF,0,TRUE,3,2,2,TRUE,A B,-2,FALSE,trader,autofac pirate,10,15,new_england,8,1,FALSE,2,0.9,1
+trader,Trader,Trd,#0000FF,20,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,cornwall,2,1,FALSE,1,0,0
+pirate,Pirate,Pir,#060606,-30,TRUE,2,0,6,FALSE,A B C,-2,TRUE,,trader union autofac,0,0,illiad,1,4,FALSE,3,0.8,0
+autofac,Autofac,Afk,#FF0000,-100,FALSE,6,3,3,TRUE,A B C D,2,FALSE,,union,5,20,cali,0,2,FALSE,4,0.8,0
+twilight,Twilight,Soc,#FFFF00,0,FALSE,1,1,2,FALSE,D,-2,TRUE,1,union pirate autofac,20,5,tain,5,2,FALSE,5,0.7,1
+mic,MIC,Mic,#00FF00,100,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,tain,6,0,FALSE,0,0,0
+jumpstar,GateBridge,Gb,#5050A0,0,FALSE,0,0,0,FALSE,,1,FALSE,trader,,100,0,tain,8,0,FALSE,1,0,1
+player_owned,Friendly,FR,#00FF00,100,FALSE,0,0,0,FALSE,,1,FALSE,,,0,0,tain,6,0,TRUE,10,0,0

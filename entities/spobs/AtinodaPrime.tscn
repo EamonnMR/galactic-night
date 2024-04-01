@@ -8,3 +8,7 @@ type = "b-3"
 is_planet = false
 inhabited = true
 faction = "union"
+shipyard = {
+"level": 3,
+"techbase": "atinoda"
+}

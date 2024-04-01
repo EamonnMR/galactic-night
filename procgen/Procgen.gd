@@ -503,6 +503,12 @@ func assign_factions_to_spobs():
 						entity.faction = system.faction
 						if "inhabited" in entity and entity.inhabited == false:
 							entity.inhabited = true
+						
+						if "shipyard" in entity and random_choice(Data.factions[system.faction].shipyard_chance, rng):
+							entity.shipyard = {
+								"level": random_select([0,0,1,1,1,2,2,3], rng),
+								"techbase": system.faction
+							}
 				if "spob_name" in entity and entity.spob_name == "":
 					var spob_prefix = "UDF-"
 					var always_use_prefix = false

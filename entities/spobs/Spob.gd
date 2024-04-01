@@ -12,6 +12,7 @@ var item_screen_box_side_length = 100
 @export var available_items = {}
 @export var faction: String
 @export var display_override: String
+@export var shipyard = {}
 var spawn_id: String
 
 func display_name():
@@ -39,6 +40,7 @@ const SERIAL_FIELDS = [
 		"available_items",
 		"inhabited",
 		"spawn_id",
+		"shipyard"
 	]
 
 func serialize() -> Dictionary:

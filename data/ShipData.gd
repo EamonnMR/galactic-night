@@ -23,11 +23,11 @@ var ingredients: Dictionary
 var icon: Texture2D
 var desc: String
 var require_level: int
-var inherent_faction_id: String
 var loot: Dictionary
 var make: String
 var mass: float
 var price: int
+var techbase: String
 
 func derive_codex_path():
 	return "ships/" + make + "/" + id

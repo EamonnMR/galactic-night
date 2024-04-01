@@ -5,9 +5,14 @@ var headers = []
 var available_items = {}
 
 func assign(spob):
-	#if "available_ships" in spob:
-		#available_items = spob.available_ships
-	available_items = Data.ships.keys()
+	available_items = []
+	if spob.shipyard:
+		var shipyard = spob.shipyard
+		for ship_id in Data.ships:
+			var ship = Data.ships[ship_id]
+			if shipyard.level >= ship.require_level:
+				if (not ship.techbase) or (ship.techbase == shipyard.techbase):
+					available_items.append(ship_id)
 
 func _ready():
 	for i in $Grid.get_children():
