@@ -47,5 +47,33 @@ func apply_to_node(node):
 	node.get_node("Loot").loot_items = loot
 	node.get_node("Inventory").max_items = inventory_max_items
 
+func fmt_stats():
+	return """
+		Manufacturer: {make}
+		Tier: {require_level}
+		Stats:
+		Max Speed: {max_speed}
+		Acceleration: {accel}
+		Turn Speed: {turn}
+		Base Armor: {armor}
+		Base Shields: {shields}
+		Base Shield Regen: {shield_regen}
+		Base Shield Regen Delay: {shield_regen_delay}
+		Mass: {mass}
+		Inventory Size: {inventory_max_items}
+	""".format({
+		"make": make,
+		"require_level": require_level,
+		"max_speed": max_speed,
+		"accel": accel,
+		"turn": turn,
+		"armor": armor,
+		"shields": shields,
+		"shield_regen": shield_regen,
+		"shield_regen_delay": shield_regen_delay,
+		"mass": mass,
+		"inventory_max_items": inventory_max_items
+	})
+
 static func get_csv_path():
 	return "res://data/ships.csv"

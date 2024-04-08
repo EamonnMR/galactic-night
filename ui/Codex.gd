@@ -27,6 +27,7 @@ func select_entry_by_path(entry_path: String):
 
 func _select_entry(path: String):
 	%Text.text = Data.codex_by_path(path)
+	
 
 #func _on_tree_button_clicked(item, column, id, mouse_button_index):
 #	breakpoint
