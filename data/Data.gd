@@ -79,13 +79,14 @@ func codex_by_path(path: String):
 		tree = tree[i]
 	return fmt_desc(tree)
 
-func replace_tag(desc: String, tag: String, formatter: ):
+func replace_tag(desc: String, tag: String, formatter: Callable):
 	var open_tag = "[" + tag + "]"
 	var close_tag = "[/" + tag + "]"
 	while open_tag in desc:
 		var open_tag_index = desc.find(open_tag)
 		var close_tag_index = desc.find(close_tag)
-		var tag_content = desc.substr(open_tag_index + open_tag.length(), close_tag_index - (open_tag_index + open_tag.length()) )
+		var open_tag_end = open_tag_index + open_tag.length()
+		var tag_content = desc.substr(open_tag_end, close_tag_index - open_tag_end )
 
 		desc = desc.replace(
 			open_tag+tag_content+close_tag,
