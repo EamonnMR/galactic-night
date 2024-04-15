@@ -239,9 +239,9 @@ func _get_non_overlapping_position(rng: RandomNumberGenerator):
 
 func populate_factions(static_systems: Array):
 	print("Populate factions")
-	var assigned_core_systems = assign_faction_core_worlds(static_systems)
-	assign_peninsula_bonus_systems(static_systems + assigned_core_systems)
-	grow_faction_influence_from_core_worlds()
+	var initial_systems = static_systems + assign_faction_core_worlds(static_systems)
+	initial_systems += assign_peninsula_bonus_systems(initial_systems)
+	grow_faction_influence_from_initial_systems(initial_systems)
 	grow_faction_adjacency()
 
 
@@ -300,29 +300,34 @@ func assign_peninsula_bonus_systems(excluded_systems) -> Array:
 					i = 0
 	return core_systems
 
-func grow_faction_influence_from_core_worlds():
+func grow_faction_influence_from_initial_systems(initial_systems):
 	# TODO: This is obviously not optimal
 	print("Growing faction influence")
-	for faction_id in Data.factions:
-		var faction = Data.factions[faction_id]
+	var changed_systems = initial_systems.duplicate()
+	for system_id in initial_systems:
+		var system = systems[system_id]
+		var faction = Data.factions[system.faction]
+		var last_changed_systems = [system_id]
 		for i in range(faction.systems_radius):
-			print("Full iteration: ", faction["name"], ", iteration: ", i)
 			var marked_systems = []
-			for system_id in systems:
-				var system = systems[system_id]
-				for link_id in system.links_cache:
-					var link_system = systems[link_id]
-					if "faction" in link_system and link_system.faction == faction_id:
-						marked_systems.append(system_id)
-						break
-			for system_id in marked_systems:
-				var system = systems[system_id]
-				system.faction = faction_id
-				system.adjacency = [faction_id]
-				system.generation = i
-	print("Factions grown")
-	
+			for last_changed_system_id in last_changed_systems:
+				var last_changed_system = systems[last_changed_system_id]
+				for link_system_id in last_changed_system.links_cache:
+					if (link_system_id not in changed_systems) and (link_system_id not in marked_systems):
+						var link_system = systems[link_system_id]
+						if not link_system.get("faction"):
+							marked_systems.append(link_system_id)
 
+			for marked_system_id in marked_systems:
+				var marked_system = systems[marked_system_id]
+				marked_system.faction = faction.id
+				marked_system.adjacency = [faction.id]
+				marked_system.generation = i+1
+				
+			changed_systems += marked_systems
+			last_changed_systems = marked_systems
+
+	print("Factions grown")
 
 func name_systems():
 	for system_id in systems:
