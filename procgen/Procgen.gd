@@ -301,7 +301,6 @@ func assign_peninsula_bonus_systems(excluded_systems) -> Array:
 	return core_systems
 
 func grow_faction_influence_from_initial_systems(initial_systems):
-	# TODO: This is obviously not optimal
 	print("Growing faction influence")
 	var changed_systems = initial_systems.duplicate()
 	for system_id in initial_systems:
