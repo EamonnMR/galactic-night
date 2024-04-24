@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fys2watrdcse"
-path.s3tc="res://.godot/imported/Lightning_weapon.png-acdf0c83be28a106b7c4edc0ec93b8bb.s3tc.ctex"
+uid="uid://dls00x87uchj5"
+path.s3tc="res://.godot/imported/pintle_lights.png-4e386ed09f93aba5825bb5814bbe03a5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/eamonn/lightning/Lightning_weapon.png"
-dest_files=["res://.godot/imported/Lightning_weapon.png-acdf0c83be28a106b7c4edc0ec93b8bb.s3tc.ctex"]
+source_file="res://assets/eamonn/pintle/pintle_lights.png"
+dest_files=["res://.godot/imported/pintle_lights.png-4e386ed09f93aba5825bb5814bbe03a5.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=-3
-roughness/src_normal="res://assets/eamonn/gudgeon/gudgeon_normal.png"
+roughness/src_normal="res://assets/eamonn/pintle/pintle_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

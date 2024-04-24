@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fys2watrdcse"
-path.s3tc="res://.godot/imported/Lightning_weapon.png-acdf0c83be28a106b7c4edc0ec93b8bb.s3tc.ctex"
+uid="uid://dd6535be505y6"
+path.s3tc="res://.godot/imported/gudgeon_normal.png-e50d39172f7afdd13a044040fa90f2f6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/eamonn/lightning/Lightning_weapon.png"
-dest_files=["res://.godot/imported/Lightning_weapon.png-acdf0c83be28a106b7c4edc0ec93b8bb.s3tc.ctex"]
+source_file="res://assets/eamonn/gudgeon/gudgeon_normal.png"
+dest_files=["res://.godot/imported/gudgeon_normal.png-e50d39172f7afdd13a044040fa90f2f6.s3tc.ctex"]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=-3
+roughness/mode=1
 roughness/src_normal="res://assets/eamonn/gudgeon/gudgeon_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
