@@ -2,6 +2,8 @@ id,count,preset,natural,chance,scene,types,faction,destination,evergreen,data_ty
 asteroids,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLarge.tscn,,,asteroids,FALSE,,0.5,,,,,,,
 asteroids_green,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeGreen.tscn,,,asteroids,FALSE,,0.5,,,,,,,
 asteroids_blue,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeBlue.tscn,,,asteroids,FALSE,,0.5,,,,,,,
+asteroids_red,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeRed.tscn,,,asteroids,FALSE,,0.5,,,,,,,
+asteroids_black,4,FALSE,FALSE,1,res://entities/asteroids/AsteroidLargeBlack.tscn,,,asteroids,FALSE,,0.5,,,,,,,
 union_npcs,1,FALSE,FALSE,1,,nimbus starmaster lightning,union,npcs,FALSE,ships,1,,,,,union,union,union
 trader_npcs,1,FALSE,FALSE,1,,cargo lightning scout gudgeon,trader,npcs,TRUE,ships,1,A B,,,,union,union,union
 pirate_npcs,2,FALSE,FALSE,1,,nimbus burner pintle,pirate,npcs,FALSE,ships,1,A B C,,,,union pirate,pirate,pirate

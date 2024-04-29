@@ -145,7 +145,7 @@ func place_biome_seeds():
 	while seeds_planted < seed_count:
 		var biome_id = random_select(seed_biomes, rng)
 		var system_id = random_select(systems.keys(), rng)
-		if systems[system_id].biome == "":
+		if systems[system_id].biome == "" and systems[system_id].quadrant in Data.biomes[biome_id].quadrants:
 			systems[system_id].biome = biome_id
 			_set_light(systems[system_id], Data.biomes[biome_id])
 			seeds_planted += 1

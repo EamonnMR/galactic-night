@@ -1,0 +1,63 @@
+[gd_scene load_steps=15 format=3 uid="uid://blfy6tvjefkje"]
+
+[ext_resource type="PackedScene" uid="uid://cvdgfsv5v5af4" path="res://entities/asteroids/AsteroidLarge.tscn" id="1_4s2wm"]
+[ext_resource type="PackedScene" uid="uid://dg48jj2elx1b7" path="res://entities/asteroids/AsteroidSmallGreen.tscn" id="2_cmaoq"]
+[ext_resource type="Texture2D" uid="uid://qfae1nucer8b" path="res://assets/asteroids/green/asteroid_base.png" id="3_eofbc"]
+[ext_resource type="Texture2D" uid="uid://6dkhwnbsv7kv" path="res://assets/asteroids/green/asteroid_lights.png" id="4_ub6j2"]
+[ext_resource type="Texture2D" uid="uid://bf6mjjqw01i3l" path="res://assets/asteroids/green/asteroid_N.png" id="5_vdbm6"]
+[ext_resource type="Texture2D" uid="uid://dutbryjeiqvis" path="res://assets/asteroids/green/asteroid_RM.png" id="6_c2qnf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6ifa"]
+load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x55a"]
+no_depth_test = true
+albedo_texture = ExtResource("3_eofbc")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_x6ifa")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("6_c2qnf")
+emission_enabled = true
+emission = Color(0, 0, 0, 0)
+emission_texture = ExtResource("4_ub6j2")
+normal_enabled = true
+normal_texture = ExtResource("5_vdbm6")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en14q"]
+load_path = "res://.godot/imported/asteroid_C.png-0f322b871ac78a15789c788800c199e5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r8nxp"]
+load_path = "res://.godot/imported/asteroid_E.png-aa3afc5007f1986f6e5040264323014a.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7116q"]
+load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g8qon"]
+load_path = "res://.godot/imported/asteroid_N.png-01c9465f23391080c81fb128fd262cdf.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rdq06"]
+load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5cfe"]
+no_depth_test = true
+albedo_texture = SubResource("CompressedTexture2D_en14q")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_7116q")
+metallic_texture_channel = 2
+roughness_texture = SubResource("CompressedTexture2D_rdq06")
+emission_enabled = true
+emission_texture = SubResource("CompressedTexture2D_r8nxp")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_g8qon")
+
+[node name="Asteroid" instance=ExtResource("1_4s2wm")]
+next_type = ExtResource("2_cmaoq")
+surface_material_override = SubResource("StandardMaterial3D_0x55a")
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w5cfe")
+
+[node name="Loot" parent="." index="2"]
+loot_items = {
+"black": 5
+}
