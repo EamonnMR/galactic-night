@@ -161,8 +161,11 @@ func grow_biome_seeds():
 				for list in [system.links_cache, system.long_links_cache]:
 					for link in list:
 						var other_system = systems[link]
-						if other_system.biome and Data.biomes[other_system.biome].grow:
-							possible_biomes.append(other_system.biome)
+						var other_biome = other_system.biome
+						if other_system.biome:
+							var other_biome_data = Data.biomes[other_biome]
+							if other_system.biome and other_biome_data.grow and system.quadrant in other_biome_data.quadrants:
+								possible_biomes.append(other_system.biome)
 				if possible_biomes.size():
 					system.biome = random_select(possible_biomes, rng)
 					# TODO: Names - per - biome
