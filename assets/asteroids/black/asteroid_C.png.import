@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvrgdk6l4ebo0"
-path.s3tc="res://.godot/imported/asteroid_lights.png-25a2f9e72f2d19a191d6af8718c726c6.s3tc.ctex"
+uid="uid://dlbkjr65orjrq"
+path.s3tc="res://.godot/imported/asteroid_C.png-03cf057c06e649d1f69acdea697f4e23.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/asteroids/red/asteroid_lights.png"
-dest_files=["res://.godot/imported/asteroid_lights.png-25a2f9e72f2d19a191d6af8718c726c6.s3tc.ctex"]
+source_file="res://assets/asteroids/black/asteroid_C.png"
+dest_files=["res://.godot/imported/asteroid_C.png-03cf057c06e649d1f69acdea697f4e23.s3tc.ctex"]
 
 [params]
 

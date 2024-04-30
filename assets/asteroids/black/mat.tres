@@ -1,0 +1,26 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://c4lbmwm4ksmkc"]
+
+[ext_resource type="Texture2D" uid="uid://dlbkjr65orjrq" path="res://assets/asteroids/black/asteroid_C.png" id="1_yogej"]
+[ext_resource type="Texture2D" uid="uid://dn5x235ynji70" path="res://assets/asteroids/black/asteroid_lights.png" id="2_ncoup"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_611ty"]
+load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_srbru"]
+load_path = "res://.godot/imported/asteroid_N.png-01c9465f23391080c81fb128fd262cdf.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wew8v"]
+load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
+
+[resource]
+no_depth_test = true
+albedo_texture = ExtResource("1_yogej")
+metallic = 1.0
+metallic_texture = SubResource("CompressedTexture2D_611ty")
+metallic_texture_channel = 2
+roughness_texture = SubResource("CompressedTexture2D_wew8v")
+emission_enabled = true
+emission_energy_multiplier = 0.27
+emission_texture = ExtResource("2_ncoup")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_srbru")
