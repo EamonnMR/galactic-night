@@ -66,6 +66,14 @@ func equip_item(item: Inventory.InvItem, key: String, category: CATEGORY):
 	
 	_add(item, key, category)
 	
+func find_slot_for_item(item: Inventory.InvItem) -> String:
+	var category = item.data().equip_category
+	for key in slot_keys[item.data().equip_category]:
+		if slot_keys[category][key] == null:
+			return key
+	
+	return ""
+	
 func remove_item(key: String, category: CATEGORY) -> Inventory.InvItem:
 	var item = slot_keys[category][key]
 	assert(item)
