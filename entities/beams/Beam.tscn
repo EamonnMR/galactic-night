@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bpd2hte6hpf"]
+
+[ext_resource type="Script" path="res://entities/beams/Beam.gd" id="1_i610v"]
+
+[node name="Beam" type="Node3D"]
+script = ExtResource("1_i610v")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

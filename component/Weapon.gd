@@ -73,8 +73,6 @@ func _create_projectile():
 	
 	projectile.global_transform = global_transform
 	projectile.scale = Vector3(1,1,1)
-	#projectile.global_transform.origin = projectile.global_transform.origin
-	#projectile.global_transform.basis = Basis(projectile.global_transform.basis.get_rotation_quaternion())
 	projectile.damage = damage
 	projectile.splash_damage = splash_damage
 	projectile.splash_radius = splash_radius

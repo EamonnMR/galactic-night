@@ -6,3 +6,4 @@ railgun,railgun,1,0,metal: 2; blue: 2
 railgun_ammo,railgun_ammo,10,0,metal: 1
 flak,flak,1,0,metal: 4
 flak_ammo,flak_ammo,10,0,metal: 2
+jackknife,jackknife,1,0,metal: 3; green: 1

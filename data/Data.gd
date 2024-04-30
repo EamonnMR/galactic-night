@@ -42,7 +42,6 @@ func _init():
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
-
 	load_text()
 	load_codex()
 	for spawn in spawns.values():

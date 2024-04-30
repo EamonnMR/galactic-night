@@ -99,3 +99,11 @@ func _on_regen_delay_timeout():
 func _on_shield_regen_timeout():
 	if shields < max_shields and not shield_regen_cooldown:
 		shields += 1
+
+# TODO: Use complex damage values in place of ints
+class DamageVal:
+	var mass_damage: int
+	var energy_damage: int
+	#var ionization: int
+	#var disruption: int
+	var ignore_shields: bool

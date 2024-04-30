@@ -168,8 +168,6 @@ func grow_biome_seeds():
 								possible_biomes.append(other_system.biome)
 				if possible_biomes.size():
 					system.biome = random_select(possible_biomes, rng)
-					# TODO: Names - per - biome
-					#system.name = random_name(system, rng)
 					#_set_light(system, Data.biomes[system.biome])
 
 func fill_remaining_empty_biomes():
