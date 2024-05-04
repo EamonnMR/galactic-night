@@ -7,7 +7,24 @@
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_wor20")
 projectile_scene = ExtResource("2")
+burst_count = null
+dupe_count = null
+spread = null
+world_projectile = null
+vary_pitch = null
+ammo_item = null
+primary = null
+weapon_name = null
+projectile_velocity = null
 damage = 1
+splash_damage = null
+splash_radius = null
+timeout = null
+explode_on_timeout = null
+damage_falloff = null
+fade = null
+overpen = null
+impact = null
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.5

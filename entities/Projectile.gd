@@ -39,7 +39,7 @@ func _on_Projectile_body_entered(body):
 		detonate()
 		queue_free()
 
-func get_falloff_damage(damage) -> int:
+func get_falloff_damage(damage) -> Health.DamageVal:
 	if damage_falloff:
 		return roundi(damage - 1 * _fade_factor()) + 1
 	else:

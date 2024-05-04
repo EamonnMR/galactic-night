@@ -53,20 +53,23 @@ func take_damage(damage, source):
 	if invulnerable:
 		return
 	
-	reset_shield_regen()
+	var mass_damage = damage.mass
+	if not damage.ignore_shields:
+		if damage.energy > 0:
+			reset_shield_regen()
+		
+			if shields > 0:
+				if damage.energy > 0:
+					if shields < damage.energy:
+						mass_damage = get_fractional_mass_damage(damage)
+						shields = 0
+					else:
+						shields -= damage.energy
+						if shields > 0:
+							emit_signal("damaged", source)
+							return
 	
-	if shields > 0:
-		shields -= damage
-	
-		if shields > 0:
-			emit_signal("damaged", source)
-			return
-		else:
-			shields = 0
-	
-	if health <= 0:  # Beating a dead horse
-		return
-	health -= damage
+	health -= mass_damage
 
 	if health <= 0 and not already_destroyed:
 		already_destroyed = true
@@ -76,6 +79,11 @@ func take_damage(damage, source):
 	else:
 		emit_signal("damaged", source)
 
+func get_fractional_mass_damage(damage: DamageVal):
+		var remainder = shields - damage.energy
+		var remainder_fraction = damage.energy / remainder
+		return round(damage.mass * (damage.energy / shields - damage.energy) )
+
 func serialize():
 	return {
 		"health": health
@@ -84,7 +92,7 @@ func serialize():
 func deserialize(data):
 	health = data.health
 
-static func do_damage(entity, damage, source):
+static func do_damage(entity: Node, damage: DamageVal, source: Node):
 	if entity.has_node("Health"):
 		entity.get_node("Health").take_damage(damage, source)
 
@@ -107,3 +115,8 @@ class DamageVal:
 	#var ionization: int
 	#var disruption: int
 	var ignore_shields: bool
+	
+	func _init(mass_damage: int, energy_damage: int, ignore_shields: bool):
+		self.mass_damage = mass_damage
+		self.energy_damage = energy_damage
+		self.ignore_shields = ignore_shields

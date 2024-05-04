@@ -25,8 +25,10 @@ var type: String
 @export var projectile_velocity: float
 
 # @export var dmg_factor: float = 1
-@export var damage: int
-@export var splash_damage: int
+@export var mass_damage: int
+@export var energy_damage: int
+@export var splash_mass_damage: int
+@export var splash_energy_damage: int
 @export var splash_radius: float
 
 @export var timeout: float

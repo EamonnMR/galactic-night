@@ -1,7 +1,9 @@
 extends Node3D
 
 var iff: IffProfile
-var damage: int
+var mass_damage: int
+var energy_damage: int
+var ignore_shields: bool = false
 #var splash_damage: int
 #var splash_radius: int
 var linear_velocity = Vector2()
@@ -24,10 +26,13 @@ func do_beam(origin: Vector3, ignore: Array, pen_count):
 	var collision = project_beam(global_transform.origin, ignore)
 	if "collider" in collision:
 		# TODO: Explosion at collision.position
-		breakpoint
 		var collider = collision.collider
 		if not iff.should_exclude(collider):
-			Health.do_damage(collider, damage, iff.owner)
+			Health.do_damage(collider, Health.DamageVal.new(
+				mass_damage,
+				energy_damage,
+				ignore_shields
+			), iff.owner)
 			# TODO: Push and pull beams
 			#if impact != 0 and body.has_method("receive_impact"):
 			#	body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
