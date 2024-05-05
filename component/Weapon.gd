@@ -21,7 +21,7 @@ var type: String
 @export var vary_pitch = 0
 @export var ammo_item: String
 @export var primary = true
-@export var weapon_name: String = "Plasma"
+@export var weapon_name: String
 @export var projectile_velocity: float
 
 # @export var dmg_factor: float = 1
@@ -38,8 +38,24 @@ var type: String
 @export var overpen: bool
 @export var impact: float
 
+@onready var damage: Health.DamageVal
+@onready var splash_damage: Health.DamageVal
+
 func _ready():
 	Data.weapons[type].apply_to_node(self)
+
+	damage = Health.DamageVal.new(
+		mass_damage,
+		energy_damage,
+		false
+	)
+
+	splash_damage = Health.DamageVal.new(
+		splash_mass_damage,
+		splash_energy_damage,
+		false
+	)
+	
 	iff = IffProfile.new(
 		parent,
 		parent.faction,

@@ -56,6 +56,7 @@ func take_damage(damage, source):
 	var mass_damage = damage.mass
 	if not damage.ignore_shields:
 		if damage.energy > 0:
+			
 			reset_shield_regen()
 		
 			if shields > 0:
@@ -68,7 +69,8 @@ func take_damage(damage, source):
 						if shields > 0:
 							emit_signal("damaged", source)
 							return
-	
+	if shields > 0:
+		return
 	health -= mass_damage
 
 	if health <= 0 and not already_destroyed:
@@ -110,13 +112,26 @@ func _on_shield_regen_timeout():
 
 # TODO: Use complex damage values in place of ints
 class DamageVal:
-	var mass_damage: int
-	var energy_damage: int
+	var mass: int
+	var energy: int
 	#var ionization: int
 	#var disruption: int
 	var ignore_shields: bool
 	
 	func _init(mass_damage: int, energy_damage: int, ignore_shields: bool):
-		self.mass_damage = mass_damage
-		self.energy_damage = energy_damage
+		self.mass = mass_damage
+		self.energy = energy_damage
 		self.ignore_shields = ignore_shields
+
+	func calc_fade(damage: int, factor: float) -> int:
+		if damage > 1:
+			return roundi((damage - 1) * factor) + 1
+		else:
+			return 0
+	
+	func faded(factor):
+		return DamageVal.new(
+			calc_fade(mass, factor),
+			calc_fade(energy, factor),
+			ignore_shields
+		)

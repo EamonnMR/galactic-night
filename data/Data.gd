@@ -222,7 +222,10 @@ func assert_weapons_with_fade_have_sufficient_damage():
 	for weapon_id in weapons:
 		var weapon = weapons[weapon_id]
 		if weapon.fade:
-			assert(weapon.damage >= 2)
+			assert( false
+				or (weapon.mass_damage >= 2)
+				or (weapon.energy_damage >= 2)
+			)
 
 func identify_farming_opportunities():
 	for recipe_id in recipes:
