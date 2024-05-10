@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch430b0l37hcr"]
+
+[ext_resource type="PackedScene" uid="uid://4bpd2hte6hpf" path="res://entities/beams/Beam.tscn" id="1_q483g"]
+
+[node name="Beam" instance=ExtResource("1_q483g")]

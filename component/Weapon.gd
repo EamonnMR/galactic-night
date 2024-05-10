@@ -6,6 +6,7 @@ var cooldown: bool = false
 var burst_cooldown: bool = false
 var burst_counter: int = 0
 
+var projectile
 
 var iff: IffProfile
 
@@ -83,29 +84,41 @@ func _shoot():
 	_effects()
 
 func _create_projectile():
-	var projectile = projectile_scene.instantiate()
+	var new_projectile = false
+	var recycle_projectile = not world_projectile # TODO: make optional, it would be neat
+	if world_projectile or (recycle_projectile and not is_instance_valid(projectile)):
+		projectile = projectile_scene.instantiate()
+		new_projectile = true
+	else:
+		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner], 0)
 	# projectile.init()
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
 	# TODO: Also scale splash damage
 	
-	projectile.global_transform = global_transform
 	projectile.scale = Vector3(1,1,1)
 	projectile.damage = damage
-	projectile.splash_damage = splash_damage
-	projectile.splash_radius = splash_radius
-	projectile.initial_velocity = projectile_velocity
-	projectile.linear_velocity = parent.linear_velocity
+	
+	# TODO: Really, weapon wants to be the API and projectile wants to pull from it.
+	
+	if "splash_damage" in projectile:
+		projectile.splash_damage = splash_damage
+		projectile.splash_radius = splash_radius
+	if "linear_velocity" in projectile:
+		projectile.initial_velocity = projectile_velocity
+		projectile.linear_velocity = parent.linear_velocity
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
 	projectile.iff = iff
 	projectile.set_lifetime(timeout)
-	projectile.explode_on_timeout = explode_on_timeout
-	projectile.damage_falloff = damage_falloff
-	projectile.fade = fade
-	projectile.impact = impact
+	if "explode_on_timeout" in projectile:
+		projectile.explode_on_timeout = explode_on_timeout
+		projectile.damage_falloff = damage_falloff
+		projectile.fade = fade
+		projectile.impact = impact
 
-	if world_projectile:
+	if new_projectile and world_projectile:
+		projectile.global_transform = global_transform
 		Client.get_world().get_node("projectiles").add_child(projectile)
 	else:
 		get_node("../").add_child(projectile)

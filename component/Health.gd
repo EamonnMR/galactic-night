@@ -56,7 +56,6 @@ func take_damage(damage, source):
 	var mass_damage = damage.mass
 	if not damage.ignore_shields:
 		if damage.energy > 0:
-			
 			reset_shield_regen()
 		
 			if shields > 0:

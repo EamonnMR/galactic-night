@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://4bpd2hte6hpf"]
+[gd_scene load_steps=4 format=3 uid="uid://4bpd2hte6hpf"]
 
 [ext_resource type="Script" path="res://entities/beams/Beam.gd" id="1_i610v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slfpf"]
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j050f"]
+material = SubResource("StandardMaterial3D_slfpf")
+top_radius = 0.05
+bottom_radius = 0.05
+radial_segments = 8
 
 [node name="Beam" type="Node3D"]
 script = ExtResource("1_i610v")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Graphics" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_j050f")
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

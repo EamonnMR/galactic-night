@@ -33,10 +33,7 @@ func _physics_process(_delta):
 
 func _on_Projectile_body_entered(body):
 	if is_instance_valid(body) and not iff.should_exclude(body):
-		owner = null
-		if is_instance_valid(iff.owner):
-			owner = iff.owner
-		Health.do_damage(body, get_falloff_damage(damage), owner)
+		Health.do_damage(body, get_falloff_damage(damage), owner())
 		if impact > 0 and body.has_method("receive_impact"):
 			body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
 		detonate()
@@ -67,9 +64,14 @@ func set_lifetime(lifetime: float):
 	if lifetime:
 		$Timer.wait_time = lifetime
 
+func owner():
+	if is_instance_valid(iff.owner):
+		return iff.owner
+	return null
+
 func detonate():
 	if explosion:
 		Explosion.make_explo(explosion, self)
 	if splash_damage:
 		for data in Util.sphere_query(get_world_3d(), global_transform, splash_radius, $Area3D.collision_mask, $Sphere/SphereShapeHolder.shape):
-			Health.do_damage(data.collider, splash_damage, iff.owner)
+			Health.do_damage(data.collider, splash_damage, owner())
