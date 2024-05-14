@@ -90,7 +90,7 @@ func _create_projectile():
 		projectile = projectile_scene.instantiate()
 		new_projectile = true
 	else:
-		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner], 0)
+		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner])
 	# projectile.init()
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
