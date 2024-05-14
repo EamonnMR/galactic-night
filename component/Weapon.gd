@@ -38,6 +38,7 @@ var type: String
 @export var fade: bool
 @export var overpen: bool
 @export var impact: float
+@export var beam_length: int
 
 @onready var damage: Health.DamageVal
 @onready var splash_damage: Health.DamageVal
@@ -89,8 +90,7 @@ func _create_projectile():
 	if world_projectile or (recycle_projectile and not is_instance_valid(projectile)):
 		projectile = projectile_scene.instantiate()
 		new_projectile = true
-	else:
-		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner])
+
 	# projectile.init()
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
@@ -100,7 +100,8 @@ func _create_projectile():
 	projectile.damage = damage
 	
 	# TODO: Really, weapon wants to be the API and projectile wants to pull from it.
-	
+	if "overpen" in projectile:
+		projectile.overpen = overpen
 	if "splash_damage" in projectile:
 		projectile.splash_damage = splash_damage
 		projectile.splash_radius = splash_radius
@@ -116,7 +117,9 @@ func _create_projectile():
 		projectile.damage_falloff = damage_falloff
 		projectile.fade = fade
 		projectile.impact = impact
-
+	if not new_projectile:
+		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner])
+	
 	if new_projectile and world_projectile:
 		projectile.global_transform = global_transform
 		Client.get_world().get_node("projectiles").add_child(projectile)
