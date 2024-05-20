@@ -35,7 +35,7 @@ func _on_Projectile_body_entered(body):
 	if is_instance_valid(body) and not iff.should_exclude(body):
 		Health.do_damage(body, get_falloff_damage(damage), owner())
 		if impact > 0 and body.has_method("receive_impact"):
-			body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
+			body.receive_impact(linear_velocity.normalized() * get_falloff_impact(impact))
 		detonate()
 		queue_free()
 

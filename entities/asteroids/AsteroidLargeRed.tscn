@@ -4,39 +4,39 @@
 [ext_resource type="PackedScene" uid="uid://chi8u7837piio" path="res://entities/asteroids/AsteroidSmallRed.tscn" id="2_e4qio"]
 [ext_resource type="Material" uid="uid://bevewjjyxrxq0" path="res://assets/asteroids/red/mat.tres" id="3_0u0vw"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lv4og"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_irrrd"]
 load_path = "res://.godot/imported/asteroid_C.png-0f322b871ac78a15789c788800c199e5.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_718k7"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bcr2"]
 load_path = "res://.godot/imported/asteroid_E.png-aa3afc5007f1986f6e5040264323014a.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_73vuw"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7xco0"]
 load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_htxhp"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f78xt"]
 load_path = "res://.godot/imported/asteroid_N.png-01c9465f23391080c81fb128fd262cdf.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xfukt"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rkgqs"]
 load_path = "res://.godot/imported/asteroid_RM.png-9a24a16f596d714718dc707c4be1b6e5.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ltrg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5o53f"]
 no_depth_test = true
-albedo_texture = SubResource("CompressedTexture2D_lv4og")
+albedo_texture = SubResource("CompressedTexture2D_irrrd")
 metallic = 1.0
-metallic_texture = SubResource("CompressedTexture2D_73vuw")
+metallic_texture = SubResource("CompressedTexture2D_7xco0")
 metallic_texture_channel = 2
-roughness_texture = SubResource("CompressedTexture2D_xfukt")
+roughness_texture = SubResource("CompressedTexture2D_rkgqs")
 emission_enabled = true
-emission_texture = SubResource("CompressedTexture2D_718k7")
+emission_texture = SubResource("CompressedTexture2D_1bcr2")
 normal_enabled = true
-normal_texture = SubResource("CompressedTexture2D_htxhp")
+normal_texture = SubResource("CompressedTexture2D_f78xt")
 
 [node name="Asteroid" instance=ExtResource("1_081o8")]
 next_type = ExtResource("2_e4qio")
 surface_material_override = ExtResource("3_0u0vw")
 
 [node name="Mesh" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_2ltrg")
+surface_material_override/0 = SubResource("StandardMaterial3D_5o53f")
 
 [node name="Loot" parent="." index="2"]
 loot_items = {

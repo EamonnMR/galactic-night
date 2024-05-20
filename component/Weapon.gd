@@ -39,6 +39,7 @@ var type: String
 @export var overpen: bool
 @export var impact: float
 @export var beam_length: int
+@export var recoil: int
 
 @onready var damage: Health.DamageVal
 @onready var splash_damage: Health.DamageVal
@@ -90,7 +91,6 @@ func _create_projectile():
 	if world_projectile or (recycle_projectile and not is_instance_valid(projectile)):
 		projectile = projectile_scene.instantiate()
 		new_projectile = true
-
 	# projectile.init()
 	#projectile.damage *= dmg_factor
 	#projectile.splash_damage *= dmg_factor
@@ -108,15 +108,27 @@ func _create_projectile():
 	if "linear_velocity" in projectile:
 		projectile.initial_velocity = projectile_velocity
 		projectile.linear_velocity = parent.linear_velocity
+		
+
 	projectile.rotate_x(randf_range(-spread/2, spread/2))
 	projectile.rotate_y(randf_range(-spread/2, spread/2))
+	
+	# TODO: This seems like a similar direction issue to warp-in
+	#if recoil and new_projectile and world_projectile:
+	#	parent.receive_impact(Vector2(recoil, 0).rotated(Util.flatten_rotation(self)))
+
+	
 	projectile.iff = iff
 	projectile.set_lifetime(timeout)
+	if "recoil" in projectile:
+		projectile.recoil = recoil
 	if "explode_on_timeout" in projectile:
 		projectile.explode_on_timeout = explode_on_timeout
 		projectile.damage_falloff = damage_falloff
 		projectile.fade = fade
-		projectile.impact = impact
+	if "beam_length" in projectile:
+		projectile.beam_length = beam_length
+	projectile.impact = impact
 	if not new_projectile:
 		projectile.do_beam.call_deferred(global_transform.origin, [iff.owner])
 	

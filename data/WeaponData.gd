@@ -26,6 +26,8 @@ var damage_falloff: bool
 var fade: bool
 var impact: float
 var overpen: bool
+var recoil: float
+var beam_length: int
 
 func apply_to_node(node):
 	super.apply_to_node(node)

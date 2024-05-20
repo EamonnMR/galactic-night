@@ -6,9 +6,10 @@ var ignore_shields: bool = false
 var impact: float
 var material: StandardMaterial3D
 var overpen: bool = false
+var recoil: float
 @export var explosion: PackedScene
 
-@export var max_range = 10
+@export var beam_length: int
 # @export var explosion: PackedScene
 
 
@@ -34,7 +35,7 @@ func init(iff):
 
 func do_beam(origin: Vector3, ignore: Array):
 	$Timer.start()
-	var length = do_beam_inner(origin, ignore, max_range)
+	var length = do_beam_inner(origin, ignore, beam_length)
 	_update_graphics(length)
 
 func do_beam_inner(origin: Vector3, ignore: Array, remaining_length: float):
@@ -49,17 +50,19 @@ func do_beam_inner(origin: Vector3, ignore: Array, remaining_length: float):
 				owner = iff.owner
 
 			Health.do_damage(collider, damage, owner)
-			# TODO: Push and pull beams
-			#if impact != 0 and body.has_method("receive_impact"):
-			#	body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
+
+			if impact != 0 and collider.has_method("receive_impact"):
+				collider.receive_impact(Vector2(impact, 0).rotated(Util.flatten_rotation(self)))
+			if recoil and owner and owner.has_method("receive_impact"):
+				owner.receive_impact(-1 * Vector2(recoil, 0).rotated(Util.flatten_rotation(self)))
 		var length = (collision.position - global_transform.origin).length()
 		if overpen:
 			do_beam_inner(collision.position, ignore + [collider], remaining_length - length)
 			# Always draw out to max range if it's an overpen beam
-			return max_range
+			return beam_length
 		return length
 	else:
-		return max_range
+		return beam_length
 
 func _update_graphics(beam_length: float):
 	$Graphics.transform.origin.x = beam_length / 2

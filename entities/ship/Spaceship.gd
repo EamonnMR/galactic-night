@@ -178,5 +178,5 @@ func remove_weapon(weapon: Node):
 		secondary_weapons.erase(weapon)
 	weapons_changed.emit()
 				
-func receive_impact(direction, force):
-	linear_velocity += direction * (force / mass) 
+func receive_impact(impact: Vector2):
+	linear_velocity += impact / mass
