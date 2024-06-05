@@ -2,5 +2,5 @@ id,name,scene,destination,require_level,ingredients,icon,text
 workbench,Workbench Station,res://entities/constructed/Workbench.tscn,spobs,0,metal: 1,res://assets/eamonn/icons/station_icon.png,Station with basic facilities for fabrication
 turret_station,Turret Sation,res://entities/constructed/TurretStation.tscn,spobs,1,metal: 3,res://assets/eamonn/icons/station_icon_turret.png,Defensive station
 telescope,Hyperspace Telescope,res://entities/constructed/Telescope.tscn,spobs,1,metal: 3; blue: 5 crucible: 5,res://assets/eamonn/icons/telescope.png,Opens up longer hyperlanes out of the system
-shipyard,Shipyard,res://entities/constructed/Shipyard.tscn,spobs,1,metal: 10; panopticon: 5,res://assets/eamonn/icons/station_icon_turret.png,Orbital construction yard. Craft larger and more advanced items.
-battlestation,Battlestation,res://entities/constructed/Battlestation.tscn,spobs,2,metal: 20; nanoforge: 10,res://assets/eamonn/icons/station_icon.png,Permanent foothold. Construct the most advanced ships and weapons
+shipyard,Shipyard,res://entities/constructed/Shipyard.tscn,spobs,1,metal: 10; panopticon: 3; green: 10,res://assets/eamonn/icons/station_icon_turret.png,Orbital construction yard. Craft larger and more advanced items.
+battlestation,Battlestation,res://entities/constructed/Battlestation.tscn,spobs,2,metal: 20; nanoforge: 3; green: 5; red: 10,res://assets/eamonn/icons/station_icon.png,Permanent foothold. Construct the most advanced ships and weapons

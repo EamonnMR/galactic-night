@@ -41,6 +41,7 @@ func _ready():
 	
 	if self == Client.player:
 		add_to_group("players")
+		faction = "player_owned"
 		# TODO: Check client for proper controller type?
 		add_child(preload("res://component/controllers/KeyboardController.tscn").instantiate())
 		$CameraFollower.remote_path = Client.camera.get_node("../").get_path()
@@ -177,5 +178,5 @@ func remove_weapon(weapon: Node):
 		secondary_weapons.erase(weapon)
 	weapons_changed.emit()
 				
-func receive_impact(direction, force):
-	linear_velocity += direction * (force / mass) 
+func receive_impact(impact: Vector2):
+	linear_velocity += impact / mass

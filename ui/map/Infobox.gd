@@ -9,10 +9,10 @@ func _update():
 	if sysdat.explored or Cheats.explore_all:
 		%Name.text = "Name: "+ sysdat.name
 		%Biome.text = "Biome: " + Data.biomes[sysdat.biome].name
-		if sysdat.faction != "":
-			%Faction.text = "Faction: " + Data.factions[sysdat.faction].name
+		if sysdat.dynamic_faction() != "":
+			%Faction.text = "Faction: " + Data.factions[sysdat.dynamic_faction()].name
 		else:
-			%Faction.text = "Faction: None"
+			%Faction.text = "Uninhabited"
 		if "spobs" in sysdat.entities:
 			var spob_names: PackedStringArray = []
 			for spob in sysdat.entities.spobs:

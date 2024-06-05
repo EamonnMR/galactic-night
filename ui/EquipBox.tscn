@@ -14,6 +14,9 @@ patch_margin_top = 12
 patch_margin_right = 15
 patch_margin_bottom = 13
 script = ExtResource("2")
+disabled = null
+category = null
+mode = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_contents = true

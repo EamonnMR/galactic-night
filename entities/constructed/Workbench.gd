@@ -8,6 +8,9 @@ var spob_name = display_name()
 @export var set_crafting_level: int
 @export var screen_box: int
 
+var faction="player_owned"
+var hold=true
+
 func screen_box_side_length():
 	return screen_box
 
@@ -28,7 +31,9 @@ func serialize() -> Dictionary:
 	return Util.get_multiple(self, [
 		"transform",
 		"scene_file_path",
-		"spob_name"
+		"spob_name",
+		"faction",
+		"hold"
 	])
 
 func deserialize(data: Dictionary):

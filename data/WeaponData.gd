@@ -13,16 +13,21 @@ var vary_pitch: int
 var ammo_item: String
 var primary: bool
 var projectile_velocity: float
-var damage: int
+var mass_damage: int
+var energy_damage: int
 var cooldown: float
 var projectile_lifetime: float
-var splash_damage: int
+var splash_mass_damage: int
+var splash_energy_damage: int
 var splash_radius: float
 var timeout: float
 var explode_on_timeout: bool
 var damage_falloff: bool
 var fade: bool
 var impact: float
+var overpen: bool
+var recoil: float
+var beam_length: int
 
 func apply_to_node(node):
 	super.apply_to_node(node)

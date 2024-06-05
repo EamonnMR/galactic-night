@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0mkp8dh2cna3"]
+
+[ext_resource type="PackedScene" uid="uid://btexoeba36vo4" path="res://ui/InhabitedSpob/Trade.tscn" id="1_fax18"]
+[ext_resource type="Script" path="res://ui/InhabitedSpob/Shop.gd" id="2_x2cxs"]
+
+[node name="Shop" instance=ExtResource("1_fax18")]
+script = ExtResource("2_x2cxs")

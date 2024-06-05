@@ -1,24 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjyh6bml6dk1e"]
+[gd_scene load_steps=7 format=3 uid="uid://bjyh6bml6dk1e"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_yvbsd"]
 [ext_resource type="Script" path="res://ui/InhabitedSpob/InhabitedSpob.gd" id="2_oq1gm"]
+[ext_resource type="Script" path="res://ui/InhabitedSpob/Refuel.gd" id="3_3xret"]
 [ext_resource type="PackedScene" uid="uid://btexoeba36vo4" path="res://ui/InhabitedSpob/Trade.tscn" id="3_gu7ad"]
+[ext_resource type="PackedScene" uid="uid://d0mkp8dh2cna3" path="res://ui/InhabitedSpob/Shop.tscn" id="4_k6e60"]
+[ext_resource type="PackedScene" uid="uid://dpkaumfgnqnqi" path="res://ui/InhabitedSpob/ShipStore.tscn" id="5_t7gt0"]
 
 [node name="InhabitedSpob" instance=ExtResource("1_yvbsd")]
-offset_right = 335.0
-offset_bottom = 307.0
+offset_right = 487.0
+offset_bottom = 409.0
 script = ExtResource("2_oq1gm")
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="0"]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 9.0
-offset_right = 321.0
-offset_bottom = 292.0
+offset_right = 473.0
+offset_bottom = 394.0
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" index="0"]
 unique_name_in_owner = true
 layout_mode = 2
+current_tab = 3
 
-[node name="Trade" parent="MarginContainer/TabContainer" index="1" instance=ExtResource("3_gu7ad")]
+[node name="Refuel" type="Control" parent="MarginContainer/TabContainer" index="1"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_3xret")
+
+[node name="Button" type="Button" parent="MarginContainer/TabContainer/Refuel" index="0"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 132.0
+offset_right = 177.0
+offset_bottom = 163.0
+text = "Refuel"
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Refuel/Button" index="0"]
+layout_mode = 0
+offset_left = -52.0
+offset_top = -94.0
+offset_right = 106.0
+offset_bottom = -19.0
+text = "Price per jump: 100
+Refuel Price: 100"
+
+[node name="Trade" parent="MarginContainer/TabContainer" index="2" instance=ExtResource("3_gu7ad")]
+visible = false
+layout_mode = 2
+
+[node name="Shop" parent="MarginContainer/TabContainer" index="3" instance=ExtResource("4_k6e60")]
+visible = false
+layout_mode = 2
+
+[node name="Shipyard" parent="MarginContainer/TabContainer" index="4" instance=ExtResource("5_t7gt0")]
 layout_mode = 2

@@ -22,6 +22,17 @@ func apply_to_node(node: Node):
 			if dat is Dictionary:
 				dat = dat.duplicate()
 			node.set(stat, dat)
+			
+func apply_prefix_to_node(node: Node, prefix):
+	# Similar to apply_to_node except it calls out a prefix within the data.
+	for raw_stat in get_columns():
+		if raw_stat.begins_with(prefix):
+			var stat = raw_stat.replace(prefix + "_", "")
+			if stat in node:
+				var dat = get(stat)
+				if dat is Dictionary:
+					dat = dat.duplicate()
+				node.set(stat, dat)
 
 func _init(data: Dictionary):
 	var props = get_property_list()

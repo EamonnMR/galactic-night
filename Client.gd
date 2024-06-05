@@ -109,6 +109,8 @@ func change_system():
 	get_ui().get_node("Map").update_for_explore(current_system)
 	Procgen.systems[current_system].explored = true
 	sel_sys(null, null)
+	update_player_target_spob(null)
+	update_player_target_ship(null)
 	exited_system.emit()
 	get_main().change_system(old_system, current_system)
 	display_message("Entering the %s system" % Procgen.systems[current_system].name)
@@ -182,11 +184,12 @@ func mouseover_entered(target, mouse=true):
 
 
 func get_disposition(node):
-	if node.is_in_group("players") or node.is_in_group("player-assets"):
-		return Util.DISPOSITION.FRIENDLY
-	if "faction" in node:
-		if node.faction:
-			return Data.factions[node.faction].get_player_disposition()
+	if node:
+		if node.is_in_group("players") or node.is_in_group("player-assets"):
+			return Util.DISPOSITION.FRIENDLY
+		if "faction" in node:
+			if node.faction:
+				return Data.factions[node.faction].get_player_disposition()
 	return Util.DISPOSITION.ABANDONED
 
 func display_message(msg: String):
@@ -210,7 +213,6 @@ func load_game(filename):
 
 	if not parse_result == OK:
 		var error = "JSON Parse Error: %s at line %s" % [json.get_error_message(), json.get_error_line()]
-		breakpoint
 	deserialize(json.get_data())
 	
 func get_available_saved_games() -> PackedStringArray:

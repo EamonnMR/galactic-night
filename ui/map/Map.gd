@@ -25,12 +25,14 @@ func _ready():
 	
 func _populate_mode_dropdown():
 	for item in [
+		"Faction (Populated)",
 		"Biome",
 		"Disposition",
 		"Distance from core",
-		"Faction",
+		"Faction Ownership",
 		"Faction Seeds",
-		"Quadrant"
+		"Quadrant",
+		"Static Systems"
 	]:
 		mode.add_item(item)
 

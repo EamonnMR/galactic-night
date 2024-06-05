@@ -13,6 +13,7 @@ script = ExtResource("2")
 script = ExtResource("1")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 12.2295
 offset_top = -6.68369
 offset_right = 52.2295
@@ -20,6 +21,7 @@ offset_bottom = 7.31631
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = -12.8943
 offset_top = -13.9497
 offset_right = 14.1057

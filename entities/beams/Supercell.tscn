@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhwq6kvvuvm23"]
+
+[ext_resource type="Script" path="res://entities/beams/Beam.gd" id="1_sghne"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkgau"]
+transparency = 1
+emission_enabled = true
+emission = Color(0.151955, 0.931268, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ylo0h"]
+material = SubResource("StandardMaterial3D_wkgau")
+top_radius = 0.05
+bottom_radius = 0.05
+radial_segments = 8
+
+[node name="Beam" type="Node3D"]
+script = ExtResource("1_sghne")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Graphics" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ylo0h")
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

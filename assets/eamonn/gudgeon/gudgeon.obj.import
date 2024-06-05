@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://uw5k8ih1xque"
+path="res://.godot/imported/gudgeon.obj-2709c6addd7ecfdf80f52257ea5edb5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gudgeon.obj-2709c6addd7ecfdf80f52257ea5edb5e.mesh"]
+
+source_file="res://assets/eamonn/gudgeon/gudgeon.obj"
+dest_files=["res://.godot/imported/gudgeon.obj-2709c6addd7ecfdf80f52257ea5edb5e.mesh", "res://.godot/imported/gudgeon.obj-2709c6addd7ecfdf80f52257ea5edb5e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

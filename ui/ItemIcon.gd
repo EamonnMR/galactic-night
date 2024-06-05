@@ -50,23 +50,34 @@ func dropped():
 func _on_gui_input(event: InputEvent):
 	# Enable double-click equipping
 	if "double_click" in event and event.double_click:
-		if equippable():
-			if in_player_inventory():
-				try_equip_item()
-			elif equipped_to_player():
-				unequip_item()
+		var is_eq = equippable()
+		var in_inventory = in_player_inventory()
+		try_equip_item()
+		#if equippable():
+			#if in_player_inventory():
+				#try_equip_item()
+			#elif equipped_to_player():
+				#unequip_item()
 		
 func equippable() -> bool:
-	return false
+	return bool(item.data().equip_category)
+
+func equip_category() -> Equipment.CATEGORY:
+	return item.data().equip_category
 
 func in_player_inventory() -> bool:
-	return get_node("../../")._inventory().is_player_accessable()
+	var container = get_node("../../../../../../../")
+	return container.has_method("_inventory")
 
 func unequip_item():
 	return false
 	
 func try_equip_item():
-	breakpoint
+	# TODO: Does it make more sense to change the underlying player component first?
+	var equipment_ui = Client.get_ui().get_node("Equipment")
+	equipment_ui.try_adding_item(self)
+	
 
 func equipped_to_player() -> bool:
 	return false
+	#return item.data().equip_category

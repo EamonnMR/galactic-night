@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 var iff: IffProfile
-var damage: int
-var splash_damage: int
+var damage: Health.DamageVal
+var splash_damage: Health.DamageVal
 var splash_radius: int
 var linear_velocity = Vector2()
 var initial_velocity = 10
@@ -32,16 +32,16 @@ func _physics_process(_delta):
 
 
 func _on_Projectile_body_entered(body):
-	if not iff.should_exclude(body):
-		Health.do_damage(body, get_falloff_damage(damage), iff.owner)
+	if is_instance_valid(body) and not iff.should_exclude(body):
+		Health.do_damage(body, get_falloff_damage(damage), owner())
 		if impact > 0 and body.has_method("receive_impact"):
-			body.receive_impact(linear_velocity.normalized(), get_falloff_impact(impact))
+			body.receive_impact(linear_velocity.normalized() * get_falloff_impact(impact))
 		detonate()
 		queue_free()
 
-func get_falloff_damage(damage) -> int:
+func get_falloff_damage(damage) -> Health.DamageVal:
 	if damage_falloff:
-		return roundi(damage - 1 * _fade_factor()) + 1
+		return damage.faded(_fade_factor())
 	else:
 		return damage
 
@@ -64,9 +64,14 @@ func set_lifetime(lifetime: float):
 	if lifetime:
 		$Timer.wait_time = lifetime
 
+func owner():
+	if is_instance_valid(iff.owner):
+		return iff.owner
+	return null
+
 func detonate():
 	if explosion:
 		Explosion.make_explo(explosion, self)
 	if splash_damage:
 		for data in Util.sphere_query(get_world_3d(), global_transform, splash_radius, $Area3D.collision_mask, $Sphere/SphereShapeHolder.shape):
-			Health.do_damage(data.collider, splash_damage, iff.owner)
+			Health.do_damage(data.collider, splash_damage, owner())

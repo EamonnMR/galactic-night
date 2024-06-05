@@ -42,7 +42,6 @@ func _init():
 		var cls = class_and_dest[0]
 		var dest = class_and_dest[1]
 		set(dest, DataRow.load_from_csv(cls))
-
 	load_text()
 	load_codex()
 	for spawn in spawns.values():
@@ -77,7 +76,30 @@ func codex_by_path(path: String):
 	var tree = codex
 	for i in path.split("/"):
 		tree = tree[i]
-	return tree
+	return fmt_desc(tree)
+
+func replace_tag(desc: String, tag: String, formatter: Callable):
+	var open_tag = "[" + tag + "]"
+	var close_tag = "[/" + tag + "]"
+	while open_tag in desc:
+		var open_tag_index = desc.find(open_tag)
+		var close_tag_index = desc.find(close_tag)
+		var open_tag_end = open_tag_index + open_tag.length()
+		var tag_content = desc.substr(open_tag_end, close_tag_index - open_tag_end )
+
+		desc = desc.replace(
+			open_tag+tag_content+close_tag,
+			formatter.call(tag_content)
+		)
+	return desc
+
+func fmt_desc(desc: String):
+	return replace_tag(desc, "ship_stats",
+		func ship_stats(ship_id: String):
+			if ship_id not in Data.ships:
+				return "[INVALID SHIP ID: " + ship_id + "]"
+			return Data.ships[ship_id].fmt_stats()
+	)
 
 
 func load_directory(path: String) -> Dictionary:
@@ -200,7 +222,10 @@ func assert_weapons_with_fade_have_sufficient_damage():
 	for weapon_id in weapons:
 		var weapon = weapons[weapon_id]
 		if weapon.fade:
-			assert(weapon.damage >= 2)
+			assert( false
+				or (weapon.mass_damage >= 2)
+				or (weapon.energy_damage >= 2)
+			)
 
 func identify_farming_opportunities():
 	for recipe_id in recipes:
@@ -249,3 +274,13 @@ func verify_static_systems_reference_real_factions():
 		var i: StaticSystem = static_systems[name]
 		if i.faction_id:
 			assert(i.faction_id in factions)
+
+func assert_custom_bbcode_works():
+	var unformatted = "abc[caps]bar[/caps]def"
+	var formatted = replace_tag(
+			unformatted,
+			"caps",
+			func fmt_caps(string):
+				return string.capitalize()
+	)
+	assert(formatted == "abcBardef")

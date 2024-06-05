@@ -15,8 +15,8 @@ var CHEATS = {
 		if not(len(args) == 2):
 			Client.display_message("Please enter an item type and quantity")
 			return false
-		var type = args[0]
-		var amount = int(args[1])
+		var type = args[1]
+		var amount = int(args[0])
 		if not (type in Data.items):
 			Client.display_message("Unknown item type: " + type)
 			return false
@@ -69,6 +69,11 @@ var CHEATS = {
 			return false
 		
 		Client.switch_ship(args[0])
+		return true,
+	"9bb8000deb0f831f45edde69622cc71f": func free_money(args):
+		if not(len(args) == 1) or not(args[0].is_valid_int()):
+			return false
+		Client.add_money(int(args[0]))
 		return true
 }
 

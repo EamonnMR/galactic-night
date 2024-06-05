@@ -99,6 +99,9 @@ enum DISPOSITION {
 }
 
 func closest(choices, position: Vector2) -> Node3D:
+	return distance_ordered(choices, position)[0]
+	
+func distance_ordered(choices, position: Vector2) -> Array:
 	# Warning: side effects
 	choices.sort_custom(
 		func distance_comparitor(lval: Node3D, rval: Node3D):
@@ -108,9 +111,11 @@ func closest(choices, position: Vector2) -> Node3D:
 			var rdist = Util.flatten_25d(rval.global_transform.origin).distance_to(position)
 			return ldist < rdist
 	)
-	return choices[0]
+	return choices
 
 func item_screen_box_side_length(object):
+	if not object:
+		return 0
 	if object.has_method("screen_box_side_length"):
 		return object.screen_box_side_length()
 	elif "screen_box_side_length" in object:

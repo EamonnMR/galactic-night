@@ -24,3 +24,6 @@ crucible,Crucible,,,,res://assets/danc_cc_by/icons/crucible.png,Lostech Core Com
 hypersolenoid,Hyper-Solenoid,,,,res://assets/danc_cc_by/icons/hypersolenoid.png,Lostech Core Component IV,,FALSE,FALSE,300
 bomb_launcher,Bomb Bay,weapon,,,res://assets/danc_cc_by/icons/bomb_launcher.png,Short range high damage weapon,,FALSE,FALSE,100
 bomb_ammo,Freefall Bomb,,,,res://assets/danc_cc_by/icons/bomb_ammo.png,Ammo for bomb bay,,TRUE,FALSE,100
+red,Corundum,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon9.png,Sinister Red substance (crafting Ingredient),,TRUE,FALSE,200
+black,Dark Matter,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon30.png,Captive Dark Matter (crafting Ingredient),,TRUE,FALSE,300
+supercell,Supercell,weapon,,,res://assets/damnwing_cc_by/supercell.jpg,Deadly Hyperspace Beam,,FALSE,FALSE,1000

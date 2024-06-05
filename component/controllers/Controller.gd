@@ -35,7 +35,7 @@ func populate_rotation_impulse_and_ideal_face(at: Vector2, delta):
 	rotation_impulse = impulse[0]
 	ideal_face = impulse[1]
 
-func _get_target_lead_position(lead_velocity: float, target: CharacterBody3D):
+func _get_target_lead_position(lead_velocity: float, target: Node3D):
 	return Util.lead_correct_position(
 		lead_velocity,
 		Util.flatten_25d(get_parent().global_transform.origin),

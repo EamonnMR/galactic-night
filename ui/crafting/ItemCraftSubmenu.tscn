@@ -20,18 +20,3 @@ grow_vertical = 1
 
 [node name="ScrollContainer" parent="HBoxContainer" index="0"]
 custom_minimum_size = Vector2(30, 0)
-
-[node name="Name" parent="HBoxContainer/Details" index="0"]
-offset_bottom = 23.0
-
-[node name="Description" parent="HBoxContainer/Details" index="1"]
-offset_left = 5.0
-offset_top = 37.0
-offset_right = 198.0
-offset_bottom = 137.0
-
-[node name="Ingredients" parent="HBoxContainer/Details" index="2"]
-offset_left = 3.0
-offset_top = 123.0
-offset_right = 209.0
-offset_bottom = 163.0
