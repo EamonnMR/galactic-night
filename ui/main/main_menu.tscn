@@ -180,8 +180,7 @@ offset_right = 48.0
 offset_bottom = -192.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Space Craft 22
-"
+text = "Galactic Night"
 label_settings = SubResource("LabelSettings_f2j5r")
 
 [node name="Continue" type="Button" parent="Control/MainMenu"]

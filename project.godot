@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Space Craft 22"
+config/name="Galactic Night"
+config/description="​EV-Like with 2d gameplay but 3d graphics. Unique shader provides sprite-style perspective for ships. Trade, mine, or blast your way through a procedural generated galaxy. Can you save human space from the dreaded AutoFac robot swarms?"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
