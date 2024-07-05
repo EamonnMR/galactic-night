@@ -231,6 +231,7 @@ func enter_game():
 	get_ui().show()
 	get_ui().new_map()
 	get_main().enter_system(current_system_id())
+	get_ui().toggle_codex.call_deferred("help/keybindings")
 	
 func leave_game():
 	get_main().get_node("MainMenu").show()
