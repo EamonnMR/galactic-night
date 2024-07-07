@@ -107,8 +107,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -235.0
-offset_top = -245.0
+offset_left = -232.0
+offset_top = -279.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
@@ -143,10 +143,10 @@ one_shot = true
 
 [node name="GalaxyNavIndicator" parent="." instance=ExtResource("17_wqcqy")]
 visible = true
-offset_left = -229.0
-offset_top = 350.0
-offset_right = -124.0
-offset_bottom = 377.0
+offset_left = -232.0
+offset_top = 337.0
+offset_right = -127.0
+offset_bottom = 364.0
 label_settings = SubResource("LabelSettings_rvdfq")
 
 [node name="Codex" parent="." instance=ExtResource("18_6eupn")]

@@ -21,7 +21,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Shader" id="Shader_3b6qd"]
+[sub_resource type="Shader" id="Shader_xal70"]
 code = "shader_type spatial;
 
 #include \"res://effects/perspective.gdshaderinc\"
@@ -119,33 +119,33 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgt4q"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_37hn0"]
 load_path = "res://.godot/imported/Harvester_base.png-c469d8cd7ada93a324510b253a78c7b7.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lox12"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sjlkf"]
 load_path = "res://.godot/imported/Harvester_lights.png-f00c5644adc6d3850127d3c751269c92.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ut271"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40va1"]
 load_path = "res://.godot/imported/Harvester_engine.png-a65c508c6ee9a47b24260eca27fbc776.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bg1k3"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r4c5n"]
 load_path = "res://.godot/imported/Harvester_rm.png-284712cb0275668e8c31faed65e344df.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cxa65"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrl3r"]
 load_path = "res://.godot/imported/Harvester_normal.png-a69beb968d8c250497afdbd7029e5281.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2bpn7"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvy0f"]
 load_path = "res://.godot/imported/Harvester_paint.png-20f71a17a5b0edc04e880ea02484e27a.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ho7hh"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbx8s"]
 load_path = "res://.godot/imported/Harvester_rm.png-284712cb0275668e8c31faed65e344df.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d05h3"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7aqiq"]
 load_path = "res://.godot/imported/Harvester_weapons.png-63147feb64575af5ffcb390f0dc8977c.s3tc.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc6e0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hk7k8"]
 render_priority = 0
-shader = SubResource("Shader_3b6qd")
+shader = SubResource("Shader_xal70")
 shader_parameter/roughness = null
 shader_parameter/metallic_texture_channel = null
 shader_parameter/specular = null
@@ -169,14 +169,14 @@ shader_parameter/lights_saturation = null
 shader_parameter/lights_brightness = null
 shader_parameter/weapon_hue = null
 shader_parameter/weapon_saturation = null
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_kgt4q")
-shader_parameter/texture_metallic = SubResource("CompressedTexture2D_bg1k3")
-shader_parameter/texture_roughness = SubResource("CompressedTexture2D_ho7hh")
-shader_parameter/texture_normal = SubResource("CompressedTexture2D_cxa65")
-shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_lox12")
-shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_ut271")
-shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_d05h3")
-shader_parameter/texture_paint = SubResource("CompressedTexture2D_2bpn7")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_37hn0")
+shader_parameter/texture_metallic = SubResource("CompressedTexture2D_r4c5n")
+shader_parameter/texture_roughness = SubResource("CompressedTexture2D_jbx8s")
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_vrl3r")
+shader_parameter/texture_base_emission = SubResource("CompressedTexture2D_sjlkf")
+shader_parameter/texture_engine_emission = SubResource("CompressedTexture2D_40va1")
+shader_parameter/texture_weapon_emission = SubResource("CompressedTexture2D_7aqiq")
+shader_parameter/texture_paint = SubResource("CompressedTexture2D_xvy0f")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tlre4"]
 points = PackedVector3Array(3.55202, 0.0886683, 1.26322, -2.85949, -0.691608, -1.90062, -3.0729, -1.09792, -1.43205, -3.8953, 0.510386, 1.68494, -3.19194, 0.510386, -2.10846, -3.07405, -1.09827, 1.43078, 4.67616, -0.33243, -0.984016, -1.7861, 0.932103, -0.140994, 0.460415, -1.17566, 1.12292, 4.67616, 0.0886683, -0.843719, -4.31696, -0.613438, -0.422001, 0.460415, -1.17566, -1.12473, -3.19194, 0.510386, 2.10707, -0.317253, -0.557414, 1.86689, 4.39446, -0.472934, 0.841913, -4.03526, 0.650683, -0.281704, 0.319567, 0.510386, -1.68674, -0.316831, -0.557044, -1.8667, 0.319567, 0.510386, 1.68494, 4.67616, 0.0886683, 0.841913, -3.62172, -1.1049, 1.04748, -3.8953, 0.510386, -1.68674, -3.27537, -0.586755, 1.85921, 3.13036, 0.369676, 0.420195, -3.62038, -1.10456, -1.04889, -4.31696, -0.613438, 0.420195, 4.67616, -0.33243, 0.98221, 3.55202, 0.0886683, -1.26502, 3.13036, 0.369676, -0.422001, -1.7861, 0.932103, 0.139188, -3.66627, -0.585804, -1.59198, 4.39446, -0.472934, -0.703009)
@@ -186,7 +186,7 @@ points = PackedVector3Array(3.55202, 0.0886683, 1.26322, -2.85949, -0.691608, -1
 [node name="Graphics" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h2ba6")
-surface_material_override/0 = SubResource("ShaderMaterial_vc6e0")
+surface_material_override/0 = SubResource("ShaderMaterial_hk7k8")
 script = ExtResource("3_s7q4a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]

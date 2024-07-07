@@ -1,17 +1,75 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpfb1h06col5i"]
+[gd_scene load_steps=11 format=3 uid="uid://cpfb1h06col5i"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_h5l1k"]
 [ext_resource type="Script" path="res://ui/Hud/TargetInfo.gd" id="2_mixih"]
 [ext_resource type="LabelSettings" uid="uid://c8w6r4kv14qm6" path="res://ui/Hud/HudText.tres" id="3_c5o2y"]
+[ext_resource type="Shader" path="res://ui/Hud/wireframe.gdshader" id="3_lrohl"]
 [ext_resource type="Texture2D" uid="uid://bjxp8f2cs1jpr" path="res://assets/FontAwesome/32px-play.png" id="3_vnc45"]
 [ext_resource type="Texture2D" uid="uid://bbov130bj8uio" path="res://assets/FontAwesome/32px-shield.png" id="4_fqxyr"]
 
+[sub_resource type="Gradient" id="Gradient_sa5iv"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e0lqy"]
+gradient = SubResource("Gradient_sa5iv")
+width = 200
+
+[sub_resource type="BoxMesh" id="BoxMesh_ku5up"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntlkk"]
+render_priority = 0
+shader = ExtResource("3_lrohl")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/wire_color = Color(0, 0.976471, 0, 1)
+shader_parameter/wire_width = 0.3
+shader_parameter/wire_smoothness = 0.01
+
 [node name="TargetInfo" instance=ExtResource("1_h5l1k")]
 offset_right = 235.0
-offset_bottom = 254.0
+offset_bottom = 276.0
 script = ExtResource("2_mixih")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+[node name="Image2" type="TextureRect" parent="." index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 217.0
+offset_bottom = 196.0
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_e0lqy")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." index="1"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 221.0
+offset_bottom = 193.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" index="0"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(202, 181)
+render_target_update_mode = 4
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" index="0"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 100, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D" index="0"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707106, -0.707107, -0.5, 0.5, 2, 2.93486, 2)
+projection = 1
+size = 2.94328
+near = 0.001
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+mesh = SubResource("BoxMesh_ku5up")
+surface_material_override/0 = SubResource("ShaderMaterial_ntlkk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 11.0
@@ -35,7 +93,7 @@ label_settings = ExtResource("3_c5o2y")
 
 [node name="Image" type="TextureRect" parent="VBoxContainer" index="2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 64)
+custom_minimum_size = Vector2(1, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 
