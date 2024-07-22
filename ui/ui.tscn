@@ -96,6 +96,7 @@ position = Vector2(119, 119)
 script = ExtResource("7_787sc")
 
 [node name="SpobFollower" parent="." instance=ExtResource("8_gv36w")]
+visible = false
 
 [node name="TargetFollower" parent="." instance=ExtResource("9_80m1b")]
 

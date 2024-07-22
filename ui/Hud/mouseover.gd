@@ -6,6 +6,11 @@ var disposition: Util.DISPOSITION = Util.DISPOSITION.ABANDONED
 func _ready():
 	Client.exited_system.connect(_on_target_ship_exited)
 	hide()
+	#Client.camera_updated.connect(
+		#func _on_camera_updated():
+			#if visible and is_instance_valid(Client.mouseover):
+				#$SelectionBox.set_radius(Util.item_screen_box_side_length(Client.mouseover))
+	#)
 	Client.mouseover_updated.connect(
 		func _on_target_changed():
 			if Client.mouseover != null:

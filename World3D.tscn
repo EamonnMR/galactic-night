@@ -7,7 +7,7 @@
 [node name="CameraTransform" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraTransform"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -4.5, 6, 4.5)
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -45, 63.5, 45)
 projection = 1
 current = true
 size = 10.0

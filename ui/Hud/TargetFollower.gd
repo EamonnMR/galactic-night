@@ -5,6 +5,11 @@ var disposition: Util.DISPOSITION = Util.DISPOSITION.ABANDONED
 
 func _ready():
 	hide()
+	#Client.camera_updated.connect(
+		#func _on_camera_updated():
+			#if visible and is_instance_valid(Client.target_ship):
+				#$SelectionBox.set_radius(Util.item_screen_box_side_length(Client.target_ship))
+	#)
 	Client.ship_target_updated.connect(
 		func _on_target_changed():
 			target_ship = Client.target_ship

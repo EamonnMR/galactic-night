@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpfb1h06col5i"]
+[gd_scene load_steps=12 format=3 uid="uid://cpfb1h06col5i"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_h5l1k"]
 [ext_resource type="Script" path="res://ui/Hud/TargetInfo.gd" id="2_mixih"]
@@ -13,6 +13,8 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_e0lqy"]
 gradient = SubResource("Gradient_sa5iv")
 width = 200
+
+[sub_resource type="World3D" id="World3D_ilmls"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ku5up"]
 size = Vector3(2, 2, 2)
@@ -50,6 +52,7 @@ offset_bottom = 193.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" index="0"]
+world_3d = SubResource("World3D_ilmls")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(202, 181)

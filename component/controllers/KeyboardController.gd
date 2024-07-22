@@ -125,8 +125,10 @@ func handle_zoom():
 	var ZOOM_FACTOR = 2.0
 	if Input.is_action_just_pressed("zoom_in"):
 		Client.camera.size /= ZOOM_FACTOR
+		Client.camera_updated.emit()
 	elif Input.is_action_just_pressed("zoom_out"):
 		Client.camera.size *= ZOOM_FACTOR
+		Client.camera_updated.emit()
 		
 func handle_spob_selection():
 	var spobs

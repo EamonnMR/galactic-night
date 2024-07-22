@@ -114,14 +114,15 @@ func distance_ordered(choices, position: Vector2) -> Array:
 	return choices
 
 func item_screen_box_side_length(object):
+	var scale = Client.camera.size / 10
 	if not object:
 		return 0
 	if object.has_method("screen_box_side_length"):
-		return object.screen_box_side_length()
+		return object.screen_box_side_length() / scale
 	elif "screen_box_side_length" in object:
-		return object.screen_box_side_length
+		return object.screen_box_side_length / scale
 	else:
-		return 100
+		return 100 / scale
 
 func lead_correct_position(projectile_velocity: float, origin_position: Vector2, origin_velocity: Vector2, target_velocity: Vector2, target_position: Vector2) -> Vector2:
 	# Simplified 'first order' leading via https://www.gamedev.net/tutorials/programming/math-and-physics/leading-the-target-r4223/
