@@ -226,6 +226,12 @@ func assert_weapons_with_fade_have_sufficient_damage():
 				or (weapon.mass_damage >= 2)
 				or (weapon.energy_damage >= 2)
 			)
+			
+func assert_chain_spawns_exist():
+	for spawn_id in spawns:
+		var spawn = spawns[spawn_id]
+		for other_id in spawn.chain_spawns:
+			assert(other_id in spawns)
 
 func identify_farming_opportunities():
 	for recipe_id in recipes:

@@ -8,6 +8,7 @@ var faction = "jumpstar"
 var spob_name: String
 var hypergate_links: Array
 var spawn_id: String
+var chain_spawns = ["gatebridge_npcs"]
 
 
 func display_name():

@@ -2,4 +2,4 @@ id,name,spawns,quadrants,auto_explore,startloc,biome,faction_id,favor_galactic_c
 start,Providence,,A,TRUE,TRUE,default,player_owned,1,TRUE
 sol,Sol,torment_nexus earth,D,TRUE,FALSE,gold,autofac,5,FALSE
 help_player_find_autofac,Stanford,fulfillment100,A,TRUE,FALSE,black,autofac,1,FALSE
-atinoda,Atinoda,atinoda_prime,B,FALSE,FALSE,blue,union,1,FALSE
+atinoda,Atinoda,atinoda_prime hypergate100,B,FALSE,FALSE,blue,union,1,FALSE

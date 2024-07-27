@@ -22,7 +22,7 @@ texture_filter = 0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a8y1r"]
 radius = 1.42852
 
-[node name="HyperspaceRelay" type="StaticBody3D"]
+[node name="HyperspaceRelay" type="StaticBody3D" groups=["chain_spawners"]]
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("1_50d0y")

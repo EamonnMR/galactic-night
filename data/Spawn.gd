@@ -23,6 +23,9 @@ var quadrants: Array[String]
 var factions_adjacent: Array[String]
 var factions_system: Array[String]
 var factions_core: Array[String]
+var chain_spawns: Array[String] 
+
+const MAX_SPAWN_RECURSION_DEPTH = 10
 
 static func get_csv_path():
 	return "res://data/spawns.csv"
@@ -32,7 +35,7 @@ func valid_for_quadrant(quadrant: String):
 		return true
 	return quadrant in quadrants
 
-func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
+func do_spawns(rng: RandomNumberGenerator, depth=0) -> Array[Node]:
 	var instances: Array[Node] = []
 	for i in range(count):
 		if chance >= rng.randf():
@@ -50,6 +53,15 @@ func do_spawns(rng: RandomNumberGenerator) -> Array[Node]:
 				instance.spawn_id = id
 			instance.transform.origin = Util.raise_25d(position)
 			instances.push_back(instance)
+			if chain_spawns:
+				if depth > MAX_SPAWN_RECURSION_DEPTH:
+					print("Spawn Recursion Limit (" + str(MAX_SPAWN_RECURSION_DEPTH) + ") hit: " + id)
+				else:
+					for spawn in chain_spawns:
+						var other_spawn = Data.spawns[spawn]
+						if preset == other_spawn.preset:
+							instances += Data.spawns[spawn].do_spawns(rng, depth+1)
+						
 	return instances
 
 func denormalize_to_factions(data):

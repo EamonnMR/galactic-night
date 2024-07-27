@@ -25,7 +25,7 @@ texture_filter = 0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gp4e2"]
 points = PackedVector3Array(2.60281, 2.5394, 2.61348, -2.64068, -2.5394, -2.62915, -2.61982, -2.5192, 2.6305, 2.64068, -2.5394, -2.62915, -2.60281, 2.5394, -2.59128, 2.61983, -2.5192, 2.6305, 2.60281, 2.5394, -2.59128, -2.60281, 2.5394, 2.61348)
 
-[node name="FulfillmentCenter" type="StaticBody3D"]
+[node name="FulfillmentCenter" type="StaticBody3D" groups=["chain_spawners"]]
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("1_ka15m")
