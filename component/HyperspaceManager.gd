@@ -2,7 +2,7 @@ extends Node
 
 var warp_factor = 0.0
 
-var warp_rate = 1
+var warp_rate = 0.5
 
 enum STATES {
 	POWERED_DOWN,
