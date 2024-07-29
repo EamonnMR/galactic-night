@@ -23,9 +23,13 @@ func start_hyperjump():
 func warp_transition():
 	Client.change_system()
 	# Play warping down SFX
-	get_node("../").global_transform.origin = Util.raise_25d(
+	var old_origin = Util.flatten_25d(Client.player.transform.origin)
+	Client.player.transform.origin = Util.raise_25d(
 		Vector2(Util.PLAY_AREA_RADIUS * 0.75, 0).rotated(Util.flatten_rotation(get_node("../")))
 	) * -1
+	#Client.player.transform.origin *= -10
+	var new_origin = Util.flatten_25d(Client.player.transform.origin)
+	#breakpoint
 	state = STATES.WARPING_IN
 
 func _process(delta):
