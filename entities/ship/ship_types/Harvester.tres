@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://b0oiqfgcp4ksh"]
+
+[ext_resource type="Shader" path="res://entities/ship/Ship.gdshader" id="1_loi2o"]
+[ext_resource type="Texture2D" uid="uid://cg41yakgru5dc" path="res://assets/eamonn/harvester/Harvester_base.png" id="2_nregk"]
+[ext_resource type="Texture2D" uid="uid://dljwgit8q0m1e" path="res://assets/eamonn/harvester/Harvester_lights.png" id="3_arjxs"]
+[ext_resource type="Texture2D" uid="uid://dtxv26ulhyuka" path="res://assets/eamonn/harvester/Harvester_engine.png" id="4_fxbr8"]
+[ext_resource type="Texture2D" uid="uid://dj8k3w1hqi02l" path="res://assets/eamonn/harvester/Harvester_rm.png" id="5_5wmwv"]
+[ext_resource type="Texture2D" uid="uid://cdtujxxpe48rw" path="res://assets/eamonn/harvester/Harvester_normal.png" id="6_jyc6u"]
+[ext_resource type="Texture2D" uid="uid://0atj65n8q15l" path="res://assets/eamonn/harvester/Harvester_paint.png" id="7_tja8r"]
+[ext_resource type="Texture2D" uid="uid://c8fcppo3ey4ca" path="res://assets/eamonn/harvester/Harvester_weapons.png" id="8_mk5y2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_loi2o")
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/xform = null
+shader_parameter/inv_xform = null
+shader_parameter/perspective_correct = 0.1
+shader_parameter/emission_energy = 6.0
+shader_parameter/base_emission_factor = 1.0
+shader_parameter/engine_emission_factor = 0.0
+shader_parameter/weapon_emission_factor = 0.0
+shader_parameter/paint_hue = null
+shader_parameter/paint_saturation = null
+shader_parameter/paint_brightness = null
+shader_parameter/base_brightness = null
+shader_parameter/lights_hue = null
+shader_parameter/lights_saturation = null
+shader_parameter/lights_brightness = null
+shader_parameter/weapon_hue = null
+shader_parameter/weapon_saturation = null
+shader_parameter/texture_albedo = ExtResource("2_nregk")
+shader_parameter/texture_metallic = ExtResource("5_5wmwv")
+shader_parameter/texture_roughness = ExtResource("5_5wmwv")
+shader_parameter/texture_normal = ExtResource("6_jyc6u")
+shader_parameter/texture_base_emission = ExtResource("3_arjxs")
+shader_parameter/texture_engine_emission = ExtResource("4_fxbr8")
+shader_parameter/texture_weapon_emission = ExtResource("8_mk5y2")
+shader_parameter/texture_paint = ExtResource("7_tja8r")

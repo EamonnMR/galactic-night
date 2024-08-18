@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float warp_factor = 0;
-uniform float warp_factor_scale = 10;
+uniform float warp_factor_scale = 5;
 uniform float warp_angle;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;

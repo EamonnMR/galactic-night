@@ -34,6 +34,8 @@ signal destroyed
 signal weapons_changed
 
 func _ready():
+	#if not Data.ships[type]["screen_box_side_length"]:
+	#	Data.ships[type]["screen_box_side_length"] = get_screen_box_side_length()
 	Data.ships[type].apply_to_node(self)
 	# TODO: Better way to determine if it's the player
 	add_to_group("radar")
@@ -60,6 +62,7 @@ func _ready():
 		for weapon_slot in weapon_config:
 			get_node(weapon_slot).add_weapon(WeaponData.instantiate(weapon_config[weapon_slot]))
 		
+	
 func get_weapon_slots() -> Array[WeaponSlot]:
 	var weapon_slots: Array[WeaponSlot] = []
 	for weapon_slot in get_children():
@@ -180,3 +183,14 @@ func remove_weapon(weapon: Node):
 				
 func receive_impact(impact: Vector2):
 	linear_velocity += impact / mass
+
+#func screen_box_side_length():
+	#var mesh = $Graphics.mesh
+	#var aabb = mesh.get_aabb()
+	#var trns: Transform3D
+	##var factor = $Graphics.transform.basis.get_scale().x
+	#var max_dim = max(aabb.size.x, aabb.size.y, aabb.size.z) # * factor
+	#var camera_scale = Client.camera.size
+	#var reference_dim = 10.0
+	#var re_scale = camera_scale * reference_dim * max_dim
+	#return re_scale

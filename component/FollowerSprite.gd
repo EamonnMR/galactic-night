@@ -5,6 +5,8 @@ extends Sprite2D
 func _ready():
 	parent = get_parent()
 	self._deferred_ready.call_deferred()
+	rescale()
+	Client.camera_updated.connect(rescale)
 
 func _deferred_ready():
 	var main = get_tree().get_root().get_node("Main")
@@ -24,3 +26,7 @@ func _deferred_ready():
 func _process(_delta):
 	if parent:
 		position = Client.camera.unproject_position(parent.global_position)
+		
+func rescale():
+	var scale_linear = 20 / Client.camera.size
+	scale = Vector2(scale_linear, scale_linear)

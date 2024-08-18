@@ -9,3 +9,4 @@ id,name,paint_hue,paint_saturation,paint_brightness,base_brightness,lights_hue,l
 7,Lilly,0.6,1,0.4,0.5,0.9,1,1,0.9,1,metal: 1,res://assets/eamonn/icons/lilly.png,0,Show you fearlessness in the face of adversity.
 8,Cadet,0.65,1,0.54,0.5,0.23,1,1,0.23,1,metal: 1,res://assets/eamonn/icons/cadet.png,0,A classic scheme for classic spacers.
 9,Anchor,0.71,1,0.04,-0.12,0.32,1,1,0.075,1.74,metal: 1,res://assets/eamonn/icons/anchor.png,0,A reminder that the real challenge was always empathy.
+10,Glitter,0.2,1,0.5,0.6,0.685,1.74,1,0.685,1,metal: 1,res://assets/eamonn/icons/invader.png,0,Challenge your opponents with this bold retro scheme.

@@ -20,6 +20,13 @@ func get_special_system_spawns(system):
 		return Data.static_systems[system.static_system_id].spawns
 	return []
 	
+func get_chain_spawns(system):
+	var chain_spawns = []
+	for entity in get_tree().get_nodes_in_group("chain_spawners"):
+		if "chain_spawns" in entity:
+			chain_spawns += entity.chain_spawns
+	return chain_spawns
+	
 func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 	var rng = RandomNumberGenerator.new()
 	print("Seed: ", (seed_value + 10) * system.id.to_int())
@@ -30,6 +37,7 @@ func do_spawns(seed_value: int, system: SystemData, gameplay: Node):
 		get_special_system_spawns(system) +
 		get_faction_spawns(system) +
 		get_adjacent_spawns(system) +
+		get_chain_spawns(system) +
 		Data.evergreen_spawns
 	):
 		var spawn: SpawnData = Data.spawns[spawn_id]

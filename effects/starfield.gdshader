@@ -7,7 +7,7 @@ const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
 
 uniform float warp_factor = 0;
-uniform float warp_factor_scale = 10;
+uniform float warp_factor_scale = 20;
 uniform float warp_angle;
 
 vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation){

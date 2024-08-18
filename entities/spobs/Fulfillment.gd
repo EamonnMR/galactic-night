@@ -11,6 +11,8 @@ var spawn_id: String
 
 var holds = true
 
+var chain_spawns = ["autofac_npcs_b"]
+
 signal destroyed
 
 func display_name():

@@ -77,6 +77,10 @@ func constrained_point(source_position: Vector2, current_rotation: float,
 	# For finding the right direction and amount to turn when your rotation speed is limited
 	var ideal_face = (target_position - source_position).angle()
 	ideal_face = PI * 2 - ideal_face
+	var ideal_turn = get_ideal_turn_for_ideal_face(ideal_face, current_rotation, max_turn)
+	return [ideal_turn, ideal_face]
+	
+func get_ideal_turn_for_ideal_face(ideal_face, current_rotation, max_turn) -> float:
 	var ideal_turn = anglemod(ideal_face - current_rotation)
 	if(ideal_turn > PI):
 		ideal_turn = anglemod(ideal_turn - 2 * PI)
@@ -87,9 +91,9 @@ func constrained_point(source_position: Vector2, current_rotation: float,
 	max_turn = sign(ideal_turn) * max_turn  # Ideal turn in the right direction
 	
 	if(abs(ideal_turn) > abs(max_turn)):
-		return [max_turn, ideal_face]
+		return max_turn
 	else:
-		return [ideal_turn, ideal_face]
+		return ideal_turn
 
 enum DISPOSITION {
 	FRIENDLY,
@@ -114,14 +118,15 @@ func distance_ordered(choices, position: Vector2) -> Array:
 	return choices
 
 func item_screen_box_side_length(object):
+	var scale = Client.camera.size / 10
 	if not object:
 		return 0
 	if object.has_method("screen_box_side_length"):
-		return object.screen_box_side_length()
+		return object.screen_box_side_length() / scale
 	elif "screen_box_side_length" in object:
-		return object.screen_box_side_length
+		return object.screen_box_side_length / scale
 	else:
-		return 100
+		return 100 / scale
 
 func lead_correct_position(projectile_velocity: float, origin_position: Vector2, origin_velocity: Vector2, target_velocity: Vector2, target_position: Vector2) -> Vector2:
 	# Simplified 'first order' leading via https://www.gamedev.net/tutorials/programming/math-and-physics/leading-the-target-r4223/

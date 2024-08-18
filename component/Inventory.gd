@@ -128,3 +128,4 @@ func deserialize(data):
 func player_has_access():
 	# TODO: Handle other player stuff
 	return get_node("../") == Client.player
+
