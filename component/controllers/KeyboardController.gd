@@ -41,6 +41,7 @@ func _physics_process(delta):
 	handle_zoom()
 	handle_spob_selection()
 	
+	handle_empty_weapons()
 
 func _ready():
 	Client.set_player(parent)
@@ -144,3 +145,9 @@ func handle_spob_selection():
 
 func get_target():
 	return Client.target_ship
+	
+func handle_empty_weapons():
+	if shooting and is_instance_valid(Client.player) and len(Client.player.primary_weapons) == 0:
+		Client.display_message("Cannot fire - no primary weapon equipped. Press I to configure weapons")
+	if shooting_secondary and is_instance_valid(Client.player) and len(Client.player.primary_weapons) == 0:
+		Client.display_message("Cannot fire secondaries - no secondary weapon equipped. Press I to configure weapons")

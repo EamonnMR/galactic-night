@@ -86,6 +86,7 @@ func valid_jump_destination_selected():
 		return false
 	
 	if Cheats.jump_anywhere:
+		breakpoint
 		return true
 	
 	var current_system_dat: SystemData = Procgen.systems[current_system]
