@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmy8sexrww2l8"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="5"]
-[ext_resource type="Script" path="res://ui/Equipment.gd" id="9"]
+[ext_resource type="Script" uid="uid://c4joxdyqyo05d" path="res://ui/Equipment.gd" id="9"]
 
 [node name="Equipment" type="Control"]
 layout_mode = 3

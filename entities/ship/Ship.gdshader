@@ -72,7 +72,7 @@ void fragment() {
 	SPECULAR = specular;
 	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
 	NORMAL_MAP_DEPTH = normal_scale;
-	
+
 	vec4 base_emission = texture(texture_base_emission,base_uv);
 	vec3 base_emission_hsv = rgb2hsv(base_emission.rgb);
 	base_emission_hsv.x += lights_hue;
@@ -86,7 +86,7 @@ void fragment() {
 	vec3 weapon_emission_tex = hsv2rgb(weapon_emission_hsv);
 	vec4 engine_emission = texture(texture_engine_emission,base_uv);
 	vec3 engine_emission_tex = engine_emission.rgb;
-	
+
 	EMISSION = (
 		base_emission_tex * base_emission_factor * base_emission.a
 		+ weapon_emission_tex * weapon_emission_factor * weapon_emission.a

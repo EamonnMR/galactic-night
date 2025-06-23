@@ -20,7 +20,7 @@ func complete_warp_conditions_met() -> bool:
 		and parent.linear_velocity.length() >= parent.max_speed * 0.9
 
 func warp_conditions_met() -> bool:
-	return Util.out_of_system_radius(parent, Util.JUMP_DISTANCE) and not parent.warping_in
+	return Util.out_of_system_radius(parent, Util.JUMP_DISTANCE) and not parent.warping_in and Client.valid_jump_destination_selected()
 
 func process_warping_out(delta):
 	shooting = false

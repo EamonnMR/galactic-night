@@ -159,4 +159,3 @@ func sphere_query(world_3d: World3D, transform: Transform3D, radius: float, coll
 	var space_state= world_3d.get_direct_space_state()
 	var result = space_state.intersect_shape(query)
 	return result
-

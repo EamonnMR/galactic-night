@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b58ppjg8xv4kk"]
 
-[ext_resource type="Script" path="res://entities/spobs/TormentNexus.gd" id="1_foc72"]
+[ext_resource type="Script" uid="uid://cq660qe45emtm" path="res://entities/spobs/TormentNexus.gd" id="1_foc72"]
 [ext_resource type="ArrayMesh" uid="uid://bkxgmeagt2phj" path="res://assets/eamonn/torment_nexus/torment_nexus.obj" id="2_koin6"]
 [ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="2_oba8n"]
 [ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="3_4kvt1"]

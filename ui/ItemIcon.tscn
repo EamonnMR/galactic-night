@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8w58u2hkvmxl"]
 
-[ext_resource type="Script" path="res://ui/ItemIcon.gd" id="1"]
+[ext_resource type="Script" uid="uid://1f4sr7ya68ls" path="res://ui/ItemIcon.gd" id="1"]
 
 [node name="ItemIcon" type="TextureRect"]
 show_behind_parent = true

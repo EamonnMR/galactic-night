@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bf46l4qga0grl"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1"]
-[ext_resource type="Script" path="res://ui/crafting/CraftingMain.gd" id="2"]
+[ext_resource type="Script" uid="uid://dyt18j55y80j1" path="res://ui/crafting/CraftingMain.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://ecaqh0syukcx" path="res://ui/crafting/ItemCraftSubmenu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bu7mccq5pm4fn" path="res://ui/crafting/Build.tscn" id="4_hyfkp"]
 [ext_resource type="PackedScene" uid="uid://dl2na24thhqlf" path="res://ui/crafting/ShipCrafting.tscn" id="5_r6f62"]

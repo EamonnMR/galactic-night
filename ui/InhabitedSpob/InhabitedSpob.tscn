@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjyh6bml6dk1e"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_yvbsd"]
-[ext_resource type="Script" path="res://ui/InhabitedSpob/InhabitedSpob.gd" id="2_oq1gm"]
-[ext_resource type="Script" path="res://ui/InhabitedSpob/Refuel.gd" id="3_3xret"]
+[ext_resource type="Script" uid="uid://b3r5n0q2i06bt" path="res://ui/InhabitedSpob/InhabitedSpob.gd" id="2_oq1gm"]
+[ext_resource type="Script" uid="uid://dj4hade6id8e2" path="res://ui/InhabitedSpob/Refuel.gd" id="3_3xret"]
 [ext_resource type="PackedScene" uid="uid://btexoeba36vo4" path="res://ui/InhabitedSpob/Trade.tscn" id="3_gu7ad"]
 [ext_resource type="PackedScene" uid="uid://d0mkp8dh2cna3" path="res://ui/InhabitedSpob/Shop.tscn" id="4_k6e60"]
 [ext_resource type="PackedScene" uid="uid://dpkaumfgnqnqi" path="res://ui/InhabitedSpob/ShipStore.tscn" id="5_t7gt0"]

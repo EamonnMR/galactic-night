@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jp0r11cthf4q"]
 
-[ext_resource type="Script" path="res://ui/crafting/Crafting.gd" id="1"]
+[ext_resource type="Script" uid="uid://c6e7evu3u2xpg" path="res://ui/crafting/Crafting.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cje5gph3njtsq" path="res://ui/IngredientsDisplay.tscn" id="2_gk6v7"]
 
 [node name="Craft" type="Control"]

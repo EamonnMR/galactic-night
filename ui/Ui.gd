@@ -61,4 +61,3 @@ func toggle_inventory(elements: Array = []):
 			i.show()
 		get_tree().paused = true
 		inventory_open = true
-

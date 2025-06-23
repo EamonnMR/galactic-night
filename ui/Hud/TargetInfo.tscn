@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cpfb1h06col5i"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_h5l1k"]
-[ext_resource type="Script" path="res://ui/Hud/TargetInfo.gd" id="2_mixih"]
+[ext_resource type="Script" uid="uid://d2fk3smwav3lr" path="res://ui/Hud/TargetInfo.gd" id="2_mixih"]
 [ext_resource type="LabelSettings" uid="uid://c8w6r4kv14qm6" path="res://ui/Hud/HudText.tres" id="3_c5o2y"]
-[ext_resource type="Shader" path="res://ui/Hud/wireframe.gdshader" id="3_lrohl"]
+[ext_resource type="Shader" uid="uid://dftywpe0fsc6c" path="res://ui/Hud/wireframe.gdshader" id="3_lrohl"]
 [ext_resource type="Texture2D" uid="uid://bjxp8f2cs1jpr" path="res://assets/FontAwesome/32px-play.png" id="3_vnc45"]
 [ext_resource type="Texture2D" uid="uid://bbov130bj8uio" path="res://assets/FontAwesome/32px-shield.png" id="4_fqxyr"]
 

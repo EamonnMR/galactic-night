@@ -4,7 +4,7 @@ var MOVE_SCALE = Vector2(1,1)
 var pos
 var warp_factor = 0
 var warp_angle = 0
-
+#
 func _process(delta):
 	if not is_instance_valid(Client.player):
 		return
