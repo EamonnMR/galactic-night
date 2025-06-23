@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl2na24thhqlf"]
 
 [ext_resource type="PackedScene" uid="uid://jp0r11cthf4q" path="res://ui/crafting/CraftSubmenut.tscn" id="1"]
-[ext_resource type="Script" path="res://ui/crafting/ShipCrafting.gd" id="2"]
+[ext_resource type="Script" uid="uid://mtvha2tcb852" path="res://ui/crafting/ShipCrafting.gd" id="2"]
 
 [node name="Ships" instance=ExtResource("1")]
 script = ExtResource("2")

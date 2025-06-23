@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ba0f7rn0to7t4"]
 
-[ext_resource type="Script" path="res://ui/map/circle.gd" id="1"]
-[ext_resource type="Script" path="res://ui/map/system.gd" id="2"]
+[ext_resource type="Script" uid="uid://yd0n6duqe3wl" path="res://ui/map/circle.gd" id="1"]
+[ext_resource type="Script" uid="uid://qr3aycj5noos" path="res://ui/map/system.gd" id="2"]
 
 [node name="system" type="Control"]
 process_mode = 3

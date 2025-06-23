@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://hg14uyosknmb"]
 
-[ext_resource type="Script" path="res://entities/constructed/Workbench.gd" id="1_8ob2n"]
+[ext_resource type="Script" uid="uid://dwv4skjh3ks67" path="res://entities/constructed/Workbench.gd" id="1_8ob2n"]
 [ext_resource type="Texture2D" uid="uid://vlv0g1wovm8o" path="res://assets/eamonn/station/Station_base.png" id="2_p6cso"]
 [ext_resource type="ArrayMesh" uid="uid://dccd70v5sluse" path="res://assets/eamonn/workbench/workbench.obj" id="2_qiga3"]
 [ext_resource type="Texture2D" uid="uid://dd426tf71mhor" path="res://assets/eamonn/station/Station_lights.png" id="3_d8k6w"]

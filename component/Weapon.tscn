@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnqxxfr3dlx7w"]
 
-[ext_resource type="Script" path="res://component/Weapon.gd" id="1_wor20"]
+[ext_resource type="Script" uid="uid://b8wdvhwvymt7m" path="res://component/Weapon.gd" id="1_wor20"]
 [ext_resource type="PackedScene" uid="uid://djxaf48l2mu8l" path="res://entities/Projectile.tscn" id="2"]
 [ext_resource type="AudioStream" uid="uid://bgvqg7wmqk5rx" path="res://assets/vintage_sfx_dodgy/Wayzata SL Pro 1993/photon_s.mp3" id="3_b5341"]
 

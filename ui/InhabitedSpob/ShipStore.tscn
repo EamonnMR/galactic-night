@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpkaumfgnqnqi"]
 
-[ext_resource type="Script" path="res://ui/InhabitedSpob/ShipStore.gd" id="1_nns4h"]
+[ext_resource type="Script" uid="uid://cxafyl7c2lon1" path="res://ui/InhabitedSpob/ShipStore.gd" id="1_nns4h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e7oc5"]
 font_color = Color(0, 0, 0, 1)

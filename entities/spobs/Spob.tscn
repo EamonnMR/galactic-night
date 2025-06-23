@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0arcyowgbhj1"]
 
-[ext_resource type="Script" path="res://entities/spobs/Spob.gd" id="1_1liil"]
-[ext_resource type="Shader" path="res://entities/spobs/Spob.gdshader" id="2_ryjfe"]
-[ext_resource type="Script" path="res://component/FollowerSprite.gd" id="3_mu5to"]
+[ext_resource type="Script" uid="uid://d22hiyb3yc1sy" path="res://entities/spobs/Spob.gd" id="1_1liil"]
+[ext_resource type="Shader" uid="uid://bw8kxcwgv03g" path="res://entities/spobs/Spob.gdshader" id="2_ryjfe"]
+[ext_resource type="Script" uid="uid://ew1rj4kbk3bw" path="res://component/FollowerSprite.gd" id="3_mu5to"]
 [ext_resource type="Texture2D" uid="uid://doyi0ng7eb3b7" path="res://assets/eamonn/lunarcell_planets/rc-25.png" id="3_p27b8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6h1x"]

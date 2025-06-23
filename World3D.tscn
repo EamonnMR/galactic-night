@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b13g3vw6vpvvt"]
 
-[ext_resource type="Script" path="res://Camera.gd" id="1_2by11"]
+[ext_resource type="Script" uid="uid://bwi0f5m6plter" path="res://Camera.gd" id="1_2by11"]
 
 [node name="World3D" type="Node3D"]
 

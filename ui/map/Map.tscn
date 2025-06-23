@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cijoe0ttuy6be"]
 
-[ext_resource type="Script" path="res://ui/map/Infobox.gd" id="1"]
+[ext_resource type="Script" uid="uid://ve85lhql4xt3" path="res://ui/map/Infobox.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="2"]
-[ext_resource type="Script" path="res://ui/map/Map.gd" id="3"]
+[ext_resource type="Script" uid="uid://cx26s4p3k25f8" path="res://ui/map/Map.gd" id="3"]
 
 [sub_resource type="Theme" id="1"]
 

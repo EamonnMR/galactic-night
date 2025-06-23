@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://caxldaht3ldh"]
 
 [ext_resource type="Texture2D" uid="uid://co5uqnd7d0f4k" path="res://assets/danc_cc_by/box.png" id="1"]
-[ext_resource type="Script" path="res://ui/EquipBox.gd" id="2"]
+[ext_resource type="Script" uid="uid://dknb13vs1y3us" path="res://ui/EquipBox.gd" id="2"]
 
 [node name="NinePatchRect" type="NinePatchRect"]
 custom_minimum_size = Vector2(38, 38)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqqjk32pvym87"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_xg5cs"]
-[ext_resource type="Script" path="res://ui/Money.gd" id="2_pysj8"]
+[ext_resource type="Script" uid="uid://bw23rr1qm871q" path="res://ui/Money.gd" id="2_pysj8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u2b58"]
 font_size = 20

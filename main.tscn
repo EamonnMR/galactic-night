@@ -1,22 +1,22 @@
 [gd_scene load_steps=13 format=3 uid="uid://d1dj04ahybg0"]
 
-[ext_resource type="Script" path="res://World3D.gd" id="1_ayf7x"]
-[ext_resource type="Shader" path="res://effects/starfield.gdshader" id="2_h0fwj"]
+[ext_resource type="Script" uid="uid://jdy86mm6nbs7" path="res://World3D.gd" id="1_ayf7x"]
+[ext_resource type="Shader" uid="uid://bst6raepqjrn7" path="res://effects/starfield.gdshader" id="2_h0fwj"]
 [ext_resource type="Texture2D" uid="uid://6bi8prtffeim" path="res://assets/ScreamingBrain/soft_neb/Green Nebula/1024x1024 Green Nebula 3.png" id="3_fqhby"]
 [ext_resource type="PackedScene" uid="uid://b13g3vw6vpvvt" path="res://World3D.tscn" id="4_0jdkg"]
 [ext_resource type="Texture2D" uid="uid://drk6ug0kax648" path="res://assets/ScreamingBrain/soft_neb/Blue Nebula/1024x1024 Blue Nebula 4.png" id="4_to02v"]
 [ext_resource type="PackedScene" uid="uid://cw2nt0g5sx0tb" path="res://ui/ui.tscn" id="5_qu37x"]
-[ext_resource type="Script" path="res://effects/Background.gd" id="5_ss6kf"]
-[ext_resource type="Shader" path="res://effects/overlay.gdshader" id="7_1t3x4"]
+[ext_resource type="Script" uid="uid://ddm6mbn5dyim0" path="res://effects/Background.gd" id="5_ss6kf"]
+[ext_resource type="Shader" uid="uid://cebchxu15b8x6" path="res://effects/overlay.gdshader" id="7_1t3x4"]
 [ext_resource type="PackedScene" uid="uid://baufcdder5qrd" path="res://ui/main/main_menu.tscn" id="9_6pgxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61vo"]
 shader = ExtResource("2_h0fwj")
-shader_parameter/position = null
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/nebula = ExtResource("3_fqhby")
 shader_parameter/warp_factor = 0.0
 shader_parameter/warp_factor_scale = 10.0
-shader_parameter/warp_angle = null
-shader_parameter/nebula = ExtResource("3_fqhby")
+shader_parameter/warp_angle = 0.0
 
 [sub_resource type="Environment" id="Environment_7gyux"]
 background_mode = 3
@@ -26,7 +26,7 @@ glow_enabled = true
 shader = ExtResource("7_1t3x4")
 shader_parameter/warp_factor = 0.0
 shader_parameter/warp_factor_scale = 10.0
-shader_parameter/warp_angle = null
+shader_parameter/warp_angle = 0.0
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ayf7x")

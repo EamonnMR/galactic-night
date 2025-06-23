@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqaep4a5vunmp"]
 
-[ext_resource type="Script" path="res://ui/SelectionBox.gd" id="2_8s040"]
+[ext_resource type="Script" uid="uid://csbhu4vur5faq" path="res://ui/SelectionBox.gd" id="2_8s040"]
 
 [node name="SelectionBox" type="NinePatchRect"]
 texture_filter = 1

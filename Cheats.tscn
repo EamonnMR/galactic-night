@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdk4iculmnvrj"]
 
-[ext_resource type="Script" path="res://Cheats.gd" id="1"]
+[ext_resource type="Script" uid="uid://lyxmiers72o0" path="res://Cheats.gd" id="1"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1")

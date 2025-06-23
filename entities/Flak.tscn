@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://by2f8d5y3ad05"]
 
-[ext_resource type="Script" path="res://entities/Projectile.gd" id="1_y5x5p"]
+[ext_resource type="Script" uid="uid://dp3vsp8y0amdw" path="res://entities/Projectile.gd" id="1_y5x5p"]
 [ext_resource type="PackedScene" uid="uid://c7el6b7rxmc8t" path="res://effects/FlakExplosion.tscn" id="2_bynit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7x5gk"]

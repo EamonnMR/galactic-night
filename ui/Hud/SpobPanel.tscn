@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2arxq68kap2e"]
 
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="1_ey5xi"]
-[ext_resource type="Script" path="res://ui/Hud/SpobPanel.gd" id="2_pjf2l"]
+[ext_resource type="Script" uid="uid://bv0dgj8uwx7mr" path="res://ui/Hud/SpobPanel.gd" id="2_pjf2l"]
 [ext_resource type="LabelSettings" uid="uid://c8w6r4kv14qm6" path="res://ui/Hud/HudText.tres" id="3_k1iib"]
 
 [node name="SpobInfoBox" instance=ExtResource("1_ey5xi")]

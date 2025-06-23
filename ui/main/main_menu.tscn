@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://baufcdder5qrd"]
 
 [ext_resource type="Texture2D" uid="uid://fdo4s17i0u4s" path="res://assets/danc_cc_by/MainMenu.png" id="1_dk8wm"]
-[ext_resource type="Script" path="res://ui/main/TopLevelMenu.gd" id="1_imla2"]
-[ext_resource type="Script" path="res://ui/main/MainMenu.gd" id="2_esajf"]
+[ext_resource type="Script" uid="uid://4dxhu5wuj1gs" path="res://ui/main/TopLevelMenu.gd" id="1_imla2"]
+[ext_resource type="Script" uid="uid://8w52kdkejcm1" path="res://ui/main/MainMenu.gd" id="2_esajf"]
 [ext_resource type="PackedScene" uid="uid://b5sa7qn1e2xyb" path="res://ui/NinePatchPanel.tscn" id="2_p0qk4"]
-[ext_resource type="Script" path="res://ui/LoadGame.gd" id="3_lps7l"]
-[ext_resource type="Script" path="res://ui/NewGame.gd" id="4_hmn6f"]
+[ext_resource type="Script" uid="uid://doa5l3i52tlsm" path="res://ui/LoadGame.gd" id="3_lps7l"]
+[ext_resource type="Script" uid="uid://ciicc7dn3w1ex" path="res://ui/NewGame.gd" id="4_hmn6f"]
 [ext_resource type="LabelSettings" uid="uid://bslkk24j3eyvp" path="res://ui/FancyTitle.tres" id="4_qyk3p"]
 [ext_resource type="FontFile" uid="uid://bj5tedj4y2vvh" path="res://assets/svofski_pd/Glass_TTY_VT220.ttf" id="7_sn0h5"]
 [ext_resource type="FontFile" uid="uid://c76e2roii2265" path="res://assets/Kate_Willaert

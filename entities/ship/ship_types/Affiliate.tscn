@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://uc7oyjsn3215" path="res://entities/ship/Spaceship.tscn" id="1_xw05x"]
 [ext_resource type="ArrayMesh" uid="uid://4smcjcxvyxey" path="res://assets/eamonn/affiliate/affiliate.obj" id="2_85gmo"]
-[ext_resource type="Script" path="res://component/MeshInstance.gd" id="3_5u41f"]
+[ext_resource type="Script" uid="uid://dlea0stpy1udm" path="res://component/MeshInstance.gd" id="3_5u41f"]
 [ext_resource type="PackedScene" uid="uid://bnmj4441kjf80" path="res://component/WeaponSlot.tscn" id="4_aae2e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwxt2"]
